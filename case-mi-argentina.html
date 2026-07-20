@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Argentina — App Redesign | Vanesa Reche</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0D0D0D;
+      --white: #FFFFFF;
+      --gray-bg: #F5F5F5;
+      --gray-mid: #666666;
+      --gray-border: #E0E0E0;
+      --accent: #1A56DB;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--black); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 1px; }
+    .skip-link {
+      position: absolute; left: 1rem; top: -100px; background: var(--black); color: var(--white);
+      padding: 0.75rem 1.25rem; z-index: 1000; font-size: 0.85rem; text-decoration: none; transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 4rem; background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-border);
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--black); text-decoration: none; }
+    .nav-right { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gray-mid); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .lang-toggle { display: flex; align-items: center; border: 1px solid var(--gray-border); overflow: hidden; }
+    .lang-btn {
+      padding: 0.4rem 0.75rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; cursor: pointer; border: none; background: transparent; color: var(--gray-mid);
+      transition: background 0.15s, color 0.15s; font-family: var(--sans);
+    }
+    .lang-btn.active { background: var(--black); color: var(--white); }
+    .lang-btn:not(.active):hover { background: var(--gray-bg); color: var(--black); }
+
+    /* ── CASE HERO ── */
+    .case-hero { padding: 9rem 4rem 2.5rem; max-width: 1040px; margin: 0 auto; }
+    .case-back {
+      display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase; color: var(--gray-mid); text-decoration: none;
+      margin-bottom: 2.5rem; transition: color 0.2s;
+    }
+    .case-back:hover { color: var(--black); }
+    .case-hero-eyebrow {
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    .case-hero-title {
+      font-family: var(--serif); font-size: clamp(2.25rem, 6vw, 4.5rem);
+      line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.25rem;
+    }
+    .case-hero-subtitle { font-size: 1.05rem; color: var(--gray-mid); font-weight: 300; max-width: 620px; line-height: 1.7; margin-bottom: 1.75rem; }
+    .case-hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .case-hero-tags span {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1px solid var(--gray-border); padding: 0.25rem 0.6rem; color: var(--gray-mid);
+    }
+
+    /* ── COVER (portrait mobile treatment) ── */
+    .case-cover-wrap { padding: 0 4rem 1rem; }
+    .case-cover {
+      width: 100%; min-height: 420px; background: var(--gray-bg); border: 1px solid var(--gray-border);
+      display: flex; align-items: center; justify-content: center; padding: 2.5rem 0;
+      max-width: 1040px; margin: 0 auto;
+    }
+    .case-cover img {
+      max-height: 560px; width: auto; max-width: 88%; object-fit: contain;
+      border-radius: 14px; box-shadow: 0 24px 60px rgba(13,13,13,0.12);
+    }
+    .team-note {
+      max-width: 1040px; margin: 1rem auto 0; font-size: 0.85rem; color: var(--gray-mid);
+      line-height: 1.6; padding: 0 0.25rem;
+    }
+    .team-note strong { color: var(--black); font-weight: 500; }
+
+    /* ── BODY ── */
+    .case-body { max-width: 760px; margin: 0 auto; padding: 5rem 4rem; }
+    .case-section { margin-bottom: 4rem; }
+    .case-section:last-child { margin-bottom: 0; }
+    .case-section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem;
+    }
+    .case-section-text { font-size: 1rem; line-height: 1.8; color: var(--gray-mid); font-weight: 300; margin-bottom: 1.25rem; }
+    .case-section-text:last-child { margin-bottom: 0; }
+    .case-section-text strong { color: var(--black); font-weight: 500; }
+    .case-bullet-list { list-style: none; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.9rem; }
+    .case-bullet-list li { font-size: 0.95rem; line-height: 1.7; color: var(--gray-mid); padding-left: 1.25rem; position: relative; }
+    .case-bullet-list li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+    .case-bullet-list li strong { color: var(--black); font-weight: 500; }
+    .case-callout {
+      font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--black);
+      line-height: 1.4; margin: 1.75rem 0; padding-left: 1.25rem; border-left: 2px solid var(--accent);
+    }
+
+    /* Flow strip — multiple phone screens side by side */
+    .case-flow-strip {
+      display: flex; gap: 1.5rem; align-items: center; justify-content: center; flex-wrap: wrap;
+      background: var(--gray-bg); border: 1px solid var(--gray-border); padding: 2.5rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .case-flow-strip img {
+      width: 200px; max-width: 42%; height: auto; border-radius: 10px;
+      box-shadow: 0 14px 34px rgba(13,13,13,0.1);
+    }
+    .case-flow-arrow { font-size: 1.4rem; color: var(--gray-mid); flex-shrink: 0; }
+
+    .case-single-shot {
+      display: flex; justify-content: center; background: var(--gray-bg);
+      border: 1px solid var(--gray-border); padding: 2.5rem 1.5rem; margin: 2rem 0;
+    }
+    .case-single-shot img {
+      width: 240px; max-width: 100%; height: auto; border-radius: 10px;
+      box-shadow: 0 14px 34px rgba(13,13,13,0.1);
+    }
+    .case-image-caption {
+      font-size: 0.8rem; color: var(--gray-mid); text-align: center; margin-top: -1.4rem; margin-bottom: 2rem;
+    }
+
+    /* Prototype embed */
+    .proto-section {
+      background: var(--gray-bg); border: 1px solid var(--gray-border);
+      padding: 2.5rem; margin: 0 auto 4rem; max-width: 1040px;
+    }
+    .proto-section-inner { max-width: 100%; }
+    .proto-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    .proto-title { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 0.75rem; }
+    .proto-desc { font-size: 0.95rem; color: var(--gray-mid); line-height: 1.7; margin-bottom: 1.75rem; max-width: 620px; }
+    .proto-frame-wrap {
+      width: 100%; max-width: 420px; margin: 0 auto;
+      aspect-ratio: 402 / 900; border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--gray-border); box-shadow: 0 24px 60px rgba(13,13,13,0.14);
+    }
+    .proto-frame-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+    .proto-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.75rem; justify-content: center; }
+    .proto-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--black); text-decoration: none;
+      border-bottom: 1px solid var(--gray-border); padding-bottom: 2px; transition: border-color 0.2s, color 0.2s;
+    }
+    .proto-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── FOOTER NAV ── */
+    .case-nav-footer {
+      max-width: 1040px; margin: 0 auto; padding: 2.5rem 4rem 5rem;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      border-top: 1px solid var(--gray-border);
+    }
+    .case-nav-link {
+      font-size: 0.85rem; font-weight: 500; color: var(--black); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;
+    }
+    .case-nav-link:hover { color: var(--accent); }
+
+    footer {
+      padding: 2rem 4rem; border-top: 1px solid var(--gray-border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-size: 0.75rem; color: var(--gray-mid); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .case-hero { padding: 7.5rem 1.5rem 2rem; }
+      .case-cover-wrap { padding: 0 1.5rem 1rem; }
+      .team-note { padding: 0 1.5rem; }
+      .case-body { padding: 3.5rem 1.5rem; }
+      .proto-section { padding: 2rem 1.5rem; margin-left: 1.5rem; margin-right: 1.5rem; max-width: calc(100% - 3rem); }
+      .case-nav-footer { padding: 2rem 1.5rem 3.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      nav { padding: 0.75rem 1rem; flex-wrap: wrap; row-gap: 0.5rem; }
+      .nav-logo { font-size: 0.95rem; }
+      .nav-right { gap: 0.85rem; }
+      .nav-links { gap: 0.7rem; }
+      .nav-links a { font-size: 0.75rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <nav aria-label="Primary">
+    <a href="index.html" class="nav-logo">Vanesa Reche</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#work" data-i18n="nav-work">Work</a></li>
+        <li><a href="index.html#about" data-i18n="nav-about">About</a></li>
+        <li><a href="index.html#contact" data-i18n="nav-contact">Contact</a></li>
+      </ul>
+      <div class="lang-toggle" role="group" aria-label="Language selector">
+        <button type="button" class="lang-btn active" aria-pressed="true" onclick="setLang('en')">EN</button>
+        <button type="button" class="lang-btn" aria-pressed="false" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <div class="case-hero">
+      <a href="index.html#work" class="case-back" data-i18n="back-link">← All work</a>
+      <p class="case-hero-eyebrow" data-i18n="hero-eyebrow">Case Study 04 — Academic Project</p>
+      <h1 class="case-hero-title" data-i18n="hero-title">Mi Argentina — App Redesign</h1>
+      <p class="case-hero-subtitle" data-i18n="hero-subtitle">A UX/UI redesign of Argentina's national government app, built for my UX/UI Diploma at UTN.</p>
+      <div class="case-hero-tags"><span>UX Research</span><span>Conversational UI</span><span>Design Systems</span><span>Academic Project</span></div>
+    </div>
+
+    <div class="case-cover-wrap">
+      <div class="case-cover">
+        <img src="images/ma-cover.jpg" alt="" />
+      </div>
+    </div>
+    <p class="team-note" data-i18n="team-note">👥 <strong>Team project — Equipo 22</strong> (Tamara Iglesias, Karen Lafuente, Vanesa Reche), for the UX/UI Diploma at UTN. My focus: UX research, information architecture, visual design, and prototyping — with particular ownership of <strong>Tina</strong>, the AI assistant flow.</p>
+
+    <div class="case-body">
+
+      <div class="case-section">
+        <p class="case-section-label" data-i18n="label-overview">Overview</p>
+        <p class="case-section-text" data-i18n="overview-text">Mi Argentina is the country's official government app, giving citizens access to procedures, appointments, and personal documents. As our final project for the UX/UI Diploma at UTN, our team of three redesigned the experience end-to-end — from research to a fully interactive prototype.</p>
+      </div>
+
+      <div class="case-section">
+        <p class="case-section-label" data-i18n="label-problem">The Problem</p>
+        <p class="case-section-text" data-i18n="problem-text-1">Government procedures are inherently complex, and the existing experience made citizens do all the work of figuring out what they needed and how to get it.</p>
+        <ul class="case-bullet-list">
+          <li data-i18n="problem-li-1"><strong>Hard to find the right procedure</strong> — users often didn't know what service they needed or where to start.</li>
+          <li data-i18n="problem-li-2"><strong>No proactive guidance</strong> — expiring documents, like a driver's license, weren't surfaced until it was too late.</li>
+          <li data-i18n="problem-li-3"><strong>No conversational support</strong> — there was no way to ask a question in plain language and get a direct answer.</li>
+        </ul>
+        <p class="case-callout" data-i18n="problem-callout">The app expected citizens to think like the government's org chart — not like people trying to get something done.</p>
+      </div>
+
+      <div class="case-section">
+        <p class="case-section-label" data-i18n="label-approach">My Approach</p>
+        <p class="case-section-text" data-i18n="approach-text-1">As a team, we ran user research and rebuilt the information architecture around user intent instead of institutional categories. My individual focus spanned three areas:</p>
+        <ul class="case-bullet-list">
+          <li data-i18n="approach-li-1"><strong>Tina, the AI assistant</strong> — I designed and prototyped a conversational flow that guides users through complex procedures, like renewing a driver's license, in plain language.</li>
+          <li data-i18n="approach-li-2"><strong>The appointment booking flow</strong> — I redesigned the end-to-end Turnos flow: selecting a location, choosing a date and time, confirming, and handling errors gracefully.</li>
+          <li data-i18n="approach-li-3"><strong>Design System contributions</strong> — I helped build the shared token system, typography, color, and components used consistently across the whole redesign.</li>
+        </ul>
+      </div>
+
+      <div class="case-flow-strip">
+        <img src="images/ma-turno-1.jpg" alt="" />
+        <span class="case-flow-arrow" aria-hidden="true">→</span>
+        <img src="images/ma-turno-2.jpg" alt="" />
+      </div>
+      <p class="case-image-caption" data-i18n="caption-1">The Turnos flow — selecting a location, then a date and time.</p>
+
+      <div class="case-single-shot">
+        <img src="images/ma-tina.jpg" alt="" />
+      </div>
+      <p class="case-image-caption" data-i18n="caption-2">Tina confirming an appointment through natural conversation.</p>
+
+      <div class="case-section">
+        <p class="case-section-label" data-i18n="label-impact">Impact</p>
+        <ul class="case-bullet-list">
+          <li data-i18n="impact-li-1"><strong>A fully interactive, testable prototype</strong> covering the core user journeys end-to-end, not just static screens.</li>
+          <li data-i18n="impact-li-2"><strong>Validated with real users</strong> through usability testing before the final delivery.</li>
+          <li data-i18n="impact-li-3"><strong>Defended in front of faculty</strong> as our final diploma project, with research, decisions, and trade-offs presented and justified.</li>
+        </ul>
+      </div>
+
+      <div class="case-section">
+        <p class="case-section-label" data-i18n="label-reflection">What This Shows</p>
+        <p class="case-section-text" data-i18n="reflection-text">Working in a three-person team on a project this size meant owning a clear piece end-to-end — Tina and the appointments flow — while staying aligned with two other designers on a shared system. It's the same discipline that scales into professional cross-functional work.</p>
+      </div>
+
+    </div>
+
+    <div class="proto-section">
+      <div class="proto-section-inner">
+        <p class="proto-label" data-i18n="proto-label">Try It Yourself</p>
+        <h2 class="proto-title" data-i18n="proto-title">Explore the live prototype</h2>
+        <p class="proto-desc" data-i18n="proto-desc">This is the actual navigable Figma prototype — click through the Home screen, search for a procedure, book an appointment, or chat with Tina.</p>
+        <div class="proto-frame-wrap">
+          <iframe
+            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FDnhpLmAPnVlKczch8G2XZD%2FMi-Argentina-prototipo%3Fnode-id%3D40000460-4291%26t%3DQ1y0mIfcdawqMByW-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D40000300%253A2520%26starting-point-node-id%3D40000460%253A4291"
+            allowfullscreen
+            title="Mi Argentina — interactive prototype"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="proto-links">
+          <a href="https://www.figma.com/proto/itqfzNKb9cyVAnF6kysbdz/Presentaci%C3%B3n---Redise%C3%B1o-Mi-Argentina?node-id=511-1160&p=f&t=I5AAPbGsARQVIfzE-1&scaling=contain&content-scaling=fixed&page-id=512%3A1160&starting-point-node-id=511%3A1160" target="_blank" rel="noopener noreferrer" data-i18n="link-presentation">Full presentation ↗</a>
+          <a href="https://www.figma.com/design/DnhpLmAPnVlKczch8G2XZD/Mi-Argentina-prototipo?node-id=0-1&p=f" target="_blank" rel="noopener noreferrer" data-i18n="link-designsystem">Design System ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-nav-footer">
+      <a href="case-custom-fonts.html" class="case-nav-link" data-i18n="nav-prev-case">← Previous case study: Custom Fonts</a>
+      <a href="index.html#work" class="case-nav-link" data-i18n="nav-back-work">Back to all work →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Vanesa Reche</p>
+    <p>Buenos Aires, Argentina</p>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        "nav-work": "Work", "nav-about": "About", "nav-contact": "Contact",
+        "back-link": "← All work",
+        "hero-eyebrow": "Case Study 04 — Academic Project",
+        "hero-title": "Mi Argentina — App Redesign",
+        "hero-subtitle": "A UX/UI redesign of Argentina's national government app, built for my UX/UI Diploma at UTN.",
+        "team-note": "👥 <strong>Team project — Equipo 22</strong> (Tamara Iglesias, Karen Lafuente, Vanesa Reche), for the UX/UI Diploma at UTN. My focus: UX research, information architecture, visual design, and prototyping — with particular ownership of <strong>Tina</strong>, the AI assistant flow.",
+        "caption-1": "The Turnos flow — selecting a location, then a date and time.",
+        "caption-2": "Tina confirming an appointment through natural conversation.",
+        "label-overview": "Overview",
+        "overview-text": "Mi Argentina is the country's official government app, giving citizens access to procedures, appointments, and personal documents. As our final project for the UX/UI Diploma at UTN, our team of three redesigned the experience end-to-end — from research to a fully interactive prototype.",
+        "label-problem": "The Problem",
+        "problem-text-1": "Government procedures are inherently complex, and the existing experience made citizens do all the work of figuring out what they needed and how to get it.",
+        "problem-li-1": "<strong>Hard to find the right procedure</strong> — users often didn't know what service they needed or where to start.",
+        "problem-li-2": "<strong>No proactive guidance</strong> — expiring documents, like a driver's license, weren't surfaced until it was too late.",
+        "problem-li-3": "<strong>No conversational support</strong> — there was no way to ask a question in plain language and get a direct answer.",
+        "problem-callout": "The app expected citizens to think like the government's org chart — not like people trying to get something done.",
+        "label-approach": "My Approach",
+        "approach-text-1": "As a team, we ran user research and rebuilt the information architecture around user intent instead of institutional categories. My individual focus spanned three areas:",
+        "approach-li-1": "<strong>Tina, the AI assistant</strong> — I designed and prototyped a conversational flow that guides users through complex procedures, like renewing a driver's license, in plain language.",
+        "approach-li-2": "<strong>The appointment booking flow</strong> — I redesigned the end-to-end Turnos flow: selecting a location, choosing a date and time, confirming, and handling errors gracefully.",
+        "approach-li-3": "<strong>Design System contributions</strong> — I helped build the shared token system, typography, color, and components used consistently across the whole redesign.",
+        "label-impact": "Impact",
+        "impact-li-1": "<strong>A fully interactive, testable prototype</strong> covering the core user journeys end-to-end, not just static screens.",
+        "impact-li-2": "<strong>Validated with real users</strong> through usability testing before the final delivery.",
+        "impact-li-3": "<strong>Defended in front of faculty</strong> as our final diploma project, with research, decisions, and trade-offs presented and justified.",
+        "label-reflection": "What This Shows",
+        "reflection-text": "Working in a three-person team on a project this size meant owning a clear piece end-to-end — Tina and the appointments flow — while staying aligned with two other designers on a shared system. It's the same discipline that scales into professional cross-functional work.",
+        "proto-label": "Try It Yourself",
+        "proto-title": "Explore the live prototype",
+        "proto-desc": "This is the actual navigable Figma prototype — click through the Home screen, search for a procedure, book an appointment, or chat with Tina.",
+        "link-presentation": "Full presentation ↗",
+        "link-designsystem": "Design System ↗",
+        "nav-prev-case": "← Previous case study: Custom Fonts",
+        "nav-back-work": "Back to all work →"
+      },
+      es: {
+        "nav-work": "Proyectos", "nav-about": "Sobre mí", "nav-contact": "Contacto",
+        "back-link": "← Todos los proyectos",
+        "hero-eyebrow": "Caso de Estudio 04 — Proyecto Académico",
+        "hero-title": "Mi Argentina — Rediseño de App",
+        "hero-subtitle": "Un rediseño UX/UI de la app oficial del Estado argentino, hecho para mi Diplomatura en UX/UI en la UTN.",
+        "team-note": "👥 <strong>Proyecto grupal — Equipo 22</strong> (Tamara Iglesias, Karen Lafuente, Vanesa Reche), para la Diplomatura en UX/UI de la UTN. Mi foco: investigación UX, arquitectura de información, diseño visual y prototipado — con especial responsabilidad sobre <strong>Tina</strong>, el flujo del asistente con IA.",
+        "caption-1": "El flujo de Turnos — elegir una sede, luego fecha y horario.",
+        "caption-2": "Tina confirmando un turno a través de una conversación natural.",
+        "label-overview": "Contexto",
+        "overview-text": "Mi Argentina es la app oficial del Estado, que da a los ciudadanos acceso a trámites, turnos y documentos personales. Como proyecto final de la Diplomatura en UX/UI de la UTN, nuestro equipo de tres rediseñó la experiencia de punta a punta — desde la investigación hasta un prototipo completamente interactivo.",
+        "label-problem": "El Problema",
+        "problem-text-1": "Los trámites estatales son inherentemente complejos, y la experiencia existente hacía que el ciudadano tuviera que resolver solo qué necesitaba y cómo conseguirlo.",
+        "problem-li-1": "<strong>Difícil encontrar el trámite correcto</strong> — los usuarios muchas veces no sabían qué servicio necesitaban ni por dónde empezar.",
+        "problem-li-2": "<strong>Sin guía proactiva</strong> — documentos por vencer, como una licencia de conducir, no se mostraban hasta que ya era tarde.",
+        "problem-li-3": "<strong>Sin soporte conversacional</strong> — no había forma de hacer una pregunta en lenguaje natural y obtener una respuesta directa.",
+        "problem-callout": "La app esperaba que el ciudadano pensara como el organigrama del Estado — no como una persona que quiere resolver algo.",
+        "label-approach": "Mi Enfoque",
+        "approach-text-1": "Como equipo, hicimos investigación de usuarios y reconstruimos la arquitectura de información en torno a la intención del usuario, no a categorías institucionales. Mi foco individual abarcó tres áreas:",
+        "approach-li-1": "<strong>Tina, el asistente con IA</strong> — diseñé y prototipé un flujo conversacional que guía a los usuarios a través de trámites complejos, como renovar una licencia de conducir, en lenguaje natural.",
+        "approach-li-2": "<strong>El flujo de sacar turno</strong> — rediseñé de punta a punta el flujo de Turnos: elegir sede, elegir fecha y horario, confirmar, y manejar errores con claridad.",
+        "approach-li-3": "<strong>Contribuciones al Design System</strong> — ayudé a construir el sistema de tokens compartido, tipografía, color y componentes usados de forma consistente en todo el rediseño.",
+        "label-impact": "Impacto",
+        "impact-li-1": "<strong>Un prototipo completamente interactivo y testeable</strong> que cubre los recorridos principales de punta a punta, no solo pantallas estáticas.",
+        "impact-li-2": "<strong>Validado con usuarios reales</strong> mediante testing de usabilidad antes de la entrega final.",
+        "impact-li-3": "<strong>Defendido ante la facultad</strong> como proyecto final de la diplomatura, presentando y justificando investigación, decisiones y trade-offs.",
+        "label-reflection": "Qué Muestra Esto",
+        "reflection-text": "Trabajar en un equipo de tres en un proyecto de esta escala implicó hacerme responsable de una parte concreta de punta a punta — Tina y el flujo de turnos — manteniéndome alineada con otras dos diseñadoras sobre un sistema compartido. Es la misma disciplina que escala hacia el trabajo profesional cross-funcional.",
+        "proto-label": "Probalo Vos Mismo",
+        "proto-title": "Explorá el prototipo en vivo",
+        "proto-desc": "Este es el prototipo navegable real de Figma — recorré la pantalla de Inicio, buscá un trámite, sacá un turno, o chateá con Tina.",
+        "link-presentation": "Presentación completa ↗",
+        "link-designsystem": "Design System ↗",
+        "nav-prev-case": "← Caso anterior: Custom Fonts",
+        "nav-back-work": "Volver a proyectos →"
+      }
+    };
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('preferredLang', lang); } catch (e) {}
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const isActive = btn.textContent === lang.toUpperCase();
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+    }
+    let initialLang = 'en';
+    try {
+      const saved = localStorage.getItem('preferredLang');
+      if (saved === 'en' || saved === 'es') initialLang = saved;
+    } catch (e) {}
+    setLang(initialLang);
+  </script>
+
+</body>
+</html>
