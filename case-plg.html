@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product-Led Growth — Vanesa Reche</title>
+<meta name="description" content="Caso de estudio: rediseño self-serve del funnel de Viz Flowics. UX/UI, pricing, feature gating y onboarding.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F4EFE4;
+  --cream-2:#EDE6D6;
+  --ink:#141310;
+  --ink-soft:#5C594E;
+  --pink:#F03C8C;
+  --pink-text:#A81463;
+  --pink-soft:#F6C9DE;
+  --pink-pale:#FBE4EE;
+  --line:#DEDACB;
+  --container:1240px;
+  --sp-1:.5rem; --sp-2:1rem; --sp-3:1.5rem; --sp-4:2rem; --sp-5:3rem; --sp-6:4.5rem; --sp-7:6rem;
+  --r-sm:14px; --r-md:24px; --r-lg:36px; --r-pill:999px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--sp-4);position:relative}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--pink);color:#fff;padding:.75rem 1.25rem;z-index:200;font-weight:600;border-radius:0 0 var(--r-sm) 0}
+.skip-link:focus{left:0;top:0}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.display{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-0.02em;line-height:0.96}
+.eyebrow{font-family:'Space Mono',monospace;font-weight:400;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:100;background:var(--cream)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;height:86px}
+.nav-logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.7rem;display:flex;align-items:center;gap:.35rem;letter-spacing:-.02em}
+.nav-logo .dot{width:9px;height:9px;background:var(--pink);border-radius:50%;display:inline-block}
+.nav-links{display:flex;align-items:center;gap:var(--sp-5)}
+.nav-links a{font-size:.9rem;font-weight:500}
+.nav-links a:hover{color:var(--pink)}
+.lang-toggle{display:flex;align-items:center;gap:.25rem;background:var(--ink);border-radius:var(--r-pill);padding:.35rem}
+.lang-btn{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.04em;background:none;border:0;padding:.4rem .8rem;cursor:pointer;color:#B8B4A6;border-radius:var(--r-pill)}
+.lang-btn[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
+
+/* case hero */
+.case-hero{padding:var(--sp-5) 0 var(--sp-6)}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:500;color:var(--ink-soft);margin-bottom:var(--sp-4)}
+.back-link:hover{color:var(--ink)}
+.case-eyebrow-row{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3);flex-wrap:wrap}
+.case-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;color:var(--pink-text)}
+.case-title{font-size:clamp(2.6rem,6.5vw,5.2rem);max-width:16ch}
+.case-meta-row{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-4)}
+.tag{font-size:.78rem;font-weight:500;border:1.5px solid var(--pink-text);color:var(--pink-text);padding:.4rem .85rem;border-radius:var(--r-pill)}
+.tag-neutral{border-color:var(--ink);color:var(--ink)}
+.case-summary{max-width:56ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+
+/* nda notice */
+.nda-notice{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:.5rem 1rem;font-size:.8rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+
+/* blurred cover */
+.case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/8.5;margin-top:var(--sp-5);background:var(--ink)}
+.case-cover img{width:100%;height:100%;object-fit:contain;filter:blur(20px) saturate(1.15);transform:scale(1.08)}
+.case-cover-lock{position:absolute;right:18px;bottom:18px;display:inline-flex;align-items:center;gap:.5rem;background:var(--cream);color:var(--ink);font-size:.78rem;font-weight:600;padding:.55rem 1rem;border-radius:var(--r-pill);z-index:2}
+
+/* content sections */
+.case-section{padding:var(--sp-6) 0;border-top:1.5px solid var(--line)}
+.case-section-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:var(--sp-6)}
+.case-section-label{position:sticky;top:110px;align-self:start}
+.case-section-body h2{font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:var(--sp-3)}
+.case-section-body p{max-width:64ch;color:var(--ink-soft);margin-bottom:1rem;font-size:1.02rem}
+.case-section-body p strong{color:var(--ink);font-weight:600}
+
+/* blurred inline image */
+.case-img{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/10;margin-top:var(--sp-4);background:var(--ink)}
+.case-img img{width:100%;height:100%;object-fit:contain;filter:blur(16px) saturate(1.15);transform:scale(1.08)}
+.case-img-lock{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:.4rem;background:var(--cream);color:var(--ink);font-size:.72rem;font-weight:600;padding:.45rem .85rem;border-radius:var(--r-pill);z-index:2}
+.case-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)}
+
+/* impact stat */
+.impact-stat{display:flex;align-items:center;gap:1rem;margin:var(--sp-4) 0}
+.impact-stat .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3.2rem;color:var(--pink-text)}
+.impact-stat .label{color:var(--ink-soft);max-width:32ch}
+
+/* next case */
+.next-case{background:var(--ink);color:var(--cream)}
+.next-case .container{padding:var(--sp-6) var(--sp-4);text-align:center}
+.next-case .eyebrow{color:var(--pink-soft)}
+.next-case-title{font-size:clamp(2.2rem,5vw,4rem);margin:var(--sp-2) 0 var(--sp-4)}
+.next-case-link{display:inline-flex;align-items:center;gap:.6rem;background:var(--cream);color:var(--ink);font-weight:600;font-size:.95rem;padding:1rem 1.8rem;border-radius:var(--r-pill)}
+.next-case-link:hover{background:var(--pink);color:#fff}
+
+footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
+
+@media (max-width:820px){
+  .case-section-inner{grid-template-columns:1fr;gap:var(--sp-3)}
+  .case-section-label{position:static}
+  .case-img-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
+<nav class="nav" aria-label="Principal">
+  <div class="container">
+    <a href="index.html" class="nav-logo">vanesa<span class="dot"></span></a>
+    <div class="nav-links">
+      <a href="index.html#work" data-i18n="nav_work">Proyectos</a>
+      <a href="index.html#about" data-i18n="nav_about">Sobre mí</a>
+      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+      <div class="lang-toggle" role="group" aria-label="Idioma">
+        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<header class="case-hero">
+  <div class="container">
+    <a class="back-link" href="index.html#work">← <span data-i18n="back">Volver a proyectos</span></a>
+    <div class="case-eyebrow-row">
+      <span class="case-num">01</span>
+      <p class="eyebrow" data-i18n="case_eyebrow">Viz Flowics · UX/UI · Growth</p>
+    </div>
+    <h1 class="display case-title" data-i18n="case_title">Product-Led Growth</h1>
+    <p class="case-summary" data-i18n="case_summary">Rediseño del funnel de Viz Flowics para pasar de un modelo apoyado 100% en ventas a uno self-serve real, con pricing público y onboarding propio.</p>
+    <div class="case-meta-row">
+      <span class="tag" data-i18n="tag_nda">Bajo NDA</span>
+      <span class="tag tag-neutral" data-i18n="tag_role">UX/UI Design</span>
+      <span class="tag tag-neutral" data-i18n="tag_year">2024</span>
+    </div>
+    <p class="nda-notice">🔒 <span data-i18n="nda_notice">Imágenes desenfocadas por confidencialidad — proyecto bajo NDA.</span></p>
+
+    <div class="case-cover" role="img" aria-label="Captura desenfocada del producto Viz Flowics, bajo NDA">
+      <img src="images/plg-cover.jpg" alt="" loading="lazy">
+      <span class="case-cover-lock">🔒 <span data-i18n="under_nda">Bajo NDA</span></span>
+    </div>
+  </div>
+</header>
+
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_problem">El problema</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="problem_h">1.05% de conversión en un funnel que dependía por completo de ventas</h2>
+      <p data-i18n="problem_p1">Viz Flowics no tenía pricing público ni forma de probar el producto sin hablar antes con un vendedor. Cada lead pasaba por el mismo embudo largo, sin importar el tamaño de la cuenta o la urgencia real.</p>
+      <p data-i18n="problem_p2"><strong>El resultado:</strong> una tasa de conversión de apenas 1.05% y un ciclo de venta que alejaba a los equipos más pequeños, justo el segmento que más estaba creciendo en el mercado.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_approach">El enfoque</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="approach_h">Pricing público, feature gating y un onboarding que se explica solo</h2>
+      <p data-i18n="approach_p1">Diseñé una página de precios pública con planes claros, un sistema de feature gating para que cada plan mostrara —sin ocultar— lo que desbloqueaba el siguiente escalón, y un onboarding guiado dentro del producto para que el primer valor apareciera sin intervención humana.</p>
+      <p data-i18n="approach_p2">Antes de lanzar, probamos cada paso del nuevo flujo de compra con usuarios reales, e iteramos sobre fricciones puntuales: campos innecesarios, pasos redundantes, momentos sin feedback claro.</p>
+      <div class="case-img-grid">
+        <div class="case-img" role="img" aria-label="Captura desenfocada del flujo de pricing, bajo NDA"><img src="images/plg-approach-1.jpg" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+        <div class="case-img" role="img" aria-label="Captura desenfocada del onboarding, bajo NDA"><img src="images/plg-approach-2.jpg" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_impact">El impacto</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="impact_h">Más leads calificados, sin agregar fricción</h2>
+      <div class="impact-stat">
+        <span class="num">+30%</span>
+        <span class="label" data-i18n="impact_label">leads calificados que llegan al equipo de ventas ya familiarizados con el producto y el pricing antes del primer contacto.</span>
+      </div>
+      <p data-i18n="impact_p1">El self-serve no reemplazó al equipo de ventas: lo hizo más eficiente. Los leads que llegaban ya habían visto el producto, entendían el pricing y sabían qué plan les servía.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<section class="next-case">
+  <div class="container">
+    <p class="eyebrow" data-i18n="next_eyebrow">Siguiente caso</p>
+    <h2 class="display next-case-title" data-i18n="next_title">Data Augmentation</h2>
+    <a class="next-case-link" href="case-data-augmentation.html"><span data-i18n="next_cta">Ver caso</span> →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;width:100%">
+    <span>© 2026 Vanesa Reche</span>
+    <span data-i18n="footer_note">Buenos Aires, Argentina</span>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  es: {
+    nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
+    back:"Volver a proyectos",
+    case_eyebrow:"Viz Flowics · UX/UI · Growth",
+    case_title:"Product-Led Growth",
+    case_summary:"Rediseño del funnel de Viz Flowics para pasar de un modelo apoyado 100% en ventas a uno self-serve real, con pricing público y onboarding propio.",
+    tag_nda:"Bajo NDA", tag_role:"UX/UI Design", tag_year:"2024",
+    nda_notice:"Imágenes desenfocadas por confidencialidad — proyecto bajo NDA.",
+    under_nda:"Bajo NDA",
+    label_problem:"El problema",
+    problem_h:"1.05% de conversión en un funnel que dependía por completo de ventas",
+    problem_p1:"Viz Flowics no tenía pricing público ni forma de probar el producto sin hablar antes con un vendedor. Cada lead pasaba por el mismo embudo largo, sin importar el tamaño de la cuenta o la urgencia real.",
+    problem_p2:"<strong>El resultado:</strong> una tasa de conversión de apenas 1.05% y un ciclo de venta que alejaba a los equipos más pequeños, justo el segmento que más estaba creciendo en el mercado.",
+    label_approach:"El enfoque",
+    approach_h:"Pricing público, feature gating y un onboarding que se explica solo",
+    approach_p1:"Diseñé una página de precios pública con planes claros, un sistema de feature gating para que cada plan mostrara —sin ocultar— lo que desbloqueaba el siguiente escalón, y un onboarding guiado dentro del producto para que el primer valor apareciera sin intervención humana.",
+    approach_p2:"Antes de lanzar, probamos cada paso del nuevo flujo de compra con usuarios reales, e iteramos sobre fricciones puntuales: campos innecesarios, pasos redundantes, momentos sin feedback claro.",
+    label_impact:"El impacto",
+    impact_h:"Más leads calificados, sin agregar fricción",
+    impact_label:"leads calificados que llegan al equipo de ventas ya familiarizados con el producto y el pricing antes del primer contacto.",
+    impact_p1:"El self-serve no reemplazó al equipo de ventas: lo hizo más eficiente. Los leads que llegaban ya habían visto el producto, entendían el pricing y sabían qué plan les servía.",
+    next_eyebrow:"Siguiente caso", next_title:"Data Augmentation", next_cta:"Ver caso",
+    footer_note:"Buenos Aires, Argentina"
+  },
+  en: {
+    nav_work:"Work", nav_about:"About", nav_contact:"Contact",
+    back:"Back to work",
+    case_eyebrow:"Viz Flowics · UX/UI · Growth",
+    case_title:"Product-Led Growth",
+    case_summary:"A redesign of Viz Flowics' funnel, moving from a fully sales-led model to a real self-serve one, with public pricing and its own onboarding.",
+    tag_nda:"Under NDA", tag_role:"UX/UI Design", tag_year:"2024",
+    nda_notice:"Images blurred for confidentiality — project under NDA.",
+    under_nda:"Under NDA",
+    label_problem:"The problem",
+    problem_h:"1.05% conversion in a funnel that depended entirely on sales",
+    problem_p1:"Viz Flowics had no public pricing and no way to try the product without talking to sales first. Every lead went through the same long funnel, regardless of account size or urgency.",
+    problem_p2:"<strong>The result:</strong> a conversion rate of just 1.05%, and a sales cycle that scared off smaller teams — exactly the segment growing fastest in the market.",
+    label_approach:"The approach",
+    approach_h:"Public pricing, feature gating and an onboarding that explains itself",
+    approach_p1:"I designed a public pricing page with clear plans, a feature gating system so each plan showed — without hiding — what the next tier unlocked, and a guided in-product onboarding so first value showed up without human intervention.",
+    approach_p2:"We tested every step of the new purchase flow with real users before launch, iterating on specific friction points: extra fields, redundant steps, moments with no clear feedback.",
+    label_impact:"The impact",
+    impact_h:"More qualified leads, with no added friction",
+    impact_label:"qualified leads reaching the sales team, already familiar with the product and pricing before first contact.",
+    impact_p1:"Self-serve didn't replace the sales team — it made it more efficient. Leads arriving had already seen the product, understood the pricing, and knew which plan fit them.",
+    next_eyebrow:"Next case", next_title:"Data Augmentation", next_cta:"View case",
+    footer_note:"Buenos Aires, Argentina"
+  }
+};
+
+function setLang(lang){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang][key]) el.innerHTML = translations[lang][key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
+  });
+  document.documentElement.lang = lang;
+  localStorage.setItem('preferredLang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
+});
+setLang(localStorage.getItem('preferredLang') || 'es');
+</script>
+</body>
+</html>

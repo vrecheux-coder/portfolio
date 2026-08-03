@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Fonts — Vanesa Reche</title>
+<meta name="description" content="Caso de estudio: upload self-serve de tipografías propias para Viz Flowics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F4EFE4;
+  --cream-2:#EDE6D6;
+  --ink:#141310;
+  --ink-soft:#5C594E;
+  --pink:#F03C8C;
+  --pink-text:#A81463;
+  --pink-soft:#F6C9DE;
+  --pink-pale:#FBE4EE;
+  --line:#DEDACB;
+  --container:1240px;
+  --sp-1:.5rem; --sp-2:1rem; --sp-3:1.5rem; --sp-4:2rem; --sp-5:3rem; --sp-6:4.5rem; --sp-7:6rem;
+  --r-sm:14px; --r-md:24px; --r-lg:36px; --r-pill:999px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--sp-4);position:relative}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--pink);color:#fff;padding:.75rem 1.25rem;z-index:200;font-weight:600;border-radius:0 0 var(--r-sm) 0}
+.skip-link:focus{left:0;top:0}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.display{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-0.02em;line-height:0.96}
+.eyebrow{font-family:'Space Mono',monospace;font-weight:400;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:100;background:var(--cream)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;height:86px}
+.nav-logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.7rem;display:flex;align-items:center;gap:.35rem;letter-spacing:-.02em}
+.nav-logo .dot{width:9px;height:9px;background:var(--pink);border-radius:50%;display:inline-block}
+.nav-links{display:flex;align-items:center;gap:var(--sp-5)}
+.nav-links a{font-size:.9rem;font-weight:500}
+.nav-links a:hover{color:var(--pink)}
+.lang-toggle{display:flex;align-items:center;gap:.25rem;background:var(--ink);border-radius:var(--r-pill);padding:.35rem}
+.lang-btn{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.04em;background:none;border:0;padding:.4rem .8rem;cursor:pointer;color:#B8B4A6;border-radius:var(--r-pill)}
+.lang-btn[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
+
+/* case hero */
+.case-hero{padding:var(--sp-5) 0 var(--sp-6)}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:500;color:var(--ink-soft);margin-bottom:var(--sp-4)}
+.back-link:hover{color:var(--ink)}
+.case-eyebrow-row{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3);flex-wrap:wrap}
+.case-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;color:var(--pink-text)}
+.case-title{font-size:clamp(2.6rem,6.5vw,5.2rem);max-width:16ch}
+.case-meta-row{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-4)}
+.tag{font-size:.78rem;font-weight:500;border:1.5px solid var(--pink-text);color:var(--pink-text);padding:.4rem .85rem;border-radius:var(--r-pill)}
+.tag-neutral{border-color:var(--ink);color:var(--ink)}
+.tag-ok{border-color:#2F6E44;color:#2F6E44}
+.case-summary{max-width:56ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+
+.nda-notice{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:.5rem 1rem;font-size:.8rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+
+.case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/8.5;margin-top:var(--sp-5);background:var(--ink)}
+.case-cover img{width:100%;height:100%;object-fit:contain}
+
+.case-section{padding:var(--sp-6) 0;border-top:1.5px solid var(--line)}
+.case-section-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:var(--sp-6)}
+.case-section-label{position:sticky;top:110px;align-self:start}
+.case-section-body h2{font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:var(--sp-3)}
+.case-section-body p{max-width:64ch;color:var(--ink-soft);margin-bottom:1rem;font-size:1.02rem}
+.case-section-body p strong{color:var(--ink);font-weight:600}
+
+.case-img{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/10;margin-top:var(--sp-4);border:1.5px solid var(--line);background:var(--cream-2)}
+.case-img img{width:100%;height:100%;object-fit:contain;display:block}
+.case-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)}
+
+.impact-stat{display:flex;align-items:center;gap:1rem;margin:var(--sp-4) 0}
+.impact-stat .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3.2rem;color:var(--pink-text)}
+.impact-stat .label{color:var(--ink-soft);max-width:32ch}
+
+.next-case{background:var(--ink);color:var(--cream)}
+.next-case .container{padding:var(--sp-6) var(--sp-4);text-align:center}
+.next-case .eyebrow{color:var(--pink-soft)}
+.next-case-title{font-size:clamp(2.2rem,5vw,4rem);margin:var(--sp-2) 0 var(--sp-4)}
+.next-case-link{display:inline-flex;align-items:center;gap:.6rem;background:var(--cream);color:var(--ink);font-weight:600;font-size:.95rem;padding:1rem 1.8rem;border-radius:var(--r-pill)}
+.next-case-link:hover{background:var(--pink);color:#fff}
+
+footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
+
+@media (max-width:820px){
+  .case-section-inner{grid-template-columns:1fr;gap:var(--sp-3)}
+  .case-section-label{position:static}
+  .case-img-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
+<nav class="nav" aria-label="Principal">
+  <div class="container">
+    <a href="index.html" class="nav-logo">vanesa<span class="dot"></span></a>
+    <div class="nav-links">
+      <a href="index.html#work" data-i18n="nav_work">Proyectos</a>
+      <a href="index.html#about" data-i18n="nav_about">Sobre mí</a>
+      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+      <div class="lang-toggle" role="group" aria-label="Idioma">
+        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<header class="case-hero">
+  <div class="container">
+    <a class="back-link" href="index.html#work">← <span data-i18n="back">Volver a proyectos</span></a>
+    <div class="case-eyebrow-row">
+      <span class="case-num">03</span>
+      <p class="eyebrow" data-i18n="case_eyebrow">Viz Flowics · UX/UI · Self-serve</p>
+    </div>
+    <h1 class="display case-title" data-i18n="case_title">Custom Fonts</h1>
+    <p class="case-summary" data-i18n="case_summary">Subir una tipografía propia dejó de requerir un ticket a soporte. Drag and drop, gestión por familia y variantes, gating por plan.</p>
+    <div class="case-meta-row">
+      <span class="tag tag-ok" data-i18n="tag_no_nda">✅ Sin NDA</span>
+      <span class="tag tag-neutral" data-i18n="tag_role">UX/UI Design</span>
+      <span class="tag tag-neutral" data-i18n="tag_year">2024</span>
+    </div>
+    <p class="nda-notice">✅ <span data-i18n="nda_notice">Proyecto visible en el free trial del producto — sin restricciones de confidencialidad.</span></p>
+
+    <div class="case-cover"><img src="images/cf-cover.jpg" alt="Dashboard de fuentes de Viz Flowics" loading="lazy"></div>
+  </div>
+</header>
+
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_problem">El problema</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="problem_h">Cargar una tipografía propia significaba abrir un ticket</h2>
+      <p data-i18n="problem_p1">Cada vez que una empresa quería usar su propia fuente dentro del producto, tenía que pedírselo a soporte. Alguien del equipo cargaba el archivo manualmente del lado del servidor — un proceso lento, que no escalaba, y que dependía por completo de disponibilidad interna.</p>
+      <p data-i18n="problem_p2"><strong>La fricción:</strong> justo el tipo de tarea que el nuevo modelo self-serve —nacido en el caso 01— buscaba eliminar del todo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_approach">El enfoque</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="approach_h">Drag and drop, gestión por familia, gating por plan</h2>
+      <p data-i18n="approach_p1">Diseñé un dashboard de fuentes donde cada equipo sube sus propios archivos (TTF, OTF, WOFF) arrastrándolos directamente, sin pasar por soporte. El sistema agrupa los archivos por familia tipográfica y variante (peso, estilo) automáticamente.</p>
+      <p data-i18n="approach_p2">La función quedó disponible según el plan de cada cuenta, siguiendo el mismo sistema de feature gating diseñado para el pricing público.</p>
+      <div class="case-img-grid">
+        <div class="case-img"><img src="images/cf-approach-1.jpg" alt="Modal de carga de tipografía custom por arrastrar y soltar" loading="lazy"></div>
+        <div class="case-img"><img src="images/cf-approach-2.jpg" alt="Detalle de una familia tipográfica con sus variantes" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_impact">El impacto</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="impact_h">Una tarea de soporte se convirtió en autoservicio</h2>
+      <p data-i18n="impact_p1">Lo que antes dependía de un ticket y de disponibilidad interna, ahora lo resuelve cada equipo por su cuenta, en minutos. Es la misma lógica self-serve del caso 01, aplicada a una necesidad puntual pero recurrente.</p>
+      <div class="case-img"><img src="images/cf-impact.jpg" alt="Dashboard de fuentes instaladas, con Gilroy ya disponible" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<section class="next-case">
+  <div class="container">
+    <p class="eyebrow" data-i18n="next_eyebrow">Siguiente caso</p>
+    <h2 class="display next-case-title" data-i18n="next_title">Mi Argentina</h2>
+    <a class="next-case-link" href="case-mi-argentina.html"><span data-i18n="next_cta">Ver caso</span> →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;width:100%">
+    <span>© 2026 Vanesa Reche</span>
+    <span data-i18n="footer_note">Buenos Aires, Argentina</span>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  es: {
+    nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
+    back:"Volver a proyectos",
+    case_eyebrow:"Viz Flowics · UX/UI · Self-serve",
+    case_title:"Custom Fonts",
+    case_summary:"Subir una tipografía propia dejó de requerir un ticket a soporte. Drag and drop, gestión por familia y variantes, gating por plan.",
+    tag_no_nda:"✅ Sin NDA", tag_role:"UX/UI Design", tag_year:"2024",
+    nda_notice:"Proyecto visible en el free trial del producto — sin restricciones de confidencialidad.",
+    label_problem:"El problema",
+    problem_h:"Cargar una tipografía propia significaba abrir un ticket",
+    problem_p1:"Cada vez que una empresa quería usar su propia fuente dentro del producto, tenía que pedírselo a soporte. Alguien del equipo cargaba el archivo manualmente del lado del servidor — un proceso lento, que no escalaba, y que dependía por completo de disponibilidad interna.",
+    problem_p2:"<strong>La fricción:</strong> justo el tipo de tarea que el nuevo modelo self-serve —nacido en el caso 01— buscaba eliminar del todo.",
+    label_approach:"El enfoque",
+    approach_h:"Drag and drop, gestión por familia, gating por plan",
+    approach_p1:"Diseñé un dashboard de fuentes donde cada equipo sube sus propios archivos (TTF, OTF, WOFF) arrastrándolos directamente, sin pasar por soporte. El sistema agrupa los archivos por familia tipográfica y variante (peso, estilo) automáticamente.",
+    approach_p2:"La función quedó disponible según el plan de cada cuenta, siguiendo el mismo sistema de feature gating diseñado para el pricing público.",
+    label_impact:"El impacto",
+    impact_h:"Una tarea de soporte se convirtió en autoservicio",
+    impact_p1:"Lo que antes dependía de un ticket y de disponibilidad interna, ahora lo resuelve cada equipo por su cuenta, en minutos. Es la misma lógica self-serve del caso 01, aplicada a una necesidad puntual pero recurrente.",
+    next_eyebrow:"Siguiente caso", next_title:"Mi Argentina", next_cta:"Ver caso",
+    footer_note:"Buenos Aires, Argentina"
+  },
+  en: {
+    nav_work:"Work", nav_about:"About", nav_contact:"Contact",
+    back:"Back to work",
+    case_eyebrow:"Viz Flowics · UX/UI · Self-serve",
+    case_title:"Custom Fonts",
+    case_summary:"Uploading a custom font stopped needing a support ticket. Drag and drop, family and variant management, plan gating.",
+    tag_no_nda:"✅ Not under NDA", tag_role:"UX/UI Design", tag_year:"2024",
+    nda_notice:"Visible in the product's free trial — no confidentiality restrictions.",
+    label_problem:"The problem",
+    problem_h:"Uploading a custom font meant opening a support ticket",
+    problem_p1:"Every time a company wanted to use its own font inside the product, it had to ask support. Someone on the team would upload the file manually server-side — a slow process that didn't scale and fully depended on internal availability.",
+    problem_p2:"<strong>The friction:</strong> exactly the kind of task the new self-serve model — born in case 01 — was meant to remove entirely.",
+    label_approach:"The approach",
+    approach_h:"Drag and drop, family management, plan gating",
+    approach_p1:"I designed a fonts dashboard where each team uploads its own files (TTF, OTF, WOFF) by dragging them in directly, no support ticket needed. The system automatically groups files by font family and variant (weight, style).",
+    approach_p2:"The feature was gated by account plan, following the same feature-gating system built for public pricing.",
+    label_impact:"The impact",
+    impact_h:"A support task became self-service",
+    impact_p1:"What used to depend on a ticket and internal availability is now handled by each team on their own, in minutes. It's the same self-serve logic from case 01, applied to a specific but recurring need.",
+    next_eyebrow:"Next case", next_title:"Mi Argentina", next_cta:"View case",
+    footer_note:"Buenos Aires, Argentina"
+  }
+};
+
+function setLang(lang){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang][key]) el.innerHTML = translations[lang][key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
+  });
+  document.documentElement.lang = lang;
+  localStorage.setItem('preferredLang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
+});
+setLang(localStorage.getItem('preferredLang') || 'es');
+</script>
+</body>
+</html>

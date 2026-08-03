@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Augmentation — Vanesa Reche</title>
+<meta name="description" content="Caso de estudio: sistema de edición masiva y auditoría de datasets para Viz Flowics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F4EFE4;
+  --cream-2:#EDE6D6;
+  --ink:#141310;
+  --ink-soft:#5C594E;
+  --pink:#F03C8C;
+  --pink-text:#A81463;
+  --pink-soft:#F6C9DE;
+  --pink-pale:#FBE4EE;
+  --line:#DEDACB;
+  --container:1240px;
+  --sp-1:.5rem; --sp-2:1rem; --sp-3:1.5rem; --sp-4:2rem; --sp-5:3rem; --sp-6:4.5rem; --sp-7:6rem;
+  --r-sm:14px; --r-md:24px; --r-lg:36px; --r-pill:999px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--sp-4);position:relative}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--pink);color:#fff;padding:.75rem 1.25rem;z-index:200;font-weight:600;border-radius:0 0 var(--r-sm) 0}
+.skip-link:focus{left:0;top:0}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.display{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-0.02em;line-height:0.96}
+.eyebrow{font-family:'Space Mono',monospace;font-weight:400;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:100;background:var(--cream)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;height:86px}
+.nav-logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.7rem;display:flex;align-items:center;gap:.35rem;letter-spacing:-.02em}
+.nav-logo .dot{width:9px;height:9px;background:var(--pink);border-radius:50%;display:inline-block}
+.nav-links{display:flex;align-items:center;gap:var(--sp-5)}
+.nav-links a{font-size:.9rem;font-weight:500}
+.nav-links a:hover{color:var(--pink)}
+.lang-toggle{display:flex;align-items:center;gap:.25rem;background:var(--ink);border-radius:var(--r-pill);padding:.35rem}
+.lang-btn{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.04em;background:none;border:0;padding:.4rem .8rem;cursor:pointer;color:#B8B4A6;border-radius:var(--r-pill)}
+.lang-btn[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
+
+/* case hero */
+.case-hero{padding:var(--sp-5) 0 var(--sp-6)}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:500;color:var(--ink-soft);margin-bottom:var(--sp-4)}
+.back-link:hover{color:var(--ink)}
+.case-eyebrow-row{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3);flex-wrap:wrap}
+.case-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;color:var(--pink-text)}
+.case-title{font-size:clamp(2.6rem,6.5vw,5.2rem);max-width:16ch}
+.case-meta-row{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-4)}
+.tag{font-size:.78rem;font-weight:500;border:1.5px solid var(--pink-text);color:var(--pink-text);padding:.4rem .85rem;border-radius:var(--r-pill)}
+.tag-neutral{border-color:var(--ink);color:var(--ink)}
+.case-summary{max-width:56ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+
+.nda-notice{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:.5rem 1rem;font-size:.8rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+
+.case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/8.5;margin-top:var(--sp-5);background:var(--ink)}
+.case-cover img{width:100%;height:100%;object-fit:contain;filter:blur(20px) saturate(1.15);transform:scale(1.08)}
+.case-cover-lock{position:absolute;right:18px;bottom:18px;display:inline-flex;align-items:center;gap:.5rem;background:var(--cream);color:var(--ink);font-size:.78rem;font-weight:600;padding:.55rem 1rem;border-radius:var(--r-pill);z-index:2}
+
+.case-section{padding:var(--sp-6) 0;border-top:1.5px solid var(--line)}
+.case-section-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:var(--sp-6)}
+.case-section-label{position:sticky;top:110px;align-self:start}
+.case-section-body h2{font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:var(--sp-3)}
+.case-section-body p{max-width:64ch;color:var(--ink-soft);margin-bottom:1rem;font-size:1.02rem}
+.case-section-body p strong{color:var(--ink);font-weight:600}
+.case-section-body ul{color:var(--ink-soft);margin:0 0 1rem 1.2rem}
+.case-section-body ul li{margin-bottom:.4rem}
+
+.case-img{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/10;margin-top:var(--sp-4);background:var(--ink)}
+.case-img img{width:100%;height:100%;object-fit:contain;filter:blur(16px) saturate(1.15);transform:scale(1.08)}
+.case-img-lock{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:.4rem;background:var(--cream);color:var(--ink);font-size:.72rem;font-weight:600;padding:.45rem .85rem;border-radius:var(--r-pill);z-index:2}
+.case-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)}
+
+.impact-stat{display:flex;align-items:center;gap:1rem;margin:var(--sp-4) 0}
+.impact-stat .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3.2rem;color:var(--pink-text)}
+.impact-stat .label{color:var(--ink-soft);max-width:32ch}
+
+.next-case{background:var(--ink);color:var(--cream)}
+.next-case .container{padding:var(--sp-6) var(--sp-4);text-align:center}
+.next-case .eyebrow{color:var(--pink-soft)}
+.next-case-title{font-size:clamp(2.2rem,5vw,4rem);margin:var(--sp-2) 0 var(--sp-4)}
+.next-case-link{display:inline-flex;align-items:center;gap:.6rem;background:var(--cream);color:var(--ink);font-weight:600;font-size:.95rem;padding:1rem 1.8rem;border-radius:var(--r-pill)}
+.next-case-link:hover{background:var(--pink);color:#fff}
+
+footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
+
+@media (max-width:820px){
+  .case-section-inner{grid-template-columns:1fr;gap:var(--sp-3)}
+  .case-section-label{position:static}
+  .case-img-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
+<nav class="nav" aria-label="Principal">
+  <div class="container">
+    <a href="index.html" class="nav-logo">vanesa<span class="dot"></span></a>
+    <div class="nav-links">
+      <a href="index.html#work" data-i18n="nav_work">Proyectos</a>
+      <a href="index.html#about" data-i18n="nav_about">Sobre mí</a>
+      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+      <div class="lang-toggle" role="group" aria-label="Idioma">
+        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<header class="case-hero">
+  <div class="container">
+    <a class="back-link" href="index.html#work">← <span data-i18n="back">Volver a proyectos</span></a>
+    <div class="case-eyebrow-row">
+      <span class="case-num">02</span>
+      <p class="eyebrow" data-i18n="case_eyebrow">Viz Flowics · UX/UI · Gestión de datos</p>
+    </div>
+    <h1 class="display case-title" data-i18n="case_title">Data Augmentation</h1>
+    <p class="case-summary" data-i18n="case_summary">Un sistema para editar datasets grandes sin romper nada: exportar, editar en Google Sheets, simular el resultado, importar con auditoría.</p>
+    <div class="case-meta-row">
+      <span class="tag" data-i18n="tag_nda">Bajo NDA</span>
+      <span class="tag tag-neutral" data-i18n="tag_role">UX/UI Design</span>
+      <span class="tag tag-neutral" data-i18n="tag_year">2024</span>
+    </div>
+    <p class="nda-notice">🔒 <span data-i18n="nda_notice">Imágenes desenfocadas por confidencialidad — incluyen datos internos de la empresa.</span></p>
+
+    <div class="case-cover" role="img" aria-label="Captura desenfocada del sistema de edición de datos, bajo NDA">
+      <img src="images/da-cover.jpg" alt="" loading="lazy">
+      <span class="case-cover-lock">🔒 <span data-i18n="under_nda">Bajo NDA</span></span>
+    </div>
+  </div>
+</header>
+
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_problem">El problema</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="problem_h">Editar un dataset grande era lento, manual y sin red de seguridad</h2>
+      <p data-i18n="problem_p1">No había forma de editar datos a gran escala sin tocar cada registro a mano dentro del producto. Tampoco existía un proceso de validación: un error en una edición masiva llegaba directo a producción, sin previsualización ni forma de auditar qué había cambiado.</p>
+      <p data-i18n="problem_p2"><strong>El riesgo:</strong> cuanto más crecía una cuenta, más grande era el dataset, y más caro se volvía cualquier error de edición.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_approach">El enfoque</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="approach_h">Exportar, editar afuera, simular antes de importar</h2>
+      <p data-i18n="approach_p1">Diseñé un flujo de tres pasos: exportar el dataset a Google Sheets (una herramienta que los equipos ya conocían), editar ahí con todas las funciones de una planilla, e importar de vuelta con una simulación previa que mostraba exactamente qué iba a cambiar antes de confirmar nada.</p>
+      <p data-i18n="approach_p2">Sumé un sistema de auditoría que registra cada importación: quién la hizo, cuándo, y qué cambió — así cualquier edición masiva queda trazada y es reversible.</p>
+      <div class="case-img-grid">
+        <div class="case-img" role="img" aria-label="Captura desenfocada del flujo de exportación, bajo NDA"><img src="images/da-approach-1.jpg" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+        <div class="case-img" role="img" aria-label="Captura desenfocada de la simulación previa a importar, bajo NDA"><img src="images/da-approach-2.jpg" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_impact">El impacto</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="impact_h">Ediciones masivas sin miedo a romper producción</h2>
+      <p data-i18n="impact_p1">Los equipos pasaron de editar registro por registro a manejar datasets completos con confianza: la simulación previa elimina las sorpresas, y el historial de auditoría da trazabilidad total sobre qué cambió y quién lo hizo.</p>
+      <div class="case-img" role="img" aria-label="Captura desenfocada del impacto en el equipo, bajo NDA">
+        <img src="images/da-impact.jpg" alt="" loading="lazy">
+        <span class="case-img-lock">🔒 NDA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<section class="next-case">
+  <div class="container">
+    <p class="eyebrow" data-i18n="next_eyebrow">Siguiente caso</p>
+    <h2 class="display next-case-title" data-i18n="next_title">Custom Fonts</h2>
+    <a class="next-case-link" href="case-custom-fonts.html"><span data-i18n="next_cta">Ver caso</span> →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;width:100%">
+    <span>© 2026 Vanesa Reche</span>
+    <span data-i18n="footer_note">Buenos Aires, Argentina</span>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  es: {
+    nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
+    back:"Volver a proyectos",
+    case_eyebrow:"Viz Flowics · UX/UI · Gestión de datos",
+    case_title:"Data Augmentation",
+    case_summary:"Un sistema para editar datasets grandes sin romper nada: exportar, editar en Google Sheets, simular el resultado, importar con auditoría.",
+    tag_nda:"Bajo NDA", tag_role:"UX/UI Design", tag_year:"2024",
+    nda_notice:"Imágenes desenfocadas por confidencialidad — incluyen datos internos de la empresa.",
+    under_nda:"Bajo NDA",
+    label_problem:"El problema",
+    problem_h:"Editar un dataset grande era lento, manual y sin red de seguridad",
+    problem_p1:"No había forma de editar datos a gran escala sin tocar cada registro a mano dentro del producto. Tampoco existía un proceso de validación: un error en una edición masiva llegaba directo a producción, sin previsualización ni forma de auditar qué había cambiado.",
+    problem_p2:"<strong>El riesgo:</strong> cuanto más crecía una cuenta, más grande era el dataset, y más caro se volvía cualquier error de edición.",
+    label_approach:"El enfoque",
+    approach_h:"Exportar, editar afuera, simular antes de importar",
+    approach_p1:"Diseñé un flujo de tres pasos: exportar el dataset a Google Sheets (una herramienta que los equipos ya conocían), editar ahí con todas las funciones de una planilla, e importar de vuelta con una simulación previa que mostraba exactamente qué iba a cambiar antes de confirmar nada.",
+    approach_p2:"Sumé un sistema de auditoría que registra cada importación: quién la hizo, cuándo, y qué cambió — así cualquier edición masiva queda trazada y es reversible.",
+    label_impact:"El impacto",
+    impact_h:"Ediciones masivas sin miedo a romper producción",
+    impact_p1:"Los equipos pasaron de editar registro por registro a manejar datasets completos con confianza: la simulación previa elimina las sorpresas, y el historial de auditoría da trazabilidad total sobre qué cambió y quién lo hizo.",
+    next_eyebrow:"Siguiente caso", next_title:"Custom Fonts", next_cta:"Ver caso",
+    footer_note:"Buenos Aires, Argentina"
+  },
+  en: {
+    nav_work:"Work", nav_about:"About", nav_contact:"Contact",
+    back:"Back to work",
+    case_eyebrow:"Viz Flowics · UX/UI · Data tooling",
+    case_title:"Data Augmentation",
+    case_summary:"A system for editing large datasets without breaking anything: export, edit in Google Sheets, simulate the result, import with an audit trail.",
+    tag_nda:"Under NDA", tag_role:"UX/UI Design", tag_year:"2024",
+    nda_notice:"Images blurred for confidentiality — they include internal company data.",
+    under_nda:"Under NDA",
+    label_problem:"The problem",
+    problem_h:"Editing a large dataset was slow, manual, and had no safety net",
+    problem_p1:"There was no way to edit data at scale without touching each record by hand inside the product. There was also no validation step: an error in a bulk edit went straight to production, with no preview and no way to audit what had changed.",
+    problem_p2:"<strong>The risk:</strong> the bigger an account grew, the bigger its dataset, and the more expensive any editing mistake became.",
+    label_approach:"The approach",
+    approach_h:"Export, edit outside, simulate before importing",
+    approach_p1:"I designed a three-step flow: export the dataset to Google Sheets (a tool teams already knew), edit there with full spreadsheet functionality, and import back with a pre-import simulation that showed exactly what would change before confirming anything.",
+    approach_p2:"I added an audit system that logs every import — who did it, when, and what changed — so any bulk edit stays traceable and reversible.",
+    label_impact:"The impact",
+    impact_h:"Bulk edits without fear of breaking production",
+    impact_p1:"Teams went from editing record by record to handling full datasets with confidence: the pre-import simulation removes the surprises, and the audit trail gives full traceability over what changed and who did it.",
+    next_eyebrow:"Next case", next_title:"Custom Fonts", next_cta:"View case",
+    footer_note:"Buenos Aires, Argentina"
+  }
+};
+
+function setLang(lang){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang][key]) el.innerHTML = translations[lang][key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
+  });
+  document.documentElement.lang = lang;
+  localStorage.setItem('preferredLang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
+});
+setLang(localStorage.getItem('preferredLang') || 'es');
+</script>
+</body>
+</html>
