@@ -31,7 +31,7 @@
   --r-sm:14px; --r-md:24px; --r-lg:36px; --r-pill:999px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; overflow-x:hidden}
 body{
   background:var(--cream);
   color:var(--ink);
@@ -62,6 +62,31 @@ a{color:inherit;text-decoration:none}
 .lang-toggle{display:flex;align-items:center;gap:.25rem;background:var(--ink);border-radius:var(--r-pill);padding:.35rem;}
 .lang-btn{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.04em;background:none;border:0;padding:.4rem .8rem;cursor:pointer;color:#B8B4A6;border-radius:var(--r-pill)}
 .lang-btn[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
+
+/* nav hamburger — hidden on desktop */
+.nav-toggle{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:38px;
+  height:38px;
+  background:none;
+  border:0;
+  cursor:pointer;
+  padding:0;
+  flex-shrink:0;
+}
+.nav-toggle span{
+  display:block;
+  width:100%;
+  height:2px;
+  background:var(--ink);
+  transition:transform .25s ease, opacity .25s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* hero */
 .hero{padding:var(--sp-6) 0 var(--sp-7);position:relative}
@@ -140,6 +165,29 @@ section{padding:var(--sp-7) 0}
 footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
 
 @media (max-width:900px){
+  .nav-toggle{display:flex}
+  .nav-links{
+    position:absolute;
+    top:86px;
+    left:0;
+    right:0;
+    background:var(--cream);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:var(--sp-3);
+    padding:var(--sp-4);
+    border-bottom:1.5px solid var(--ink);
+    transform:translateY(-8px);
+    opacity:0;
+    pointer-events:none;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .nav-links.open{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
+  }
+  .lang-toggle{margin-top:.5rem}
   .work-item{grid-template-columns:1fr;gap:var(--sp-3)}
   .work-num{font-size:2rem}
   .about-grid{grid-template-columns:1fr}
@@ -155,7 +203,10 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 <nav class="nav" aria-label="Principal">
   <div class="container">
     <a href="#" class="nav-logo">vanesa<span class="dot"></span></a>
-    <div class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="#work" data-i18n="nav_work">Proyectos</a>
       <a href="#about" data-i18n="nav_about">Sobre mí</a>
       <a href="#contact" data-i18n="nav_contact">Contacto</a>
@@ -401,6 +452,20 @@ document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
 });
 setLang(localStorage.getItem('preferredLang') || 'es');
+
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', ()=>{
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+  navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+});
+navLinks.querySelectorAll('a').forEach(link=>{
+  link.addEventListener('click', ()=>{
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded','false');
+  });
+});
 </script>
 </body>
 </html>
