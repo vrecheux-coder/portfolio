@@ -17,29 +17,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
---cream:#F4EFE4;
---cream-2:#EDE6D6;
---ink:#141310;
---ink-soft:#5C594E;
---pink:#F03C8C;
---pink-text:#A81463;
---pink-soft:#F6C9DE;
---pink-pale:#FBE4EE;
---line:#DEDACB;
---container:1240px;
---sp-1:.5rem; --sp-2:1rem; --sp-3:1.5rem; --sp-4:2rem; --sp-5:3rem; --sp-6:4.5rem; --sp-7:6rem;
---r-sm:14px; --r-md:24px; --r-lg:36px; --r-pill:999px;
+  --cream:#F4EFE4;
+  --cream-2:#EDE6D6;
+  --ink:#141310;
+  --ink-soft:#5C594E;
+  --pink:#F03C8C;
+  --pink-text:#A81463;
+  --pink-soft:#F6C9DE;
+  --pink-pale:#FBE4EE;
+  --line:#DEDACB;
+  --container:1240px;
+  --sp-1:.5rem; --sp-2:1rem; --sp-3:1.5rem; --sp-4:2rem; --sp-5:3rem; --sp-6:4.5rem; --sp-7:6rem;
+  --r-sm:14px; --r-md:24px; --r-lg:36px; --r-pill:999px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth; overflow-x:hidden}
 body{
-background:var(--cream);
-color:var(--ink);
-font-family:'Instrument Sans',sans-serif;
-font-size:16px;
-line-height:1.6;
--webkit-font-smoothing:antialiased;
-overflow-x:hidden;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 .container{max-width:var(--container);margin:0 auto;padding:0 var(--sp-4);position:relative}
 img{max-width:100%;display:block}
@@ -65,24 +65,24 @@ a{color:inherit;text-decoration:none}
 
 /* nav hamburger — hidden on desktop */
 .nav-toggle{
-display:none;
-flex-direction:column;
-justify-content:center;
-gap:5px;
-width:38px;
-height:38px;
-background:none;
-border:0;
-cursor:pointer;
-padding:0;
-flex-shrink:0;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:38px;
+  height:38px;
+  background:none;
+  border:0;
+  cursor:pointer;
+  padding:0;
+  flex-shrink:0;
 }
 .nav-toggle span{
-display:block;
-width:100%;
-height:2px;
-background:var(--ink);
-transition:transform .25s ease, opacity .25s ease;
+  display:block;
+  width:100%;
+  height:2px;
+  background:var(--ink);
+  transition:transform .25s ease, opacity .25s ease;
 }
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
@@ -165,35 +165,38 @@ section{padding:var(--sp-7) 0}
 footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
 
 @media (max-width:900px){
-.nav-toggle{display:flex}
-.nav-links{
-position:absolute;
-top:86px;
-left:0;
-right:0;
-background:var(--cream);
-flex-direction:column;
-align-items:flex-start;
-gap:var(--sp-3);
-padding:var(--sp-4);
-border-bottom:1.5px solid var(--ink);
-transform:translateY(-8px);
-opacity:0;
-pointer-events:none;
-transition:transform .2s ease, opacity .2s ease;
-}
-.nav-links.open{
-transform:translateY(0);
-opacity:1;
-pointer-events:auto;
-}
-.lang-toggle{margin-top:.5rem}
-.work-item{grid-template-columns:1fr;gap:var(--sp-3)}
-.work-num{font-size:2rem}
-.about-grid{grid-template-columns:1fr}
-.stats-row{gap:var(--sp-4)}
-.hero-blob{display:none}
-.hero-asterisk{display:none}
+  .nav-toggle{display:flex}
+  .nav-links{
+    position:absolute;
+    top:86px;
+    left:0;
+    right:0;
+    background:var(--cream);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:var(--sp-3);
+    padding:var(--sp-4);
+    border-bottom:1.5px solid var(--ink);
+    transform:translateY(-8px);
+    opacity:0;
+    pointer-events:none;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .nav-links.open{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
+  }
+  .lang-toggle{margin-top:.5rem}
+  .hero{padding-bottom: var(--sp-4)}
+  section{padding: var(--sp-5) 0}
+  .hero-actions{margin-top: var(--sp-3)}
+  .work-item{grid-template-columns:1fr;gap:var(--sp-3)}
+  .work-num{font-size:2rem}
+  .about-grid{grid-template-columns:1fr}
+  .stats-row{gap:var(--sp-4)}
+  .hero-blob{display:none}
+  .hero-asterisk{display:none}
 }
 </style>
 </head>
@@ -201,270 +204,271 @@ pointer-events:auto;
 <a href="#main" class="skip-link">Saltar al contenido</a>
 
 <nav class="nav" aria-label="Principal">
-<div class="container">
-<a href="#" class="nav-logo">vanesa<span class="dot"></span></a>
-<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menú">
-<span></span><span></span><span></span>
-</button>
-<div class="nav-links" id="navLinks">
-<a href="#work" data-i18n="nav_work">Proyectos</a>
-<a href="#about" data-i18n="nav_about">Sobre mí</a>
-<a href="#contact" data-i18n="nav_contact">Contacto</a>
-<div class="lang-toggle" role="group" aria-label="Idioma">
-<button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
-<button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
-</div>
-</div>
-</div>
+  <div class="container">
+    <a href="#" class="nav-logo">vanesa<span class="dot"></span></a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#work" data-i18n="nav_work">Proyectos</a>
+      <a href="#about" data-i18n="nav_about">Sobre mí</a>
+      <a href="#contact" data-i18n="nav_contact">Contacto</a>
+      <div class="lang-toggle" role="group" aria-label="Idioma">
+        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
 </nav>
 
 <main id="main">
 
 <header class="hero">
-<div class="hero-blob" aria-hidden="true"></div>
-<div class="container hero-inner">
-<p class="eyebrow hero-eyebrow" data-i18n="hero_eyebrow">UX/UI Designer · Product Designer · SaaS & Digital Products</p>
-<div class="hero-headline-wrap">
-<h1 class="display hero-headline">vanesa<span class="accent-blob" aria-hidden="true"></span></h1>
-<span class="hero-asterisk" aria-hidden="true">✳</span>
-</div>
-<p class="hero-sub" data-i18n="hero_sub">¡Hola! Soy Vanesa. Diseño sistemas y experiencias UX/UI: 15 años moviéndome entre lo gráfico y lo digital, con la obsesión de que todo escale sin romperse.</p>
-<div class="hero-actions">
-<button class="btn btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
-<span data-i18n="hero_cta_1">Ver proyectos</span> ↓
-</button>
-<a class="btn btn-outline" href="#contact" data-i18n="hero_cta_2">Hablemos</a>
-<span class="hero-meta" data-i18n="hero_meta">15 años en diseño · Argentina</span>
-</div>
-</div>
+  <div class="hero-blob" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <p class="eyebrow hero-eyebrow" data-i18n="hero_eyebrow">UX/UI Designer · Product Designer · SaaS & Digital Products</p>
+    <div class="hero-headline-wrap">
+      <h1 class="display hero-headline">vanesa<span class="accent-blob" aria-hidden="true"></span></h1>
+      <span class="hero-asterisk" aria-hidden="true">✳</span>
+    </div>
+    <p class="hero-sub" data-i18n="hero_sub">¡Hola! Soy Vanesa. Diseño sistemas y experiencias UX/UI: 15 años moviéndome entre lo gráfico y lo digital, con la obsesión de que todo escale sin romperse.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
+        <span data-i18n="hero_cta_1">Ver proyectos</span> ↓
+      </button>
+      <a class="btn btn-outline" href="#contact" data-i18n="hero_cta_2">Hablemos</a>
+      <span class="hero-meta" data-i18n="hero_meta">15 años en diseño · Argentina</span>
+    </div>
+  </div>
 </header>
 
 <section id="work">
-<div class="container">
-<div class="section-head">
-<h2 class="section-title" data-i18n="work_title">Proyectos</h2>
-<p class="eyebrow" data-i18n="work_index">01 a 05</p>
-</div>
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title" data-i18n="work_title">Proyectos</h2>
+      <p class="eyebrow" data-i18n="work_index">01 a 05</p>
+    </div>
 
-<div class="work-item">
-<a class="work-link" href="case-plg.html" aria-label="Ver caso Product-Led Growth"></a>
-<div class="work-num">01</div>
-<div>
-<h3 class="work-title" data-i18n="w1_title">Product-Led Growth</h3>
-<p class="work-meta" data-i18n="w1_meta">Viz Flowics · UX/UI · Growth</p>
-<p class="work-desc" data-i18n="w1_desc">De 1.05% de conversión a un funnel self-serve real: pricing público, feature gating y onboarding rediseñados de punta a punta.</p>
-<div class="work-tags"><span class="tag" data-i18n="w1_tag">Bajo NDA</span></div>
-</div>
-<div class="work-visual"><img src="images/plg-cover.jpg" alt="" loading="lazy"><a class="work-expand" href="case-plg.html" data-i18n="expand">Ampliar ↗</a></div>
-</div>
+    <div class="work-item">
+      <a class="work-link" href="case-plg.html" aria-label="Ver caso Product-Led Growth"></a>
+      <div class="work-num">01</div>
+      <div>
+        <h3 class="work-title" data-i18n="w1_title">Product-Led Growth</h3>
+        <p class="work-meta" data-i18n="w1_meta">Viz Flowics · UX/UI · Growth</p>
+        <p class="work-desc" data-i18n="w1_desc">De 1.05% de conversión a un funnel self-serve real: pricing público, feature gating y onboarding rediseñados de punta a punta.</p>
+        <div class="work-tags"><span class="tag" data-i18n="w1_tag">Bajo NDA</span></div>
+      </div>
+      <div class="work-visual"><img src="images/plg-cover.jpg" alt="" loading="lazy"><a class="work-expand" href="case-plg.html" data-i18n="expand">Ampliar ↗</a></div>
+    </div>
 
-<div class="work-item">
-<a class="work-link" href="case-data-augmentation.html" aria-label="Ver caso Data Augmentation"></a>
-<div class="work-num">02</div>
-<div>
-<h3 class="work-title" data-i18n="w2_title">Data Augmentation</h3>
-<p class="work-meta" data-i18n="w2_meta">Viz Flowics · UX/UI · Gestión de datos</p>
-<p class="work-desc" data-i18n="w2_desc">Un flujo de edición masiva vía Google Sheets, con simulación previa e historial de auditoría, para datasets que ya no escalaban a mano.</p>
-<div class="work-tags"><span class="tag" data-i18n="w2_tag">Bajo NDA</span></div>
-</div>
-<div class="work-visual"><img src="images/da-cover.jpg" alt="" loading="lazy"><a class="work-expand" href="case-data-augmentation.html" data-i18n="expand">Ampliar ↗</a></div>
-</div>
+    <div class="work-item">
+      <a class="work-link" href="case-data-augmentation.html" aria-label="Ver caso Data Augmentation"></a>
+      <div class="work-num">02</div>
+      <div>
+        <h3 class="work-title" data-i18n="w2_title">Data Augmentation</h3>
+        <p class="work-meta" data-i18n="w2_meta">Viz Flowics · UX/UI · Gestión de datos</p>
+        <p class="work-desc" data-i18n="w2_desc">Un flujo de edición masiva vía Google Sheets, con simulación previa e historial de auditoría, para datasets que ya no escalaban a mano.</p>
+        <div class="work-tags"><span class="tag" data-i18n="w2_tag">Bajo NDA</span></div>
+      </div>
+      <div class="work-visual"><img src="images/da-cover.jpg" alt="" loading="lazy"><a class="work-expand" href="case-data-augmentation.html" data-i18n="expand">Ampliar ↗</a></div>
+    </div>
 
-<div class="work-item">
-<a class="work-link" href="case-custom-fonts.html" aria-label="Ver caso Custom Fonts"></a>
-<div class="work-num">03</div>
-<div>
-<h3 class="work-title" data-i18n="w3_title">Custom Fonts</h3>
-<p class="work-meta" data-i18n="w3_meta">Viz Flowics · UX/UI · Self-serve</p>
-<p class="work-desc" data-i18n="w3_desc">Subir una tipografía propia dejó de requerir un ticket a soporte. Drag and drop, gestión por familia y variantes, gating por plan.</p>
-<div class="work-tags"><span class="tag" data-i18n="w3_tag">Self-serve</span></div>
-</div>
-<div class="work-visual"><img src="images/cf-cover.jpg" alt="" loading="lazy"><a class="work-expand" href="case-custom-fonts.html" data-i18n="expand">Ampliar ↗</a></div>
-</div>
+    <div class="work-item">
+      <a class="work-link" href="case-custom-fonts.html" aria-label="Ver caso Custom Fonts"></a>
+      <div class="work-num">03</div>
+      <div>
+        <h3 class="work-title" data-i18n="w3_title">Custom Fonts</h3>
+        <p class="work-meta" data-i18n="w3_meta">Viz Flowics · UX/UI · Self-serve</p>
+        <p class="work-desc" data-i18n="w3_desc">Subir una tipografía propia dejó de requerir un ticket a soporte. Drag and drop, gestión por familia y variantes, gating por plan.</p>
+        <div class="work-tags"><span class="tag" data-i18n="w3_tag">Self-serve</span></div>
+      </div>
+      <div class="work-visual"><img src="images/cf-cover.jpg" alt="" loading="lazy"><a class="work-expand" href="case-custom-fonts.html" data-i18n="expand">Ampliar ↗</a></div>
+    </div>
 
-<div class="work-item">
-<a class="work-link" href="case-mi-argentina.html" aria-label="Ver caso Mi Argentina"></a>
-<div class="work-num">04</div>
-<div>
-<h3 class="work-title" data-i18n="w4_title">Mi Argentina</h3>
-<p class="work-meta" data-i18n="w4_meta">UTN · Proyecto académico · Equipo de 3</p>
-<p class="work-desc" data-i18n="w4_desc">Rediseño de una app de gobierno digital. Lideré el flujo de Tina, la asistente conversacional, de punta a punta.</p>
-<div class="work-tags"><span class="tag" data-i18n="w4_tag">Académico</span></div>
-</div>
-<div class="work-visual"><img src="images/ma-cover-thumb.jpg" alt="" loading="lazy"><a class="work-expand" href="case-mi-argentina.html" data-i18n="expand">Ampliar ↗</a></div>
-</div>
+    <div class="work-item">
+      <a class="work-link" href="case-mi-argentina.html" aria-label="Ver caso Mi Argentina"></a>
+      <div class="work-num">04</div>
+      <div>
+        <h3 class="work-title" data-i18n="w4_title">Mi Argentina</h3>
+        <p class="work-meta" data-i18n="w4_meta">UTN · Proyecto académico · Equipo de 3</p>
+        <p class="work-desc" data-i18n="w4_desc">Rediseño de una app de gobierno digital. Lideré el flujo de Tina, la asistente conversacional, de punta a punta.</p>
+        <div class="work-tags"><span class="tag" data-i18n="w4_tag">Académico</span></div>
+      </div>
+      <div class="work-visual"><img src="images/ma-cover-thumb.jpg" alt="" loading="lazy"><a class="work-expand" href="case-mi-argentina.html" data-i18n="expand">Ampliar ↗</a></div>
+    </div>
 
-<div class="work-item">
-<a class="work-link" href="case-heroless.html" aria-label="Ver caso Heroless"></a>
-<div class="work-num">05</div>
-<div>
-<h3 class="work-title" data-i18n="w5_title">Heroless</h3>
-<p class="work-meta" data-i18n="w5_meta">GMTK Game Jam 2026 · UI Design · Godot</p>
-<p class="work-desc" data-i18n="w5_desc">Diseño de UI para un platformer desarrollado en 96 horas, integrado al ritmo de producción de un game jam.</p>
-<div class="work-tags"><span class="tag" data-i18n="w5_tag">Game Jam</span></div>
-</div>
-<div class="work-visual"><img src="images/heroless-cover.png" alt="" loading="lazy" style="image-rendering:pixelated"><a class="work-expand" href="case-heroless.html" data-i18n="expand">Ampliar ↗</a></div>
-</div>
+    <div class="work-item">
+      <a class="work-link" href="case-heroless.html" aria-label="Ver caso Heroless"></a>
+      <div class="work-num">05</div>
+      <div>
+        <h3 class="work-title" data-i18n="w5_title">Heroless</h3>
+        <p class="work-meta" data-i18n="w5_meta">GMTK Game Jam 2026 · UI Design · Godot</p>
+        <p class="work-desc" data-i18n="w5_desc">Diseño de UI para un platformer desarrollado en 96 horas, integrado al ritmo de producción de un game jam.</p>
+        <div class="work-tags"><span class="tag" data-i18n="w5_tag">Game Jam</span></div>
+      </div>
+      <div class="work-visual"><img src="images/heroless-cover.png" alt="" loading="lazy" style="image-rendering:pixelated"><a class="work-expand" href="case-heroless.html" data-i18n="expand">Ampliar ↗</a></div>
+    </div>
 
-</div>
+  </div>
 </section>
 
 <section id="about">
-<div class="about">
-<div class="container">
-<p class="eyebrow" data-i18n="about_eyebrow" style="max-width:1100px;margin:0 auto">Sobre mí</p>
-<div class="about-grid">
-<div class="about-main">
-<h2 class="display about-headline" data-i18n="about_headline">Diseño con cabeza y con sistema.</h2>
-<div class="about-body">
-<p data-i18n="about_p1">Empecé en diseño gráfico. Diez años armando piezas visuales antes de mudarme al UX/UI, hace cinco. Esa mezcla es mi ventaja: pienso en jerarquía y composición tanto como en flujos y fricción.</p>
-<p data-i18n="about_p2">En Vizrt (Viz Flowics) trabajo con productos B2B complejos — self-serve, pricing, feature gating, sistemas de datos a escala.</p>
-<p data-i18n="about_p3">Completé la Diplomatura en UX/UI Design en la UTN, y actualmente curso una especialización en IA aplicada a la experiencia de usuario.</p>
-</div>
-</div>
-<div class="about-side">
-<div class="about-side-block">
-<p class="eyebrow" data-i18n="how_title">Cómo trabajo</p>
-<div class="pill-list">
-<span class="pill-dark" data-i18n="how_1">UX Research</span>
-<span class="pill-dark" data-i18n="how_2">Product Thinking</span>
-<span class="pill-dark" data-i18n="how_3">System Design</span>
-<span class="pill-dark" data-i18n="how_4">Accesibilidad</span>
-</div>
-</div>
-<div class="about-side-block">
-<p class="eyebrow" data-i18n="what_title">Herramientas</p>
-<ul class="dot-list">
-<li data-i18n="what_1">Figma & Figma Make</li>
-<li data-i18n="what_2">Design Systems</li>
-<li data-i18n="what_3">AI Copywriting — ChatGPT</li>
-<li data-i18n="what_4">AI Prototyping — Claude</li>
-</ul>
-</div>
-<div class="about-side-block lang-block">
-<div class="lang-item"><p class="label" data-i18n="lang_es">Español — Nativo</p><div class="bar"><span style="width:100%"></span></div></div>
-<div class="lang-item"><p class="label" data-i18n="lang_en">Inglés — B2+</p><div class="bar"><span style="width:83%"></span></div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <div class="about">
+    <div class="container">
+      <p class="eyebrow" data-i18n="about_eyebrow" style="max-width:1100px;margin:0 auto">Sobre mí</p>
+      <div class="about-grid">
+        <div class="about-main">
+          <h2 class="display about-headline" data-i18n="about_headline">Diseño con cabeza y con sistema.</h2>
+          <div class="about-body">
+            <p data-i18n="about_p1">Empecé en diseño gráfico. Diez años armando piezas visuales antes de mudarme al UX/UI, hace cinco. Esa mezcla es mi ventaja: pienso en jerarquía y composición tanto como en flujos y fricción.</p>
+            <p data-i18n="about_p2">En Vizrt (Viz Flowics) trabajo con productos B2B complejos — self-serve, pricing, feature gating, sistemas de datos a escala.</p>
+            <p data-i18n="about_p3">Completé la Diplomatura en UX/UI Design en la UTN, y actualmente curso una especialización en IA aplicada a la experiencia de usuario.</p>
+          </div>
+        </div>
+        <div class="about-side">
+          <div class="about-side-block">
+            <p class="eyebrow" data-i18n="how_title">Cómo trabajo</p>
+            <div class="pill-list">
+              <span class="pill-dark" data-i18n="how_1">UX Research</span>
+              <span class="pill-dark" data-i18n="how_2">Product Thinking</span>
+              <span class="pill-dark" data-i18n="how_3">System Design</span>
+              <span class="pill-dark" data-i18n="how_4">Accesibilidad</span>
+            </div>
+          </div>
+          <div class="about-side-block">
+            <p class="eyebrow" data-i18n="what_title">Herramientas</p>
+            <ul class="dot-list">
+              <li data-i18n="what_1">Figma & Figma Make</li>
+              <li data-i18n="what_2">Design Systems</li>
+              <li data-i18n="what_3">AI Copywriting — ChatGPT</li>
+              <li data-i18n="what_4">AI Prototyping — Claude</li>
+            </ul>
+          </div>
+          <div class="about-side-block lang-block">
+            <div class="lang-item"><p class="label" data-i18n="lang_es">Español — Nativo</p><div class="bar"><span style="width:100%"></span></div></div>
+            <div class="lang-item"><p class="label" data-i18n="lang_en">Inglés — B2+</p><div class="bar"><span style="width:83%"></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 </main>
 
 <section id="contact" class="contact">
-<div class="contact-blob" aria-hidden="true"></div>
-<div class="container">
-<p class="eyebrow" data-i18n="contact_eyebrow">¿Hablamos?</p>
-<h2 class="display contact-headline" data-i18n="contact_headline">armemos algo.</h2>
-<div class="contact-links">
-<a href="mailto:vreche.ux@gmail.com">vreche.ux@gmail.com</a>
-<a href="https://www.linkedin.com/in/vanesa-reche/" target="_blank" rel="noopener noreferrer"><span data-i18n="linkedin_label">LinkedIn</span> <span class="sr-only" data-i18n="new_tab">(se abre en una pestaña nueva)</span></a>
-<a href="https://www.behance.net/vanesa-reche" target="_blank" rel="noopener noreferrer"><span data-i18n="behance_label">Behance</span> <span class="sr-only" data-i18n="new_tab">(se abre en una pestaña nueva)</span></a>
-</div>
-</div>
+  <div class="contact-blob" aria-hidden="true"></div>
+  <div class="container">
+    <p class="eyebrow" data-i18n="contact_eyebrow">¿Hablamos?</p>
+    <h2 class="display contact-headline" data-i18n="contact_headline">armemos algo.</h2>
+    <div class="contact-links">
+      <a href="mailto:vreche.ux@gmail.com">vreche.ux@gmail.com</a>
+      <a href="https://www.linkedin.com/in/vanesa-reche/" target="_blank" rel="noopener noreferrer"><span data-i18n="linkedin_label">LinkedIn</span> <span class="sr-only" data-i18n="new_tab">(se abre en una pestaña nueva)</span></a>
+      <a href="https://www.behance.net/vanesa-reche" target="_blank" rel="noopener noreferrer"><span data-i18n="behance_label">Behance</span> <span class="sr-only" data-i18n="new_tab">(se abre en una pestaña nueva)</span></a>
+    </div>
+  </div>
 </section>
 
 <footer>
-<div class="container" style="display:flex;justify-content:space-between;width:100%">
-<span>© 2026 Vanesa Reche</span>
-<span data-i18n="footer_note">Buenos Aires, Argentina</span>
-</div>
+  <div class="container" style="display:flex;justify-content:space-between;width:100%">
+    <span>© 2026 Vanesa Reche</span>
+    <span data-i18n="footer_note">Buenos Aires, Argentina</span>
+  </div>
 </footer>
 
 <script>
 const translations = {
-es: {
-nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
-hero_eyebrow:"UX/UI Designer · Product Designer · SaaS & Digital Products",
-hero_sub:"¡Hola! Soy Vanesa. Diseño sistemas y experiencias UX/UI: 15 años moviéndome entre lo gráfico y lo digital, con la obsesión de que todo escale sin romperse.",
-hero_cta_1:"Ver proyectos", hero_cta_2:"Hablemos", hero_meta:"15 años en diseño · Argentina",
-together_badge:"design<br>together",
-stat_years:"Años en diseño", stat_components:"Componentes en sistema de diseño", stat_leads:"Más leads calificados (PLG)",
-work_title:"Proyectos", work_index:"01 a 05",
-w1_title:"Product-Led Growth", w1_meta:"Viz Flowics · UX/UI · Growth",
-w1_desc:"De 1.05% de conversión a un funnel self-serve real: pricing público, feature gating y onboarding rediseñados de punta a punta.", w1_tag:"Bajo NDA",
-w2_title:"Data Augmentation", w2_meta:"Viz Flowics · UX/UI · Gestión de datos",
-w2_desc:"Un flujo de edición masiva vía Google Sheets, con simulación previa e historial de auditoría, para datasets que ya no escalaban a mano.", w2_tag:"Bajo NDA",
-w3_title:"Custom Fonts", w3_meta:"Viz Flowics · UX/UI · Self-serve",
-w3_desc:"Subir una tipografía propia dejó de requerir un ticket a soporte. Drag and drop, gestión por familia y variantes, gating por plan.", w3_tag:"Self-serve",
-w4_title:"Mi Argentina", w4_meta:"UTN · Proyecto académico · Equipo de 3",
-w4_desc:"Rediseño de una app de gobierno digital. Lideré el flujo de Tina, la asistente conversacional, de punta a punta.", w4_tag:"Académico",
-w5_title:"Heroless", w5_meta:"GMTK Game Jam 2026 · UI Design · Godot",
-w5_desc:"Diseño de UI para un platformer desarrollado en 96 horas, integrado al ritmo de producción de un game jam.", w5_tag:"Game Jam",
-expand:"Ampliar ↗",
-about_eyebrow:"Sobre mí", about_headline:"Diseño con cabeza y con sistema.",
-about_p1:"Empecé en diseño gráfico. Diez años armando piezas visuales antes de mudarme al UX/UI, hace cinco. Esa mezcla es mi ventaja: pienso en jerarquía y composición tanto como en flujos y fricción.",
-about_p2:"En Vizrt (Viz Flowics) trabajo con productos B2B complejos — self-serve, pricing, feature gating, sistemas de datos a escala.",
-about_p3:"Completé la Diplomatura en UX/UI Design en la UTN, y actualmente curso una especialización en IA aplicada a la experiencia de usuario.",
-how_title:"Cómo trabajo", how_1:"UX Research", how_2:"Product Thinking", how_3:"System Design", how_4:"Accesibilidad",
-what_title:"Herramientas", what_1:"Figma & Figma Make", what_2:"Design Systems", what_3:"AI Copywriting — ChatGPT", what_4:"AI Prototyping — Claude",
-lang_es:"Español — Nativo", lang_en:"Inglés — B2+",
-contact_eyebrow:"¿Hablamos?", contact_headline:"armemos algo.",
-linkedin_label:"LinkedIn", behance_label:"Behance", new_tab:"(se abre en una pestaña nueva)",
-footer_note:"Buenos Aires, Argentina"
-},
-en: {
-nav_work:"Work", nav_about:"About", nav_contact:"Contact",
-hero_eyebrow:"UX/UI Designer · Product Designer · SaaS & Digital Products",
-hero_sub:"Hi, I'm Vanesa. I design systems and UX/UI experiences — 15 years moving between graphic and digital, obsessed with things that scale without breaking.",
-hero_cta_1:"View work", hero_cta_2:"Let's talk", hero_meta:"15 years in design · Argentina",
-together_badge:"design<br>together",
-stat_years:"Years in design", stat_components:"Design system components", stat_leads:"More qualified leads (PLG)",
-work_title:"Work", work_index:"01 to 05",
-w1_title:"Product-Led Growth", w1_meta:"Viz Flowics · UX/UI · Growth",
-w1_desc:"From 1.05% conversion to a real self-serve funnel: public pricing, feature gating and onboarding rebuilt end to end.", w1_tag:"Under NDA",
-w2_title:"Data Augmentation", w2_meta:"Viz Flowics · UX/UI · Data tooling",
-w2_desc:"A bulk-edit flow through Google Sheets, with pre-import simulation and an audit trail, for datasets that no longer scaled by hand.", w2_tag:"Under NDA",
-w3_title:"Custom Fonts", w3_meta:"Viz Flowics · UX/UI · Self-serve",
-w3_desc:"Uploading a custom font stopped needing a support ticket. Drag and drop, family and variant management, plan gating.", w3_tag:"Self-serve",
-w4_title:"Mi Argentina", w4_meta:"UTN · Academic project · Team of 3",
-w4_desc:"A redesign of a government digital app. I led the flow for Tina, the conversational assistant, end to end.", w4_tag:"Academic",
-w5_title:"Heroless", w5_meta:"GMTK Game Jam 2026 · UI Design · Godot",
-w5_desc:"UI design for a platformer built in 96 hours, worked at the pace of a game jam production cycle.", w5_tag:"Game Jam",
-expand:"Expand ↗",
-about_eyebrow:"About", about_headline:"Design with head and system.",
-about_p1:"I started in graphic design. Ten years building visual pieces before moving into UX/UI, five years ago. That mix is my edge — I think in hierarchy and composition as much as in flows and friction.",
-about_p2:"At Vizrt (Viz Flowics) I work on complex B2B products — self-serve, pricing, feature gating, data systems at scale.",
-about_p3:"I completed the UX/UI Design Diploma at UTN, and I'm currently pursuing a specialization in AI applied to user experience.",
-how_title:"How I work", how_1:"UX Research", how_2:"Product Thinking", how_3:"System Design", how_4:"Accessibility",
-what_title:"Tools", what_1:"Figma & Figma Make", what_2:"Design Systems", what_3:"AI Copywriting — ChatGPT", what_4:"AI Prototyping — Claude",
-lang_es:"Spanish — Native", lang_en:"English — B2+",
-contact_eyebrow:"Let's talk", contact_headline:"let's build.",
-linkedin_label:"LinkedIn", behance_label:"Behance", new_tab:"(opens in a new tab)",
-footer_note:"Buenos Aires, Argentina"
-}
+  es: {
+    nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
+    hero_eyebrow:"UX/UI Designer · Product Designer · SaaS & Digital Products",
+    hero_sub:"¡Hola! Soy Vanesa. Diseño sistemas y experiencias UX/UI: 15 años moviéndome entre lo gráfico y lo digital, con la obsesión de que todo escale sin romperse.",
+    hero_cta_1:"Ver proyectos", hero_cta_2:"Hablemos", hero_meta:"15 años en diseño · Argentina",
+    together_badge:"design<br>together",
+    stat_years:"Años en diseño", stat_components:"Componentes en sistema de diseño", stat_leads:"Más leads calificados (PLG)",
+    work_title:"Proyectos", work_index:"01 a 05",
+    w1_title:"Product-Led Growth", w1_meta:"Viz Flowics · UX/UI · Growth",
+    w1_desc:"De 1.05% de conversión a un funnel self-serve real: pricing público, feature gating y onboarding rediseñados de punta a punta.", w1_tag:"Bajo NDA",
+    w2_title:"Data Augmentation", w2_meta:"Viz Flowics · UX/UI · Gestión de datos",
+    w2_desc:"Un flujo de edición masiva vía Google Sheets, con simulación previa e historial de auditoría, para datasets que ya no escalaban a mano.", w2_tag:"Bajo NDA",
+    w3_title:"Custom Fonts", w3_meta:"Viz Flowics · UX/UI · Self-serve",
+    w3_desc:"Subir una tipografía propia dejó de requerir un ticket a soporte. Drag and drop, gestión por familia y variantes, gating por plan.", w3_tag:"Self-serve",
+    w4_title:"Mi Argentina", w4_meta:"UTN · Proyecto académico · Equipo de 3",
+    w4_desc:"Rediseño de una app de gobierno digital. Lideré el flujo de Tina, la asistente conversacional, de punta a punta.", w4_tag:"Académico",
+    w5_title:"Heroless", w5_meta:"GMTK Game Jam 2026 · UI Design · Godot",
+    w5_desc:"Diseño de UI para un platformer desarrollado en 96 horas, integrado al ritmo de producción de un game jam.", w5_tag:"Game Jam",
+    expand:"Ampliar ↗",
+    about_eyebrow:"Sobre mí", about_headline:"Diseño con cabeza y con sistema.",
+    about_p1:"Empecé en diseño gráfico. Diez años armando piezas visuales antes de mudarme al UX/UI, hace cinco. Esa mezcla es mi ventaja: pienso en jerarquía y composición tanto como en flujos y fricción.",
+    about_p2:"En Vizrt (Viz Flowics) trabajo con productos B2B complejos — self-serve, pricing, feature gating, sistemas de datos a escala.",
+    about_p3:"Completé la Diplomatura en UX/UI Design en la UTN, y actualmente curso una especialización en IA aplicada a la experiencia de usuario.",
+    how_title:"Cómo trabajo", how_1:"UX Research", how_2:"Product Thinking", how_3:"System Design", how_4:"Accesibilidad",
+    what_title:"Herramientas", what_1:"Figma & Figma Make", what_2:"Design Systems", what_3:"AI Copywriting — ChatGPT", what_4:"AI Prototyping — Claude",
+    lang_es:"Español — Nativo", lang_en:"Inglés — B2+",
+    contact_eyebrow:"¿Hablamos?", contact_headline:"armemos algo.",
+    linkedin_label:"LinkedIn", behance_label:"Behance", new_tab:"(se abre en una pestaña nueva)",
+    footer_note:"Buenos Aires, Argentina"
+  },
+  en: {
+    nav_work:"Work", nav_about:"About", nav_contact:"Contact",
+    hero_eyebrow:"UX/UI Designer · Product Designer · SaaS & Digital Products",
+    hero_sub:"Hi, I'm Vanesa. I design systems and UX/UI experiences — 15 years moving between graphic and digital, obsessed with things that scale without breaking.",
+    hero_cta_1:"View work", hero_cta_2:"Let's talk", hero_meta:"15 years in design · Argentina",
+    together_badge:"design<br>together",
+    stat_years:"Years in design", stat_components:"Design system components", stat_leads:"More qualified leads (PLG)",
+    work_title:"Work", work_index:"01 to 05",
+    w1_title:"Product-Led Growth", w1_meta:"Viz Flowics · UX/UI · Growth",
+    w1_desc:"From 1.05% conversion to a real self-serve funnel: public pricing, feature gating and onboarding rebuilt end to end.", w1_tag:"Under NDA",
+    w2_title:"Data Augmentation", w2_meta:"Viz Flowics · UX/UI · Data tooling",
+    w2_desc:"A bulk-edit flow through Google Sheets, with pre-import simulation and an audit trail, for datasets that no longer scaled by hand.", w2_tag:"Under NDA",
+    w3_title:"Custom Fonts", w3_meta:"Viz Flowics · UX/UI · Self-serve",
+    w3_desc:"Uploading a custom font stopped needing a support ticket. Drag and drop, family and variant management, plan gating.", w3_tag:"Self-serve",
+    w4_title:"Mi Argentina", w4_meta:"UTN · Academic project · Team of 3",
+    w4_desc:"A redesign of a government digital app. I led the flow for Tina, the conversational assistant, end to end.", w4_tag:"Academic",
+    w5_title:"Heroless", w5_meta:"GMTK Game Jam 2026 · UI Design · Godot",
+    w5_desc:"UI design for a platformer built in 96 hours, worked at the pace of a game jam production cycle.", w5_tag:"Game Jam",
+    expand:"Expand ↗",
+    about_eyebrow:"About", about_headline:"Design with head and system.",
+    about_p1:"I started in graphic design. Ten years building visual pieces before moving into UX/UI, five years ago. That mix is my edge — I think in hierarchy and composition as much as in flows and friction.",
+    about_p2:"At Vizrt (Viz Flowics) I work on complex B2B products — self-serve, pricing, feature gating, data systems at scale.",
+    about_p3:"I completed the UX/UI Design Diploma at UTN, and I'm currently pursuing a specialization in AI applied to user experience.",
+    how_title:"How I work", how_1:"UX Research", how_2:"Product Thinking", how_3:"System Design", how_4:"Accessibility",
+    what_title:"Tools", what_1:"Figma & Figma Make", what_2:"Design Systems", what_3:"AI Copywriting — ChatGPT", what_4:"AI Prototyping — Claude",
+    lang_es:"Spanish — Native", lang_en:"English — B2+",
+    contact_eyebrow:"Let's talk", contact_headline:"let's build.",
+    linkedin_label:"LinkedIn", behance_label:"Behance", new_tab:"(opens in a new tab)",
+    footer_note:"Buenos Aires, Argentina"
+  }
 };
 
 function setLang(lang){
-document.querySelectorAll('[data-i18n]').forEach(el=>{
-const key = el.getAttribute('data-i18n');
-if(translations[lang][key]) el.innerHTML = translations[lang][key];
-});
-document.querySelectorAll('.lang-btn').forEach(btn=>{
-btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
-});
-document.documentElement.lang = lang;
-localStorage.setItem('preferredLang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang][key]) el.innerHTML = translations[lang][key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
+  });
+  document.documentElement.lang = lang;
+  localStorage.setItem('preferredLang', lang);
 }
 document.querySelectorAll('.lang-btn').forEach(btn=>{
-btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
+  btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
 });
 setLang(localStorage.getItem('preferredLang') || 'es');
 
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 navToggle.addEventListener('click', ()=>{
-const isOpen = navLinks.classList.toggle('open');
-navToggle.setAttribute('aria-expanded', isOpen);
-navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+  navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
 });
 navLinks.querySelectorAll('a').forEach(link=>{
-link.addEventListener('click', ()=>{
-navLinks.classList.remove('open');
-navToggle.setAttribute('aria-expanded','false');
-});
+  link.addEventListener('click', ()=>{
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded','false');
+  });
 });
 </script>
 </body>
+</html>
