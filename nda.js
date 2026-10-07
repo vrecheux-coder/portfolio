@@ -20,6 +20,9 @@
       close: '🔓 Imágenes visibles · Volver a ocultar',
       title: 'Ver imágenes sin desenfoque',
       body: 'Estos proyectos están bajo NDA. Si te compartí una contraseña, ingresala para ver las pantallas reales.',
+      swLabel: 'Capturas NDA',
+      swBlur: 'Con blur',
+      swSharp: 'Nítidas',
       label: 'Contraseña',
       show: 'Mostrar contraseña',
       hide: 'Ocultar contraseña',
@@ -49,6 +52,9 @@
       close: '🔓 Images visible · Hide again',
       title: 'View images without blur',
       body: 'These projects are under NDA. If I shared a password with you, enter it to see the real screens.',
+      swLabel: 'NDA screens',
+      swBlur: 'Blurred',
+      swSharp: 'Sharp',
       label: 'Password',
       show: 'Show password',
       hide: 'Hide password',
@@ -80,8 +86,18 @@
   css.textContent =
     '.nda-open img{filter:none!important;transform:none!important}' +
     '.nda-open .case-cover-lock,.nda-open .case-img-lock{display:none}' +
-    '.nda-toggle{font:inherit;font-size:.8rem;font-weight:600;display:inline-flex;align-items:center;gap:.5rem;background:var(--cream,#F4EFE4);color:var(--ink,#141310);border:1.5px solid var(--ink,#141310);border-radius:999px;padding:.55rem 1.1rem;cursor:pointer;margin-top:1rem;position:relative;z-index:3}' +
-    '.nda-toggle:hover{background:var(--ink,#141310);color:var(--cream,#F4EFE4)}' +
+    '.nda-toggle{font:inherit;display:inline-flex;align-items:center;gap:.75rem;background:none;border:0;padding:0;cursor:pointer;color:var(--ink,#141310);position:relative;z-index:3;vertical-align:middle}' +
+    '.nda-sw-label{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft,#5C594E)}' +
+    '.nda-sw-track{display:inline-flex;gap:2px;padding:3px;border:1.5px solid var(--ink,#141310);border-radius:999px;background:var(--cream,#F4EFE4)}' +
+    '.nda-sw-opt{font-size:.78rem;font-weight:600;line-height:1;padding:.5rem .85rem;border-radius:999px;color:var(--ink-soft,#5C594E);transition:background .2s,color .2s;white-space:nowrap}' +
+    '.nda-toggle[aria-checked=false] .nda-sw-opt[data-on="0"],.nda-toggle[aria-checked=true] .nda-sw-opt[data-on="1"]{background:var(--ink,#141310);color:var(--cream,#F4EFE4)}' +
+    '.nda-toggle:hover .nda-sw-track{box-shadow:0 0 0 3px var(--pink-soft,#F6C9DE)}' +
+    '.nda-toggle:focus-visible{border-radius:999px}' +
+    '.nda-notice{margin-right:.9rem;vertical-align:middle}' +
+    '.nda-notice + div:has(> .nda-toggle){display:inline-block;vertical-align:middle;margin-top:var(--sp-4,2rem)}' +
+    '.section-tools{display:flex;align-items:center;gap:var(--sp-4,2rem)}' +
+    '.section-tools .eyebrow{white-space:nowrap}' +
+    '@media (max-width:900px){.section-tools{flex-wrap:wrap;gap:.75rem 1.5rem;width:100%;justify-content:space-between}}' +
     '.nda-toggle:focus-visible,.nda-dialog input:focus-visible,.nda-dialog button:focus-visible{outline:3px solid var(--pink,#F03C8C);outline-offset:2px}' +
     '.nda-dialog{margin:auto;border:0;border-radius:20px;padding:2rem;max-width:min(26rem,calc(100vw - 2rem));background:var(--cream,#F4EFE4);color:var(--ink,#141310);font-family:"Instrument Sans",sans-serif}' +
     '.nda-dialog::backdrop{background:rgba(20,19,16,.6)}' +
@@ -169,6 +185,7 @@
     }).catch(function () { /* esa imagen queda desenfocada */ });
   }
   function revealAll(raw) {
+    lastKey = raw;
     return Promise.all(imgs.map(function (img) { return reveal(img, raw); })).then(function () {
       setState(document.querySelector('.nda-open') !== null);
     });
@@ -196,7 +213,8 @@
       return deriveRaw(password, salt).then(function (raw) {
         return decrypt(raw, data).then(function (url) {
           URL.revokeObjectURL(url);
-          try { localStorage.setItem(STORE, JSON.stringify({ salt: b64(salt), key: b64(raw) })); } catch (e) {}
+          lastStore = JSON.stringify({ salt: b64(salt), key: b64(raw) });
+          try { localStorage.setItem(STORE, lastStore); } catch (e) {}
           return revealAll(raw).then(function () { return 'ok'; });
         }, function () { return 'wrong'; });
       });
@@ -205,12 +223,19 @@
 
   /* ---------- UI ---------- */
   var unlocked = false;
+  var lastStore = null;
+  var lastKey = null;   // queda en memoria para volver a mostrar sin pedir la contraseña otra vez
   var toggles = Array.prototype.slice.call(document.querySelectorAll('[data-nda-toggle]'));
   function setState(on) {
     unlocked = on;
     toggles.forEach(function (b) {
-      b.textContent = t(on ? 'close' : 'open');
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.innerHTML = '<span class="nda-sw-label"></span><span class="nda-sw-track" aria-hidden="true"><span class="nda-sw-opt" data-on="0"></span><span class="nda-sw-opt" data-on="1"></span></span>';
+      b.children[0].textContent = t('swLabel');
+      b.querySelector('[data-on="0"]').textContent = t('swBlur');
+      b.querySelector('[data-on="1"]').textContent = (on || lastKey ? '' : '🔒 ') + t('swSharp');
+      b.setAttribute('role', 'switch');
+      b.setAttribute('aria-checked', on ? 'true' : 'false');
+      b.setAttribute('aria-label', t(on ? 'close' : 'open').replace(/^\S+\s/, ''));
     });
   }
 
@@ -334,6 +359,11 @@
     b.hidden = false;
     b.addEventListener('click', function () {
       if (unlocked) { hideAll(); return; }
+      if (lastKey) {
+        try { if (lastStore) localStorage.setItem(STORE, lastStore); } catch (e) {}
+        revealAll(lastKey);
+        return;
+      }
       error.textContent = '';
       input.value = '';
       showPassword(false);
@@ -356,6 +386,7 @@
     if (saved) {
       load(imgs[0].dataset.nda).then(function (data) {
         if (b64(data.slice(0, 16)) !== saved.salt) { localStorage.removeItem(STORE); return; }
+        lastStore = JSON.stringify(saved);
         return revealAll(unb64(saved.key));
       }).catch(function () {});
     }

@@ -113,7 +113,7 @@ a{color:inherit;text-decoration:none}
 .stat .label{font-size:.82rem;color:var(--ink-soft);margin-top:.2rem}
 
 section{padding:var(--sp-7) 0}
-.section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--sp-5);gap:var(--sp-3);flex-wrap:wrap}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-5);gap:var(--sp-3);flex-wrap:wrap}
 .section-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2rem,3.6vw,3.2rem)}
 
 /* work */
@@ -247,9 +247,11 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
   <div class="container">
     <div class="section-head">
       <h2 class="section-title" data-i18n="work_title">Proyectos</h2>
-      <p class="eyebrow" data-i18n="work_index">01 a 05</p>
+      <div class="section-tools">
+        <button type="button" class="nda-toggle" data-nda-toggle hidden></button>
+        <p class="eyebrow" data-i18n="work_index">01 a 05</p>
+      </div>
     </div>
-    <button type="button" class="nda-toggle" data-nda-toggle hidden></button>
 
     <div class="work-item">
       <a class="work-link" href="case-plg.html" aria-label="Ver caso Product-Led Growth"></a>
