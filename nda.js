@@ -18,6 +18,8 @@
       title: 'Ver imágenes sin desenfoque',
       body: 'Estos proyectos están bajo NDA. Si te compartí una contraseña, ingresala para ver las pantallas reales.',
       label: 'Contraseña',
+      show: 'Mostrar contraseña',
+      hide: 'Ocultar contraseña',
       submit: 'Ver imágenes',
       cancel: 'Cancelar',
       checking: 'Verificando…',
@@ -31,6 +33,8 @@
       title: 'View images without blur',
       body: 'These projects are under NDA. If I shared a password with you, enter it to see the real screens.',
       label: 'Password',
+      show: 'Show password',
+      hide: 'Hide password',
       submit: 'View images',
       cancel: 'Cancel',
       checking: 'Checking…',
@@ -54,6 +58,11 @@
     '.nda-dialog p{font-size:.92rem;color:var(--ink-soft,#5C594E);margin:0 0 1rem}' +
     '.nda-dialog label{display:block;font-size:.8rem;font-weight:600;margin-bottom:.4rem}' +
     '.nda-dialog input{width:100%;box-sizing:border-box;font:inherit;font-size:1rem;padding:.75rem 1rem;border:1.5px solid var(--ink,#141310);border-radius:12px;background:#fff;color:var(--ink,#141310)}' +
+    '.nda-dialog .nda-field{position:relative}' +
+    '.nda-dialog .nda-field input{padding-right:3.2rem}' +
+    '.nda-dialog .nda-eye{position:absolute;right:.35rem;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;padding:0;border:0;border-radius:10px;background:transparent;color:var(--ink-soft,#5C594E)}' +
+    '.nda-dialog .nda-eye:hover{color:var(--ink,#141310);background:var(--cream-2,#EDE6D6)}' +
+    '.nda-dialog .nda-eye svg{width:1.35rem;height:1.35rem;pointer-events:none}' +
     '.nda-dialog .nda-error{color:var(--pink-text,#A81463);font-weight:600;min-height:1.3em;margin:.6rem 0 0}' +
     '.nda-dialog .nda-actions{display:flex;gap:.6rem;justify-content:flex-end;margin-top:1rem;flex-wrap:wrap}' +
     '.nda-dialog button{font:inherit;font-size:.9rem;font-weight:600;border-radius:999px;padding:.7rem 1.3rem;cursor:pointer;border:1.5px solid var(--ink,#141310);background:transparent;color:var(--ink,#141310)}' +
@@ -166,7 +175,8 @@
     '<form method="dialog" novalidate>' +
     '<h2 id="nda-title"></h2><p class="nda-body"></p>' +
     '<label for="nda-input"></label>' +
-    '<input id="nda-input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="nda-error">' +
+    '<div class="nda-field"><input id="nda-input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="nda-error">' +
+    '<button type="button" class="nda-eye" aria-pressed="false"></button></div>' +
     '<p class="nda-error" id="nda-error" role="alert"></p>' +
     '<div class="nda-actions"><button type="button" class="nda-cancel"></button><button type="submit"></button></div>' +
     '<p class="nda-ask"></p></form>';
@@ -175,6 +185,17 @@
   var input = dialog.querySelector('input');
   var error = dialog.querySelector('.nda-error');
   var submit = dialog.querySelector('button[type=submit]');
+  var eye = dialog.querySelector('.nda-eye');
+  var EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+  var EYE_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.6 5.1A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.1M6.5 6.6C3.6 8.5 2 12 2 12s3.6 7 10 7a10.3 10.3 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="M3 3l18 18"/></svg>';
+  function showPassword(on) {
+    input.type = on ? 'text' : 'password';
+    eye.innerHTML = on ? EYE_OFF : EYE;
+    eye.setAttribute('aria-pressed', on ? 'true' : 'false');
+    eye.setAttribute('aria-label', t(on ? 'hide' : 'show'));
+    eye.title = t(on ? 'hide' : 'show');
+  }
+  eye.addEventListener('click', function () { showPassword(input.type === 'password'); input.focus(); });
 
   function paint() {
     dialog.querySelector('h2').textContent = t('title');
@@ -182,6 +203,7 @@
     dialog.querySelector('label').textContent = t('label');
     dialog.querySelector('.nda-cancel').textContent = t('cancel');
     submit.textContent = t('submit');
+    showPassword(input.type === 'text');
     dialog.querySelector('.nda-ask').innerHTML = t('ask') + '<a href="mailto:' + CONTACT + '">' + CONTACT + '</a>';
     setState(unlocked);
   }
@@ -198,7 +220,7 @@
     tryPassword(input.value).then(function (result) {
       submit.disabled = false;
       submit.textContent = t('submit');
-      if (result === 'ok') { input.value = ''; dialog.close(); }
+      if (result === 'ok') { input.value = ''; showPassword(false); dialog.close(); }
       else { error.textContent = t(result); input.select(); }
     });
   });
@@ -208,6 +230,7 @@
       if (unlocked) { hideAll(); return; }
       error.textContent = '';
       input.value = '';
+      showPassword(false);
       dialog.showModal();
       input.focus();
     });
