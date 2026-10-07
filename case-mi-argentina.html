@@ -24,7 +24,7 @@
   --r-sm:14px; --r-md:24px; --r-lg:36px; --r-pill:999px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; overflow-x:hidden}
 body{
   background:var(--cream);
   color:var(--ink);
@@ -55,6 +55,31 @@ a{color:inherit;text-decoration:none}
 .lang-toggle{display:flex;align-items:center;gap:.25rem;background:var(--ink);border-radius:var(--r-pill);padding:.35rem}
 .lang-btn{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.04em;background:none;border:0;padding:.4rem .8rem;cursor:pointer;color:#B8B4A6;border-radius:var(--r-pill)}
 .lang-btn[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
+
+/* nav hamburger — hidden on desktop */
+.nav-toggle{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:38px;
+  height:38px;
+  background:none;
+  border:0;
+  cursor:pointer;
+  padding:0;
+  flex-shrink:0;
+}
+.nav-toggle span{
+  display:block;
+  width:100%;
+  height:2px;
+  background:var(--ink);
+  transition:transform .25s ease, opacity .25s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* case hero */
 .case-hero{padding:var(--sp-5) 0 var(--sp-6)}
@@ -106,7 +131,33 @@ a{color:inherit;text-decoration:none}
 
 footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
 
-@media (max-width:820px){
+@media (max-width:900px){
+  .nav-toggle{display:flex}
+  .nav-links{
+    position:absolute;
+    top:86px;
+    left:0;
+    right:0;
+    background:var(--cream);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:var(--sp-3);
+    padding:var(--sp-4);
+    border-bottom:1.5px solid var(--ink);
+    transform:translateY(-8px);
+    opacity:0;
+    pointer-events:none;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .nav-links.open{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
+  }
+  .lang-toggle{margin-top:.5rem}
+  .case-hero{padding:var(--sp-4) 0 var(--sp-5)}
+  .case-section{padding:var(--sp-5) 0}
+  .next-case .container{padding:var(--sp-5) var(--sp-4)}
   .case-section-inner{grid-template-columns:1fr;gap:var(--sp-3)}
   .case-section-label{position:static}
   .case-cover{flex-wrap:wrap}
@@ -119,7 +170,10 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 <nav class="nav" aria-label="Principal">
   <div class="container">
     <a href="index.html" class="nav-logo">vanesa<span class="dot"></span></a>
-    <div class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="index.html#work" data-i18n="nav_work">Proyectos</a>
       <a href="index.html#about" data-i18n="nav_about">Sobre mí</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
@@ -220,9 +274,9 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 
 <section class="next-case">
   <div class="container">
-    <p class="eyebrow" data-i18n="next_eyebrow">Ver más</p>
-    <h2 class="display next-case-title" data-i18n="next_title">Todos los proyectos</h2>
-    <a class="next-case-link" href="index.html#work"><span data-i18n="next_cta">Home</span> →</a>
+    <p class="eyebrow" data-i18n="next_eyebrow">Siguiente caso</p>
+    <h2 class="display next-case-title" data-i18n="next_title">Heroless</h2>
+    <a class="next-case-link" href="case-heroless.html"><span data-i18n="next_cta">Ver caso</span> →</a>
   </div>
 </section>
 
@@ -258,7 +312,7 @@ const translations = {
     label_team:"Equipo", team_h:"Equipo 22",
     team_p1:"Este proyecto fue un trabajo grupal de principio a fin. El crédito por la investigación, el diseño y el prototipado es compartido entre las tres.",
     team_1_name:"Vanesa Reche", team_2_name:"Tamara Iglesias", team_3_name:"Karen Lafuente",
-    next_eyebrow:"Ver más", next_title:"Todos los proyectos", next_cta:"Volver al índice",
+    next_eyebrow:"Siguiente caso", next_title:"Heroless", next_cta:"Ver caso",
     footer_note:"Buenos Aires, Argentina"
   },
   en: {
@@ -284,7 +338,7 @@ const translations = {
     label_team:"Team", team_h:"Team 22",
     team_p1:"This project was a group effort from start to finish. Credit for the research, design and prototyping is shared between the three of us.",
     team_1_name:"Vanesa Reche", team_2_name:"Tamara Iglesias", team_3_name:"Karen Lafuente",
-    next_eyebrow:"See more", next_title:"All projects", next_cta:"Home",
+    next_eyebrow:"Next case", next_title:"Heroless", next_cta:"View case",
     footer_note:"Buenos Aires, Argentina"
   }
 };
@@ -304,6 +358,20 @@ document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
 });
 setLang(localStorage.getItem('preferredLang') || 'es');
+
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', ()=>{
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+  navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+});
+navLinks.querySelectorAll('a').forEach(link=>{
+  link.addEventListener('click', ()=>{
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded','false');
+  });
+});
 </script>
 </body>
 </html>
