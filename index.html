@@ -125,9 +125,10 @@ section{padding:var(--sp-7) 0}
 .work-desc{color:var(--ink-soft);max-width:56ch;margin-bottom:1.2rem}
 .work-tags{display:flex;gap:.5rem;flex-wrap:wrap}
 .tag{font-size:.78rem;font-weight:500;border:1.5px solid var(--pink-text);color:var(--pink-text);padding:.4rem .85rem;border-radius:var(--r-pill)}
-.work-visual{position:relative;border-radius:var(--r-md);overflow:hidden;background:var(--ink);aspect-ratio:16/11}
-.work-visual img{width:100%;height:100%;object-fit:contain;opacity:.94}
-.work-expand{position:absolute;right:14px;bottom:14px;background:var(--cream);color:var(--ink);font-size:.75rem;font-weight:600;padding:.55rem 1rem;border-radius:var(--r-pill);display:inline-flex;align-items:center;gap:.35rem;z-index:2}
+.work-visual{position:relative;border-radius:var(--r-md);overflow:hidden;background:var(--cream-2);border:1.5px solid var(--line);aspect-ratio:16/8.5}
+.work-visual-dark{background:var(--ink);border-color:var(--ink)}
+.work-visual img{width:100%;height:100%;object-fit:cover;object-position:top}
+.work-expand{position:absolute;right:14px;bottom:14px;background:var(--ink);color:var(--cream);font-size:.75rem;font-weight:600;padding:.55rem 1rem;border-radius:var(--r-pill);display:inline-flex;align-items:center;gap:.35rem;z-index:2}
 .work-item a.work-link{grid-column:1 / -1;position:absolute;inset:0}
 .work-item{position:relative}
 
@@ -307,7 +308,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
         <p class="work-desc" data-i18n="w5_desc">Diseño de UI para un platformer desarrollado en 96 horas, integrado al ritmo de producción de un game jam.</p>
         <div class="work-tags"><span class="tag" data-i18n="w5_tag">Game Jam</span></div>
       </div>
-      <div class="work-visual"><img src="images/heroless-cover.png" alt="" loading="lazy" style="image-rendering:pixelated"><a class="work-expand" href="case-heroless.html" data-i18n="expand">Ampliar ↗</a></div>
+      <div class="work-visual work-visual-dark"><img src="images/heroless-cover.png" alt="" loading="lazy" style="image-rendering:pixelated;object-fit:contain"><a class="work-expand" href="case-heroless.html" data-i18n="expand">Ampliar ↗</a></div>
     </div>
 
   </div>
