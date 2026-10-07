@@ -86,13 +86,8 @@
   css.textContent =
     '.nda-open img{filter:none!important;transform:none!important}' +
     '.nda-open .case-cover-lock,.nda-open .case-img-lock{display:none}' +
-    '.nda-toggle{font:inherit;display:inline-flex;align-items:center;gap:.75rem;background:none;border:0;padding:0;cursor:pointer;color:var(--ink,#141310);position:relative;z-index:3;vertical-align:middle}' +
-    '.nda-sw-label{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft,#5C594E)}' +
-    '.nda-sw-track{display:inline-flex;gap:2px;padding:3px;border:1.5px solid var(--ink,#141310);border-radius:999px;background:var(--cream,#F4EFE4)}' +
-    '.nda-sw-opt{font-size:.78rem;font-weight:600;line-height:1;padding:.5rem .85rem;border-radius:999px;color:var(--ink-soft,#5C594E);transition:background .2s,color .2s;white-space:nowrap}' +
-    '.nda-toggle[aria-checked=false] .nda-sw-opt[data-on="0"],.nda-toggle[aria-checked=true] .nda-sw-opt[data-on="1"]{background:var(--ink,#141310);color:var(--cream,#F4EFE4)}' +
-    '.nda-toggle:hover .nda-sw-track{box-shadow:0 0 0 3px var(--pink-soft,#F6C9DE)}' +
-    '.nda-toggle:focus-visible{border-radius:999px}' +
+    '.nda-toggle{font:inherit;font-size:.8rem;font-weight:600;display:inline-flex;align-items:center;gap:.5rem;background:var(--cream,#F4EFE4);color:var(--ink,#141310);border:1.5px solid var(--ink,#141310);border-radius:999px;padding:.55rem 1.1rem;cursor:pointer;position:relative;z-index:3;vertical-align:middle;white-space:nowrap}' +
+    '.nda-toggle:hover{background:var(--ink,#141310);color:var(--cream,#F4EFE4)}' +
     '.nda-notice{margin-right:.9rem;vertical-align:middle}' +
     '.nda-notice + div:has(> .nda-toggle){display:inline-block;vertical-align:middle;margin-top:var(--sp-4,2rem)}' +
     '.section-tools{display:flex;align-items:center;gap:var(--sp-4,2rem)}' +
@@ -229,13 +224,8 @@
   function setState(on) {
     unlocked = on;
     toggles.forEach(function (b) {
-      b.innerHTML = '<span class="nda-sw-label"></span><span class="nda-sw-track" aria-hidden="true"><span class="nda-sw-opt" data-on="0"></span><span class="nda-sw-opt" data-on="1"></span></span>';
-      b.children[0].textContent = t('swLabel');
-      b.querySelector('[data-on="0"]').textContent = t('swBlur');
-      b.querySelector('[data-on="1"]').textContent = (on || lastKey ? '' : '🔒 ') + t('swSharp');
-      b.setAttribute('role', 'switch');
-      b.setAttribute('aria-checked', on ? 'true' : 'false');
-      b.setAttribute('aria-label', t(on ? 'close' : 'open').replace(/^\S+\s/, ''));
+      b.textContent = t(on ? 'close' : 'open');
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
   }
 
