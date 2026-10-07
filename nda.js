@@ -25,7 +25,12 @@
       checking: 'Verificando…',
       wrong: 'Esa contraseña no es correcta. Revisá mayúsculas y espacios.',
       unavailable: 'No pude cargar las imágenes. Probá de nuevo en un momento.',
-      ask: '¿No tenés contraseña? Pedímela a '
+      ask: '¿No tenés contraseña?',
+      request: 'Pedirla por mail',
+      copy: 'Copiar mi mail',
+      copied: 'Mail copiado ✓',
+      subject: 'Contraseña para ver tu portfolio',
+      mail: 'Hola Vanesa,\n\nVi tu portfolio y me gustaría ver las imágenes completas de los proyectos bajo NDA. ¿Me compartís la contraseña?\n\nNombre:\nEmpresa y rol:\n\n¡Gracias!'
     },
     en: {
       open: '🔒 I have a password · View images',
@@ -40,7 +45,12 @@
       checking: 'Checking…',
       wrong: 'That password is not correct. Check capitals and spaces.',
       unavailable: 'I could not load the images. Please try again in a moment.',
-      ask: 'No password? Ask me at '
+      ask: 'No password?',
+      request: 'Request it by email',
+      copy: 'Copy my email',
+      copied: 'Email copied ✓',
+      subject: 'Password to view your portfolio',
+      mail: 'Hi Vanesa,\n\nI saw your portfolio and would like to see the full images of the projects under NDA. Could you share the password?\n\nName:\nCompany and role:\n\nThanks!'
     }
   };
   function t(k) { return T[document.documentElement.lang === 'en' ? 'en' : 'es'][k]; }
@@ -68,7 +78,12 @@
     '.nda-dialog button{font:inherit;font-size:.9rem;font-weight:600;border-radius:999px;padding:.7rem 1.3rem;cursor:pointer;border:1.5px solid var(--ink,#141310);background:transparent;color:var(--ink,#141310)}' +
     '.nda-dialog button[type=submit]{background:var(--ink,#141310);color:var(--cream,#F4EFE4)}' +
     '.nda-dialog button[disabled]{opacity:.6;cursor:wait}' +
-    '.nda-dialog .nda-ask{font-size:.8rem;margin:1.2rem 0 0}' +
+    '.nda-dialog .nda-ask{margin:1.4rem 0 0;padding-top:1.1rem;border-top:1px solid var(--line,#DEDACB)}' +
+    '.nda-dialog .nda-ask p{font-size:.85rem;font-weight:600;color:var(--ink,#141310);margin:0 0 .7rem}' +
+    '.nda-dialog .nda-ask-actions{display:flex;gap:.6rem;flex-wrap:wrap}' +
+    '.nda-dialog .nda-request{display:inline-flex;align-items:center;font-size:.85rem;font-weight:600;text-decoration:none;border-radius:999px;padding:.6rem 1.1rem;border:1.5px solid var(--pink-text,#A81463);background:var(--pink-text,#A81463);color:#fff}' +
+    '.nda-dialog .nda-request:focus-visible{outline:3px solid var(--pink,#F03C8C);outline-offset:2px}' +
+    '.nda-dialog .nda-copy{font-size:.85rem;padding:.6rem 1.1rem}' +
     '.nda-dialog a{color:var(--pink-text,#A81463);text-decoration:underline}';
   document.head.appendChild(css);
 
@@ -179,13 +194,20 @@
     '<button type="button" class="nda-eye" aria-pressed="false"></button></div>' +
     '<p class="nda-error" id="nda-error" role="alert"></p>' +
     '<div class="nda-actions"><button type="button" class="nda-cancel"></button><button type="submit"></button></div>' +
-    '<p class="nda-ask"></p></form>';
+    '<div class="nda-ask"><p></p><div class="nda-ask-actions"><a class="nda-request"></a><button type="button" class="nda-copy"></button></div></div></form>';
   document.body.appendChild(dialog);
   var form = dialog.querySelector('form');
   var input = dialog.querySelector('input');
   var error = dialog.querySelector('.nda-error');
   var submit = dialog.querySelector('button[type=submit]');
   var eye = dialog.querySelector('.nda-eye');
+  var request = dialog.querySelector('.nda-request');
+  var copy = dialog.querySelector('.nda-copy');
+  copy.addEventListener('click', function () {
+    function done() { copy.textContent = t('copied'); setTimeout(function () { copy.textContent = t('copy'); }, 2500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(CONTACT).then(done, function () { copy.textContent = CONTACT; });
+    else copy.textContent = CONTACT;
+  });
   var EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
   var EYE_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.6 5.1A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.1M6.5 6.6C3.6 8.5 2 12 2 12s3.6 7 10 7a10.3 10.3 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="M3 3l18 18"/></svg>';
   function showPassword(on) {
@@ -204,7 +226,10 @@
     dialog.querySelector('.nda-cancel').textContent = t('cancel');
     submit.textContent = t('submit');
     showPassword(input.type === 'text');
-    dialog.querySelector('.nda-ask').innerHTML = t('ask') + '<a href="mailto:' + CONTACT + '">' + CONTACT + '</a>';
+    dialog.querySelector('.nda-ask p').textContent = t('ask');
+    request.textContent = t('request') + ' →';
+    request.href = 'mailto:' + CONTACT + '?subject=' + encodeURIComponent(t('subject')) + '&body=' + encodeURIComponent(t('mail'));
+    copy.textContent = t('copy');
     setState(unlocked);
   }
   paint();
