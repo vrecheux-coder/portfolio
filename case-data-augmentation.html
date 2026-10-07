@@ -112,6 +112,17 @@ a{color:inherit;text-decoration:none}
 .case-img img{width:100%;height:100%;object-fit:contain;filter:blur(16px) saturate(1.15);transform:scale(1.08)}
 .case-img-lock{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:.4rem;background:var(--cream);color:var(--ink);font-size:.72rem;font-weight:600;padding:.45rem .85rem;border-radius:var(--r-pill);z-index:2}
 .case-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)}
+.case-scroll{position:relative;margin-top:var(--sp-4);border-radius:var(--r-md);overflow:hidden;background:var(--ink);border:1.5px solid var(--ink)}
+.case-scroll .case-img{margin-top:0;border-radius:0;aspect-ratio:auto;height:min(70vh,540px);overflow-y:auto;overscroll-behavior:auto;scrollbar-width:thin;scrollbar-color:var(--ink-soft) transparent}
+.case-scroll .case-img img{height:auto;display:block}
+.case-scroll .case-img:focus-visible{outline:3px solid var(--pink);outline-offset:-3px}
+.case-scroll::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(to top,rgba(20,19,16,.55),rgba(20,19,16,0));pointer-events:none;transition:opacity .3s}
+.case-scroll-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:2;background:var(--cream);color:var(--ink);font-size:.75rem;font-weight:600;padding:.5rem 1rem;border-radius:var(--r-pill);pointer-events:none;white-space:nowrap;transition:opacity .3s}
+.case-scroll.scrolled::after,.case-scroll.scrolled .case-scroll-hint{opacity:0}
+.case-scroll .case-img-lock{right:14px;top:14px;bottom:auto}
+.case-scroll:has(.nda-open) .case-img-lock{display:none}
+@media (max-width:900px){.case-section-body{min-width:0}.case-scroll .case-img{overflow:auto;height:min(65vh,480px)}.case-scroll .case-img img{width:720px;max-width:none}}
+.case-sub{font-family:'Bricolage Grotesque',sans-serif;font-size:1.35rem;margin:var(--sp-5) 0 var(--sp-2)}
 
 .impact-stat{display:flex;align-items:center;gap:1rem;margin:var(--sp-4) 0}
 .impact-stat .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3.2rem;color:var(--pink-text)}
@@ -228,6 +239,9 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
         <div class="case-img" role="img" aria-label="Captura desenfocada del flujo de exportación, bajo NDA"><img src="images/da-approach-1.jpg" data-nda="images/da-approach-1.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
         <div class="case-img" role="img" aria-label="Captura desenfocada de la simulación previa a importar, bajo NDA"><img src="images/da-approach-2.jpg" data-nda="images/da-approach-2.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
       </div>
+      <h3 class="case-sub" data-i18n="report_h">El reporte previo a importar</h3>
+      <p data-i18n="report_p">Antes de confirmar, el equipo ve un reporte completo de la simulación: cuántas claves existen y cuántas quedarán, cuáles tienen errores y por qué, y el detalle de cada actualización, inserción y eliminación. Cada grupo de cambios se puede incluir o excluir con un check.</p>
+      <div class="case-scroll"><div class="case-img" tabindex="0" role="region" aria-label="Captura desenfocada del reporte de simulación completo, bajo NDA. Se puede desplazar."><img src="images/da-report.jpg" data-nda="images/da-report.enc" alt="" loading="lazy"></div><span class="case-img-lock">🔒 NDA</span><span class="case-scroll-hint" data-i18n="report_hint">↕ Desplazá para ver el reporte completo</span></div>
     </div>
   </div>
 </section>
@@ -282,6 +296,8 @@ const translations = {
     approach_h:"Exportar, editar afuera, simular antes de importar",
     approach_p1:"Diseñé un flujo de tres pasos: exportar el dataset a Google Sheets (una herramienta que los equipos ya conocían), editar ahí con todas las funciones de una planilla, e importar de vuelta con una simulación previa que mostraba exactamente qué iba a cambiar antes de confirmar nada.",
     approach_p2:"Sumé un sistema de auditoría que registra cada importación: quién la hizo, cuándo, y qué cambió — así cualquier edición masiva queda trazada y es reversible.",
+    report_h:"El reporte previo a importar", report_hint:"↕ Desplazá para ver el reporte completo",
+    report_p:"Antes de confirmar, el equipo ve un reporte completo de la simulación: cuántas claves existen y cuántas quedarán, cuáles tienen errores y por qué, y el detalle de cada actualización, inserción y eliminación. Cada grupo de cambios se puede incluir o excluir con un check.",
     label_impact:"El impacto",
     impact_h:"Ediciones masivas sin miedo a romper producción",
     impact_p1:"Los equipos pasaron de editar registro por registro a manejar datasets completos con confianza: la simulación previa elimina las sorpresas, y el historial de auditoría da trazabilidad total sobre qué cambió y quién lo hizo.",
@@ -305,6 +321,8 @@ const translations = {
     approach_h:"Export, edit outside, simulate before importing",
     approach_p1:"I designed a three-step flow: export the dataset to Google Sheets (a tool teams already knew), edit there with full spreadsheet functionality, and import back with a pre-import simulation that showed exactly what would change before confirming anything.",
     approach_p2:"I added an audit system that logs every import — who did it, when, and what changed — so any bulk edit stays traceable and reversible.",
+    report_h:"The pre-import report", report_hint:"↕ Scroll to see the full report",
+    report_p:"Before confirming, the team sees a full simulation report: how many keys exist and how many will remain, which ones have errors and why, and the detail of every update, insertion and deletion. Each group of changes can be included or excluded with a checkbox.",
     label_impact:"The impact",
     impact_h:"Bulk edits without fear of breaking production",
     impact_p1:"Teams went from editing record by record to handling full datasets with confidence: the pre-import simulation removes the surprises, and the audit trail gives full traceability over what changed and who did it.",
@@ -328,6 +346,10 @@ document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
 });
 setLang(localStorage.getItem('preferredLang') || 'es');
+
+document.querySelectorAll('.case-scroll .case-img').forEach(v=>{
+  v.addEventListener('scroll', ()=> v.parentElement.classList.toggle('scrolled', v.scrollTop > 24), {passive:true});
+});
 
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
