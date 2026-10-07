@@ -248,6 +248,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <h2 class="section-title" data-i18n="work_title">Proyectos</h2>
       <p class="eyebrow" data-i18n="work_index">01 a 05</p>
     </div>
+    <button type="button" class="nda-toggle" data-nda-toggle hidden></button>
 
     <div class="work-item">
       <a class="work-link" href="case-plg.html" aria-label="Ver caso Product-Led Growth"></a>
@@ -258,7 +259,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
         <p class="work-desc" data-i18n="w1_desc">De 1.05% de conversión a un funnel self-serve real: pricing público, feature gating y onboarding rediseñados de punta a punta.</p>
         <div class="work-tags"><span class="tag" data-i18n="w1_tag">Bajo NDA</span></div>
       </div>
-      <div class="work-visual"><img src="images/plg-cover.jpg" alt="" loading="lazy"><a class="work-expand" href="case-plg.html" data-i18n="expand">Ampliar ↗</a></div>
+      <div class="work-visual"><img src="images/plg-cover.jpg" data-nda="images/plg-cover.enc" alt="" loading="lazy"><a class="work-expand" href="case-plg.html" data-i18n="expand">Ampliar ↗</a></div>
     </div>
 
     <div class="work-item">
@@ -270,7 +271,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
         <p class="work-desc" data-i18n="w2_desc">Un flujo de edición masiva vía Google Sheets, con simulación previa e historial de auditoría, para datasets que ya no escalaban a mano.</p>
         <div class="work-tags"><span class="tag" data-i18n="w2_tag">Bajo NDA</span></div>
       </div>
-      <div class="work-visual"><img src="images/da-cover.jpg" alt="" loading="lazy"><a class="work-expand" href="case-data-augmentation.html" data-i18n="expand">Ampliar ↗</a></div>
+      <div class="work-visual"><img src="images/da-cover.jpg" data-nda="images/da-cover.enc" alt="" loading="lazy"><a class="work-expand" href="case-data-augmentation.html" data-i18n="expand">Ampliar ↗</a></div>
     </div>
 
     <div class="work-item">
@@ -470,5 +471,6 @@ navLinks.querySelectorAll('a').forEach(link=>{
   });
 });
 </script>
+<script src="nda.js"></script>
 </body>
 </html>

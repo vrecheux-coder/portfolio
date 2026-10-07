@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Cifrar imágenes NDA — Portfolio</title>
+<style>
+:root{--cream:#F4EFE4;--cream-2:#EDE6D6;--ink:#141310;--ink-soft:#5C594E;--pink:#F03C8C;--pink-text:#A81463;--line:#DEDACB}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;line-height:1.5}
+main{max-width:40rem;margin:0 auto;padding:3rem 1.25rem 4rem}
+h1{font-size:2rem;line-height:1.1;margin:0 0 .75rem}
+p{color:var(--ink-soft);margin:0 0 1rem}
+ol{color:var(--ink-soft);padding-left:1.2rem;margin:0 0 2rem}
+li{margin-bottom:.4rem}
+label{display:block;font-weight:600;font-size:.9rem;margin:1.5rem 0 .4rem}
+input[type=text]{width:100%;font:inherit;padding:.75rem 1rem;border:1.5px solid var(--ink);border-radius:12px;background:#fff}
+.drop{border:2px dashed var(--ink);border-radius:16px;padding:2rem 1rem;text-align:center;background:var(--cream-2)}
+.drop.over{border-color:var(--pink);background:#FBE4EE}
+button,.dl{font:inherit;font-weight:600;font-size:.9rem;border-radius:999px;padding:.7rem 1.3rem;cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:var(--cream);text-decoration:none;display:inline-block}
+button[disabled]{opacity:.5;cursor:not-allowed}
+.dl{background:transparent;color:var(--ink);padding:.35rem .9rem;font-size:.8rem}
+:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+ul{list-style:none;padding:0;margin:1rem 0}
+ul li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);color:var(--ink)}
+code{font-family:"Space Mono",monospace;font-size:.85em;background:var(--cream-2);padding:.1em .35em;border-radius:4px}
+.hint{font-size:.85rem}
+#status{font-weight:600;color:var(--pink-text);min-height:1.5em;margin-top:1rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>Cifrar imágenes bajo NDA</h1>
+  <p>Esta página convierte tus capturas nítidas en archivos <code>.enc</code> que solo se abren con tu contraseña. Todo pasa en tu navegador: las imágenes originales no se suben a ningún lado.</p>
+  <ol>
+    <li>Nombrá cada imagen nítida igual que su versión desenfocada (por ejemplo <code>plg-cover.jpg</code>).</li>
+    <li>Elegí la contraseña y soltá las imágenes acá abajo.</li>
+    <li>Descargá los <code>.enc</code> y subilos a la carpeta <code>images/</code> del repo.</li>
+  </ol>
+
+  <label for="pw">Contraseña</label>
+  <input id="pw" type="text" autocomplete="off" autocapitalize="off" spellcheck="false">
+  <p class="hint">Usá al menos 12 caracteres o 3–4 palabras sueltas. Cifrá siempre todas las imágenes juntas: si cambiás la contraseña, volvé a cifrar todas.</p>
+
+  <label for="files">Imágenes nítidas</label>
+  <div class="drop" id="drop">
+    <p>Arrastrá las imágenes acá, o</p>
+    <input id="files" type="file" accept="image/*" multiple>
+  </div>
+
+  <p id="status" role="status"></p>
+  <ul id="out"></ul>
+  <button id="all" hidden>Descargar todos</button>
+</main>
+<script>
+const ITERATIONS = 600000; // debe coincidir con nda.js
+const pw = document.getElementById('pw'), input = document.getElementById('files'),
+      drop = document.getElementById('drop'), out = document.getElementById('out'),
+      status = document.getElementById('status'), all = document.getElementById('all');
+
+async function encryptAll(fileList){
+  const files = [...fileList].filter(f => f.type.startsWith('image/'));
+  if(!files.length) return;
+  if(pw.value.length < 8){ status.textContent = 'Primero escribí una contraseña de al menos 8 caracteres.'; pw.focus(); return; }
+  status.textContent = 'Cifrando…';
+  out.innerHTML = ''; all.hidden = true;
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw.value), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({name:'PBKDF2', hash:'SHA-256', salt, iterations:ITERATIONS}, base, {name:'AES-GCM', length:256}, false, ['encrypt']);
+  for(const f of files){
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, await f.arrayBuffer()));
+    const name = f.name.replace(/\.[^.]+$/, '') + '.enc';
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.className = 'dl'; a.download = name; a.textContent = 'Descargar';
+    a.href = URL.createObjectURL(new Blob([salt, iv, ct], {type:'application/octet-stream'}));
+    li.append(name, a); out.append(li);
+  }
+  status.textContent = files.length + ' archivo(s) listos. Subilos a images/ en GitHub.';
+  all.hidden = false;
+}
+input.addEventListener('change', () => encryptAll(input.files));
+['dragenter','dragover'].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.add('over'); }));
+['dragleave','drop'].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.remove('over'); }));
+drop.addEventListener('drop', ev => encryptAll(ev.dataTransfer.files));
+all.addEventListener('click', async () => {
+  for(const a of out.querySelectorAll('a')){ a.click(); await new Promise(r => setTimeout(r, 400)); }
+});
+</script>
+</body>
+</html>
