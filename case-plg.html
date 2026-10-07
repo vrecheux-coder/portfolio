@@ -115,6 +115,16 @@ a{color:inherit;text-decoration:none}
 .case-img-lock{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:.4rem;background:var(--ink);color:var(--cream);font-size:.72rem;font-weight:600;padding:.45rem .85rem;border-radius:var(--r-pill);z-index:2}
 .case-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)}
 
+.case-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4);margin-top:var(--sp-5);padding-top:var(--sp-4);border-top:1.5px solid var(--line);max-width:1100px}
+.case-facts dt{margin-bottom:.5rem}
+.case-facts dd{font-size:.98rem;color:var(--ink);max-width:34ch}
+.decisions{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)}
+.decision{background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-4)}
+.decision h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;line-height:1.25;margin-bottom:.6rem}
+.decision p{font-size:.95rem;margin-bottom:0}
+.decision-num{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--pink-text);display:block;margin-bottom:.75rem}
+.impact-stats{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4)}
+.impact-note{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
 /* impact stat */
 .impact-stat{display:flex;align-items:center;gap:1rem;margin:var(--sp-4) 0}
 .impact-stat .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3.2rem;color:var(--pink-text)}
@@ -131,6 +141,9 @@ a{color:inherit;text-decoration:none}
 footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
 
 @media (max-width:900px){
+  .case-facts{grid-template-columns:1fr;gap:var(--sp-3)}
+  .decisions,.impact-stats{grid-template-columns:1fr}
+  .impact-stats{gap:0}
   .nav-toggle{display:flex}
   .nav-links{
     position:absolute;
@@ -200,6 +213,11 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <span class="tag tag-neutral" data-i18n="tag_role">UX/UI Design</span>
       <span class="tag tag-neutral" data-i18n="tag_year">2024</span>
     </div>
+    <dl class="case-facts">
+      <div><dt class="eyebrow" data-i18n="fact_role_l">Rol</dt><dd data-i18n="fact_role">Única diseñadora. Lideré el proyecto desde el research hasta el handoff con desarrollo.</dd></div>
+      <div><dt class="eyebrow" data-i18n="fact_team_l">Equipo</dt><dd data-i18n="fact_team">Product Manager, desarrollo y ventas.</dd></div>
+      <div><dt class="eyebrow" data-i18n="fact_time_l">Duración</dt><dd data-i18n="fact_time">Alrededor de un año, más ocho meses de seguimiento de resultados.</dd></div>
+    </dl>
     <p class="nda-notice">🔒 <span data-i18n="nda_notice">Imágenes desenfocadas por confidencialidad — proyecto bajo NDA.</span></p>
     <div><button type="button" class="nda-toggle" data-nda-toggle hidden></button></div>
 
@@ -227,7 +245,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
     <div class="case-section-body">
       <h2 data-i18n="approach_h">Pricing público, feature gating y un onboarding que se explica solo</h2>
       <p data-i18n="approach_p1">Diseñé una página de precios pública con planes claros, un sistema de feature gating para que cada plan mostrara —sin ocultar— lo que desbloqueaba el siguiente escalón, y un onboarding guiado dentro del producto para que el primer valor apareciera sin intervención humana.</p>
-      <p data-i18n="approach_p2">Antes de lanzar, probamos cada paso del nuevo flujo de compra con usuarios reales, e iteramos sobre fricciones puntuales: campos innecesarios, pasos redundantes, momentos sin feedback claro.</p>
+      <p data-i18n="approach_p2">Antes de lanzar, probamos el flujo de compra con 15 usuarios. Lo que vimos nos llevó a reducir la cantidad de pasos hasta el registro del free trial, para bajar el abandono durante el alta.</p>
       <div class="case-img-grid">
         <div class="case-img" role="img" aria-label="Captura desenfocada del flujo de pricing, bajo NDA"><img src="images/plg-approach-1.jpg" data-nda="images/plg-approach-1.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
         <div class="case-img" role="img" aria-label="Captura desenfocada del onboarding, bajo NDA"><img src="images/plg-approach-2.jpg" data-nda="images/plg-approach-2.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
@@ -238,19 +256,51 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 
 <section class="case-section">
   <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_decisions">Decisiones clave</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="decisions_h">Lo que se discutió, y por qué quedó así</h2>
+      <div class="decisions">
+        <div class="decision"><span class="decision-num" aria-hidden="true">01</span><h3 data-i18n="d1_h">Cuatro planes, y Enterprise sin precio</h3><p data-i18n="d1_p">Discutimos cuántos planes mostrar y si publicar el precio de Enterprise. Quedaron tres planes con precio público y Enterprise con “Hablar con ventas”: ese acuerdo se arma a medida de cada cliente, y un número fijo habría sido engañoso.</p></div>
+        <div class="decision"><span class="decision-num" aria-hidden="true">02</span><h3 data-i18n="d2_h">Free trial sin tarjeta</h3><p data-i18n="d2_p">Pedir la tarjeta antes de probar era la barrera más obvia para los equipos pequeños, justo el segmento que queríamos sumar. El trial da acceso completo sin datos de pago.</p></div>
+        <div class="decision"><span class="decision-num" aria-hidden="true">03</span><h3 data-i18n="d3_h">Un plan gratuito permanente, con marca de agua</h3><p data-i18n="d3_p">Quien no compra al terminar el trial no pierde su trabajo: sigue usando el producto, y la marca de agua en los outputs marca el límite sin esconder funciones.</p></div>
+        <div class="decision"><span class="decision-num" aria-hidden="true">04</span><h3 data-i18n="d4_h">Traducir un producto de nicho</h3><p data-i18n="d4_p">La restricción más fuerte fue explicar un producto técnicamente complejo a alguien que todavía no lo conoce. Resignamos términos internos muy específicos a cambio de un lenguaje más cercano al de marketing, que cualquier visitante pudiera entender sin una demo.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container case-section-inner">
     <div class="case-section-label"><p class="eyebrow" data-i18n="label_impact">El impacto</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="impact_h">Más leads calificados, sin agregar fricción</h2>
+      <h2 data-i18n="impact_h">Más leads calificados y el triple de registros al trial</h2>
+      <div class="impact-stats">
       <div class="impact-stat">
         <span class="num">+30%</span>
         <span class="label" data-i18n="impact_label">leads calificados que llegan al equipo de ventas ya familiarizados con el producto y el pricing antes del primer contacto.</span>
       </div>
+      <div class="impact-stat">
+        <span class="num">×3</span>
+        <span class="label" data-i18n="impact_label2">registros al free trial: se triplicaron tras el lanzamiento del nuevo flujo.</span>
+      </div>
+      </div>
+      <p class="impact-note" data-i18n="impact_note">Resultados medidos durante los ocho meses posteriores al lanzamiento.</p>
       <p data-i18n="impact_p1">El self-serve no reemplazó al equipo de ventas: lo hizo más eficiente. Los leads que llegaban ya habían visto el producto, entendían el pricing y sabían qué plan les servía.</p>
     </div>
   </div>
 </section>
 
 </main>
+
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="eyebrow" data-i18n="label_retro">Mirando atrás</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="retro_h">Qué haría distinto hoy</h2>
+      <p data-i18n="retro_p">Alinearía antes a ventas y a producto. El producto ya tenía un lenguaje y una lógica de nicho muy establecidos, y buena parte del trabajo fue acercarlos a lo que necesita alguien que llega por primera vez. Hoy empezaría por ahí: compartir los hallazgos del research con ventas y producto desde el inicio, para acordar ese lenguaje común antes de diseñar el pricing y no durante.</p>
+    </div>
+  </div>
+</section>
 
 <section class="next-case">
   <div class="container">
@@ -285,11 +335,32 @@ const translations = {
     label_approach:"El enfoque",
     approach_h:"Pricing público, feature gating y un onboarding que se explica solo",
     approach_p1:"Diseñé una página de precios pública con planes claros, un sistema de feature gating para que cada plan mostrara —sin ocultar— lo que desbloqueaba el siguiente escalón, y un onboarding guiado dentro del producto para que el primer valor apareciera sin intervención humana.",
-    approach_p2:"Antes de lanzar, probamos cada paso del nuevo flujo de compra con usuarios reales, e iteramos sobre fricciones puntuales: campos innecesarios, pasos redundantes, momentos sin feedback claro.",
+    approach_p2:"Antes de lanzar, probamos el flujo de compra con 15 usuarios. Lo que vimos nos llevó a reducir la cantidad de pasos hasta el registro del free trial, para bajar el abandono durante el alta.",
     label_impact:"El impacto",
-    impact_h:"Más leads calificados, sin agregar fricción",
+    impact_h:"Más leads calificados y el triple de registros al trial",
     impact_label:"leads calificados que llegan al equipo de ventas ya familiarizados con el producto y el pricing antes del primer contacto.",
     impact_p1:"El self-serve no reemplazó al equipo de ventas: lo hizo más eficiente. Los leads que llegaban ya habían visto el producto, entendían el pricing y sabían qué plan les servía.",
+    fact_role_l:"Rol",
+    fact_role:"Única diseñadora. Lideré el proyecto desde el research hasta el handoff con desarrollo.",
+    fact_team_l:"Equipo",
+    fact_team:"Product Manager, desarrollo y ventas.",
+    fact_time_l:"Duración",
+    fact_time:"Alrededor de un año, más ocho meses de seguimiento de resultados.",
+    label_decisions:"Decisiones clave",
+    decisions_h:"Lo que se discutió, y por qué quedó así",
+    d1_h:"Cuatro planes, y Enterprise sin precio",
+    d1_p:"Discutimos cuántos planes mostrar y si publicar el precio de Enterprise. Quedaron tres planes con precio público y Enterprise con “Hablar con ventas”: ese acuerdo se arma a medida de cada cliente, y un número fijo habría sido engañoso.",
+    d2_h:"Free trial sin tarjeta",
+    d2_p:"Pedir la tarjeta antes de probar era la barrera más obvia para los equipos pequeños, justo el segmento que queríamos sumar. El trial da acceso completo sin datos de pago.",
+    d3_h:"Un plan gratuito permanente, con marca de agua",
+    d3_p:"Quien no compra al terminar el trial no pierde su trabajo: sigue usando el producto, y la marca de agua en los outputs marca el límite sin esconder funciones.",
+    d4_h:"Traducir un producto de nicho",
+    d4_p:"La restricción más fuerte fue explicar un producto técnicamente complejo a alguien que todavía no lo conoce. Resignamos términos internos muy específicos a cambio de un lenguaje más cercano al de marketing, que cualquier visitante pudiera entender sin una demo.",
+    impact_label2:"registros al free trial: se triplicaron tras el lanzamiento del nuevo flujo.",
+    impact_note:"Resultados medidos durante los ocho meses posteriores al lanzamiento.",
+    label_retro:"Mirando atrás",
+    retro_h:"Qué haría distinto hoy",
+    retro_p:"Alinearía antes a ventas y a producto. El producto ya tenía un lenguaje y una lógica de nicho muy establecidos, y buena parte del trabajo fue acercarlos a lo que necesita alguien que llega por primera vez. Hoy empezaría por ahí: compartir los hallazgos del research con ventas y producto desde el inicio, para acordar ese lenguaje común antes de diseñar el pricing y no durante.",
     next_eyebrow:"Siguiente caso", next_title:"Data Augmentation", next_cta:"Ver caso",
     footer_note:"Buenos Aires, Argentina"
   },
@@ -309,11 +380,32 @@ const translations = {
     label_approach:"The approach",
     approach_h:"Public pricing, feature gating and an onboarding that explains itself",
     approach_p1:"I designed a public pricing page with clear plans, a feature gating system so each plan showed — without hiding — what the next tier unlocked, and a guided in-product onboarding so first value showed up without human intervention.",
-    approach_p2:"We tested every step of the new purchase flow with real users before launch, iterating on specific friction points: extra fields, redundant steps, moments with no clear feedback.",
+    approach_p2:"Before launch, we tested the purchase flow with 15 users. What we saw led us to cut the number of steps to free-trial signup, to reduce drop-off during registration.",
     label_impact:"The impact",
-    impact_h:"More qualified leads, with no added friction",
+    impact_h:"More qualified leads and three times the trial signups",
     impact_label:"qualified leads reaching the sales team, already familiar with the product and pricing before first contact.",
     impact_p1:"Self-serve didn't replace the sales team — it made it more efficient. Leads arriving had already seen the product, understood the pricing, and knew which plan fit them.",
+    fact_role_l:"Role",
+    fact_role:"Sole designer. I led the project from research through handoff to development.",
+    fact_team_l:"Team",
+    fact_team:"Product Manager, engineering and sales.",
+    fact_time_l:"Timeline",
+    fact_time:"About a year, plus eight months tracking results.",
+    label_decisions:"Key decisions",
+    decisions_h:"What was debated, and why it landed this way",
+    d1_h:"Four plans, and Enterprise without a price",
+    d1_p:"We debated how many plans to show and whether to publish the Enterprise price. We landed on three plans with public pricing and Enterprise as “Talk to sales”: that deal is tailored to each customer, and a fixed number would have been misleading.",
+    d2_h:"Free trial with no credit card",
+    d2_p:"Asking for a card before trying the product was the most obvious barrier for small teams, the very segment we wanted to win. The trial gives full access with no payment details.",
+    d3_h:"A permanent free plan, with a watermark",
+    d3_p:"People who don’t buy when the trial ends don’t lose their work: they keep using the product, and the watermark on outputs marks the limit without hiding features.",
+    d4_h:"Translating a niche product",
+    d4_p:"The toughest constraint was explaining a technically complex product to someone who doesn’t know it yet. We gave up very specific internal terms in exchange for language closer to marketing, something any visitor could understand without a demo.",
+    impact_label2:"free-trial signups: they tripled after the new flow launched.",
+    impact_note:"Results measured over the eight months after launch.",
+    label_retro:"Looking back",
+    retro_h:"What I’d do differently today",
+    retro_p:"I’d align sales and product earlier. The product already had a well-established niche language and logic, and much of the work was bringing them closer to what a first-time visitor needs. Today I’d start there: share research findings with sales and product from day one, to agree on that common language before designing pricing, not during.",
     next_eyebrow:"Next case", next_title:"Data Augmentation", next_cta:"View case",
     footer_note:"Buenos Aires, Argentina"
   }
