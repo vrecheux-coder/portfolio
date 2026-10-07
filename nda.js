@@ -9,7 +9,7 @@
   var CONTACT = 'vreche.ux@gmail.com';
   // Formulario para pedir la contraseña sin salir del sitio. Pegar acá la URL del
   // formulario (por ejemplo https://formspree.io/f/xxxxxxxx). Vacío = solo botón de mail.
-  var REQUEST_ENDPOINT = '';
+  var REQUEST_ENDPOINT = 'https://formspree.io/f/mwlvlona';
 
   var imgs = Array.prototype.slice.call(document.querySelectorAll('img[data-nda]'));
   if (!imgs.length || !window.crypto || !crypto.subtle) return;
