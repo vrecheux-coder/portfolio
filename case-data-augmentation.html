@@ -143,9 +143,10 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <span class="tag tag-neutral" data-i18n="tag_year">2024</span>
     </div>
     <p class="nda-notice">🔒 <span data-i18n="nda_notice">Imágenes desenfocadas por confidencialidad — incluyen datos internos de la empresa.</span></p>
+    <div><button type="button" class="nda-toggle" data-nda-toggle hidden></button></div>
 
     <div class="case-cover" role="img" aria-label="Captura desenfocada del sistema de edición de datos, bajo NDA">
-      <img src="images/da-cover.jpg" alt="" loading="lazy">
+      <img src="images/da-cover.jpg" data-nda="images/da-cover.enc" alt="" loading="lazy">
       <span class="case-cover-lock">🔒 <span data-i18n="under_nda">Bajo NDA</span></span>
     </div>
   </div>
@@ -170,8 +171,8 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <p data-i18n="approach_p1">Diseñé un flujo de tres pasos: exportar el dataset a Google Sheets (una herramienta que los equipos ya conocían), editar ahí con todas las funciones de una planilla, e importar de vuelta con una simulación previa que mostraba exactamente qué iba a cambiar antes de confirmar nada.</p>
       <p data-i18n="approach_p2">Sumé un sistema de auditoría que registra cada importación: quién la hizo, cuándo, y qué cambió — así cualquier edición masiva queda trazada y es reversible.</p>
       <div class="case-img-grid">
-        <div class="case-img" role="img" aria-label="Captura desenfocada del flujo de exportación, bajo NDA"><img src="images/da-approach-1.jpg" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
-        <div class="case-img" role="img" aria-label="Captura desenfocada de la simulación previa a importar, bajo NDA"><img src="images/da-approach-2.jpg" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+        <div class="case-img" role="img" aria-label="Captura desenfocada del flujo de exportación, bajo NDA"><img src="images/da-approach-1.jpg" data-nda="images/da-approach-1.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+        <div class="case-img" role="img" aria-label="Captura desenfocada de la simulación previa a importar, bajo NDA"><img src="images/da-approach-2.jpg" data-nda="images/da-approach-2.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
       </div>
     </div>
   </div>
@@ -184,7 +185,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <h2 data-i18n="impact_h">Ediciones masivas sin miedo a romper producción</h2>
       <p data-i18n="impact_p1">Los equipos pasaron de editar registro por registro a manejar datasets completos con confianza: la simulación previa elimina las sorpresas, y el historial de auditoría da trazabilidad total sobre qué cambió y quién lo hizo.</p>
       <div class="case-img" role="img" aria-label="Captura desenfocada del impacto en el equipo, bajo NDA">
-        <img src="images/da-impact.jpg" alt="" loading="lazy">
+        <img src="images/da-impact.jpg" data-nda="images/da-impact.enc" alt="" loading="lazy">
         <span class="case-img-lock">🔒 NDA</span>
       </div>
     </div>
@@ -274,5 +275,6 @@ document.querySelectorAll('.lang-btn').forEach(btn=>{
 });
 setLang(localStorage.getItem('preferredLang') || 'es');
 </script>
+<script src="nda.js"></script>
 </body>
 </html>

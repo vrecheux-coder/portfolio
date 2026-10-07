@@ -147,9 +147,10 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <span class="tag tag-neutral" data-i18n="tag_year">2024</span>
     </div>
     <p class="nda-notice">🔒 <span data-i18n="nda_notice">Imágenes desenfocadas por confidencialidad — proyecto bajo NDA.</span></p>
+    <div><button type="button" class="nda-toggle" data-nda-toggle hidden></button></div>
 
     <div class="case-cover" role="img" aria-label="Captura desenfocada del producto Viz Flowics, bajo NDA">
-      <img src="images/plg-cover.jpg" alt="" loading="lazy">
+      <img src="images/plg-cover.jpg" data-nda="images/plg-cover.enc" alt="" loading="lazy">
       <span class="case-cover-lock">🔒 <span data-i18n="under_nda">Bajo NDA</span></span>
     </div>
   </div>
@@ -174,8 +175,8 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <p data-i18n="approach_p1">Diseñé una página de precios pública con planes claros, un sistema de feature gating para que cada plan mostrara —sin ocultar— lo que desbloqueaba el siguiente escalón, y un onboarding guiado dentro del producto para que el primer valor apareciera sin intervención humana.</p>
       <p data-i18n="approach_p2">Antes de lanzar, probamos cada paso del nuevo flujo de compra con usuarios reales, e iteramos sobre fricciones puntuales: campos innecesarios, pasos redundantes, momentos sin feedback claro.</p>
       <div class="case-img-grid">
-        <div class="case-img" role="img" aria-label="Captura desenfocada del flujo de pricing, bajo NDA"><img src="images/plg-approach-1.jpg" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
-        <div class="case-img" role="img" aria-label="Captura desenfocada del onboarding, bajo NDA"><img src="images/plg-approach-2.jpg" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+        <div class="case-img" role="img" aria-label="Captura desenfocada del flujo de pricing, bajo NDA"><img src="images/plg-approach-1.jpg" data-nda="images/plg-approach-1.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+        <div class="case-img" role="img" aria-label="Captura desenfocada del onboarding, bajo NDA"><img src="images/plg-approach-2.jpg" data-nda="images/plg-approach-2.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
       </div>
     </div>
   </div>
@@ -280,5 +281,6 @@ document.querySelectorAll('.lang-btn').forEach(btn=>{
 });
 setLang(localStorage.getItem('preferredLang') || 'es');
 </script>
+<script src="nda.js"></script>
 </body>
 </html>
