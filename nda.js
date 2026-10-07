@@ -7,6 +7,9 @@
   var ITERATIONS = 600000;
   var STORE = 'ndaKey';
   var CONTACT = 'vreche.ux@gmail.com';
+  // Formulario para pedir la contraseña sin salir del sitio. Pegar acá la URL del
+  // formulario (por ejemplo https://formspree.io/f/xxxxxxxx). Vacío = solo botón de mail.
+  var REQUEST_ENDPOINT = '';
 
   var imgs = Array.prototype.slice.call(document.querySelectorAll('img[data-nda]'));
   if (!imgs.length || !window.crypto || !crypto.subtle) return;
@@ -27,6 +30,15 @@
       unavailable: 'No pude cargar las imágenes. Probá de nuevo en un momento.',
       ask: '¿No tenés contraseña?',
       request: 'Pedirla por mail',
+      formHint: 'Dejame tu mail y te la envío.',
+      emailLabel: 'Tu mail',
+      emailPh: 'nombre@empresa.com',
+      send: 'Pedir contraseña',
+      sending: 'Enviando…',
+      sent: '¡Listo! Recibí tu pedido y te envío la contraseña por mail.',
+      badEmail: 'Revisá el mail: parece incompleto.',
+      sendError: 'No se pudo enviar. Probá con el botón de mail de abajo.',
+      orMail: 'o escribime directo',
       copy: 'Copiar mi mail',
       copied: 'Mail copiado ✓',
       subject: 'Contraseña para ver tu portfolio',
@@ -47,6 +59,15 @@
       unavailable: 'I could not load the images. Please try again in a moment.',
       ask: 'No password?',
       request: 'Request it by email',
+      formHint: 'Leave your email and I’ll send it to you.',
+      emailLabel: 'Your email',
+      emailPh: 'name@company.com',
+      send: 'Request password',
+      sending: 'Sending…',
+      sent: 'Done! I got your request and will email you the password.',
+      badEmail: 'Check the email: it looks incomplete.',
+      sendError: 'It could not be sent. Try the email button below.',
+      orMail: 'or email me directly',
       copy: 'Copy my email',
       copied: 'Email copied ✓',
       subject: 'Password to view your portfolio',
@@ -84,6 +105,16 @@
     '.nda-dialog .nda-request{display:inline-flex;align-items:center;font-size:.85rem;font-weight:600;text-decoration:none;border-radius:999px;padding:.6rem 1.1rem;border:1.5px solid var(--pink-text,#A81463);background:var(--pink-text,#A81463);color:#fff}' +
     '.nda-dialog .nda-request:focus-visible{outline:3px solid var(--pink,#F03C8C);outline-offset:2px}' +
     '.nda-dialog .nda-copy{font-size:.85rem;padding:.6rem 1.1rem}' +
+    '.nda-dialog .nda-ask p.nda-req-hint{font-size:.85rem;font-weight:400;color:var(--ink-soft,#5C594E);margin:-.4rem 0 .8rem}' +
+    '.nda-dialog .nda-req-row{display:flex;gap:.5rem;flex-wrap:wrap}' +
+    '.nda-dialog .nda-req-row input{flex:1 1 11rem;width:auto;min-width:0;font-size:.95rem;padding:.65rem .9rem}' +
+    '.nda-dialog .nda-req-send{background:var(--pink-text,#A81463);border-color:var(--pink-text,#A81463);color:#fff;font-size:.85rem;padding:.65rem 1.1rem}' +
+    '.nda-dialog .nda-ask p.nda-req-msg{font-size:.85rem;font-weight:600;margin:.6rem 0 0;min-height:1.2em;color:var(--pink-text,#A81463)}' +
+    '.nda-dialog .nda-ask p.nda-req-msg.ok{color:#1F6B3A}' +
+    '.nda-dialog .nda-ask p.nda-req-alt{font-size:.8rem;margin:.5rem 0 0;color:var(--ink-soft,#5C594E);font-weight:400}' +
+    '.nda-dialog .nda-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}' +
+    '.nda-dialog .nda-ask[data-mode=form] .nda-ask-actions{display:none}' +
+    '.nda-dialog .nda-ask[data-mode=mail] .nda-req{display:none}' +
     '.nda-dialog a{color:var(--pink-text,#A81463);text-decoration:underline}';
   document.head.appendChild(css);
 
@@ -194,7 +225,13 @@
     '<button type="button" class="nda-eye" aria-pressed="false"></button></div>' +
     '<p class="nda-error" id="nda-error" role="alert"></p>' +
     '<div class="nda-actions"><button type="button" class="nda-cancel"></button><button type="submit"></button></div>' +
-    '<div class="nda-ask"><p></p><div class="nda-ask-actions"><a class="nda-request"></a><button type="button" class="nda-copy"></button></div></div></form>';
+    '<div class="nda-ask" data-mode="' + (REQUEST_ENDPOINT ? 'form' : 'mail') + '"><p></p>' +
+    '<div class="nda-req"><p class="nda-req-hint"></p><div class="nda-req-row"><label for="nda-req-email" class="nda-hp"></label>' +
+    '<input id="nda-req-email" type="email" autocomplete="email" inputmode="email" aria-describedby="nda-req-msg">' +
+    '<input class="nda-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+    '<button type="button" class="nda-req-send"></button></div>' +
+    '<p class="nda-req-msg" id="nda-req-msg" role="status"></p><p class="nda-req-alt"><a class="nda-req-mailto"></a></p></div>' +
+    '<div class="nda-ask-actions"><a class="nda-request"></a><button type="button" class="nda-copy"></button></div></div></form>';
   document.body.appendChild(dialog);
   var form = dialog.querySelector('form');
   var input = dialog.querySelector('input');
@@ -203,6 +240,43 @@
   var eye = dialog.querySelector('.nda-eye');
   var request = dialog.querySelector('.nda-request');
   var copy = dialog.querySelector('.nda-copy');
+  var ask = dialog.querySelector('.nda-ask');
+  var reqEmail = dialog.querySelector('#nda-req-email');
+  var reqSend = dialog.querySelector('.nda-req-send');
+  var reqMsg = dialog.querySelector('.nda-req-msg');
+  var reqAlt = dialog.querySelector('.nda-req-mailto');
+  function reqSay(key, ok) { reqMsg.textContent = key ? t(key) : ''; reqMsg.classList.toggle('ok', !!ok); }
+  function sendRequest() {
+    if (reqSend.disabled) return;
+    var email = reqEmail.value.trim();
+    if (!email || !reqEmail.checkValidity()) { reqSay('badEmail'); reqEmail.focus(); return; }
+    if (dialog.querySelector('input[name=_gotcha]').value) { reqSay('sent', true); return; }
+    reqSay('');
+    reqSend.disabled = true;
+    reqSend.textContent = t('sending');
+    fetch(REQUEST_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        _subject: 'Pedido de contraseña — portfolio',
+        message: 'Pide la contraseña para ver los proyectos bajo NDA.',
+        pagina: location.href.split('#')[0],
+        idioma: document.documentElement.lang
+      })
+    }).then(function (r) { if (!r.ok) throw new Error('send'); }).then(function () {
+      reqSay('sent', true);
+      reqEmail.value = '';
+      reqSend.textContent = t('send');   // queda deshabilitado: ya se envió
+    }).catch(function () {
+      reqSend.disabled = false;
+      reqSend.textContent = t('send');
+      reqSay('sendError');
+      ask.setAttribute('data-mode', 'both');
+    });
+  }
+  reqSend.addEventListener('click', sendRequest);
+  reqEmail.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); sendRequest(); } });
   copy.addEventListener('click', function () {
     function done() { copy.textContent = t('copied'); setTimeout(function () { copy.textContent = t('copy'); }, 2500); }
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(CONTACT).then(done, function () { copy.textContent = CONTACT; });
@@ -230,6 +304,13 @@
     request.textContent = t('request') + ' →';
     request.href = 'mailto:' + CONTACT + '?subject=' + encodeURIComponent(t('subject')) + '&body=' + encodeURIComponent(t('mail'));
     copy.textContent = t('copy');
+    dialog.querySelector('.nda-req-hint').textContent = t('formHint');
+    dialog.querySelector('label[for=nda-req-email]').textContent = t('emailLabel');
+    reqEmail.placeholder = t('emailPh');
+    reqEmail.setAttribute('aria-label', t('emailLabel'));
+    if (!reqSend.disabled) reqSend.textContent = t('send');
+    reqAlt.textContent = t('orMail');
+    reqAlt.href = request.href;
     setState(unlocked);
   }
   paint();
