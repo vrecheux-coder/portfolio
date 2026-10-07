@@ -95,9 +95,9 @@ a{color:inherit;text-decoration:none}
 
 .nda-notice{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:.5rem 1rem;font-size:.8rem;color:var(--ink-soft);margin-top:var(--sp-4)}
 
-.case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/8.5;margin-top:var(--sp-5);background:var(--ink)}
-.case-cover img{width:100%;height:100%;object-fit:contain;filter:blur(20px) saturate(1.15);transform:scale(1.08)}
-.case-cover-lock{position:absolute;right:18px;bottom:18px;display:inline-flex;align-items:center;gap:.5rem;background:var(--cream);color:var(--ink);font-size:.78rem;font-weight:600;padding:.55rem 1rem;border-radius:var(--r-pill);z-index:2}
+.case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/8.5;margin-top:var(--sp-5);background:var(--cream-2);border:1.5px solid var(--line)}
+.case-cover img{width:100%;height:100%;object-fit:cover;object-position:top;filter:blur(20px) saturate(1.15);transform:scale(1.08)}
+.case-cover-lock{position:absolute;right:18px;bottom:18px;display:inline-flex;align-items:center;gap:.5rem;background:var(--ink);color:var(--cream);font-size:.78rem;font-weight:600;padding:.55rem 1rem;border-radius:var(--r-pill);z-index:2}
 
 .case-section{padding:var(--sp-6) 0;border-top:1.5px solid var(--line)}
 .case-section-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:var(--sp-6)}
@@ -108,15 +108,15 @@ a{color:inherit;text-decoration:none}
 .case-section-body ul{color:var(--ink-soft);margin:0 0 1rem 1.2rem}
 .case-section-body ul li{margin-bottom:.4rem}
 
-.case-img{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/10;margin-top:var(--sp-4);background:var(--ink)}
-.case-img img{width:100%;height:100%;object-fit:contain;filter:blur(16px) saturate(1.15);transform:scale(1.08)}
-.case-img-lock{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:.4rem;background:var(--cream);color:var(--ink);font-size:.72rem;font-weight:600;padding:.45rem .85rem;border-radius:var(--r-pill);z-index:2}
+.case-img{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/9;margin-top:var(--sp-4);background:var(--cream-2);border:1.5px solid var(--line)}
+.case-img img{width:100%;height:100%;object-fit:cover;object-position:top;filter:blur(16px) saturate(1.15);transform:scale(1.08)}
+.case-img-lock{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:.4rem;background:var(--ink);color:var(--cream);font-size:.72rem;font-weight:600;padding:.45rem .85rem;border-radius:var(--r-pill);z-index:2}
 .case-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)}
-.case-scroll{position:relative;margin-top:var(--sp-4);border-radius:var(--r-md);overflow:hidden;background:var(--ink);border:1.5px solid var(--ink)}
+.case-scroll{position:relative;margin-top:var(--sp-4);border-radius:var(--r-md);overflow:hidden;background:var(--cream-2);border:1.5px solid var(--line)}
 .case-scroll .case-img{margin-top:0;border-radius:0;aspect-ratio:auto;height:min(70vh,540px);overflow-y:auto;overscroll-behavior:auto;scrollbar-width:thin;scrollbar-color:var(--ink-soft) transparent}
 .case-scroll .case-img img{height:auto;display:block}
 .case-scroll .case-img:focus-visible{outline:3px solid var(--pink);outline-offset:-3px}
-.case-scroll::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(to top,rgba(20,19,16,.55),rgba(20,19,16,0));pointer-events:none;transition:opacity .3s}
+.case-scroll::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(to top,rgba(20,19,16,.4),rgba(20,19,16,0));pointer-events:none;transition:opacity .3s}
 .case-scroll-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:2;background:var(--cream);color:var(--ink);font-size:.75rem;font-weight:600;padding:.5rem 1rem;border-radius:var(--r-pill);pointer-events:none;white-space:nowrap;transition:opacity .3s}
 .case-scroll.scrolled::after,.case-scroll.scrolled .case-scroll-hint{opacity:0}
 .case-scroll .case-img-lock{right:14px;top:14px;bottom:auto}
