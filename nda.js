@@ -141,7 +141,7 @@
   var files = {};
   function load(url) {
     if (!files[url]) {
-      files[url] = fetch(url).then(function (r) {
+      files[url] = fetch(url, { cache: 'no-cache' }).then(function (r) {
         if (!r.ok) throw new Error('missing');
         return r.arrayBuffer();
       }).then(function (b) { return new Uint8Array(b); });
