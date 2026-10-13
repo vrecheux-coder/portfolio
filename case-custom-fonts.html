@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Custom Fonts — Vanesa Reche</title>
-<meta name="description" content="Caso de estudio: upload self-serve de tipografías propias para Viz Flowics.">
+<meta name="description" content="Caso de estudio: carga autónoma de tipografías propias en Viz Flowics, con gestión por familia y feature gating por plan.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -56,27 +56,8 @@ a{color:inherit;text-decoration:none}
 .lang-btn{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.04em;background:none;border:0;padding:.4rem .8rem;cursor:pointer;color:#B8B4A6;border-radius:var(--r-pill)}
 .lang-btn[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
 
-/* nav hamburger — hidden on desktop */
-.nav-toggle{
-  display:none;
-  flex-direction:column;
-  justify-content:center;
-  gap:5px;
-  width:38px;
-  height:38px;
-  background:none;
-  border:0;
-  cursor:pointer;
-  padding:0;
-  flex-shrink:0;
-}
-.nav-toggle span{
-  display:block;
-  width:100%;
-  height:2px;
-  background:var(--ink);
-  transition:transform .25s ease, opacity .25s ease;
-}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:0;cursor:pointer;padding:0;flex-shrink:0}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--ink);transition:transform .25s ease, opacity .25s ease}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
@@ -88,31 +69,147 @@ a{color:inherit;text-decoration:none}
 .case-eyebrow-row{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3);flex-wrap:wrap}
 .case-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;color:var(--pink-text)}
 .case-title{font-size:clamp(2.6rem,6.5vw,5.2rem);max-width:16ch}
-.case-meta-row{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-4)}
+.case-meta-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:var(--sp-4)}
 .tag{font-size:.78rem;font-weight:500;border:1.5px solid var(--pink-text);color:var(--pink-text);padding:.4rem .85rem;border-radius:var(--r-pill)}
 .tag-neutral{border-color:var(--ink);color:var(--ink)}
 .tag-ok{border-color:#2F6E44;color:#2F6E44}
-.case-summary{max-width:56ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.case-summary{max-width:60ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.case-summary strong{color:var(--ink);font-weight:600}
 
-.nda-notice{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:.5rem 1rem;font-size:.8rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.hero-ctas{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-4)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.92rem;padding:.9rem 1.5rem;border-radius:var(--r-pill);border:1.5px solid var(--ink)}
+.btn-primary{background:var(--ink);color:var(--cream)}
+.btn-primary:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+.btn-ghost:hover{background:var(--ink);color:var(--cream)}
+
+/* academic band */
+.academic{margin-top:var(--sp-5);display:grid;grid-template-columns:auto 1fr;gap:var(--sp-3);align-items:center;background:var(--pink-pale);border:1.5px solid var(--pink-soft);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4)}
+.academic-badge{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;line-height:1.1;color:var(--pink-text);border-right:1.5px solid var(--pink-soft);padding-right:var(--sp-3)}
+.academic p{font-size:.95rem;color:var(--ink-soft);max-width:80ch}
+.academic p strong{color:var(--ink);font-weight:600}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2);margin-top:var(--sp-4)}
+.stat{background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3)}
+.stat-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1;letter-spacing:-.02em}
+.stat-num .accent{color:var(--pink-text)}
+.stat-label{font-size:.85rem;color:var(--ink-soft);margin-top:.5rem;line-height:1.4}
 
 .case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/8.5;margin-top:var(--sp-5);background:var(--cream-2);border:1.5px solid var(--line)}
-.case-cover img{width:100%;height:100%;object-fit:cover;object-position:top}
+.case-cover img{width:100%;height:100%;object-fit:cover;object-position:top;filter:blur(20px) saturate(1.15);transform:scale(1.08)}
+.case-cover-lock{position:absolute;right:18px;bottom:18px;display:inline-flex;align-items:center;gap:.5rem;background:var(--ink);color:var(--cream);font-size:.78rem;font-weight:600;padding:.55rem 1rem;border-radius:var(--r-pill);z-index:2}
+.nda-notice{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:.5rem 1rem;font-size:.8rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.cover-labels{display:flex;justify-content:center;gap:var(--sp-6);margin-top:var(--sp-2)}
+.cover-labels span{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.cover-labels span:last-child{color:var(--pink-text)}
 
+/* sections */
 .case-section{padding:var(--sp-6) 0;border-top:1.5px solid var(--line)}
 .case-section-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:var(--sp-6)}
 .case-section-label{position:sticky;top:110px;align-self:start}
+.case-section-label .step{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.4rem;line-height:1;color:var(--pink-soft);margin-bottom:.4rem}
+.case-section-body{min-width:0}
 .case-section-body h2{font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:var(--sp-3)}
+.case-section-body h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.2rem;margin:var(--sp-4) 0 .6rem;letter-spacing:-.01em}
 .case-section-body p{max-width:64ch;color:var(--ink-soft);margin-bottom:1rem;font-size:1.02rem}
 .case-section-body p strong{color:var(--ink);font-weight:600}
 
-.case-img{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/9;margin-top:var(--sp-4);border:1.5px solid var(--line);background:var(--cream-2)}
-.case-img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
-.case-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)}
+/* process */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.phase{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:var(--cream-2)}
+.phase-name{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink-text);margin-bottom:.6rem}
+.phase ul{list-style:none;font-size:.88rem;color:var(--ink)}
+.phase li{padding:.3rem 0;border-top:1px solid var(--line)}
+.phase li:first-child{border-top:0}
 
-.impact-stat{display:flex;align-items:center;gap:1rem;margin:var(--sp-4) 0}
-.impact-stat .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3.2rem;color:var(--pink-text)}
-.impact-stat .label{color:var(--ink-soft);max-width:32ch}
+/* findings */
+.findings{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.finding{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:#fff}
+.case-section-body .finding-num{margin:0;max-width:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.2rem;line-height:1;color:var(--pink-text)}
+.finding p{margin:.5rem 0 0;font-size:.92rem;color:var(--ink-soft)}
+.insight{margin-top:var(--sp-3);border-left:4px solid var(--pink);background:var(--cream-2);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:var(--sp-3)}
+.insight p{margin:0;color:var(--ink);font-size:1.05rem;max-width:none}
+.insight .eyebrow{display:block;margin-bottom:.4rem;color:var(--pink-text)}
+
+/* bars */
+.bars{margin-top:var(--sp-3);display:grid;gap:.9rem}
+.bar-row{display:grid;grid-template-columns:minmax(150px,220px) 1fr 76px;gap:var(--sp-2);align-items:center;font-size:.9rem}
+.bar-track{height:12px;background:var(--cream-2);border-radius:var(--r-pill);overflow:hidden;border:1px solid var(--line)}
+.bar-fill{height:100%;background:var(--ink);border-radius:var(--r-pill)}
+.bar-fill.pink{background:var(--pink)}
+.bar-val{font-family:'Space Mono',monospace;font-size:.82rem;text-align:right;white-space:nowrap}
+.bar-caption{font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
+
+/* tables */
+.table-wrap{margin-top:var(--sp-3);overflow-x:auto;border:1.5px solid var(--line);border-radius:var(--r-md);background:#fff}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+th,td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:'Space Mono',monospace;font-weight:400;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:var(--cream-2)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:'Space Mono',monospace;white-space:nowrap}
+.pill-low{display:inline-block;background:var(--pink-pale);color:var(--pink-text);border-radius:var(--r-pill);padding:.1rem .6rem;font-weight:600}
+.pill-ok{display:inline-block;background:#E3EFE6;color:#2F6E44;border-radius:var(--r-pill);padding:.1rem .6rem;font-weight:600}
+
+/* MVP list */
+.mvp{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.mvp-item{border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3)}
+.mvp-item strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.3rem}
+.mvp-item span{font-size:.9rem;color:var(--ink-soft)}
+
+/* images */
+.case-img{position:relative;margin-top:var(--sp-3);border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/9;border:1.5px solid var(--line);background:var(--cream-2)}
+.case-img.wide{aspect-ratio:2400/700}
+.case-img img{width:100%;height:100%;object-fit:cover;object-position:top;filter:blur(16px) saturate(1.15);transform:scale(1.08)}
+.case-img-lock{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:.4rem;background:var(--ink);color:var(--cream);font-size:.72rem;font-weight:600;padding:.45rem .85rem;border-radius:var(--r-pill);z-index:2}
+.img-pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2)}
+.img-pair .case-img{margin-top:var(--sp-3)}
+.role-band{margin-top:var(--sp-5);display:grid;grid-template-columns:auto 1fr;gap:var(--sp-3);align-items:center;background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4)}
+.role-band .academic-badge{color:var(--ink);border-right-color:var(--line)}
+.role-band p{font-size:.95rem;color:var(--ink-soft);max-width:80ch}
+.role-band p strong{color:var(--ink);font-weight:600}
+.img-caption{font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
+.phone-row{display:flex;gap:var(--sp-3);margin-top:var(--sp-3);flex-wrap:wrap;background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-4);justify-content:center}
+.phone-mock{position:relative;width:170px;aspect-ratio:9/18.5;border-radius:20px;flex-shrink:0;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+.phone-mock img{width:100%;height:100%;object-fit:contain;display:block}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.case-section-body .quote{margin:0;max-width:none;color:var(--ink);font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.1rem;line-height:1.3;background:var(--cream-2);border-radius:var(--r-md);padding:var(--sp-3)}
+.quote::before{content:"“";color:var(--pink);font-size:1.6rem;line-height:0;margin-right:.15rem;vertical-align:-.35rem}
+
+/* A/B */
+.ab{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.ab-card{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:#fff}
+.ab-card.win{border-color:var(--pink-text)}
+.ab-card .eyebrow{display:block;margin-bottom:.5rem}
+.case-section-body .ab-card .stat-num{font-size:2.6rem;color:var(--ink);margin:0}
+.case-section-body .ab-card.win .stat-num{color:var(--pink-text)}
+.ab-card p{font-size:.88rem;margin:.4rem 0 0}
+
+/* learnings */
+.learn{list-style:none;margin-top:var(--sp-3);display:grid;gap:.8rem;max-width:64ch}
+.learn li{position:relative;padding-left:1.8rem;color:var(--ink-soft)}
+.learn li::before{content:"→";position:absolute;left:0;color:var(--pink-text);font-weight:700}
+.learn li strong{color:var(--ink);font-weight:600}
+
+/* resources */
+.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.resource{display:flex;flex-direction:column;justify-content:space-between;gap:var(--sp-2);border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3);min-height:170px;transition:background .2s,color .2s}
+.resource:hover{background:var(--ink);color:var(--cream)}
+.resource:hover .resource-desc{color:#C9C5B8}
+.resource.featured{background:var(--pink);border-color:var(--pink);color:#fff}
+.resource.featured .resource-desc{color:#FFE6F1}
+.resource.featured:hover{background:var(--ink);border-color:var(--ink)}
+.resource-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;line-height:1.1}
+.resource-desc{font-size:.85rem;color:var(--ink-soft)}
+.resource-arrow{font-weight:600;font-size:.9rem}
+
+.figma-embed-wrap{margin-top:var(--sp-4);border-radius:var(--r-md);overflow:hidden;border:1.5px solid var(--line)}
+.figma-embed-wrap iframe{width:100%;height:560px;border:0;display:block}
+
+.team-list{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+.team-pill{font-size:.85rem;border:1.5px solid var(--line);padding:.5rem 1rem;border-radius:var(--r-pill);color:var(--ink)}
+.team-pill strong{font-weight:600}
 
 .next-case{background:var(--ink);color:var(--cream)}
 .next-case .container{padding:var(--sp-6) var(--sp-4);text-align:center}
@@ -123,37 +220,57 @@ a{color:inherit;text-decoration:none}
 
 footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
 
+@media (max-width:1000px){
+  .process{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .resources{grid-template-columns:1fr}
+}
 @media (max-width:900px){
   .nav-toggle{display:flex}
-  .nav-links{
-    position:absolute;
-    top:86px;
-    left:0;
-    right:0;
-    background:var(--cream);
-    flex-direction:column;
-    align-items:flex-start;
-    gap:var(--sp-3);
-    padding:var(--sp-4);
-    border-bottom:1.5px solid var(--ink);
-    transform:translateY(-8px);
-    opacity:0;
-    pointer-events:none;
-    transition:transform .2s ease, opacity .2s ease;
-  }
-  .nav-links.open{
-    transform:translateY(0);
-    opacity:1;
-    pointer-events:auto;
-  }
+  .nav-links{position:absolute;top:86px;left:0;right:0;background:var(--cream);flex-direction:column;align-items:flex-start;gap:var(--sp-3);padding:var(--sp-4);border-bottom:1.5px solid var(--ink);transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .2s ease, opacity .2s ease}
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
   .lang-toggle{margin-top:.5rem}
   .case-hero{padding:var(--sp-4) 0 var(--sp-5)}
   .case-section{padding:var(--sp-5) 0}
   .next-case .container{padding:var(--sp-5) var(--sp-4)}
   .case-section-inner{grid-template-columns:1fr;gap:var(--sp-3)}
-  .case-section-label{position:static}
-  .case-img-grid{grid-template-columns:1fr}
+  .case-section-label{position:static;display:flex;align-items:baseline;gap:.8rem}
+  .case-section-label .step{font-size:1.6rem;margin:0}
+  .academic{grid-template-columns:1fr}
+  .academic-badge{border-right:0;border-bottom:1.5px solid var(--pink-soft);padding:0 0 .8rem}
 }
+@media (max-width:620px){
+  .container{padding:0 var(--sp-2)}
+  .findings,.mvp,.quotes,.ab,.process{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:1fr 70px}
+  .bar-row .bar-label{grid-column:1 / -1}
+  .case-cover{padding:var(--sp-2)}
+  .cover-labels{gap:var(--sp-4)}
+  .figma-embed-wrap iframe{height:460px}
+  .phone-mock{width:140px}
+}
+
+.case-scroll{position:relative;margin-top:var(--sp-3);border-radius:var(--r-md);overflow:hidden;background:var(--cream-2);border:1.5px solid var(--line)}
+.case-scroll .case-img{margin-top:0;border-radius:0;border:0;aspect-ratio:auto;height:min(70vh,540px);overflow-y:auto;overscroll-behavior:auto;scrollbar-width:thin;scrollbar-color:var(--ink-soft) transparent}
+.case-scroll .case-img img{height:auto;display:block;object-fit:initial}
+.case-scroll .case-img:focus-visible{outline:3px solid var(--pink);outline-offset:-3px}
+.case-scroll::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(to top,rgba(20,19,16,.4),rgba(20,19,16,0));pointer-events:none;transition:opacity .3s}
+.case-scroll-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:2;background:var(--cream);color:var(--ink);font-size:.75rem;font-weight:600;padding:.5rem 1rem;border-radius:var(--r-pill);pointer-events:none;white-space:nowrap;transition:opacity .3s}
+.case-scroll.scrolled::after,.case-scroll.scrolled .case-scroll-hint{opacity:0}
+.case-scroll .case-img-lock{right:14px;top:14px;bottom:auto}
+.case-scroll:has(.nda-open) .case-img-lock{display:none}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);margin-top:var(--sp-3);counter-reset:flow}
+.flow-step{border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3);position:relative}
+.flow-step strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.3rem}
+.flow-step span{font-size:.9rem;color:var(--ink-soft)}
+.flow-step::before{counter-increment:flow;content:counter(flow,decimal-leading-zero);display:block;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--pink-text);margin-bottom:.6rem}
+@media (max-width:900px){.case-scroll .case-img{overflow:auto;height:min(65vh,480px)}.case-scroll .case-img img{width:720px;max-width:none}}
+@media (max-width:620px){.flow{grid-template-columns:1fr}}
+.case-cover img,.case-img img{filter:none;transform:none}
+.case-cover{background:#fff}
+
+@media (max-width:900px){.role-band{grid-template-columns:1fr}.role-band .academic-badge{border-right:0;border-bottom:1.5px solid var(--line);padding:0 0 .8rem}}
+@media (max-width:620px){.img-pair{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -184,54 +301,103 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
     <a class="back-link" href="index.html#work">← <span data-i18n="back">Volver a proyectos</span></a>
     <div class="case-eyebrow-row">
       <span class="case-num">03</span>
-      <p class="eyebrow" data-i18n="case_eyebrow">Viz Flowics · UX/UI · Self-serve</p>
+      <p class="eyebrow" data-i18n="case_eyebrow">Viz Flowics (Vizrt) · Product Design · 2024</p>
     </div>
     <h1 class="display case-title" data-i18n="case_title">Custom Fonts</h1>
-    <p class="case-summary" data-i18n="case_summary">Subir una tipografía propia dejó de requerir un ticket a soporte. Drag and drop, gestión por familia y variantes, gating por plan.</p>
+    <p class="case-summary" data-i18n="case_summary">Diseño de la <strong>carga autónoma de tipografías propias</strong> en una plataforma SaaS B2B de gráficos en vivo: una tarea que dependía de un ticket a soporte pasó a resolverse en minutos, con gestión por familia y variantes, y disponibilidad según el plan contratado.</p>
     <div class="case-meta-row">
       <span class="tag tag-ok" data-i18n="tag_no_nda">✅ Sin NDA</span>
-      <span class="tag tag-neutral" data-i18n="tag_role">UX/UI Design</span>
-      <span class="tag tag-neutral" data-i18n="tag_year">2024</span>
+      <span class="tag tag-neutral" data-i18n="tag_role">UX · UI · Testing</span>
+      <span class="tag tag-neutral" data-i18n="tag_year">SaaS B2B</span>
     </div>
-    <p class="nda-notice">✅ <span data-i18n="nda_notice">Proyecto visible en el free trial del producto — sin restricciones de confidencialidad.</span></p>
+    <p class="nda-notice"><span data-i18n="nda_notice">Funcionalidad visible en el free trial del producto, sin restricciones de confidencialidad.</span></p>
 
-    <div class="case-cover"><img src="images/cf-cover.jpg" alt="Dashboard de fuentes de Viz Flowics" loading="lazy"></div>
+    <div class="role-band">
+      <p class="academic-badge" data-i18n="role_badge">Única diseñadora<br>del proyecto</p>
+      <p data-i18n="role_p">Lideré el diseño de punta a punta, desde la definición del flujo hasta el handoff a desarrollo, en coordinación con producto e ingeniería. La funcionalidad forma parte de la <strong>estrategia self-serve de Viz Flowics</strong> y se validó con usuarios antes del lanzamiento.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><p class="stat-num">0</p><p class="stat-label" data-i18n="stat_1">tickets necesarios para incorporar una tipografía propia</p></div>
+      <div class="stat"><p class="stat-num">5</p><p class="stat-label" data-i18n="stat_2">usuarios en las pruebas de usabilidad previas al lanzamiento</p></div>
+      <div class="stat"><p class="stat-num">3</p><p class="stat-label" data-i18n="stat_3">formatos aceptados: TTF, OTF y WOFF</p></div>
+      <div class="stat"><p class="stat-num">Basic</p><p class="stat-label" data-i18n="stat_4">plan desde el que se habilita la funcionalidad</p></div>
+    </div>
+
+    <div class="case-cover"><img src="images/cf-cover.jpg" alt="Panel de fuentes instaladas en Viz Flowics" loading="lazy"></div>
   </div>
 </header>
 
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_problem">El problema</p></div>
+    <div class="case-section-label"><p class="step">01</p><p class="eyebrow" data-i18n="label_context">Contexto</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="problem_h">Cargar una tipografía propia significaba abrir un ticket</h2>
-      <p data-i18n="problem_p1">Cada vez que una empresa quería usar su propia fuente dentro del producto, tenía que pedírselo a soporte. Alguien del equipo cargaba el archivo manualmente del lado del servidor — un proceso lento, que no escalaba, y que dependía por completo de disponibilidad interna.</p>
-      <p data-i18n="problem_p2"><strong>La fricción:</strong> justo el tipo de tarea que el nuevo modelo self-serve —nacido en el caso 01— buscaba eliminar del todo.</p>
+      <h2 data-i18n="context_h">Cargar una tipografía propia requería un ticket a soporte</h2>
+      <p data-i18n="context_p1">Las productoras trabajan con la identidad visual de cada canal o programa, por lo que contar con sus propias tipografías es un requisito habitual. Sin embargo, incorporar una fuente al producto implicaba solicitarla al equipo de soporte, que cargaba el archivo manualmente del lado del servidor.</p>
+      <p data-i18n="context_p2"><strong>La fricción:</strong> un proceso lento, que no escalaba y dependía por completo de la disponibilidad interna; precisamente el tipo de tarea que el modelo self-serve de la plataforma buscaba eliminar.</p>
     </div>
   </div>
 </section>
-
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_approach">El enfoque</p></div>
+    <div class="case-section-label"><p class="step">02</p><p class="eyebrow" data-i18n="label_upload">Carga</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="approach_h">Drag and drop, gestión por familia, gating por plan</h2>
-      <p data-i18n="approach_p1">Diseñé un dashboard de fuentes donde cada equipo sube sus propios archivos (TTF, OTF, WOFF) arrastrándolos directamente, sin pasar por soporte. El sistema agrupa los archivos por familia tipográfica y variante (peso, estilo) automáticamente.</p>
-      <p data-i18n="approach_p2">La función quedó disponible según el plan de cada cuenta, siguiendo el mismo sistema de feature gating diseñado para el pricing público.</p>
-      <div class="case-img-grid">
-        <div class="case-img"><img src="images/cf-approach-1.jpg" alt="Modal de carga de tipografía custom por arrastrar y soltar" loading="lazy"></div>
-        <div class="case-img"><img src="images/cf-approach-2.jpg" alt="Detalle de una familia tipográfica con sus variantes" loading="lazy"></div>
+      <h2 data-i18n="upload_h">Una carga directa, sin intermediarios</h2>
+      <p data-i18n="upload_p1">Diseñé un flujo de carga mediante arrastrar y soltar, con selección manual como alternativa. El modal explicita los formatos aceptados y solicita confirmar los derechos de uso de las fuentes, una consideración legal que antes resolvía el equipo de soporte.</p>
+      <div class="case-img"><img src="images/cf-approach-1.jpg" alt="Modal de carga de tipografías por arrastrar y soltar, con formatos aceptados y confirmación de derechos de uso" loading="lazy"></div>
+      <p class="img-caption" data-i18n="cap_upload">Modal de carga: arrastrar y soltar, formatos aceptados y confirmación de derechos de uso.</p>
+    </div>
+  </div>
+</section>
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">03</p><p class="eyebrow" data-i18n="label_family">Gestión por familia</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="family_h">Las fuentes organizadas como las piensa un diseñador</h2>
+      <p data-i18n="family_p1">El sistema agrupa automáticamente los archivos por familia tipográfica y variante (peso y estilo). Desde el panel se identifica cada familia con una muestra de texto y la cantidad de variantes disponibles; desde el detalle, es posible renombrarla, incorporar o eliminar variantes y previsualizar cualquier texto en todos los estilos.</p>
+      <div class="case-img"><img src="images/cf-approach-2.jpg" alt="Detalle de una familia tipográfica con sus variantes y vista previa de texto editable" loading="lazy"></div>
+      <p class="img-caption" data-i18n="cap_family">Detalle de familia: variantes por peso, vista previa editable y acciones por variante.</p>
+    </div>
+  </div>
+</section>
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">04</p><p class="eyebrow" data-i18n="label_gating">Feature gating</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="gating_h">La limitación del plan como oportunidad de upgrade</h2>
+      <p data-i18n="gating_p1">La funcionalidad se habilita a partir del plan Basic, siguiendo el sistema de feature gating definido para el modelo self-serve. En el plan Go, en lugar de ocultar la sección, la interfaz explica el beneficio de personalizar la tipografía, enlaza a la documentación y ofrece el upgrade en el mismo contexto.</p>
+      <div class="case-img"><img src="images/cf-impact.jpg" alt="Pantalla de fuentes en el plan Go, con explicación del beneficio y acceso al upgrade al plan Basic" loading="lazy"></div>
+      <p class="img-caption" data-i18n="cap_gating">Estado para el plan Go: valor de la funcionalidad, documentación y upgrade contextual.</p>
+    </div>
+  </div>
+</section>
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">05</p><p class="eyebrow" data-i18n="label_impact">Validación e impacto</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="impact_h">De tarea de soporte a funcionalidad de valor comercial</h2>
+      <p data-i18n="impact_p1">Antes del lanzamiento, evalué el flujo completo en pruebas de usabilidad con 5 usuarios, con foco en la comprensión de la carga, la agrupación automática por familia y el mensaje de upgrade.</p>
+      <div class="ab">
+        <div class="ab-card win"><span class="eyebrow" data-i18n="imp1_l">Soporte</span><p class="stat-num">↓</p><p data-i18n="imp1_d">Reducción de los tickets de soporte vinculados a la carga de tipografías, que pasó a resolverse de forma autónoma.</p></div>
+        <div class="ab-card win"><span class="eyebrow" data-i18n="imp2_l">Negocio</span><p class="stat-num">↑</p><p data-i18n="imp2_d">Upgrades al plan Basic motivados por la posibilidad de utilizar tipografías propias.</p></div>
       </div>
+      <p style="margin-top:var(--sp-3)" data-i18n="impact_p2">La funcionalidad cumplió un doble objetivo: liberó al equipo de soporte de una tarea recurrente y se convirtió en un argumento concreto de upgrade dentro del modelo self-serve.</p>
     </div>
   </div>
 </section>
-
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_impact">El impacto</p></div>
+    <div class="case-section-label"><p class="step">06</p><p class="eyebrow" data-i18n="label_learn">Rol y criterios</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="impact_h">Una tarea de soporte se convirtió en autoservicio</h2>
-      <p data-i18n="impact_p1">Lo que antes dependía de un ticket y de disponibilidad interna, ahora lo resuelve cada equipo por su cuenta, en minutos. Es la misma lógica self-serve del caso 01, aplicada a una necesidad puntual pero recurrente.</p>
-      <div class="case-img"><img src="images/cf-impact.jpg" alt="Dashboard de fuentes instaladas, con Gilroy ya disponible" loading="lazy"></div>
+      <h2 data-i18n="learn_h">Rol y criterios de diseño</h2>
+      <p data-i18n="learn_p1">Como única diseñadora del proyecto, fui responsable de la definición del flujo, el diseño de interfaz, las pruebas con usuarios y el handoff a desarrollo.</p>
+      <ul class="learn">
+        <li data-i18n="l1"><strong>Autonomía como principio.</strong> Eliminar intermediarios en tareas que el usuario puede resolver por su cuenta.</li>
+        <li data-i18n="l2"><strong>Modelos mentales del usuario.</strong> Organizar las fuentes por familia y variante, como se gestionan en cualquier herramienta de diseño.</li>
+        <li data-i18n="l3"><strong>Gating con contexto.</strong> Explicar el valor de la funcionalidad en lugar de ocultarla a los planes que no la incluyen.</li>
+        <li data-i18n="l4"><strong>Consistencia de sistema.</strong> Reutilizar los patrones de feature gating del modelo self-serve para una experiencia coherente.</li>
+      </ul>
+      <p style="margin-top:var(--sp-3)" data-i18n="learn_p2"><strong>En retrospectiva:</strong> instrumentaría desde el lanzamiento la medición de upgrades atribuibles a esta funcionalidad, para cuantificar su impacto comercial con precisión. También incorporaría una validación automática de los archivos al momento de la carga, con feedback inmediato ante formatos o variantes duplicadas.</p>
     </div>
   </div>
 </section>
@@ -241,7 +407,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 <section class="next-case">
   <div class="container">
     <p class="eyebrow" data-i18n="next_eyebrow">Siguiente caso</p>
-    <h2 class="display next-case-title" data-i18n="next_title">Mi Argentina</h2>
+    <h2 class="display next-case-title">Mi Argentina</h2>
     <a class="next-case-link" href="case-mi-argentina.html"><span data-i18n="next_cta">Ver caso</span> →</a>
   </div>
 </section>
@@ -255,50 +421,116 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 
 <script>
 const translations = {
-  es: {
-    nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
-    back:"Volver a proyectos",
-    case_eyebrow:"Viz Flowics · UX/UI · Self-serve",
-    case_title:"Custom Fonts",
-    case_summary:"Subir una tipografía propia dejó de requerir un ticket a soporte. Drag and drop, gestión por familia y variantes, gating por plan.",
-    tag_no_nda:"✅ Sin NDA", tag_role:"UX/UI Design", tag_year:"2024",
-    nda_notice:"Proyecto visible en el free trial del producto — sin restricciones de confidencialidad.",
-    label_problem:"El problema",
-    problem_h:"Cargar una tipografía propia significaba abrir un ticket",
-    problem_p1:"Cada vez que una empresa quería usar su propia fuente dentro del producto, tenía que pedírselo a soporte. Alguien del equipo cargaba el archivo manualmente del lado del servidor — un proceso lento, que no escalaba, y que dependía por completo de disponibilidad interna.",
-    problem_p2:"<strong>La fricción:</strong> justo el tipo de tarea que el nuevo modelo self-serve —nacido en el caso 01— buscaba eliminar del todo.",
-    label_approach:"El enfoque",
-    approach_h:"Drag and drop, gestión por familia, gating por plan",
-    approach_p1:"Diseñé un dashboard de fuentes donde cada equipo sube sus propios archivos (TTF, OTF, WOFF) arrastrándolos directamente, sin pasar por soporte. El sistema agrupa los archivos por familia tipográfica y variante (peso, estilo) automáticamente.",
-    approach_p2:"La función quedó disponible según el plan de cada cuenta, siguiendo el mismo sistema de feature gating diseñado para el pricing público.",
-    label_impact:"El impacto",
-    impact_h:"Una tarea de soporte se convirtió en autoservicio",
-    impact_p1:"Lo que antes dependía de un ticket y de disponibilidad interna, ahora lo resuelve cada equipo por su cuenta, en minutos. Es la misma lógica self-serve del caso 01, aplicada a una necesidad puntual pero recurrente.",
-    next_eyebrow:"Siguiente caso", next_title:"Mi Argentina", next_cta:"Ver caso",
-    footer_note:"Buenos Aires, Argentina"
-  },
-  en: {
-    nav_work:"Work", nav_about:"About", nav_contact:"Contact",
-    back:"Back to work",
-    case_eyebrow:"Viz Flowics · UX/UI · Self-serve",
-    case_title:"Custom Fonts",
-    case_summary:"Uploading a custom font stopped needing a support ticket. Drag and drop, family and variant management, plan gating.",
-    tag_no_nda:"✅ Not under NDA", tag_role:"UX/UI Design", tag_year:"2024",
-    nda_notice:"Visible in the product's free trial — no confidentiality restrictions.",
-    label_problem:"The problem",
-    problem_h:"Uploading a custom font meant opening a support ticket",
-    problem_p1:"Every time a company wanted to use its own font inside the product, it had to ask support. Someone on the team would upload the file manually server-side — a slow process that didn't scale and fully depended on internal availability.",
-    problem_p2:"<strong>The friction:</strong> exactly the kind of task the new self-serve model — born in case 01 — was meant to remove entirely.",
-    label_approach:"The approach",
-    approach_h:"Drag and drop, family management, plan gating",
-    approach_p1:"I designed a fonts dashboard where each team uploads its own files (TTF, OTF, WOFF) by dragging them in directly, no support ticket needed. The system automatically groups files by font family and variant (weight, style).",
-    approach_p2:"The feature was gated by account plan, following the same feature-gating system built for public pricing.",
-    label_impact:"The impact",
-    impact_h:"A support task became self-service",
-    impact_p1:"What used to depend on a ticket and internal availability is now handled by each team on their own, in minutes. It's the same self-serve logic from case 01, applied to a specific but recurring need.",
-    next_eyebrow:"Next case", next_title:"Mi Argentina", next_cta:"View case",
-    footer_note:"Buenos Aires, Argentina"
-  }
+ "es": {
+  "nav_work": "Proyectos",
+  "nav_about": "Sobre mí",
+  "nav_contact": "Contacto",
+  "back": "Volver a proyectos",
+  "next_eyebrow": "Siguiente caso",
+  "next_cta": "Ver caso",
+  "footer_note": "Buenos Aires, Argentina",
+  "under_nda": "Bajo NDA",
+  "case_eyebrow": "Viz Flowics (Vizrt) · Product Design · 2024",
+  "case_title": "Custom Fonts",
+  "case_summary": "Diseño de la <strong>carga autónoma de tipografías propias</strong> en una plataforma SaaS B2B de gráficos en vivo: una tarea que dependía de un ticket a soporte pasó a resolverse en minutos, con gestión por familia y variantes, y disponibilidad según el plan contratado.",
+  "tag_no_nda": "✅ Sin NDA",
+  "tag_role": "UX · UI · Testing",
+  "tag_year": "SaaS B2B",
+  "nda_notice": "Funcionalidad visible en el free trial del producto, sin restricciones de confidencialidad.",
+  "role_badge": "Única diseñadora<br>del proyecto",
+  "role_p": "Lideré el diseño de punta a punta, desde la definición del flujo hasta el handoff a desarrollo, en coordinación con producto e ingeniería. La funcionalidad forma parte de la <strong>estrategia self-serve de Viz Flowics</strong> y se validó con usuarios antes del lanzamiento.",
+  "stat_1": "tickets necesarios para incorporar una tipografía propia",
+  "stat_2": "usuarios en las pruebas de usabilidad previas al lanzamiento",
+  "stat_3": "formatos aceptados: TTF, OTF y WOFF",
+  "stat_4": "plan desde el que se habilita la funcionalidad",
+  "context_h": "Cargar una tipografía propia requería un ticket a soporte",
+  "context_p1": "Las productoras trabajan con la identidad visual de cada canal o programa, por lo que contar con sus propias tipografías es un requisito habitual. Sin embargo, incorporar una fuente al producto implicaba solicitarla al equipo de soporte, que cargaba el archivo manualmente del lado del servidor.",
+  "context_p2": "<strong>La fricción:</strong> un proceso lento, que no escalaba y dependía por completo de la disponibilidad interna; precisamente el tipo de tarea que el modelo self-serve de la plataforma buscaba eliminar.",
+  "label_context": "Contexto",
+  "upload_h": "Una carga directa, sin intermediarios",
+  "upload_p1": "Diseñé un flujo de carga mediante arrastrar y soltar, con selección manual como alternativa. El modal explicita los formatos aceptados y solicita confirmar los derechos de uso de las fuentes, una consideración legal que antes resolvía el equipo de soporte.",
+  "cap_upload": "Modal de carga: arrastrar y soltar, formatos aceptados y confirmación de derechos de uso.",
+  "label_upload": "Carga",
+  "family_h": "Las fuentes organizadas como las piensa un diseñador",
+  "family_p1": "El sistema agrupa automáticamente los archivos por familia tipográfica y variante (peso y estilo). Desde el panel se identifica cada familia con una muestra de texto y la cantidad de variantes disponibles; desde el detalle, es posible renombrarla, incorporar o eliminar variantes y previsualizar cualquier texto en todos los estilos.",
+  "cap_family": "Detalle de familia: variantes por peso, vista previa editable y acciones por variante.",
+  "label_family": "Gestión por familia",
+  "gating_h": "La limitación del plan como oportunidad de upgrade",
+  "gating_p1": "La funcionalidad se habilita a partir del plan Basic, siguiendo el sistema de feature gating definido para el modelo self-serve. En el plan Go, en lugar de ocultar la sección, la interfaz explica el beneficio de personalizar la tipografía, enlaza a la documentación y ofrece el upgrade en el mismo contexto.",
+  "cap_gating": "Estado para el plan Go: valor de la funcionalidad, documentación y upgrade contextual.",
+  "label_gating": "Feature gating",
+  "impact_h": "De tarea de soporte a funcionalidad de valor comercial",
+  "impact_p1": "Antes del lanzamiento, evalué el flujo completo en pruebas de usabilidad con 5 usuarios, con foco en la comprensión de la carga, la agrupación automática por familia y el mensaje de upgrade.",
+  "imp1_l": "Soporte",
+  "imp1_d": "Reducción de los tickets de soporte vinculados a la carga de tipografías, que pasó a resolverse de forma autónoma.",
+  "imp2_l": "Negocio",
+  "imp2_d": "Upgrades al plan Basic motivados por la posibilidad de utilizar tipografías propias.",
+  "impact_p2": "La funcionalidad cumplió un doble objetivo: liberó al equipo de soporte de una tarea recurrente y se convirtió en un argumento concreto de upgrade dentro del modelo self-serve.",
+  "label_impact": "Validación e impacto",
+  "learn_h": "Rol y criterios de diseño",
+  "learn_p1": "Como única diseñadora del proyecto, fui responsable de la definición del flujo, el diseño de interfaz, las pruebas con usuarios y el handoff a desarrollo.",
+  "l1": "<strong>Autonomía como principio.</strong> Eliminar intermediarios en tareas que el usuario puede resolver por su cuenta.",
+  "l2": "<strong>Modelos mentales del usuario.</strong> Organizar las fuentes por familia y variante, como se gestionan en cualquier herramienta de diseño.",
+  "l3": "<strong>Gating con contexto.</strong> Explicar el valor de la funcionalidad en lugar de ocultarla a los planes que no la incluyen.",
+  "l4": "<strong>Consistencia de sistema.</strong> Reutilizar los patrones de feature gating del modelo self-serve para una experiencia coherente.",
+  "learn_p2": "<strong>En retrospectiva:</strong> instrumentaría desde el lanzamiento la medición de upgrades atribuibles a esta funcionalidad, para cuantificar su impacto comercial con precisión. También incorporaría una validación automática de los archivos al momento de la carga, con feedback inmediato ante formatos o variantes duplicadas.",
+  "label_learn": "Rol y criterios"
+ },
+ "en": {
+  "nav_work": "Work",
+  "nav_about": "About",
+  "nav_contact": "Contact",
+  "back": "Back to work",
+  "next_eyebrow": "Next case",
+  "next_cta": "View case",
+  "footer_note": "Buenos Aires, Argentina",
+  "under_nda": "Under NDA",
+  "case_eyebrow": "Viz Flowics (Vizrt) · Product Design · 2024",
+  "case_title": "Custom Fonts",
+  "case_summary": "Design of <strong>self-serve custom font upload</strong> for a B2B SaaS live graphics platform: a task that required a support ticket became a matter of minutes, with family and variant management, and availability based on the subscribed plan.",
+  "tag_no_nda": "✅ Not under NDA",
+  "tag_role": "UX · UI · Testing",
+  "tag_year": "B2B SaaS",
+  "nda_notice": "Feature visible in the product's free trial, with no confidentiality restrictions.",
+  "role_badge": "Sole designer<br>on the project",
+  "role_p": "I led design end to end, from flow definition to hand-off to engineering, in coordination with product and engineering. The feature is part of <strong>Viz Flowics' self-serve strategy</strong> and was validated with users before launch.",
+  "stat_1": "tickets needed to add a custom font",
+  "stat_2": "users in pre-launch usability testing",
+  "stat_3": "accepted formats: TTF, OTF and WOFF",
+  "stat_4": "plan from which the feature is available",
+  "context_h": "Adding a custom font required a support ticket",
+  "context_p1": "Production teams work with the visual identity of each channel or show, so having their own fonts is a common requirement. However, adding a font to the product meant requesting it from the support team, who uploaded the file manually on the server side.",
+  "context_p2": "<strong>The friction:</strong> a slow process that did not scale and depended entirely on internal availability; precisely the kind of task the platform's self-serve model aimed to eliminate.",
+  "label_context": "Context",
+  "upload_h": "Direct upload, with no intermediaries",
+  "upload_p1": "I designed a drag-and-drop upload flow, with manual selection as an alternative. The modal states the accepted formats and asks users to confirm usage rights for the fonts, a legal consideration previously handled by the support team.",
+  "cap_upload": "Upload modal: drag and drop, accepted formats and usage rights confirmation.",
+  "label_upload": "Upload",
+  "family_h": "Fonts organized the way a designer thinks about them",
+  "family_p1": "The system automatically groups files by font family and variant (weight and style). The dashboard identifies each family with a text sample and the number of available variants; from the detail view, users can rename it, add or remove variants and preview any text across all styles.",
+  "cap_family": "Family detail: variants by weight, editable preview and per-variant actions.",
+  "label_family": "Family management",
+  "gating_h": "The plan limitation as an upgrade opportunity",
+  "gating_p1": "The feature is available from the Basic plan, following the feature gating system defined for the self-serve model. On the Go plan, instead of hiding the section, the interface explains the benefit of custom typography, links to the documentation and offers the upgrade in the same context.",
+  "cap_gating": "Go plan state: feature value, documentation and contextual upgrade.",
+  "label_gating": "Feature gating",
+  "impact_h": "From support task to commercially valuable feature",
+  "impact_p1": "Before launch, I tested the full flow in usability sessions with 5 users, focusing on understanding of the upload, automatic family grouping and the upgrade message.",
+  "imp1_l": "Support",
+  "imp1_d": "Fewer support tickets related to font uploads, now handled independently by users.",
+  "imp2_l": "Business",
+  "imp2_d": "Upgrades to the Basic plan driven by the ability to use custom fonts.",
+  "impact_p2": "The feature met a dual goal: it freed the support team from a recurring task and became a concrete upgrade driver within the self-serve model.",
+  "label_impact": "Validation and impact",
+  "learn_h": "Role and design principles",
+  "learn_p1": "As the sole designer on the project, I was responsible for flow definition, interface design, user testing and hand-off to engineering.",
+  "l1": "<strong>Autonomy as a principle.</strong> Removing intermediaries from tasks users can complete on their own.",
+  "l2": "<strong>Users' mental models.</strong> Organizing fonts by family and variant, as they are managed in any design tool.",
+  "l3": "<strong>Gating with context.</strong> Explaining the feature's value instead of hiding it from plans that do not include it.",
+  "l4": "<strong>System consistency.</strong> Reusing the self-serve model's feature gating patterns for a coherent experience.",
+  "learn_p2": "<strong>In retrospect:</strong> I would instrument tracking of upgrades attributable to this feature from launch, to quantify its commercial impact precisely. I would also add automatic file validation at upload time, with immediate feedback on unsupported formats or duplicate variants.",
+  "label_learn": "Role and principles"
+ }
 };
 
 function setLang(lang){
@@ -310,12 +542,18 @@ function setLang(lang){
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
   });
   document.documentElement.lang = lang;
-  localStorage.setItem('preferredLang', lang);
+  try{ localStorage.setItem('preferredLang', lang); }catch(e){}
 }
 document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
 });
-setLang(localStorage.getItem('preferredLang') || 'es');
+let saved = 'es';
+try{ saved = localStorage.getItem('preferredLang') || 'es'; }catch(e){}
+setLang(saved);
+
+document.querySelectorAll('.case-scroll .case-img').forEach(v=>{
+  v.addEventListener('scroll', ()=> v.parentElement.classList.toggle('scrolled', v.scrollTop > 24), {passive:true});
+});
 
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
