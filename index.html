@@ -211,7 +211,6 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 .side-desc{font-size:.92rem;color:var(--ink-soft);margin-top:.4rem;max-width:60ch}
 .side-cta{font-weight:600;font-size:.9rem;white-space:nowrap}
 @media (max-width:900px){.side-item{grid-template-columns:1fr;gap:var(--sp-2)}.side-visual{max-width:320px}}
-.hero-actions .btn-cv{border-style:dashed}
 </style>
 </head>
 <body>
@@ -250,6 +249,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <button class="btn btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
         <span data-i18n="hero_cta_1">Ver proyectos</span> ↓
       </button>
+      <a class="btn btn-outline" id="cvLink" href="cv/Vanesa_Reche_Product_Designer_ES.pdf" download><span data-i18n="hero_cv">Descargar CV</span> ↓</a>
       <a class="btn btn-outline" href="#contact" data-i18n="hero_cta_2">Hablemos</a>
       <span class="hero-meta" data-i18n="hero_meta">5 años en producto digital · Buenos Aires, Argentina</span>
     </div>
@@ -401,7 +401,7 @@ const translations = {
     nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
     hero_eyebrow:"Product Designer Senior · SaaS B2B · Growth y herramientas de datos",
     hero_sub:"Diseño productos SaaS B2B de punta a punta, desde la investigación hasta el lanzamiento: crecimiento self-serve, herramientas de datos y sistemas que escalan, con foco en resultados medibles.",
-    hero_cta_1:"Ver proyectos", hero_cta_2:"Hablemos", hero_meta:"5 años en producto digital · Buenos Aires, Argentina",
+    hero_cta_1:"Ver proyectos", hero_cv:"Descargar CV", hero_cta_2:"Hablemos", hero_meta:"5 años en producto digital · Buenos Aires, Argentina",
     together_badge:"design<br>together",
     stat_years:"Años en diseño", stat_components:"Componentes en sistema de diseño", stat_leads:"Más leads calificados (PLG)",
     work_title:"Proyectos", work_index:"01 a 04",
@@ -432,7 +432,7 @@ const translations = {
     nav_work:"Work", nav_about:"About", nav_contact:"Contact",
     hero_eyebrow:"Senior Product Designer · B2B SaaS · Growth and data tools",
     hero_sub:"I design B2B SaaS products end to end, from research to launch: self-serve growth, data tools and systems that scale, with a focus on measurable results.",
-    hero_cta_1:"View work", hero_cta_2:"Let's talk", hero_meta:"5 years in digital product · Buenos Aires, Argentina",
+    hero_cta_1:"View work", hero_cv:"Download CV", hero_cta_2:"Let's talk", hero_meta:"5 years in digital product · Buenos Aires, Argentina",
     together_badge:"design<br>together",
     stat_years:"Years in design", stat_components:"Design system components", stat_leads:"More qualified leads (PLG)",
     work_title:"Work", work_index:"01 to 04",
@@ -470,6 +470,8 @@ function setLang(lang){
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
   });
   document.documentElement.lang = lang;
+  const cv = document.getElementById('cvLink');
+  if(cv) cv.href = 'cv/Vanesa_Reche_Product_Designer_' + (lang === 'en' ? 'EN' : 'ES') + '.pdf';
   try{ localStorage.setItem('preferredLang', lang); }catch(e){}
 }
 document.querySelectorAll('.lang-btn').forEach(btn=>{
