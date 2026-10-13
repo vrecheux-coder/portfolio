@@ -127,6 +127,8 @@ section{padding:var(--sp-7) 0}
 .tag{font-size:.78rem;font-weight:500;border:1.5px solid var(--pink-text);color:var(--pink-text);padding:.4rem .85rem;border-radius:var(--r-pill)}
 .work-visual{position:relative;border-radius:var(--r-md);overflow:hidden;background:var(--cream-2);border:1.5px solid var(--line);aspect-ratio:16/8.5}
 .work-visual-dark{background:var(--ink);border-color:var(--ink)}
+.tag-new{background:var(--pink-text);border-color:var(--pink-text);color:#fff}
+.work-badge{position:absolute;left:14px;top:14px;z-index:2;background:var(--pink-text);color:#fff;font-size:.74rem;font-weight:600;padding:.4rem .85rem;border-radius:var(--r-pill)}
 .work-visual img{width:100%;height:100%;object-fit:cover;object-position:top}
 .work-expand{position:absolute;right:14px;bottom:14px;background:var(--ink);color:var(--cream);font-size:.75rem;font-weight:600;padding:.55rem 1rem;border-radius:var(--r-pill);display:inline-flex;align-items:center;gap:.35rem;z-index:2}
 .work-item a.work-link{grid-column:1 / -1;position:absolute;inset:0}
@@ -271,10 +273,10 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <div>
         <h3 class="work-title" data-i18n="w2_title">Data Augmentation</h3>
         <p class="work-meta" data-i18n="w2_meta">Viz Flowics · Product Design · Gestión de datos</p>
-        <p class="work-desc" data-i18n="w2_desc">Sistema de edición masiva de datos vía Google Sheets, con simulación previa y trazabilidad de cada importación. Tickets de soporte -80%.</p>
-        <div class="work-tags"><span class="tag" data-i18n="w2_tag">Bajo NDA</span></div>
+        <p class="work-desc" data-i18n="w2_desc">Sistema de edición masiva de datos vía Google Sheets, con simulación previa y trazabilidad. Tickets de soporte -80% en 2024 y propuesta de rediseño en 2026.</p>
+        <div class="work-tags"><span class="tag tag-new" data-i18n="w2_tag_new">Propuesta 2026</span><span class="tag" data-i18n="w2_tag">Bajo NDA</span></div>
       </div>
-      <div class="work-visual"><img src="images/da-cover.jpg" data-nda="images/da-cover.enc" alt="" loading="lazy"><a class="work-expand" href="case-data-augmentation.html" data-i18n="expand">Ampliar ↗</a></div>
+      <div class="work-visual"><img src="images/da26-cover.jpg" data-nda="images/da26-cover.enc" alt="" loading="lazy"><span class="work-badge" data-i18n="w2_tag_new">Propuesta 2026</span><a class="work-expand" href="case-data-augmentation.html" data-i18n="expand">Ampliar ↗</a></div>
     </div>
 
     <div class="work-item">
@@ -393,7 +395,7 @@ const translations = {
     w1_title:"Product-Led Growth", w1_meta:"Viz Flowics · Product Design · Growth",
     w1_desc:"Transformación de un modelo basado en ventas a uno self-serve: pricing público, free trial, feature gating y ciclo de vida de la suscripción. Altas de trial x3.", w1_tag:"Bajo NDA",
     w2_title:"Data Augmentation", w2_meta:"Viz Flowics · Product Design · Gestión de datos",
-    w2_desc:"Sistema de edición masiva de datos vía Google Sheets, con simulación previa y trazabilidad de cada importación. Tickets de soporte -80%.", w2_tag:"Bajo NDA",
+    w2_desc:"Sistema de edición masiva de datos vía Google Sheets, con simulación previa y trazabilidad. Tickets de soporte -80% en 2024 y propuesta de rediseño en 2026.", w2_tag:"Bajo NDA", w2_tag_new:"Propuesta 2026",
     w3_title:"Custom Fonts", w3_meta:"Viz Flowics · Product Design · Self-serve",
     w3_desc:"Carga autónoma de tipografías propias, con gestión por familia y variantes y feature gating por plan. Menos tickets de soporte y más upgrades a Basic.", w3_tag:"Self-serve",
     w4_title:"Mi Argentina", w4_meta:"Diplomatura UX/UI · UTN · Equipo de 3",
@@ -423,7 +425,7 @@ const translations = {
     w1_title:"Product-Led Growth", w1_meta:"Viz Flowics · Product Design · Growth",
     w1_desc:"From a sales-led model to self-serve: public pricing, free trial, feature gating and subscription lifecycle. Trial sign-ups x3.", w1_tag:"Under NDA",
     w2_title:"Data Augmentation", w2_meta:"Viz Flowics · Product Design · Data tooling",
-    w2_desc:"A bulk data editing system through Google Sheets, with pre-import simulation and traceability for every import. Support tickets -80%.", w2_tag:"Under NDA",
+    w2_desc:"A bulk data editing system through Google Sheets, with pre-import simulation and traceability. Support tickets -80% in 2024 and a redesign proposal in 2026.", w2_tag:"Under NDA", w2_tag_new:"2026 proposal",
     w3_title:"Custom Fonts", w3_meta:"Viz Flowics · Product Design · Self-serve",
     w3_desc:"Self-serve custom font upload, with family and variant management and plan-based feature gating. Fewer support tickets and more upgrades to Basic.", w3_tag:"Self-serve",
     w4_title:"Mi Argentina", w4_meta:"UX/UI Diploma · UTN · Team of 3",
