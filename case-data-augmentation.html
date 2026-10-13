@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Augmentation — Vanesa Reche</title>
-<meta name="description" content="Caso de estudio: sistema de edición masiva y auditoría de datasets para Viz Flowics.">
+<meta name="description" content="Caso de estudio: sistema de edición masiva de datos para Viz Flowics, con edición en Google Sheets, simulación previa y auditoría de cambios.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -56,27 +56,8 @@ a{color:inherit;text-decoration:none}
 .lang-btn{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.04em;background:none;border:0;padding:.4rem .8rem;cursor:pointer;color:#B8B4A6;border-radius:var(--r-pill)}
 .lang-btn[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
 
-/* nav hamburger — hidden on desktop */
-.nav-toggle{
-  display:none;
-  flex-direction:column;
-  justify-content:center;
-  gap:5px;
-  width:38px;
-  height:38px;
-  background:none;
-  border:0;
-  cursor:pointer;
-  padding:0;
-  flex-shrink:0;
-}
-.nav-toggle span{
-  display:block;
-  width:100%;
-  height:2px;
-  background:var(--ink);
-  transition:transform .25s ease, opacity .25s ease;
-}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:0;cursor:pointer;padding:0;flex-shrink:0}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--ink);transition:transform .25s ease, opacity .25s ease}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
@@ -88,45 +69,147 @@ a{color:inherit;text-decoration:none}
 .case-eyebrow-row{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3);flex-wrap:wrap}
 .case-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;color:var(--pink-text)}
 .case-title{font-size:clamp(2.6rem,6.5vw,5.2rem);max-width:16ch}
-.case-meta-row{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-4)}
+.case-meta-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:var(--sp-4)}
 .tag{font-size:.78rem;font-weight:500;border:1.5px solid var(--pink-text);color:var(--pink-text);padding:.4rem .85rem;border-radius:var(--r-pill)}
 .tag-neutral{border-color:var(--ink);color:var(--ink)}
-.case-summary{max-width:56ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.tag-ok{border-color:#2F6E44;color:#2F6E44}
+.case-summary{max-width:60ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.case-summary strong{color:var(--ink);font-weight:600}
 
-.nda-notice{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:.5rem 1rem;font-size:.8rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.hero-ctas{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-4)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.92rem;padding:.9rem 1.5rem;border-radius:var(--r-pill);border:1.5px solid var(--ink)}
+.btn-primary{background:var(--ink);color:var(--cream)}
+.btn-primary:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+.btn-ghost:hover{background:var(--ink);color:var(--cream)}
+
+/* academic band */
+.academic{margin-top:var(--sp-5);display:grid;grid-template-columns:auto 1fr;gap:var(--sp-3);align-items:center;background:var(--pink-pale);border:1.5px solid var(--pink-soft);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4)}
+.academic-badge{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;line-height:1.1;color:var(--pink-text);border-right:1.5px solid var(--pink-soft);padding-right:var(--sp-3)}
+.academic p{font-size:.95rem;color:var(--ink-soft);max-width:80ch}
+.academic p strong{color:var(--ink);font-weight:600}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2);margin-top:var(--sp-4)}
+.stat{background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3)}
+.stat-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1;letter-spacing:-.02em}
+.stat-num .accent{color:var(--pink-text)}
+.stat-label{font-size:.85rem;color:var(--ink-soft);margin-top:.5rem;line-height:1.4}
 
 .case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/8.5;margin-top:var(--sp-5);background:var(--cream-2);border:1.5px solid var(--line)}
 .case-cover img{width:100%;height:100%;object-fit:cover;object-position:top;filter:blur(20px) saturate(1.15);transform:scale(1.08)}
 .case-cover-lock{position:absolute;right:18px;bottom:18px;display:inline-flex;align-items:center;gap:.5rem;background:var(--ink);color:var(--cream);font-size:.78rem;font-weight:600;padding:.55rem 1rem;border-radius:var(--r-pill);z-index:2}
+.nda-notice{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:.5rem 1rem;font-size:.8rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.cover-labels{display:flex;justify-content:center;gap:var(--sp-6);margin-top:var(--sp-2)}
+.cover-labels span{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.cover-labels span:last-child{color:var(--pink-text)}
 
+/* sections */
 .case-section{padding:var(--sp-6) 0;border-top:1.5px solid var(--line)}
 .case-section-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:var(--sp-6)}
 .case-section-label{position:sticky;top:110px;align-self:start}
+.case-section-label .step{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.4rem;line-height:1;color:var(--pink-soft);margin-bottom:.4rem}
+.case-section-body{min-width:0}
 .case-section-body h2{font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:var(--sp-3)}
+.case-section-body h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.2rem;margin:var(--sp-4) 0 .6rem;letter-spacing:-.01em}
 .case-section-body p{max-width:64ch;color:var(--ink-soft);margin-bottom:1rem;font-size:1.02rem}
 .case-section-body p strong{color:var(--ink);font-weight:600}
-.case-section-body ul{color:var(--ink-soft);margin:0 0 1rem 1.2rem}
-.case-section-body ul li{margin-bottom:.4rem}
 
-.case-img{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/9;margin-top:var(--sp-4);background:var(--cream-2);border:1.5px solid var(--line)}
+/* process */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.phase{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:var(--cream-2)}
+.phase-name{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink-text);margin-bottom:.6rem}
+.phase ul{list-style:none;font-size:.88rem;color:var(--ink)}
+.phase li{padding:.3rem 0;border-top:1px solid var(--line)}
+.phase li:first-child{border-top:0}
+
+/* findings */
+.findings{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.finding{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:#fff}
+.case-section-body .finding-num{margin:0;max-width:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.2rem;line-height:1;color:var(--pink-text)}
+.finding p{margin:.5rem 0 0;font-size:.92rem;color:var(--ink-soft)}
+.insight{margin-top:var(--sp-3);border-left:4px solid var(--pink);background:var(--cream-2);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:var(--sp-3)}
+.insight p{margin:0;color:var(--ink);font-size:1.05rem;max-width:none}
+.insight .eyebrow{display:block;margin-bottom:.4rem;color:var(--pink-text)}
+
+/* bars */
+.bars{margin-top:var(--sp-3);display:grid;gap:.9rem}
+.bar-row{display:grid;grid-template-columns:minmax(150px,220px) 1fr 76px;gap:var(--sp-2);align-items:center;font-size:.9rem}
+.bar-track{height:12px;background:var(--cream-2);border-radius:var(--r-pill);overflow:hidden;border:1px solid var(--line)}
+.bar-fill{height:100%;background:var(--ink);border-radius:var(--r-pill)}
+.bar-fill.pink{background:var(--pink)}
+.bar-val{font-family:'Space Mono',monospace;font-size:.82rem;text-align:right;white-space:nowrap}
+.bar-caption{font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
+
+/* tables */
+.table-wrap{margin-top:var(--sp-3);overflow-x:auto;border:1.5px solid var(--line);border-radius:var(--r-md);background:#fff}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+th,td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:'Space Mono',monospace;font-weight:400;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:var(--cream-2)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:'Space Mono',monospace;white-space:nowrap}
+.pill-low{display:inline-block;background:var(--pink-pale);color:var(--pink-text);border-radius:var(--r-pill);padding:.1rem .6rem;font-weight:600}
+.pill-ok{display:inline-block;background:#E3EFE6;color:#2F6E44;border-radius:var(--r-pill);padding:.1rem .6rem;font-weight:600}
+
+/* MVP list */
+.mvp{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.mvp-item{border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3)}
+.mvp-item strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.3rem}
+.mvp-item span{font-size:.9rem;color:var(--ink-soft)}
+
+/* images */
+.case-img{position:relative;margin-top:var(--sp-3);border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/9;border:1.5px solid var(--line);background:var(--cream-2)}
+.case-img.wide{aspect-ratio:2400/700}
 .case-img img{width:100%;height:100%;object-fit:cover;object-position:top;filter:blur(16px) saturate(1.15);transform:scale(1.08)}
 .case-img-lock{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:.4rem;background:var(--ink);color:var(--cream);font-size:.72rem;font-weight:600;padding:.45rem .85rem;border-radius:var(--r-pill);z-index:2}
-.case-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)}
-.case-scroll{position:relative;margin-top:var(--sp-4);border-radius:var(--r-md);overflow:hidden;background:var(--cream-2);border:1.5px solid var(--line)}
-.case-scroll .case-img{margin-top:0;border-radius:0;aspect-ratio:auto;height:min(70vh,540px);overflow-y:auto;overscroll-behavior:auto;scrollbar-width:thin;scrollbar-color:var(--ink-soft) transparent}
-.case-scroll .case-img img{height:auto;display:block}
-.case-scroll .case-img:focus-visible{outline:3px solid var(--pink);outline-offset:-3px}
-.case-scroll::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(to top,rgba(20,19,16,.4),rgba(20,19,16,0));pointer-events:none;transition:opacity .3s}
-.case-scroll-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:2;background:var(--cream);color:var(--ink);font-size:.75rem;font-weight:600;padding:.5rem 1rem;border-radius:var(--r-pill);pointer-events:none;white-space:nowrap;transition:opacity .3s}
-.case-scroll.scrolled::after,.case-scroll.scrolled .case-scroll-hint{opacity:0}
-.case-scroll .case-img-lock{right:14px;top:14px;bottom:auto}
-.case-scroll:has(.nda-open) .case-img-lock{display:none}
-@media (max-width:900px){.case-section-body{min-width:0}.case-scroll .case-img{overflow:auto;height:min(65vh,480px)}.case-scroll .case-img img{width:720px;max-width:none}}
-.case-sub{font-family:'Bricolage Grotesque',sans-serif;font-size:1.35rem;margin:var(--sp-5) 0 var(--sp-2)}
+.img-pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2)}
+.img-pair .case-img{margin-top:var(--sp-3)}
+.role-band{margin-top:var(--sp-5);display:grid;grid-template-columns:auto 1fr;gap:var(--sp-3);align-items:center;background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4)}
+.role-band .academic-badge{color:var(--ink);border-right-color:var(--line)}
+.role-band p{font-size:.95rem;color:var(--ink-soft);max-width:80ch}
+.role-band p strong{color:var(--ink);font-weight:600}
+.img-caption{font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
+.phone-row{display:flex;gap:var(--sp-3);margin-top:var(--sp-3);flex-wrap:wrap;background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-4);justify-content:center}
+.phone-mock{position:relative;width:170px;aspect-ratio:9/18.5;border-radius:20px;flex-shrink:0;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+.phone-mock img{width:100%;height:100%;object-fit:contain;display:block}
 
-.impact-stat{display:flex;align-items:center;gap:1rem;margin:var(--sp-4) 0}
-.impact-stat .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3.2rem;color:var(--pink-text)}
-.impact-stat .label{color:var(--ink-soft);max-width:32ch}
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.case-section-body .quote{margin:0;max-width:none;color:var(--ink);font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.1rem;line-height:1.3;background:var(--cream-2);border-radius:var(--r-md);padding:var(--sp-3)}
+.quote::before{content:"“";color:var(--pink);font-size:1.6rem;line-height:0;margin-right:.15rem;vertical-align:-.35rem}
+
+/* A/B */
+.ab{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.ab-card{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:#fff}
+.ab-card.win{border-color:var(--pink-text)}
+.ab-card .eyebrow{display:block;margin-bottom:.5rem}
+.case-section-body .ab-card .stat-num{font-size:2.6rem;color:var(--ink);margin:0}
+.case-section-body .ab-card.win .stat-num{color:var(--pink-text)}
+.ab-card p{font-size:.88rem;margin:.4rem 0 0}
+
+/* learnings */
+.learn{list-style:none;margin-top:var(--sp-3);display:grid;gap:.8rem;max-width:64ch}
+.learn li{position:relative;padding-left:1.8rem;color:var(--ink-soft)}
+.learn li::before{content:"→";position:absolute;left:0;color:var(--pink-text);font-weight:700}
+.learn li strong{color:var(--ink);font-weight:600}
+
+/* resources */
+.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.resource{display:flex;flex-direction:column;justify-content:space-between;gap:var(--sp-2);border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3);min-height:170px;transition:background .2s,color .2s}
+.resource:hover{background:var(--ink);color:var(--cream)}
+.resource:hover .resource-desc{color:#C9C5B8}
+.resource.featured{background:var(--pink);border-color:var(--pink);color:#fff}
+.resource.featured .resource-desc{color:#FFE6F1}
+.resource.featured:hover{background:var(--ink);border-color:var(--ink)}
+.resource-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;line-height:1.1}
+.resource-desc{font-size:.85rem;color:var(--ink-soft)}
+.resource-arrow{font-weight:600;font-size:.9rem}
+
+.figma-embed-wrap{margin-top:var(--sp-4);border-radius:var(--r-md);overflow:hidden;border:1.5px solid var(--line)}
+.figma-embed-wrap iframe{width:100%;height:560px;border:0;display:block}
+
+.team-list{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+.team-pill{font-size:.85rem;border:1.5px solid var(--line);padding:.5rem 1rem;border-radius:var(--r-pill);color:var(--ink)}
+.team-pill strong{font-weight:600}
 
 .next-case{background:var(--ink);color:var(--cream)}
 .next-case .container{padding:var(--sp-6) var(--sp-4);text-align:center}
@@ -137,37 +220,55 @@ a{color:inherit;text-decoration:none}
 
 footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
 
+@media (max-width:1000px){
+  .process{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .resources{grid-template-columns:1fr}
+}
 @media (max-width:900px){
   .nav-toggle{display:flex}
-  .nav-links{
-    position:absolute;
-    top:86px;
-    left:0;
-    right:0;
-    background:var(--cream);
-    flex-direction:column;
-    align-items:flex-start;
-    gap:var(--sp-3);
-    padding:var(--sp-4);
-    border-bottom:1.5px solid var(--ink);
-    transform:translateY(-8px);
-    opacity:0;
-    pointer-events:none;
-    transition:transform .2s ease, opacity .2s ease;
-  }
-  .nav-links.open{
-    transform:translateY(0);
-    opacity:1;
-    pointer-events:auto;
-  }
+  .nav-links{position:absolute;top:86px;left:0;right:0;background:var(--cream);flex-direction:column;align-items:flex-start;gap:var(--sp-3);padding:var(--sp-4);border-bottom:1.5px solid var(--ink);transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .2s ease, opacity .2s ease}
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
   .lang-toggle{margin-top:.5rem}
   .case-hero{padding:var(--sp-4) 0 var(--sp-5)}
   .case-section{padding:var(--sp-5) 0}
   .next-case .container{padding:var(--sp-5) var(--sp-4)}
   .case-section-inner{grid-template-columns:1fr;gap:var(--sp-3)}
-  .case-section-label{position:static}
-  .case-img-grid{grid-template-columns:1fr}
+  .case-section-label{position:static;display:flex;align-items:baseline;gap:.8rem}
+  .case-section-label .step{font-size:1.6rem;margin:0}
+  .academic{grid-template-columns:1fr}
+  .academic-badge{border-right:0;border-bottom:1.5px solid var(--pink-soft);padding:0 0 .8rem}
 }
+@media (max-width:620px){
+  .container{padding:0 var(--sp-2)}
+  .findings,.mvp,.quotes,.ab,.process{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:1fr 70px}
+  .bar-row .bar-label{grid-column:1 / -1}
+  .case-cover{padding:var(--sp-2)}
+  .cover-labels{gap:var(--sp-4)}
+  .figma-embed-wrap iframe{height:460px}
+  .phone-mock{width:140px}
+}
+
+.case-scroll{position:relative;margin-top:var(--sp-3);border-radius:var(--r-md);overflow:hidden;background:var(--cream-2);border:1.5px solid var(--line)}
+.case-scroll .case-img{margin-top:0;border-radius:0;border:0;aspect-ratio:auto;height:min(70vh,540px);overflow-y:auto;overscroll-behavior:auto;scrollbar-width:thin;scrollbar-color:var(--ink-soft) transparent}
+.case-scroll .case-img img{height:auto;display:block;object-fit:initial}
+.case-scroll .case-img:focus-visible{outline:3px solid var(--pink);outline-offset:-3px}
+.case-scroll::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(to top,rgba(20,19,16,.4),rgba(20,19,16,0));pointer-events:none;transition:opacity .3s}
+.case-scroll-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:2;background:var(--cream);color:var(--ink);font-size:.75rem;font-weight:600;padding:.5rem 1rem;border-radius:var(--r-pill);pointer-events:none;white-space:nowrap;transition:opacity .3s}
+.case-scroll.scrolled::after,.case-scroll.scrolled .case-scroll-hint{opacity:0}
+.case-scroll .case-img-lock{right:14px;top:14px;bottom:auto}
+.case-scroll:has(.nda-open) .case-img-lock{display:none}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);margin-top:var(--sp-3);counter-reset:flow}
+.flow-step{border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3);position:relative}
+.flow-step strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.3rem}
+.flow-step span{font-size:.9rem;color:var(--ink-soft)}
+.flow-step::before{counter-increment:flow;content:counter(flow,decimal-leading-zero);display:block;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--pink-text);margin-bottom:.6rem}
+@media (max-width:900px){.case-scroll .case-img{overflow:auto;height:min(65vh,480px)}.case-scroll .case-img img{width:720px;max-width:none}}
+@media (max-width:620px){.flow{grid-template-columns:1fr}}
+
+@media (max-width:900px){.role-band{grid-template-columns:1fr}.role-band .academic-badge{border-right:0;border-bottom:1.5px solid var(--line);padding:0 0 .8rem}}
+@media (max-width:620px){.img-pair{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -198,19 +299,31 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
     <a class="back-link" href="index.html#work">← <span data-i18n="back">Volver a proyectos</span></a>
     <div class="case-eyebrow-row">
       <span class="case-num">02</span>
-      <p class="eyebrow" data-i18n="case_eyebrow">Viz Flowics · UX/UI · Gestión de datos</p>
+      <p class="eyebrow" data-i18n="case_eyebrow">Viz Flowics (Vizrt) · Product Design · 2024</p>
     </div>
     <h1 class="display case-title" data-i18n="case_title">Data Augmentation</h1>
-    <p class="case-summary" data-i18n="case_summary">Un sistema para editar datasets grandes sin romper nada: exportar, editar en Google Sheets, simular el resultado, importar con auditoría.</p>
+    <p class="case-summary" data-i18n="case_summary">Diseño de un sistema de <strong>edición masiva de datos</strong> para una plataforma SaaS B2B de gráficos en vivo: edición en Google Sheets, simulación de cada cambio antes de aplicarlo y trazabilidad completa de las importaciones.</p>
     <div class="case-meta-row">
       <span class="tag" data-i18n="tag_nda">Bajo NDA</span>
-      <span class="tag tag-neutral" data-i18n="tag_role">UX/UI Design</span>
-      <span class="tag tag-neutral" data-i18n="tag_year">2024</span>
+      <span class="tag tag-neutral" data-i18n="tag_role">Research · UX · UI · Testing</span>
+      <span class="tag tag-neutral" data-i18n="tag_year">SaaS B2B</span>
     </div>
     <p class="nda-notice">🔒 <span data-i18n="nda_notice">Imágenes desenfocadas por confidencialidad — incluyen datos internos de la empresa.</span></p>
     <div><button type="button" class="nda-toggle" data-nda-toggle hidden></button></div>
 
-    <div class="case-cover" role="img" aria-label="Captura desenfocada del sistema de edición de datos, bajo NDA">
+    <div class="role-band">
+      <p class="academic-badge" data-i18n="role_badge">Única diseñadora<br>del proyecto</p>
+      <p data-i18n="role_p">Lideré el diseño de punta a punta, desde la investigación hasta el handoff a desarrollo, en coordinación con producto e ingeniería. <strong>Diez meses de trabajo durante 2024</strong>, con entrevistas y pruebas de usabilidad con usuarios de la plataforma.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><p class="stat-num">-80<span class="accent">%</span></p><p class="stat-label" data-i18n="stat_1">tickets de soporte vinculados a la edición de datos</p></div>
+      <div class="stat"><p class="stat-num">15</p><p class="stat-label" data-i18n="stat_2">usuarios en entrevistas y pruebas de usabilidad</p></div>
+      <div class="stat"><p class="stat-num">3</p><p class="stat-label" data-i18n="stat_3">pasos: exportar, editar y simular antes de importar</p></div>
+      <div class="stat"><p class="stat-num">10</p><p class="stat-label" data-i18n="stat_4">meses de proyecto, de la investigación al lanzamiento</p></div>
+    </div>
+
+    <div class="case-cover" role="img" aria-label="Captura desenfocada del panel de Data Augmentation, bajo NDA">
       <img src="images/da-cover.jpg" data-nda="images/da-cover.enc" alt="" loading="lazy">
       <span class="case-cover-lock">🔒 <span data-i18n="under_nda">Bajo NDA</span></span>
     </div>
@@ -219,43 +332,98 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_problem">El problema</p></div>
+    <div class="case-section-label"><p class="step">01</p><p class="eyebrow" data-i18n="label_context">Contexto</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="problem_h">Editar un dataset grande era lento, manual y sin red de seguridad</h2>
-      <p data-i18n="problem_p1">No había forma de editar datos a gran escala sin tocar cada registro a mano dentro del producto. Tampoco existía un proceso de validación: un error en una edición masiva llegaba directo a producción, sin previsualización ni forma de auditar qué había cambiado.</p>
-      <p data-i18n="problem_p2"><strong>El riesgo:</strong> cuanto más crecía una cuenta, más grande era el dataset, y más caro se volvía cualquier error de edición.</p>
+      <h2 data-i18n="context_h">Datos críticos para la emisión, editados registro por registro</h2>
+      <p data-i18n="context_p1">Las Data Augmentations permiten enriquecer o modificar la información que llega desde los conectores de datos antes de utilizarla en los gráficos: valores propios de cada producción, como colores, imágenes o abreviaturas de equipos, que se integran con las fuentes existentes para alimentar estadísticas, marcadores y datos contextuales en tiempo real. A medida que las cuentas crecían, también lo hacían estos conjuntos de datos.</p>
+      <p data-i18n="context_p2">No existía una forma de editarlos a gran escala: cada registro se modificaba manualmente dentro del producto, o se solicitaba al equipo de soporte. Tampoco había un proceso de validación, por lo que un error en una edición masiva llegaba directamente a producción, sin previsualización ni registro de lo modificado.</p>
+      <p data-i18n="context_p3"><strong>El riesgo:</strong> cuanto más grande era el conjunto de datos, más costoso resultaba cualquier error, en un contexto de emisión en vivo donde no hay margen para corregir sobre la marcha.</p>
     </div>
   </div>
 </section>
-
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_approach">El enfoque</p></div>
+    <div class="case-section-label"><p class="step">02</p><p class="eyebrow" data-i18n="label_research">Investigación</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="approach_h">Exportar, editar afuera, simular antes de importar</h2>
-      <p data-i18n="approach_p1">Diseñé un flujo de tres pasos: exportar el dataset a Google Sheets (una herramienta que los equipos ya conocían), editar ahí con todas las funciones de una planilla, e importar de vuelta con una simulación previa que mostraba exactamente qué iba a cambiar antes de confirmar nada.</p>
-      <p data-i18n="approach_p2">Sumé un sistema de auditoría que registra cada importación: quién la hizo, cuándo, y qué cambió — así cualquier edición masiva queda trazada y es reversible.</p>
-      <div class="case-img-grid">
-        <div class="case-img" role="img" aria-label="Captura desenfocada del flujo de exportación, bajo NDA"><img src="images/da-approach-1.jpg" data-nda="images/da-approach-1.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
-        <div class="case-img" role="img" aria-label="Captura desenfocada de la simulación previa a importar, bajo NDA"><img src="images/da-approach-2.jpg" data-nda="images/da-approach-2.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+      <h2 data-i18n="research_h">Entender cómo trabajaban los equipos antes de diseñar</h2>
+      <p data-i18n="research_p1">Realicé entrevistas y pruebas de usabilidad con 15 usuarios de la plataforma para comprender cómo gestionaban estos datos y dónde se originaban las fricciones. El análisis permitió identificar cuatro necesidades principales:</p>
+      <div class="mvp">
+        <div class="mvp-item"><strong data-i18n="n1_t">Trabajar con herramientas conocidas</strong><span data-i18n="n1_d">Los equipos ya gestionaban sus datos en planillas; replicar esa lógica dentro del producto implicaba una curva de aprendizaje innecesaria.</span></div>
+        <div class="mvp-item"><strong data-i18n="n2_t">Anticipar el impacto de cada cambio</strong><span data-i18n="n2_d">La falta de previsualización generaba temor a afectar gráficos en vivo y desalentaba las ediciones masivas.</span></div>
+        <div class="mvp-item"><strong data-i18n="n3_t">Autonomía frente a soporte</strong><span data-i18n="n3_d">Depender del equipo de soporte para cambios rutinarios generaba demoras en momentos críticos de la producción.</span></div>
+        <div class="mvp-item"><strong data-i18n="n4_t">Trazabilidad</strong><span data-i18n="n4_d">En cuentas con varios operadores, era necesario saber quién había modificado qué y cuándo.</span></div>
       </div>
-      <h3 class="case-sub" data-i18n="report_h">El reporte previo a importar</h3>
-      <p data-i18n="report_p">Antes de confirmar, el equipo ve un reporte completo de la simulación: cuántas claves existen y cuántas quedarán, cuáles tienen errores y por qué, y el detalle de cada actualización, inserción y eliminación. Cada grupo de cambios se puede incluir o excluir con un check.</p>
+    </div>
+  </div>
+</section>
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">03</p><p class="eyebrow" data-i18n="label_solution">Solución</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="solution_h">Editar fuera del producto, validar dentro de él</h2>
+      <p data-i18n="solution_p1">Diseñé un flujo en tres pasos que aprovecha una herramienta que los equipos ya dominaban y concentra la validación dentro de la plataforma:</p>
+      <div class="flow">
+        <div class="flow-step"><strong data-i18n="f1_t">Exportar</strong><span data-i18n="f1_d">El conjunto de datos se exporta a una planilla de Google Sheets creada automáticamente en la cuenta del usuario.</span></div>
+        <div class="flow-step"><strong data-i18n="f2_t">Editar</strong><span data-i18n="f2_d">Los cambios se realizan con todas las funciones de una planilla: fórmulas, copiado masivo y colaboración.</span></div>
+        <div class="flow-step"><strong data-i18n="f3_t">Simular e importar</strong><span data-i18n="f3_d">Antes de aplicar los cambios, la plataforma genera un reporte con el impacto exacto de la importación.</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">04</p><p class="eyebrow" data-i18n="label_report">Reporte de simulación</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="report_h">Cada cambio, visible y controlable antes de confirmar</h2>
+      <p data-i18n="report_p1">El reporte de simulación es la pieza central del sistema. Presenta primero los errores que impiden la importación, con su causa y código, para que puedan corregirse en la planilla y actualizar el reporte sin reiniciar el proceso.</p>
+      <p data-i18n="report_p2">Luego detalla cada actualización, inserción y eliminación, con el valor anterior y el nuevo. Cada grupo de cambios puede incluirse o excluirse de forma independiente, lo que permite aplicar una edición de manera parcial y controlada.</p>
       <div class="case-scroll"><div class="case-img" tabindex="0" role="region" aria-label="Captura desenfocada del reporte de simulación completo, bajo NDA. Se puede desplazar."><img src="images/da-report.jpg" data-nda="images/da-report.enc" alt="" loading="lazy"></div><span class="case-img-lock">🔒 NDA</span><span class="case-scroll-hint" data-i18n="report_hint">↕ Desplazá para ver el reporte completo</span></div>
+      <p class="img-caption" data-i18n="cap_report">Reporte completo: errores con su causa, cambios agrupados por tipo y selección de los grupos a importar.</p>
     </div>
   </div>
 </section>
-
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_impact">El impacto</p></div>
+    <div class="case-section-label"><p class="step">05</p><p class="eyebrow" data-i18n="label_trace">Confirmación y trazabilidad</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="impact_h">Ediciones masivas sin miedo a romper producción</h2>
-      <p data-i18n="impact_p1">Los equipos pasaron de editar registro por registro a manejar datasets completos con confianza: la simulación previa elimina las sorpresas, y el historial de auditoría da trazabilidad total sobre qué cambió y quién lo hizo.</p>
-      <div class="case-img" role="img" aria-label="Captura desenfocada del impacto en el equipo, bajo NDA">
-        <img src="images/da-impact.jpg" data-nda="images/da-impact.enc" alt="" loading="lazy">
-        <span class="case-img-lock">🔒 NDA</span>
+      <h2 data-i18n="trace_h">Un cierre claro y un historial auditable</h2>
+      <p data-i18n="trace_p1">Al confirmar, el sistema resume los cambios aplicados y actualiza el panel con el nuevo total de registros. Cada importación queda registrada con su autor y su fecha, de modo que cualquier edición masiva resulta trazable.</p>
+      <div class="img-pair">
+        <div class="case-img" role="img" aria-label="Captura desenfocada de la confirmación de importación, bajo NDA"><img src="images/da-approach-2.jpg" data-nda="images/da-approach-2.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+        <div class="case-img" role="img" aria-label="Captura desenfocada del panel actualizado tras la importación, bajo NDA"><img src="images/da-impact.jpg" data-nda="images/da-impact.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
       </div>
+      <p class="img-caption" data-i18n="cap_trace">Confirmación con el resumen de cambios aplicados y panel actualizado con el registro de la última importación.</p>
+    </div>
+  </div>
+</section>
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">06</p><p class="eyebrow" data-i18n="label_impact">Validación e impacto</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="impact_h">Ediciones masivas sin riesgo para producción</h2>
+      <p data-i18n="impact_p1">El flujo se validó con los mismos 15 usuarios que participaron de la investigación, iterando sobre la claridad del reporte y la recuperación ante errores antes del lanzamiento.</p>
+      <div class="ab">
+        <div class="ab-card win"><span class="eyebrow" data-i18n="imp1_l">Soporte</span><p class="stat-num">-80%</p><p data-i18n="imp1_d">tickets de soporte vinculados a la edición de datos.</p></div>
+        <div class="ab-card win"><span class="eyebrow" data-i18n="imp2_l">Autonomía</span><p class="stat-num">Self-serve</p><p data-i18n="imp2_d">Los equipos realizan las ediciones rutinarias sin depender de soporte, lo que redujo la fricción por demoras.</p></div>
+      </div>
+      <p style="margin-top:var(--sp-3)" data-i18n="impact_p2">Los equipos pasaron de editar registro por registro a gestionar conjuntos de datos completos con confianza: la simulación previa elimina las sorpresas y el historial de importaciones aporta trazabilidad sobre cada cambio.</p>
+    </div>
+  </div>
+</section>
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">07</p><p class="eyebrow" data-i18n="label_learn">Rol y criterios</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="learn_h">Rol y criterios de diseño</h2>
+      <p data-i18n="learn_p1">Como única diseñadora del proyecto, fui responsable de la investigación, la definición del flujo, el diseño de interfaz y el handoff a desarrollo.</p>
+      <ul class="learn">
+        <li data-i18n="l1"><strong>Diseñar sobre hábitos existentes.</strong> Integrar una herramienta que los usuarios ya dominaban, en lugar de replicarla dentro del producto.</li>
+        <li data-i18n="l2"><strong>Prevenir antes que corregir.</strong> La simulación traslada la detección de errores a un momento sin consecuencias.</li>
+        <li data-i18n="l3"><strong>Control granular.</strong> Cada grupo de cambios se confirma de forma independiente, sin forzar decisiones de todo o nada.</li>
+        <li data-i18n="l4"><strong>Trazabilidad por defecto.</strong> Cada importación queda registrada sin pasos adicionales para el usuario.</li>
+      </ul>
+      <p style="margin-top:var(--sp-3)" data-i18n="learn_p2"><strong>En retrospectiva:</strong> definiría desde el inicio una línea de base del tiempo que demandaba cada edición, para cuantificar el ahorro además de la reducción de tickets. También evaluaría incorporar la edición directa en el producto para cambios puntuales, reservando el flujo con planilla para las ediciones masivas.</p>
     </div>
   </div>
 </section>
@@ -265,7 +433,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 <section class="next-case">
   <div class="container">
     <p class="eyebrow" data-i18n="next_eyebrow">Siguiente caso</p>
-    <h2 class="display next-case-title" data-i18n="next_title">Custom Fonts</h2>
+    <h2 class="display next-case-title">Custom Fonts</h2>
     <a class="next-case-link" href="case-custom-fonts.html"><span data-i18n="next_cta">Ver caso</span> →</a>
   </div>
 </section>
@@ -279,56 +447,154 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 
 <script>
 const translations = {
-  es: {
-    nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
-    back:"Volver a proyectos",
-    case_eyebrow:"Viz Flowics · UX/UI · Gestión de datos",
-    case_title:"Data Augmentation",
-    case_summary:"Un sistema para editar datasets grandes sin romper nada: exportar, editar en Google Sheets, simular el resultado, importar con auditoría.",
-    tag_nda:"Bajo NDA", tag_role:"UX/UI Design", tag_year:"2024",
-    nda_notice:"Imágenes desenfocadas por confidencialidad — incluyen datos internos de la empresa.",
-    under_nda:"Bajo NDA",
-    label_problem:"El problema",
-    problem_h:"Editar un dataset grande era lento, manual y sin red de seguridad",
-    problem_p1:"No había forma de editar datos a gran escala sin tocar cada registro a mano dentro del producto. Tampoco existía un proceso de validación: un error en una edición masiva llegaba directo a producción, sin previsualización ni forma de auditar qué había cambiado.",
-    problem_p2:"<strong>El riesgo:</strong> cuanto más crecía una cuenta, más grande era el dataset, y más caro se volvía cualquier error de edición.",
-    label_approach:"El enfoque",
-    approach_h:"Exportar, editar afuera, simular antes de importar",
-    approach_p1:"Diseñé un flujo de tres pasos: exportar el dataset a Google Sheets (una herramienta que los equipos ya conocían), editar ahí con todas las funciones de una planilla, e importar de vuelta con una simulación previa que mostraba exactamente qué iba a cambiar antes de confirmar nada.",
-    approach_p2:"Sumé un sistema de auditoría que registra cada importación: quién la hizo, cuándo, y qué cambió — así cualquier edición masiva queda trazada y es reversible.",
-    report_h:"El reporte previo a importar", report_hint:"↕ Desplazá para ver el reporte completo",
-    report_p:"Antes de confirmar, el equipo ve un reporte completo de la simulación: cuántas claves existen y cuántas quedarán, cuáles tienen errores y por qué, y el detalle de cada actualización, inserción y eliminación. Cada grupo de cambios se puede incluir o excluir con un check.",
-    label_impact:"El impacto",
-    impact_h:"Ediciones masivas sin miedo a romper producción",
-    impact_p1:"Los equipos pasaron de editar registro por registro a manejar datasets completos con confianza: la simulación previa elimina las sorpresas, y el historial de auditoría da trazabilidad total sobre qué cambió y quién lo hizo.",
-    next_eyebrow:"Siguiente caso", next_title:"Custom Fonts", next_cta:"Ver caso",
-    footer_note:"Buenos Aires, Argentina"
-  },
-  en: {
-    nav_work:"Work", nav_about:"About", nav_contact:"Contact",
-    back:"Back to work",
-    case_eyebrow:"Viz Flowics · UX/UI · Data tooling",
-    case_title:"Data Augmentation",
-    case_summary:"A system for editing large datasets without breaking anything: export, edit in Google Sheets, simulate the result, import with an audit trail.",
-    tag_nda:"Under NDA", tag_role:"UX/UI Design", tag_year:"2024",
-    nda_notice:"Images blurred for confidentiality — they include internal company data.",
-    under_nda:"Under NDA",
-    label_problem:"The problem",
-    problem_h:"Editing a large dataset was slow, manual, and had no safety net",
-    problem_p1:"There was no way to edit data at scale without touching each record by hand inside the product. There was also no validation step: an error in a bulk edit went straight to production, with no preview and no way to audit what had changed.",
-    problem_p2:"<strong>The risk:</strong> the bigger an account grew, the bigger its dataset, and the more expensive any editing mistake became.",
-    label_approach:"The approach",
-    approach_h:"Export, edit outside, simulate before importing",
-    approach_p1:"I designed a three-step flow: export the dataset to Google Sheets (a tool teams already knew), edit there with full spreadsheet functionality, and import back with a pre-import simulation that showed exactly what would change before confirming anything.",
-    approach_p2:"I added an audit system that logs every import — who did it, when, and what changed — so any bulk edit stays traceable and reversible.",
-    report_h:"The pre-import report", report_hint:"↕ Scroll to see the full report",
-    report_p:"Before confirming, the team sees a full simulation report: how many keys exist and how many will remain, which ones have errors and why, and the detail of every update, insertion and deletion. Each group of changes can be included or excluded with a checkbox.",
-    label_impact:"The impact",
-    impact_h:"Bulk edits without fear of breaking production",
-    impact_p1:"Teams went from editing record by record to handling full datasets with confidence: the pre-import simulation removes the surprises, and the audit trail gives full traceability over what changed and who did it.",
-    next_eyebrow:"Next case", next_title:"Custom Fonts", next_cta:"View case",
-    footer_note:"Buenos Aires, Argentina"
-  }
+ "es": {
+  "nav_work": "Proyectos",
+  "nav_about": "Sobre mí",
+  "nav_contact": "Contacto",
+  "back": "Volver a proyectos",
+  "next_eyebrow": "Siguiente caso",
+  "next_cta": "Ver caso",
+  "footer_note": "Buenos Aires, Argentina",
+  "under_nda": "Bajo NDA",
+  "case_eyebrow": "Viz Flowics (Vizrt) · Product Design · 2024",
+  "case_title": "Data Augmentation",
+  "case_summary": "Diseño de un sistema de <strong>edición masiva de datos</strong> para una plataforma SaaS B2B de gráficos en vivo: edición en Google Sheets, simulación de cada cambio antes de aplicarlo y trazabilidad completa de las importaciones.",
+  "tag_nda": "Bajo NDA",
+  "tag_role": "Research · UX · UI · Testing",
+  "tag_year": "SaaS B2B",
+  "nda_notice": "Imágenes desenfocadas por confidencialidad — incluyen datos internos de la empresa.",
+  "role_badge": "Única diseñadora<br>del proyecto",
+  "role_p": "Lideré el diseño de punta a punta, desde la investigación hasta el handoff a desarrollo, en coordinación con producto e ingeniería. <strong>Diez meses de trabajo durante 2024</strong>, con entrevistas y pruebas de usabilidad con usuarios de la plataforma.",
+  "stat_1": "tickets de soporte vinculados a la edición de datos",
+  "stat_2": "usuarios en entrevistas y pruebas de usabilidad",
+  "stat_3": "pasos: exportar, editar y simular antes de importar",
+  "stat_4": "meses de proyecto, de la investigación al lanzamiento",
+  "context_h": "Datos críticos para la emisión, editados registro por registro",
+  "context_p1": "Las Data Augmentations permiten enriquecer o modificar la información que llega desde los conectores de datos antes de utilizarla en los gráficos: valores propios de cada producción, como colores, imágenes o abreviaturas de equipos, que se integran con las fuentes existentes para alimentar estadísticas, marcadores y datos contextuales en tiempo real. A medida que las cuentas crecían, también lo hacían estos conjuntos de datos.",
+  "context_p2": "No existía una forma de editarlos a gran escala: cada registro se modificaba manualmente dentro del producto, o se solicitaba al equipo de soporte. Tampoco había un proceso de validación, por lo que un error en una edición masiva llegaba directamente a producción, sin previsualización ni registro de lo modificado.",
+  "context_p3": "<strong>El riesgo:</strong> cuanto más grande era el conjunto de datos, más costoso resultaba cualquier error, en un contexto de emisión en vivo donde no hay margen para corregir sobre la marcha.",
+  "label_context": "Contexto",
+  "research_h": "Entender cómo trabajaban los equipos antes de diseñar",
+  "research_p1": "Realicé entrevistas y pruebas de usabilidad con 15 usuarios de la plataforma para comprender cómo gestionaban estos datos y dónde se originaban las fricciones. El análisis permitió identificar cuatro necesidades principales:",
+  "label_research": "Investigación",
+  "n1_t": "Trabajar con herramientas conocidas",
+  "n1_d": "Los equipos ya gestionaban sus datos en planillas; replicar esa lógica dentro del producto implicaba una curva de aprendizaje innecesaria.",
+  "n2_t": "Anticipar el impacto de cada cambio",
+  "n2_d": "La falta de previsualización generaba temor a afectar gráficos en vivo y desalentaba las ediciones masivas.",
+  "n3_t": "Autonomía frente a soporte",
+  "n3_d": "Depender del equipo de soporte para cambios rutinarios generaba demoras en momentos críticos de la producción.",
+  "n4_t": "Trazabilidad",
+  "n4_d": "En cuentas con varios operadores, era necesario saber quién había modificado qué y cuándo.",
+  "solution_h": "Editar fuera del producto, validar dentro de él",
+  "solution_p1": "Diseñé un flujo en tres pasos que aprovecha una herramienta que los equipos ya dominaban y concentra la validación dentro de la plataforma:",
+  "label_solution": "Solución",
+  "f1_t": "Exportar",
+  "f1_d": "El conjunto de datos se exporta a una planilla de Google Sheets creada automáticamente en la cuenta del usuario.",
+  "f2_t": "Editar",
+  "f2_d": "Los cambios se realizan con todas las funciones de una planilla: fórmulas, copiado masivo y colaboración.",
+  "f3_t": "Simular e importar",
+  "f3_d": "Antes de aplicar los cambios, la plataforma genera un reporte con el impacto exacto de la importación.",
+  "report_hint": "↕ Desplazá para ver el reporte completo",
+  "report_h": "Cada cambio, visible y controlable antes de confirmar",
+  "report_p1": "El reporte de simulación es la pieza central del sistema. Presenta primero los errores que impiden la importación, con su causa y código, para que puedan corregirse en la planilla y actualizar el reporte sin reiniciar el proceso.",
+  "report_p2": "Luego detalla cada actualización, inserción y eliminación, con el valor anterior y el nuevo. Cada grupo de cambios puede incluirse o excluirse de forma independiente, lo que permite aplicar una edición de manera parcial y controlada.",
+  "cap_report": "Reporte completo: errores con su causa, cambios agrupados por tipo y selección de los grupos a importar.",
+  "label_report": "Reporte de simulación",
+  "trace_h": "Un cierre claro y un historial auditable",
+  "trace_p1": "Al confirmar, el sistema resume los cambios aplicados y actualiza el panel con el nuevo total de registros. Cada importación queda registrada con su autor y su fecha, de modo que cualquier edición masiva resulta trazable.",
+  "cap_trace": "Confirmación con el resumen de cambios aplicados y panel actualizado con el registro de la última importación.",
+  "label_trace": "Confirmación y trazabilidad",
+  "impact_h": "Ediciones masivas sin riesgo para producción",
+  "impact_p1": "El flujo se validó con los mismos 15 usuarios que participaron de la investigación, iterando sobre la claridad del reporte y la recuperación ante errores antes del lanzamiento.",
+  "imp1_l": "Soporte",
+  "imp1_d": "tickets de soporte vinculados a la edición de datos.",
+  "imp2_l": "Autonomía",
+  "imp2_d": "Los equipos realizan las ediciones rutinarias sin depender de soporte, lo que redujo la fricción por demoras.",
+  "impact_p2": "Los equipos pasaron de editar registro por registro a gestionar conjuntos de datos completos con confianza: la simulación previa elimina las sorpresas y el historial de importaciones aporta trazabilidad sobre cada cambio.",
+  "label_impact": "Validación e impacto",
+  "learn_h": "Rol y criterios de diseño",
+  "learn_p1": "Como única diseñadora del proyecto, fui responsable de la investigación, la definición del flujo, el diseño de interfaz y el handoff a desarrollo.",
+  "l1": "<strong>Diseñar sobre hábitos existentes.</strong> Integrar una herramienta que los usuarios ya dominaban, en lugar de replicarla dentro del producto.",
+  "l2": "<strong>Prevenir antes que corregir.</strong> La simulación traslada la detección de errores a un momento sin consecuencias.",
+  "l3": "<strong>Control granular.</strong> Cada grupo de cambios se confirma de forma independiente, sin forzar decisiones de todo o nada.",
+  "l4": "<strong>Trazabilidad por defecto.</strong> Cada importación queda registrada sin pasos adicionales para el usuario.",
+  "learn_p2": "<strong>En retrospectiva:</strong> definiría desde el inicio una línea de base del tiempo que demandaba cada edición, para cuantificar el ahorro además de la reducción de tickets. También evaluaría incorporar la edición directa en el producto para cambios puntuales, reservando el flujo con planilla para las ediciones masivas.",
+  "label_learn": "Rol y criterios"
+ },
+ "en": {
+  "nav_work": "Work",
+  "nav_about": "About",
+  "nav_contact": "Contact",
+  "back": "Back to work",
+  "next_eyebrow": "Next case",
+  "next_cta": "View case",
+  "footer_note": "Buenos Aires, Argentina",
+  "under_nda": "Under NDA",
+  "case_eyebrow": "Viz Flowics (Vizrt) · Product Design · 2024",
+  "case_title": "Data Augmentation",
+  "case_summary": "Design of a <strong>bulk data editing</strong> system for a B2B SaaS live graphics platform: editing in Google Sheets, a simulation of every change before it is applied, and full traceability of imports.",
+  "tag_nda": "Under NDA",
+  "tag_role": "Research · UX · UI · Testing",
+  "tag_year": "B2B SaaS",
+  "nda_notice": "Images blurred for confidentiality — they include internal company data.",
+  "role_badge": "Sole designer<br>on the project",
+  "role_p": "I led design end to end, from research through hand-off to engineering, in coordination with product and engineering. <strong>Ten months of work during 2024</strong>, with interviews and usability testing with platform users.",
+  "stat_1": "support tickets related to data editing",
+  "stat_2": "users in interviews and usability testing",
+  "stat_3": "steps: export, edit and simulate before importing",
+  "stat_4": "months of work, from research to launch",
+  "context_h": "Broadcast-critical data, edited one record at a time",
+  "context_p1": "Data Augmentations let teams enrich or modify the information coming from data connectors before using it in graphics: production-specific values, such as team colors, images or abbreviations, that are merged with existing sources to power real-time stats, scoreboards and contextual data. As accounts grew, so did these datasets.",
+  "context_p2": "There was no way to edit them at scale: each record was changed manually inside the product, or requested from the support team. Nor was there any validation, so an error in a bulk edit went straight to production, with no preview and no record of what had changed.",
+  "context_p3": "<strong>The risk:</strong> the larger the dataset, the more costly any error became, in a live broadcast context with no room to correct on the fly.",
+  "label_context": "Context",
+  "research_h": "Understanding how teams worked before designing",
+  "research_p1": "I ran interviews and usability tests with 15 platform users to understand how they managed this data and where friction originated. The analysis surfaced four main needs:",
+  "label_research": "Research",
+  "n1_t": "Working with familiar tools",
+  "n1_d": "Teams already managed their data in spreadsheets; replicating that logic inside the product meant an unnecessary learning curve.",
+  "n2_t": "Anticipating the impact of every change",
+  "n2_d": "The lack of a preview created fear of affecting live graphics and discouraged bulk edits.",
+  "n3_t": "Independence from support",
+  "n3_d": "Relying on the support team for routine changes caused delays at critical moments of production.",
+  "n4_t": "Traceability",
+  "n4_d": "In accounts with several operators, it was necessary to know who changed what and when.",
+  "solution_h": "Edit outside the product, validate inside it",
+  "solution_p1": "I designed a three-step flow that leverages a tool teams already mastered and keeps validation inside the platform:",
+  "label_solution": "Solution",
+  "f1_t": "Export",
+  "f1_d": "The dataset is exported to a Google Sheets spreadsheet created automatically in the user's account.",
+  "f2_t": "Edit",
+  "f2_d": "Changes are made with every spreadsheet capability: formulas, bulk copy and collaboration.",
+  "f3_t": "Simulate and import",
+  "f3_d": "Before changes are applied, the platform generates a report showing the exact impact of the import.",
+  "report_hint": "↕ Scroll to see the full report",
+  "report_h": "Every change, visible and controllable before confirming",
+  "report_p1": "The simulation report is the core of the system. It first presents the errors that block the import, with their cause and code, so they can be fixed in the spreadsheet and the report refreshed without restarting the process.",
+  "report_p2": "It then details every update, insertion and deletion, with the previous and new value. Each group of changes can be included or excluded independently, allowing a partial, controlled edit.",
+  "cap_report": "Full report: errors with their cause, changes grouped by type and selection of the groups to import.",
+  "label_report": "Simulation report",
+  "trace_h": "A clear close and an auditable history",
+  "trace_p1": "On confirmation, the system summarizes the applied changes and updates the dashboard with the new record total. Every import is logged with its author and date, so any bulk edit is traceable.",
+  "cap_trace": "Confirmation with a summary of applied changes, and the updated dashboard showing the latest import record.",
+  "label_trace": "Confirmation and traceability",
+  "impact_h": "Bulk edits without risk to production",
+  "impact_p1": "The flow was validated with the same 15 users who took part in the research, iterating on report clarity and error recovery before launch.",
+  "imp1_l": "Support",
+  "imp1_d": "support tickets related to data editing.",
+  "imp2_l": "Autonomy",
+  "imp2_d": "Teams make routine edits without relying on support, which reduced friction from delays.",
+  "impact_p2": "Teams went from editing record by record to managing complete datasets with confidence: the prior simulation removes surprises and the import history provides traceability for every change.",
+  "label_impact": "Validation and impact",
+  "learn_h": "Role and design principles",
+  "learn_p1": "As the sole designer on the project, I was responsible for research, flow definition, interface design and hand-off to engineering.",
+  "l1": "<strong>Designing on existing habits.</strong> Integrating a tool users already mastered instead of replicating it inside the product.",
+  "l2": "<strong>Prevent rather than correct.</strong> The simulation moves error detection to a moment without consequences.",
+  "l3": "<strong>Granular control.</strong> Each group of changes is confirmed independently, without forcing all-or-nothing decisions.",
+  "l4": "<strong>Traceability by default.</strong> Every import is logged with no extra steps for the user.",
+  "learn_p2": "<strong>In retrospect:</strong> I would set a baseline for the time each edit took from the start, to quantify time savings in addition to the drop in tickets. I would also consider adding direct in-product editing for one-off changes, keeping the spreadsheet flow for bulk edits.",
+  "label_learn": "Role and principles"
+ }
 };
 
 function setLang(lang){
@@ -340,12 +606,14 @@ function setLang(lang){
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
   });
   document.documentElement.lang = lang;
-  localStorage.setItem('preferredLang', lang);
+  try{ localStorage.setItem('preferredLang', lang); }catch(e){}
 }
 document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
 });
-setLang(localStorage.getItem('preferredLang') || 'es');
+let saved = 'es';
+try{ saved = localStorage.getItem('preferredLang') || 'es'; }catch(e){}
+setLang(saved);
 
 document.querySelectorAll('.case-scroll .case-img').forEach(v=>{
   v.addEventListener('scroll', ()=> v.parentElement.classList.toggle('scrolled', v.scrollTop > 24), {passive:true});
