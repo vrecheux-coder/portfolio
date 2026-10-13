@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Heroless — Vanesa Reche</title>
-<meta name="description" content="Caso de estudio: diseño de UI para Heroless, platformer hecho en 96 horas para la GMTK Game Jam 2026.">
+<meta name="description" content="Caso de estudio: diseño de UI para Heroless, un platformer desarrollado en 96 horas para la GMTK Game Jam 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -56,27 +56,8 @@ a{color:inherit;text-decoration:none}
 .lang-btn{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.04em;background:none;border:0;padding:.4rem .8rem;cursor:pointer;color:#B8B4A6;border-radius:var(--r-pill)}
 .lang-btn[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
 
-/* nav hamburger — hidden on desktop */
-.nav-toggle{
-  display:none;
-  flex-direction:column;
-  justify-content:center;
-  gap:5px;
-  width:38px;
-  height:38px;
-  background:none;
-  border:0;
-  cursor:pointer;
-  padding:0;
-  flex-shrink:0;
-}
-.nav-toggle span{
-  display:block;
-  width:100%;
-  height:2px;
-  background:var(--ink);
-  transition:transform .25s ease, opacity .25s ease;
-}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:0;cursor:pointer;padding:0;flex-shrink:0}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--ink);transition:transform .25s ease, opacity .25s ease}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
@@ -88,47 +69,147 @@ a{color:inherit;text-decoration:none}
 .case-eyebrow-row{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3);flex-wrap:wrap}
 .case-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;color:var(--pink-text)}
 .case-title{font-size:clamp(2.6rem,6.5vw,5.2rem);max-width:16ch}
-.case-meta-row{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-4)}
+.case-meta-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:var(--sp-4)}
 .tag{font-size:.78rem;font-weight:500;border:1.5px solid var(--pink-text);color:var(--pink-text);padding:.4rem .85rem;border-radius:var(--r-pill)}
 .tag-neutral{border-color:var(--ink);color:var(--ink)}
 .tag-ok{border-color:#2F6E44;color:#2F6E44}
-.case-summary{max-width:56ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.case-summary{max-width:60ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.case-summary strong{color:var(--ink);font-weight:600}
 
-.team-notice{display:block;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-md);padding:.9rem 1.1rem;font-size:.85rem;line-height:1.55;color:var(--ink-soft);margin-top:var(--sp-4);max-width:60ch}
-.team-notice .icon{margin-right:.4rem}
-.team-notice a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:2px}
-.team-notice a:hover{color:var(--pink-text)}
+.hero-ctas{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-4)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.92rem;padding:.9rem 1.5rem;border-radius:var(--r-pill);border:1.5px solid var(--ink)}
+.btn-primary{background:var(--ink);color:var(--cream)}
+.btn-primary:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+.btn-ghost:hover{background:var(--ink);color:var(--cream)}
 
-.case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/8.5;margin-top:var(--sp-5);background:var(--ink)}
-.case-cover img{width:100%;height:100%;object-fit:contain}
+/* academic band */
+.academic{margin-top:var(--sp-5);display:grid;grid-template-columns:auto 1fr;gap:var(--sp-3);align-items:center;background:var(--pink-pale);border:1.5px solid var(--pink-soft);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4)}
+.academic-badge{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;line-height:1.1;color:var(--pink-text);border-right:1.5px solid var(--pink-soft);padding-right:var(--sp-3)}
+.academic p{font-size:.95rem;color:var(--ink-soft);max-width:80ch}
+.academic p strong{color:var(--ink);font-weight:600}
 
-.play-cta{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-4)}
-.play-cta a{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.92rem;padding:.9rem 1.5rem;border-radius:var(--r-pill)}
-.play-primary{background:var(--ink);color:var(--cream)}
-.play-primary:hover{background:var(--pink);color:#fff}
-.play-secondary{border:1.5px solid var(--ink)}
-.play-secondary:hover{background:var(--ink);color:var(--cream)}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2);margin-top:var(--sp-4)}
+.stat{background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3)}
+.stat-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1;letter-spacing:-.02em}
+.stat-num .accent{color:var(--pink-text)}
+.stat-label{font-size:.85rem;color:var(--ink-soft);margin-top:.5rem;line-height:1.4}
 
+.case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/8.5;margin-top:var(--sp-5);background:var(--cream-2);border:1.5px solid var(--line)}
+.case-cover img{width:100%;height:100%;object-fit:cover;object-position:top;filter:blur(20px) saturate(1.15);transform:scale(1.08)}
+.case-cover-lock{position:absolute;right:18px;bottom:18px;display:inline-flex;align-items:center;gap:.5rem;background:var(--ink);color:var(--cream);font-size:.78rem;font-weight:600;padding:.55rem 1rem;border-radius:var(--r-pill);z-index:2}
+.nda-notice{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:.5rem 1rem;font-size:.8rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.cover-labels{display:flex;justify-content:center;gap:var(--sp-6);margin-top:var(--sp-2)}
+.cover-labels span{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.cover-labels span:last-child{color:var(--pink-text)}
+
+/* sections */
 .case-section{padding:var(--sp-6) 0;border-top:1.5px solid var(--line)}
 .case-section-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:var(--sp-6)}
 .case-section-label{position:sticky;top:110px;align-self:start}
+.case-section-label .step{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.4rem;line-height:1;color:var(--pink-soft);margin-bottom:.4rem}
+.case-section-body{min-width:0}
 .case-section-body h2{font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:var(--sp-3)}
+.case-section-body h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.2rem;margin:var(--sp-4) 0 .6rem;letter-spacing:-.01em}
 .case-section-body p{max-width:64ch;color:var(--ink-soft);margin-bottom:1rem;font-size:1.02rem}
 .case-section-body p strong{color:var(--ink);font-weight:600}
 
-.case-img{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/10;margin-top:var(--sp-4);border:1.5px solid var(--line);background:var(--cream-2)}
-.case-img img{width:100%;height:100%;object-fit:contain;display:block}
-.case-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)}
+/* process */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.phase{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:var(--cream-2)}
+.phase-name{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink-text);margin-bottom:.6rem}
+.phase ul{list-style:none;font-size:.88rem;color:var(--ink)}
+.phase li{padding:.3rem 0;border-top:1px solid var(--line)}
+.phase li:first-child{border-top:0}
 
-.ranking-stat{display:flex;flex-wrap:wrap;gap:var(--sp-4);margin:var(--sp-4) 0;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--sp-4)}
-.ranking-item{min-width:120px}
-.ranking-item .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.6rem;color:var(--pink-text)}
-.ranking-item .label{font-size:.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;font-family:'Space Mono',monospace}
+/* findings */
+.findings{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.finding{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:#fff}
+.case-section-body .finding-num{margin:0;max-width:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.2rem;line-height:1;color:var(--pink-text)}
+.finding p{margin:.5rem 0 0;font-size:.92rem;color:var(--ink-soft)}
+.insight{margin-top:var(--sp-3);border-left:4px solid var(--pink);background:var(--cream-2);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:var(--sp-3)}
+.insight p{margin:0;color:var(--ink);font-size:1.05rem;max-width:none}
+.insight .eyebrow{display:block;margin-bottom:.4rem;color:var(--pink-text)}
+
+/* bars */
+.bars{margin-top:var(--sp-3);display:grid;gap:.9rem}
+.bar-row{display:grid;grid-template-columns:minmax(150px,220px) 1fr 76px;gap:var(--sp-2);align-items:center;font-size:.9rem}
+.bar-track{height:12px;background:var(--cream-2);border-radius:var(--r-pill);overflow:hidden;border:1px solid var(--line)}
+.bar-fill{height:100%;background:var(--ink);border-radius:var(--r-pill)}
+.bar-fill.pink{background:var(--pink)}
+.bar-val{font-family:'Space Mono',monospace;font-size:.82rem;text-align:right;white-space:nowrap}
+.bar-caption{font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
+
+/* tables */
+.table-wrap{margin-top:var(--sp-3);overflow-x:auto;border:1.5px solid var(--line);border-radius:var(--r-md);background:#fff}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+th,td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:'Space Mono',monospace;font-weight:400;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:var(--cream-2)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:'Space Mono',monospace;white-space:nowrap}
+.pill-low{display:inline-block;background:var(--pink-pale);color:var(--pink-text);border-radius:var(--r-pill);padding:.1rem .6rem;font-weight:600}
+.pill-ok{display:inline-block;background:#E3EFE6;color:#2F6E44;border-radius:var(--r-pill);padding:.1rem .6rem;font-weight:600}
+
+/* MVP list */
+.mvp{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.mvp-item{border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3)}
+.mvp-item strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.3rem}
+.mvp-item span{font-size:.9rem;color:var(--ink-soft)}
+
+/* images */
+.case-img{position:relative;margin-top:var(--sp-3);border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/9;border:1.5px solid var(--line);background:var(--cream-2)}
+.case-img.wide{aspect-ratio:2400/700}
+.case-img img{width:100%;height:100%;object-fit:cover;object-position:top;filter:blur(16px) saturate(1.15);transform:scale(1.08)}
+.case-img-lock{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:.4rem;background:var(--ink);color:var(--cream);font-size:.72rem;font-weight:600;padding:.45rem .85rem;border-radius:var(--r-pill);z-index:2}
+.img-pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2)}
+.img-pair .case-img{margin-top:var(--sp-3)}
+.role-band{margin-top:var(--sp-5);display:grid;grid-template-columns:auto 1fr;gap:var(--sp-3);align-items:center;background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4)}
+.role-band .academic-badge{color:var(--ink);border-right-color:var(--line)}
+.role-band p{font-size:.95rem;color:var(--ink-soft);max-width:80ch}
+.role-band p strong{color:var(--ink);font-weight:600}
+.img-caption{font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
+.phone-row{display:flex;gap:var(--sp-3);margin-top:var(--sp-3);flex-wrap:wrap;background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-4);justify-content:center}
+.phone-mock{position:relative;width:170px;aspect-ratio:9/18.5;border-radius:20px;flex-shrink:0;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+.phone-mock img{width:100%;height:100%;object-fit:contain;display:block}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.case-section-body .quote{margin:0;max-width:none;color:var(--ink);font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.1rem;line-height:1.3;background:var(--cream-2);border-radius:var(--r-md);padding:var(--sp-3)}
+.quote::before{content:"“";color:var(--pink);font-size:1.6rem;line-height:0;margin-right:.15rem;vertical-align:-.35rem}
+
+/* A/B */
+.ab{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.ab-card{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:#fff}
+.ab-card.win{border-color:var(--pink-text)}
+.ab-card .eyebrow{display:block;margin-bottom:.5rem}
+.case-section-body .ab-card .stat-num{font-size:2.6rem;color:var(--ink);margin:0}
+.case-section-body .ab-card.win .stat-num{color:var(--pink-text)}
+.ab-card p{font-size:.88rem;margin:.4rem 0 0}
+
+/* learnings */
+.learn{list-style:none;margin-top:var(--sp-3);display:grid;gap:.8rem;max-width:64ch}
+.learn li{position:relative;padding-left:1.8rem;color:var(--ink-soft)}
+.learn li::before{content:"→";position:absolute;left:0;color:var(--pink-text);font-weight:700}
+.learn li strong{color:var(--ink);font-weight:600}
+
+/* resources */
+.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.resource{display:flex;flex-direction:column;justify-content:space-between;gap:var(--sp-2);border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3);min-height:170px;transition:background .2s,color .2s}
+.resource:hover{background:var(--ink);color:var(--cream)}
+.resource:hover .resource-desc{color:#C9C5B8}
+.resource.featured{background:var(--pink);border-color:var(--pink);color:#fff}
+.resource.featured .resource-desc{color:#FFE6F1}
+.resource.featured:hover{background:var(--ink);border-color:var(--ink)}
+.resource-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;line-height:1.1}
+.resource-desc{font-size:.85rem;color:var(--ink-soft)}
+.resource-arrow{font-weight:600;font-size:.9rem}
+
+.figma-embed-wrap{margin-top:var(--sp-4);border-radius:var(--r-md);overflow:hidden;border:1.5px solid var(--line)}
+.figma-embed-wrap iframe{width:100%;height:560px;border:0;display:block}
 
 .team-list{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
 .team-pill{font-size:.85rem;border:1.5px solid var(--line);padding:.5rem 1rem;border-radius:var(--r-pill);color:var(--ink)}
-.team-pill a{text-decoration:underline;text-underline-offset:2px}
-.team-pill a:hover{color:var(--pink-text)}
+.team-pill strong{font-weight:600}
 
 .next-case{background:var(--ink);color:var(--cream)}
 .next-case .container{padding:var(--sp-6) var(--sp-4);text-align:center}
@@ -139,37 +220,58 @@ a{color:inherit;text-decoration:none}
 
 footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
 
+@media (max-width:1000px){
+  .process{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .resources{grid-template-columns:1fr}
+}
 @media (max-width:900px){
   .nav-toggle{display:flex}
-  .nav-links{
-    position:absolute;
-    top:86px;
-    left:0;
-    right:0;
-    background:var(--cream);
-    flex-direction:column;
-    align-items:flex-start;
-    gap:var(--sp-3);
-    padding:var(--sp-4);
-    border-bottom:1.5px solid var(--ink);
-    transform:translateY(-8px);
-    opacity:0;
-    pointer-events:none;
-    transition:transform .2s ease, opacity .2s ease;
-  }
-  .nav-links.open{
-    transform:translateY(0);
-    opacity:1;
-    pointer-events:auto;
-  }
+  .nav-links{position:absolute;top:86px;left:0;right:0;background:var(--cream);flex-direction:column;align-items:flex-start;gap:var(--sp-3);padding:var(--sp-4);border-bottom:1.5px solid var(--ink);transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .2s ease, opacity .2s ease}
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
   .lang-toggle{margin-top:.5rem}
   .case-hero{padding:var(--sp-4) 0 var(--sp-5)}
   .case-section{padding:var(--sp-5) 0}
   .next-case .container{padding:var(--sp-5) var(--sp-4)}
   .case-section-inner{grid-template-columns:1fr;gap:var(--sp-3)}
-  .case-section-label{position:static}
-  .case-img-grid{grid-template-columns:1fr}
+  .case-section-label{position:static;display:flex;align-items:baseline;gap:.8rem}
+  .case-section-label .step{font-size:1.6rem;margin:0}
+  .academic{grid-template-columns:1fr}
+  .academic-badge{border-right:0;border-bottom:1.5px solid var(--pink-soft);padding:0 0 .8rem}
 }
+@media (max-width:620px){
+  .container{padding:0 var(--sp-2)}
+  .findings,.mvp,.quotes,.ab,.process{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:1fr 70px}
+  .bar-row .bar-label{grid-column:1 / -1}
+  .case-cover{padding:var(--sp-2)}
+  .cover-labels{gap:var(--sp-4)}
+  .figma-embed-wrap iframe{height:460px}
+  .phone-mock{width:140px}
+}
+
+.case-scroll{position:relative;margin-top:var(--sp-3);border-radius:var(--r-md);overflow:hidden;background:var(--cream-2);border:1.5px solid var(--line)}
+.case-scroll .case-img{margin-top:0;border-radius:0;border:0;aspect-ratio:auto;height:min(70vh,540px);overflow-y:auto;overscroll-behavior:auto;scrollbar-width:thin;scrollbar-color:var(--ink-soft) transparent}
+.case-scroll .case-img img{height:auto;display:block;object-fit:initial}
+.case-scroll .case-img:focus-visible{outline:3px solid var(--pink);outline-offset:-3px}
+.case-scroll::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(to top,rgba(20,19,16,.4),rgba(20,19,16,0));pointer-events:none;transition:opacity .3s}
+.case-scroll-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:2;background:var(--cream);color:var(--ink);font-size:.75rem;font-weight:600;padding:.5rem 1rem;border-radius:var(--r-pill);pointer-events:none;white-space:nowrap;transition:opacity .3s}
+.case-scroll.scrolled::after,.case-scroll.scrolled .case-scroll-hint{opacity:0}
+.case-scroll .case-img-lock{right:14px;top:14px;bottom:auto}
+.case-scroll:has(.nda-open) .case-img-lock{display:none}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);margin-top:var(--sp-3);counter-reset:flow}
+.flow-step{border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3);position:relative}
+.flow-step strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.3rem}
+.flow-step span{font-size:.9rem;color:var(--ink-soft)}
+.flow-step::before{counter-increment:flow;content:counter(flow,decimal-leading-zero);display:block;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--pink-text);margin-bottom:.6rem}
+@media (max-width:900px){.case-scroll .case-img{overflow:auto;height:min(65vh,480px)}.case-scroll .case-img img{width:720px;max-width:none}}
+@media (max-width:620px){.flow{grid-template-columns:1fr}}
+.case-cover{background:var(--ink)}
+.case-cover img{width:100%;height:100%;object-fit:contain;filter:none;transform:none;image-rendering:pixelated}
+.role-band a,.team-pill a{text-decoration:underline;text-underline-offset:3px}
+
+@media (max-width:900px){.role-band{grid-template-columns:1fr}.role-band .academic-badge{border-right:0;border-bottom:1.5px solid var(--line);padding:0 0 .8rem}}
+@media (max-width:620px){.img-pair{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -203,57 +305,83 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <p class="eyebrow" data-i18n="case_eyebrow">GMTK Game Jam 2026 · UI Design · Godot</p>
     </div>
     <h1 class="display case-title" data-i18n="case_title">Heroless</h1>
-    <p class="case-summary" data-i18n="case_summary">Diseño de UI para un platformer desarrollado en 96 horas para la GMTK Game Jam 2026, integrado al ritmo de producción de un game jam.</p>
+    <p class="case-summary" data-i18n="case_summary">Diseño de la interfaz de un videojuego de plataformas desarrollado en <strong>96 horas</strong> para la GMTK Game Jam 2026: menús, HUD y selección de habilidades, definidos e integrados al motor en paralelo con el desarrollo.</p>
     <div class="case-meta-row">
       <span class="tag tag-ok" data-i18n="tag_no_nda">✅ Sin NDA</span>
       <span class="tag tag-neutral" data-i18n="tag_role">UI Design</span>
       <span class="tag tag-neutral" data-i18n="tag_year">2026</span>
     </div>
-    <p class="team-notice"><span class="icon">👥</span><span data-i18n="team_notice">Proyecto de equipo — </span><a href="https://lgraziani2712.itch.io/" target="_blank" rel="noopener noreferrer">Luciano Graziani</a> <span data-i18n="team_role_1">(game design, level design, diseño de enemigos)</span>, <a href="https://notascientist.itch.io/" target="_blank" rel="noopener noreferrer">Matías Ricarte</a> <span data-i18n="team_role_2">(diseño de player y mecánicas)</span> <span data-i18n="team_and">y Vanesa Reche (UI Design)</span>.</p>
-
-    <div class="case-cover"><img src="images/heroless-cover.png" alt="Arte de portada de Heroless, pixel art con el nombre del juego" loading="lazy" style="image-rendering:pixelated"></div>
-
-    <div class="play-cta">
-      <a class="play-primary" href="https://lgraziani2712.itch.io/gmtk-2026" target="_blank" rel="noopener noreferrer"><span data-i18n="play_cta">Jugar en itch.io</span> ↗</a>
-      <a class="play-secondary" href="https://itch.io/jam/gmtk-jam-2026/rate/4806430" target="_blank" rel="noopener noreferrer"><span data-i18n="jam_cta">Ver en la GMTK Game Jam 2026</span> ↗</a>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://lgraziani2712.itch.io/gmtk-2026" target="_blank" rel="noopener noreferrer"><span data-i18n="play_cta">Jugar en itch.io</span> ↗</a>
+      <a class="btn btn-ghost" href="https://itch.io/jam/gmtk-jam-2026/rate/4806430" target="_blank" rel="noopener noreferrer"><span data-i18n="jam_cta">Ver en la GMTK Game Jam 2026</span> ↗</a>
     </div>
+
+    <div class="role-band">
+      <p class="academic-badge" data-i18n="role_badge">UI Design<br>en equipo de tres</p>
+      <p data-i18n="role_p">Diseñé la interfaz del juego en un equipo de tres personas, junto a <a href="https://lgraziani2712.itch.io/" target="_blank" rel="noopener noreferrer">Luciano Graziani</a> (game design, level design y diseño de enemigos) y <a href="https://notascientist.itch.io/" target="_blank" rel="noopener noreferrer">Matías Ricarte</a> (diseño del personaje y de las mecánicas). <strong>Proyecto de 96 horas</strong>, con la temática revelada al inicio de la competencia.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><p class="stat-num">96<span class="accent">h</span></p><p class="stat-label" data-i18n="stat_1">de competencia, desde la revelación del tema hasta la entrega</p></div>
+      <div class="stat"><p class="stat-num">10.591</p><p class="stat-label" data-i18n="stat_2">juegos presentados en la GMTK Game Jam 2026</p></div>
+      <div class="stat"><p class="stat-num">Top 30<span class="accent">%</span></p><p class="stat-label" data-i18n="stat_3">en Creatividad (puesto #2.900)</p></div>
+      <div class="stat"><p class="stat-num">Top 45<span class="accent">%</span></p><p class="stat-label" data-i18n="stat_4">en Arte (puesto #4.368)</p></div>
+    </div>
+
+    <div class="case-cover"><img src="images/heroless-cover.png" alt="Arte de portada de Heroless, en pixel art con el nombre del juego" loading="lazy"></div>
   </div>
 </header>
 
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_problem">El problema</p></div>
+    <div class="case-section-label"><p class="step">01</p><p class="eyebrow" data-i18n="label_context">Contexto</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="problem_h">Diseñar una UI coherente bajo un límite de tiempo extremo</h2>
-      <p data-i18n="problem_p1">El tema de la jam (<em data-i18n="theme_word">Countdown</em>) se revela recién al arrancar, así que no hay research previo ni margen para iterar con calma: la interfaz tiene que definirse, integrarse al motor y funcionar dentro de las 96 horas que dura la competencia.</p>
+      <h2 data-i18n="context_h">Una interfaz coherente bajo un límite de tiempo extremo</h2>
+      <p data-i18n="context_p1">En una game jam, la temática se revela recién al comenzar la competencia. En la GMTK Game Jam 2026 fue <em>Countdown</em>, lo que eliminó cualquier posibilidad de investigación previa.</p>
+      <p data-i18n="context_p2"><strong>El desafío:</strong> definir la interfaz, integrarla al motor de juego y asegurar su funcionamiento dentro de las 96 horas de competencia, sin margen para iteraciones extensas y en paralelo con el desarrollo del resto del juego.</p>
     </div>
   </div>
 </section>
-
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_approach">El enfoque</p></div>
+    <div class="case-section-label"><p class="step">02</p><p class="eyebrow" data-i18n="label_approach">Enfoque</p></div>
     <div class="case-section-body">
       <h2 data-i18n="approach_h">Priorizar velocidad sin resignar consistencia</h2>
-      <p data-i18n="approach_p1">Mapeé primero qué necesitaba el juego —menús, HUD, selección de habilidades— y qué recursos de pixel art ya estaban disponibles, para enfocar el diseño en la interfaz y no en generar arte fuera de mi rol. Diseñé pensando en la lectura rápida propia del pixel art, y coordiné con el resto del equipo por Trello y GitHub para no bloquear el desarrollo, que avanzaba en paralelo.</p>
+      <p data-i18n="approach_p1">Con un plazo tan acotado, el enfoque se basó en tres decisiones tomadas desde el primer día:</p>
+      <div class="flow">
+        <div class="flow-step"><strong data-i18n="a1_t">Relevar antes de diseñar</strong><span data-i18n="a1_d">Mapeé qué necesitaba el juego (menús, HUD y selección de habilidades) y qué recursos de pixel art ya estaban disponibles, para concentrar el esfuerzo en la interfaz.</span></div>
+        <div class="flow-step"><strong data-i18n="a2_t">Diseñar para la lectura rápida</strong><span data-i18n="a2_d">Cada elemento se diseñó considerando la legibilidad propia del pixel art, donde la jerarquía y el contraste definen la comprensión inmediata.</span></div>
+        <div class="flow-step"><strong data-i18n="a3_t">Coordinar sin bloquear</strong><span data-i18n="a3_d">La coordinación mediante Trello y GitHub permitió integrar la interfaz sin detener el desarrollo, que avanzaba en paralelo.</span></div>
+      </div>
     </div>
   </div>
 </section>
-
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_impact">El impacto</p></div>
+    <div class="case-section-label"><p class="step">03</p><p class="eyebrow" data-i18n="label_impact">Resultado</p></div>
     <div class="case-section-body">
       <h2 data-i18n="impact_h">Un juego terminado, jugable y con buena recepción</h2>
-      <p data-i18n="impact_p1"><em data-i18n="game_name">Heroless</em> se publicó a tiempo, es jugable desde el navegador y tuvo devoluciones positivas dentro de la jam. El proyecto fue una oportunidad de aplicar principios de UX/UI —jerarquía, lectura rápida, consistencia visual— en un contexto de producción distinto al de producto digital: tiempos comprimidos, un motor de juego y trabajo en equipo bajo presión real.</p>
-
-      <div class="ranking-stat">
-        <div class="ranking-item"><div class="num">Top 30%</div><div class="label" data-i18n="rank_creativity">Creatividad · #2.900</div></div>
-        <div class="ranking-item"><div class="num">Top 45%</div><div class="label" data-i18n="rank_artwork">Arte · #4.368</div></div>
-        <div class="ranking-item"><div class="num">10.591</div><div class="label" data-i18n="rank_total">Juegos presentados en la jam</div></div>
+      <p data-i18n="impact_p1"><em>Heroless</em> se publicó a tiempo, puede jugarse desde el navegador y recibió devoluciones positivas dentro de la jam. Sobre un total de 10.591 juegos presentados, obtuvo las siguientes posiciones:</p>
+      <div class="ab">
+        <div class="ab-card win"><span class="eyebrow" data-i18n="imp1_l">Creatividad</span><p class="stat-num">Top 30%</p><p data-i18n="imp1_d">Puesto #2.900 sobre 10.591 juegos.</p></div>
+        <div class="ab-card win"><span class="eyebrow" data-i18n="imp2_l">Arte</span><p class="stat-num">Top 45%</p><p data-i18n="imp2_d">Puesto #4.368 sobre 10.591 juegos.</p></div>
       </div>
-      <p data-i18n="impact_p2">Sobre ese total, <em data-i18n="game_name_2">Heroless</em> terminó en el top 30% en Creatividad y en el top 45% en Arte — un resultado sólido para un equipo de tres personas trabajando contra el reloj.</p>
-
+      <p style="margin-top:var(--sp-3)" data-i18n="impact_p2">Un resultado sólido para un equipo de tres personas trabajando contra el reloj.</p>
+    </div>
+  </div>
+</section>
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">04</p><p class="eyebrow" data-i18n="label_learn">Rol y criterios</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="learn_h">Rol y criterios de diseño</h2>
+      <p data-i18n="learn_p1">Fui responsable del diseño de la interfaz del juego. El proyecto permitió aplicar principios de UX/UI en un contexto de producción distinto al del producto digital: plazos comprimidos, un motor de juego y trabajo en equipo bajo presión real.</p>
+      <ul class="learn">
+        <li data-i18n="l1"><strong>Jerarquía.</strong> Priorizar la información que el jugador necesita en cada momento de la partida.</li>
+        <li data-i18n="l2"><strong>Lectura rápida.</strong> Diseñar para una comprensión inmediata, adecuada al ritmo del juego y a las restricciones del pixel art.</li>
+        <li data-i18n="l3"><strong>Consistencia visual.</strong> Mantener un lenguaje coherente entre menús, HUD y selección de habilidades.</li>
+        <li data-i18n="l4"><strong>Foco en el rol.</strong> Concentrar el esfuerzo en la interfaz y trabajar sobre los recursos existentes para no bloquear al equipo.</li>
+      </ul>
       <div class="team-list">
         <span class="team-pill"><a href="https://lgraziani2712.itch.io/" target="_blank" rel="noopener noreferrer">Luciano Graziani</a></span>
         <span class="team-pill"><a href="https://notascientist.itch.io/" target="_blank" rel="noopener noreferrer">Matías Ricarte</a></span>
@@ -282,64 +410,112 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 
 <script>
 const translations = {
-  es: {
-    nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
-    back:"Volver a proyectos",
-    case_eyebrow:"GMTK Game Jam 2026 · UI Design · Godot",
-    case_title:"Heroless",
-    case_summary:"Diseño de UI para un platformer desarrollado en 96 horas para la GMTK Game Jam 2026, integrado al ritmo de producción de un game jam.",
-    tag_no_nda:"✅ Sin NDA", tag_role:"UI Design", tag_year:"2026",
-    team_notice:"Proyecto de equipo — ",
-    team_role_1:"(game design, level design, diseño de enemigos)",
-    team_role_2:"(diseño de player y mecánicas)",
-    team_and:"y Vanesa Reche (UI Design)",
-    play_cta:"Jugar en itch.io", jam_cta:"Ver en la GMTK Game Jam 2026",
-    label_problem:"El problema",
-    problem_h:"Diseñar una UI coherente bajo un límite de tiempo extremo",
-    theme_word:"Countdown",
-    problem_p1:"El tema de la jam (<em>Countdown</em>) se revela recién al arrancar, así que no hay research previo ni margen para iterar con calma: la interfaz tiene que definirse, integrarse al motor y funcionar dentro de las 96 horas que dura la competencia.",
-    label_approach:"El enfoque",
-    approach_h:"Priorizar velocidad sin resignar consistencia",
-    approach_p1:"Mapeé primero qué necesitaba el juego —menús, HUD, selección de habilidades— y qué recursos de pixel art ya estaban disponibles, para enfocar el diseño en la interfaz y no en generar arte fuera de mi rol. Diseñé pensando en la lectura rápida propia del pixel art, y coordiné con el resto del equipo por Trello y GitHub para no bloquear el desarrollo, que avanzaba en paralelo.",
-    label_impact:"El impacto",
-    impact_h:"Un juego terminado, jugable y con buena recepción",
-    game_name:"Heroless",
-    impact_p1:"<em>Heroless</em> se publicó a tiempo, es jugable desde el navegador y tuvo devoluciones positivas dentro de la jam. El proyecto fue una oportunidad de aplicar principios de UX/UI —jerarquía, lectura rápida, consistencia visual— en un contexto de producción distinto al de producto digital: tiempos comprimidos, un motor de juego y trabajo en equipo bajo presión real.",
-    rank_creativity:"Creatividad · #2.900", rank_artwork:"Arte · #4.368", rank_total:"Juegos presentados en la jam",
-    game_name_2:"Heroless",
-    impact_p2:"Sobre ese total, <em>Heroless</em> terminó en el top 30% en Creatividad y en el top 45% en Arte — un resultado sólido para un equipo de tres personas trabajando contra el reloj.",
-    next_eyebrow:"Ver más", next_title:"Todos los proyectos", next_cta:"Regresar",
-    footer_note:"Buenos Aires, Argentina"
-  },
-  en: {
-    nav_work:"Work", nav_about:"About", nav_contact:"Contact",
-    back:"Back to work",
-    case_eyebrow:"GMTK Game Jam 2026 · UI Design · Godot",
-    case_title:"Heroless",
-    case_summary:"UI design for a platformer built in 96 hours for the GMTK Game Jam 2026, worked at the pace of a game jam production cycle.",
-    tag_no_nda:"✅ Not under NDA", tag_role:"UI Design", tag_year:"2026",
-    team_notice:"Team project — ",
-    team_role_1:"(game design, level design, enemy design)",
-    team_role_2:"(player and mechanics design)",
-    team_and:"and Vanesa Reche (UI Design)",
-    play_cta:"Play on itch.io", jam_cta:"View on GMTK Game Jam 2026",
-    label_problem:"The problem",
-    problem_h:"Designing a coherent UI under an extreme time limit",
-    theme_word:"Countdown",
-    problem_p1:"The jam's theme (<em>Countdown</em>) is revealed only at the start, so there's no prior research and no room to iterate slowly: the interface has to be defined, integrated into the engine and working within the 96 hours the jam lasts.",
-    label_approach:"The approach",
-    approach_h:"Prioritizing speed without giving up consistency",
-    approach_p1:"I first mapped out what the game needed — menus, HUD, skill selection — and which pixel art resources were already available, so I could focus on the interface instead of producing art outside my role. I designed for the quick readability pixel art demands, and coordinated with the rest of the team through Trello and GitHub so as not to block development, which was moving forward in parallel.",
-    label_impact:"The impact",
-    impact_h:"A finished, playable game with a good reception",
-    game_name:"Heroless",
-    impact_p1:"<em>Heroless</em> shipped on time, is playable in-browser, and got positive feedback within the jam. The project was a chance to apply UX/UI principles — hierarchy, quick readability, visual consistency — in a production context different from digital product work: compressed timelines, a game engine, and teamwork under real pressure.",
-    rank_creativity:"Creativity · #2,900", rank_artwork:"Artwork · #4,368", rank_total:"Games submitted to the jam",
-    game_name_2:"Heroless",
-    impact_p2:"Out of that total, <em>Heroless</em> placed in the top 30% for Creativity and the top 45% for Artwork — a solid result for a three-person team working against the clock.",
-    next_eyebrow:"See more", next_title:"All projects", next_cta:"Back to Home",
-    footer_note:"Buenos Aires, Argentina"
-  }
+ "es": {
+  "nav_work": "Proyectos",
+  "nav_about": "Sobre mí",
+  "nav_contact": "Contacto",
+  "back": "Volver a proyectos",
+  "next_eyebrow": "Ver más",
+  "next_cta": "Regresar",
+  "footer_note": "Buenos Aires, Argentina",
+  "under_nda": "Bajo NDA",
+  "next_title": "Todos los proyectos",
+  "case_eyebrow": "GMTK Game Jam 2026 · UI Design · Godot",
+  "case_title": "Heroless",
+  "case_summary": "Diseño de la interfaz de un videojuego de plataformas desarrollado en <strong>96 horas</strong> para la GMTK Game Jam 2026: menús, HUD y selección de habilidades, definidos e integrados al motor en paralelo con el desarrollo.",
+  "tag_no_nda": "✅ Sin NDA",
+  "tag_role": "UI Design",
+  "tag_year": "2026",
+  "role_badge": "UI Design<br>en equipo de tres",
+  "role_p": "Diseñé la interfaz del juego en un equipo de tres personas, junto a <a href=\"https://lgraziani2712.itch.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Luciano Graziani</a> (game design, level design y diseño de enemigos) y <a href=\"https://notascientist.itch.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Matías Ricarte</a> (diseño del personaje y de las mecánicas). <strong>Proyecto de 96 horas</strong>, con la temática revelada al inicio de la competencia.",
+  "stat_1": "de competencia, desde la revelación del tema hasta la entrega",
+  "stat_2": "juegos presentados en la GMTK Game Jam 2026",
+  "stat_3": "en Creatividad (puesto #2.900)",
+  "stat_4": "en Arte (puesto #4.368)",
+  "context_h": "Una interfaz coherente bajo un límite de tiempo extremo",
+  "context_p1": "En una game jam, la temática se revela recién al comenzar la competencia. En la GMTK Game Jam 2026 fue <em>Countdown</em>, lo que eliminó cualquier posibilidad de investigación previa.",
+  "context_p2": "<strong>El desafío:</strong> definir la interfaz, integrarla al motor de juego y asegurar su funcionamiento dentro de las 96 horas de competencia, sin margen para iteraciones extensas y en paralelo con el desarrollo del resto del juego.",
+  "label_context": "Contexto",
+  "approach_h": "Priorizar velocidad sin resignar consistencia",
+  "approach_p1": "Con un plazo tan acotado, el enfoque se basó en tres decisiones tomadas desde el primer día:",
+  "label_approach": "Enfoque",
+  "a1_t": "Relevar antes de diseñar",
+  "a1_d": "Mapeé qué necesitaba el juego (menús, HUD y selección de habilidades) y qué recursos de pixel art ya estaban disponibles, para concentrar el esfuerzo en la interfaz.",
+  "a2_t": "Diseñar para la lectura rápida",
+  "a2_d": "Cada elemento se diseñó considerando la legibilidad propia del pixel art, donde la jerarquía y el contraste definen la comprensión inmediata.",
+  "a3_t": "Coordinar sin bloquear",
+  "a3_d": "La coordinación mediante Trello y GitHub permitió integrar la interfaz sin detener el desarrollo, que avanzaba en paralelo.",
+  "impact_h": "Un juego terminado, jugable y con buena recepción",
+  "impact_p1": "<em>Heroless</em> se publicó a tiempo, puede jugarse desde el navegador y recibió devoluciones positivas dentro de la jam. Sobre un total de 10.591 juegos presentados, obtuvo las siguientes posiciones:",
+  "imp1_l": "Creatividad",
+  "imp1_d": "Puesto #2.900 sobre 10.591 juegos.",
+  "imp2_l": "Arte",
+  "imp2_d": "Puesto #4.368 sobre 10.591 juegos.",
+  "impact_p2": "Un resultado sólido para un equipo de tres personas trabajando contra el reloj.",
+  "label_impact": "Resultado",
+  "learn_h": "Rol y criterios de diseño",
+  "learn_p1": "Fui responsable del diseño de la interfaz del juego. El proyecto permitió aplicar principios de UX/UI en un contexto de producción distinto al del producto digital: plazos comprimidos, un motor de juego y trabajo en equipo bajo presión real.",
+  "l1": "<strong>Jerarquía.</strong> Priorizar la información que el jugador necesita en cada momento de la partida.",
+  "l2": "<strong>Lectura rápida.</strong> Diseñar para una comprensión inmediata, adecuada al ritmo del juego y a las restricciones del pixel art.",
+  "l3": "<strong>Consistencia visual.</strong> Mantener un lenguaje coherente entre menús, HUD y selección de habilidades.",
+  "l4": "<strong>Foco en el rol.</strong> Concentrar el esfuerzo en la interfaz y trabajar sobre los recursos existentes para no bloquear al equipo.",
+  "label_learn": "Rol y criterios",
+  "play_cta": "Jugar en itch.io",
+  "jam_cta": "Ver en la GMTK Game Jam 2026"
+ },
+ "en": {
+  "nav_work": "Work",
+  "nav_about": "About",
+  "nav_contact": "Contact",
+  "back": "Back to work",
+  "next_eyebrow": "See more",
+  "next_cta": "Back to Home",
+  "footer_note": "Buenos Aires, Argentina",
+  "under_nda": "Under NDA",
+  "next_title": "All projects",
+  "case_eyebrow": "GMTK Game Jam 2026 · UI Design · Godot",
+  "case_title": "Heroless",
+  "case_summary": "Interface design for a platformer built in <strong>96 hours</strong> for the GMTK Game Jam 2026: menus, HUD and skill selection, defined and integrated into the engine in parallel with development.",
+  "tag_no_nda": "✅ Not under NDA",
+  "tag_role": "UI Design",
+  "tag_year": "2026",
+  "role_badge": "UI Design<br>in a team of three",
+  "role_p": "I designed the game's interface in a team of three, alongside <a href=\"https://lgraziani2712.itch.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Luciano Graziani</a> (game design, level design and enemy design) and <a href=\"https://notascientist.itch.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Matías Ricarte</a> (player and mechanics design). <strong>A 96-hour project</strong>, with the theme revealed at the start of the competition.",
+  "stat_1": "of competition, from theme reveal to submission",
+  "stat_2": "games submitted to the GMTK Game Jam 2026",
+  "stat_3": "in Creativity (rank #2,900)",
+  "stat_4": "in Artwork (rank #4,368)",
+  "context_h": "A coherent interface under an extreme time limit",
+  "context_p1": "In a game jam, the theme is revealed only when the competition begins. At the GMTK Game Jam 2026 it was <em>Countdown</em>, which ruled out any prior research.",
+  "context_p2": "<strong>The challenge:</strong> defining the interface, integrating it into the game engine and making sure it worked within the 96 hours of competition, with no room for extended iteration and in parallel with the rest of the game's development.",
+  "label_context": "Context",
+  "approach_h": "Prioritizing speed without giving up consistency",
+  "approach_p1": "With such a tight timeframe, the approach rested on three decisions made from day one:",
+  "label_approach": "Approach",
+  "a1_t": "Map before designing",
+  "a1_d": "I mapped what the game needed (menus, HUD and skill selection) and which pixel art resources were already available, to focus effort on the interface.",
+  "a2_t": "Design for quick reading",
+  "a2_d": "Every element was designed for pixel art readability, where hierarchy and contrast drive immediate comprehension.",
+  "a3_t": "Coordinate without blocking",
+  "a3_d": "Coordinating through Trello and GitHub made it possible to integrate the interface without stopping development, which moved forward in parallel.",
+  "impact_h": "A finished, playable game with a good reception",
+  "impact_p1": "<em>Heroless</em> shipped on time, is playable in the browser and received positive feedback within the jam. Out of 10,591 submitted games, it achieved the following placements:",
+  "imp1_l": "Creativity",
+  "imp1_d": "Rank #2,900 out of 10,591 games.",
+  "imp2_l": "Artwork",
+  "imp2_d": "Rank #4,368 out of 10,591 games.",
+  "impact_p2": "A solid result for a three-person team working against the clock.",
+  "label_impact": "Outcome",
+  "learn_h": "Role and design principles",
+  "learn_p1": "I was responsible for the game's interface design. The project was an opportunity to apply UX/UI principles in a production context different from digital product work: compressed timelines, a game engine and teamwork under real pressure.",
+  "l1": "<strong>Hierarchy.</strong> Prioritizing the information the player needs at each moment of play.",
+  "l2": "<strong>Quick reading.</strong> Designing for immediate comprehension, suited to the game's pace and the constraints of pixel art.",
+  "l3": "<strong>Visual consistency.</strong> Keeping a coherent language across menus, HUD and skill selection.",
+  "l4": "<strong>Focus on the role.</strong> Concentrating effort on the interface and building on existing assets so as not to block the team.",
+  "label_learn": "Role and principles",
+  "play_cta": "Play on itch.io",
+  "jam_cta": "View on GMTK Game Jam 2026"
+ }
 };
 
 function setLang(lang){
@@ -351,12 +527,18 @@ function setLang(lang){
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
   });
   document.documentElement.lang = lang;
-  localStorage.setItem('preferredLang', lang);
+  try{ localStorage.setItem('preferredLang', lang); }catch(e){}
 }
 document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
 });
-setLang(localStorage.getItem('preferredLang') || 'es');
+let saved = 'es';
+try{ saved = localStorage.getItem('preferredLang') || 'es'; }catch(e){}
+setLang(saved);
+
+document.querySelectorAll('.case-scroll .case-img').forEach(v=>{
+  v.addEventListener('scroll', ()=> v.parentElement.classList.toggle('scrolled', v.scrollTop > 24), {passive:true});
+});
 
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
