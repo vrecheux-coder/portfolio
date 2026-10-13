@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vanesa Reche — UX/UI Designer</title>
-<meta name="description" content="Vanesa Reche. Diseño de sistemas, no de pantallas. 15 años de experiencia en diseño gráfico y UX/UI.">
+<meta name="description" content="Vanesa Reche — Product Designer Senior especializada en productos SaaS B2B: crecimiento self-serve, herramientas de datos y sistemas que escalan.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -201,6 +201,17 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
   .hero-blob{display:none}
   .hero-asterisk{display:none}
 }
+.side-head{margin-top:var(--sp-6);margin-bottom:var(--sp-3)}
+.side-title{font-family:'Space Mono',monospace;font-weight:400;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.side-item{display:grid;grid-template-columns:200px 1fr auto;gap:var(--sp-4);align-items:center;padding:var(--sp-3);border:1.5px solid var(--line);border-radius:var(--r-md);transition:border-color .2s,background .2s}
+.side-item:hover{border-color:var(--ink);background:var(--cream-2)}
+.side-visual{border-radius:var(--r-sm);overflow:hidden;background:var(--ink);aspect-ratio:16/9}
+.side-visual img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
+.side-name{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.4rem;line-height:1.1;letter-spacing:-.01em}
+.side-desc{font-size:.92rem;color:var(--ink-soft);margin-top:.4rem;max-width:60ch}
+.side-cta{font-weight:600;font-size:.9rem;white-space:nowrap}
+@media (max-width:900px){.side-item{grid-template-columns:1fr;gap:var(--sp-2)}.side-visual{max-width:320px}}
+.hero-actions .btn-cv{border-style:dashed}
 </style>
 </head>
 <body>
@@ -229,18 +240,18 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 <header class="hero">
   <div class="hero-blob" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <p class="eyebrow hero-eyebrow" data-i18n="hero_eyebrow">UX/UI Designer · Product Designer · SaaS & Digital Products</p>
+    <p class="eyebrow hero-eyebrow" data-i18n="hero_eyebrow">Product Designer Senior · SaaS B2B · Growth y herramientas de datos</p>
     <div class="hero-headline-wrap">
       <h1 class="display hero-headline">vanesa<span class="accent-blob" aria-hidden="true"></span></h1>
       <span class="hero-asterisk" aria-hidden="true">✳</span>
     </div>
-    <p class="hero-sub" data-i18n="hero_sub">¡Hola! Soy Vanesa. Diseño sistemas y experiencias UX/UI: 15 años moviéndome entre lo gráfico y lo digital, con la obsesión de que todo escale sin romperse.</p>
+    <p class="hero-sub" data-i18n="hero_sub">Diseño productos SaaS B2B de punta a punta, desde la investigación hasta el lanzamiento: crecimiento self-serve, herramientas de datos y sistemas que escalan, con foco en resultados medibles.</p>
     <div class="hero-actions">
       <button class="btn btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
         <span data-i18n="hero_cta_1">Ver proyectos</span> ↓
       </button>
       <a class="btn btn-outline" href="#contact" data-i18n="hero_cta_2">Hablemos</a>
-      <span class="hero-meta" data-i18n="hero_meta">15 años en diseño · Argentina</span>
+      <span class="hero-meta" data-i18n="hero_meta">5 años en producto digital · Buenos Aires, Argentina</span>
     </div>
   </div>
 </header>
@@ -251,7 +262,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <h2 class="section-title" data-i18n="work_title">Proyectos</h2>
       <div class="section-tools">
         <button type="button" class="nda-toggle" data-nda-toggle hidden></button>
-        <p class="eyebrow" data-i18n="work_index">01 a 05</p>
+        <p class="eyebrow" data-i18n="work_index">01 a 04</p>
       </div>
     </div>
 
@@ -303,17 +314,19 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <div class="work-visual"><img src="images/ma-cover-thumb.jpg" alt="" loading="lazy"><a class="work-expand" href="case-mi-argentina.html" data-i18n="expand">Ampliar ↗</a></div>
     </div>
 
-    <div class="work-item">
-      <a class="work-link" href="case-heroless.html" aria-label="Ver caso Heroless"></a>
-      <div class="work-num">05</div>
-      <div>
-        <h3 class="work-title" data-i18n="w5_title">Heroless</h3>
-        <p class="work-meta" data-i18n="w5_meta">GMTK Game Jam 2026 · UI Design · Godot</p>
-        <p class="work-desc" data-i18n="w5_desc">Diseño de la interfaz de un platformer desarrollado en 96 horas para la GMTK Game Jam 2026. Top 30% en Creatividad entre 10.591 juegos.</p>
-        <div class="work-tags"><span class="tag" data-i18n="w5_tag">Game Jam</span></div>
-      </div>
-      <div class="work-visual work-visual-dark"><img src="images/heroless-cover.png" alt="" loading="lazy" style="image-rendering:pixelated;object-fit:contain"><a class="work-expand" href="case-heroless.html" data-i18n="expand">Ampliar ↗</a></div>
+
+    <div class="side-head">
+      <h3 class="side-title" data-i18n="side_title">Otros proyectos</h3>
     </div>
+    <a class="side-item" href="case-heroless.html">
+      <div class="side-visual"><img src="images/heroless-cover.png" alt="" loading="lazy"></div>
+      <div>
+        <p class="side-name" data-i18n="w5_title">Heroless</p>
+        <p class="work-meta" data-i18n="w5_meta">GMTK Game Jam 2026 · UI Design · Godot</p>
+        <p class="side-desc" data-i18n="w5_desc">Diseño de la interfaz de un platformer desarrollado en 96 horas para la GMTK Game Jam 2026. Top 30% en Creatividad entre 10.591 juegos.</p>
+      </div>
+      <span class="side-cta"><span data-i18n="side_cta">Ver proyecto</span> →</span>
+    </a>
 
   </div>
 </section>
@@ -327,7 +340,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
           <h2 class="display about-headline" data-i18n="about_headline">Diseño con cabeza y con sistema.</h2>
           <div class="about-body">
             <p data-i18n="about_p1">Empecé en diseño gráfico. Diez años armando piezas visuales antes de mudarme al UX/UI, hace cinco. Esa mezcla es mi ventaja: pienso en jerarquía y composición tanto como en flujos y fricción.</p>
-            <p data-i18n="about_p2">En Vizrt (Viz Flowics) trabajo con productos B2B complejos — self-serve, pricing, feature gating, sistemas de datos a escala.</p>
+            <p data-i18n="about_p2">En Vizrt (Viz Flowics) trabajé hasta 2026 en productos SaaS B2B complejos: modelo self-serve, pricing, feature gating y sistemas de datos a escala.</p>
             <p data-i18n="about_p3">Completé la Diplomatura en UX/UI Design en la UTN, y actualmente curso una especialización en IA aplicada a la experiencia de usuario.</p>
           </div>
         </div>
@@ -386,12 +399,12 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 const translations = {
   es: {
     nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
-    hero_eyebrow:"UX/UI Designer · Product Designer · SaaS & Digital Products",
-    hero_sub:"¡Hola! Soy Vanesa. Diseño sistemas y experiencias UX/UI: 15 años moviéndome entre lo gráfico y lo digital, con la obsesión de que todo escale sin romperse.",
-    hero_cta_1:"Ver proyectos", hero_cta_2:"Hablemos", hero_meta:"15 años en diseño · Argentina",
+    hero_eyebrow:"Product Designer Senior · SaaS B2B · Growth y herramientas de datos",
+    hero_sub:"Diseño productos SaaS B2B de punta a punta, desde la investigación hasta el lanzamiento: crecimiento self-serve, herramientas de datos y sistemas que escalan, con foco en resultados medibles.",
+    hero_cta_1:"Ver proyectos", hero_cta_2:"Hablemos", hero_meta:"5 años en producto digital · Buenos Aires, Argentina",
     together_badge:"design<br>together",
     stat_years:"Años en diseño", stat_components:"Componentes en sistema de diseño", stat_leads:"Más leads calificados (PLG)",
-    work_title:"Proyectos", work_index:"01 a 05",
+    work_title:"Proyectos", work_index:"01 a 04",
     w1_title:"Product-Led Growth", w1_meta:"Viz Flowics · Product Design · Growth",
     w1_desc:"Transformación de un modelo basado en ventas a uno self-serve: pricing público, free trial, feature gating y ciclo de vida de la suscripción. Altas de trial x3.", w1_tag:"Bajo NDA",
     w2_title:"Data Augmentation", w2_meta:"Viz Flowics · Product Design · Gestión de datos",
@@ -405,23 +418,24 @@ const translations = {
     expand:"Ampliar ↗",
     about_eyebrow:"Sobre mí", about_headline:"Diseño con cabeza y con sistema.",
     about_p1:"Empecé en diseño gráfico. Diez años armando piezas visuales antes de mudarme al UX/UI, hace cinco. Esa mezcla es mi ventaja: pienso en jerarquía y composición tanto como en flujos y fricción.",
-    about_p2:"En Vizrt (Viz Flowics) trabajo con productos B2B complejos — self-serve, pricing, feature gating, sistemas de datos a escala.",
+    about_p2:"En Vizrt (Viz Flowics) trabajé hasta 2026 en productos SaaS B2B complejos: modelo self-serve, pricing, feature gating y sistemas de datos a escala.",
     about_p3:"Completé la Diplomatura en UX/UI Design en la UTN, y actualmente curso una especialización en IA aplicada a la experiencia de usuario.",
     how_title:"Cómo trabajo", how_1:"UX Research", how_2:"Product Thinking", how_3:"System Design", how_4:"Accesibilidad",
     what_title:"Herramientas", what_1:"Figma & Figma Make", what_2:"Design Systems", what_3:"AI Copywriting — ChatGPT", what_4:"AI Prototyping — Claude",
     lang_es:"Español — Nativo", lang_en:"Inglés — B2+",
     contact_eyebrow:"¿Hablamos?", contact_headline:"armemos algo.",
     linkedin_label:"LinkedIn", behance_label:"Behance", new_tab:"(se abre en una pestaña nueva)",
+    side_title:"Otros proyectos", side_cta:"Ver proyecto",
     footer_note:"Buenos Aires, Argentina"
   },
   en: {
     nav_work:"Work", nav_about:"About", nav_contact:"Contact",
-    hero_eyebrow:"UX/UI Designer · Product Designer · SaaS & Digital Products",
-    hero_sub:"Hi, I'm Vanesa. I design systems and UX/UI experiences — 15 years moving between graphic and digital, obsessed with things that scale without breaking.",
-    hero_cta_1:"View work", hero_cta_2:"Let's talk", hero_meta:"15 years in design · Argentina",
+    hero_eyebrow:"Senior Product Designer · B2B SaaS · Growth and data tools",
+    hero_sub:"I design B2B SaaS products end to end, from research to launch: self-serve growth, data tools and systems that scale, with a focus on measurable results.",
+    hero_cta_1:"View work", hero_cta_2:"Let's talk", hero_meta:"5 years in digital product · Buenos Aires, Argentina",
     together_badge:"design<br>together",
     stat_years:"Years in design", stat_components:"Design system components", stat_leads:"More qualified leads (PLG)",
-    work_title:"Work", work_index:"01 to 05",
+    work_title:"Work", work_index:"01 to 04",
     w1_title:"Product-Led Growth", w1_meta:"Viz Flowics · Product Design · Growth",
     w1_desc:"From a sales-led model to self-serve: public pricing, free trial, feature gating and subscription lifecycle. Trial sign-ups x3.", w1_tag:"Under NDA",
     w2_title:"Data Augmentation", w2_meta:"Viz Flowics · Product Design · Data tooling",
@@ -435,13 +449,14 @@ const translations = {
     expand:"Expand ↗",
     about_eyebrow:"About", about_headline:"Design with head and system.",
     about_p1:"I started in graphic design. Ten years building visual pieces before moving into UX/UI, five years ago. That mix is my edge — I think in hierarchy and composition as much as in flows and friction.",
-    about_p2:"At Vizrt (Viz Flowics) I work on complex B2B products — self-serve, pricing, feature gating, data systems at scale.",
+    about_p2:"At Vizrt (Viz Flowics) I worked until 2026 on complex B2B SaaS products: self-serve, pricing, feature gating and data systems at scale.",
     about_p3:"I completed the UX/UI Design Diploma at UTN, and I'm currently pursuing a specialization in AI applied to user experience.",
     how_title:"How I work", how_1:"UX Research", how_2:"Product Thinking", how_3:"System Design", how_4:"Accessibility",
     what_title:"Tools", what_1:"Figma & Figma Make", what_2:"Design Systems", what_3:"AI Copywriting — ChatGPT", what_4:"AI Prototyping — Claude",
     lang_es:"Spanish — Native", lang_en:"English — B2+",
     contact_eyebrow:"Let's talk", contact_headline:"let's build.",
     linkedin_label:"LinkedIn", behance_label:"Behance", new_tab:"(opens in a new tab)",
+    side_title:"Other projects", side_cta:"View project",
     footer_note:"Buenos Aires, Argentina"
   }
 };
@@ -455,12 +470,14 @@ function setLang(lang){
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
   });
   document.documentElement.lang = lang;
-  localStorage.setItem('preferredLang', lang);
+  try{ localStorage.setItem('preferredLang', lang); }catch(e){}
 }
 document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
 });
-setLang(localStorage.getItem('preferredLang') || 'es');
+let saved = 'es';
+try{ saved = localStorage.getItem('preferredLang') || 'es'; }catch(e){}
+setLang(saved);
 
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
