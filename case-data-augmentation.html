@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Augmentation — Vanesa Reche</title>
-<meta name="description" content="Caso de estudio: sistema de edición masiva de datos para Viz Flowics, con edición en Google Sheets, simulación previa y auditoría de cambios.">
+<meta name="description" content="Caso de estudio: sistema de edición masiva de datos para Viz Flowics y propuesta de rediseño 2026 del panel y del reporte de simulación.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -269,6 +269,14 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 
 @media (max-width:900px){.role-band{grid-template-columns:1fr}.role-band .academic-badge{border-right:0;border-bottom:1.5px solid var(--line);padding:0 0 .8rem}}
 @media (max-width:620px){.img-pair{grid-template-columns:1fr}}
+.tag-new{background:var(--pink-text);border-color:var(--pink-text);color:#fff}
+.cover-badge{position:absolute;left:18px;bottom:18px;z-index:2;background:var(--pink-text);color:#fff;font-size:.78rem;font-weight:600;padding:.5rem 1rem;border-radius:var(--r-pill)}
+.prop-note{margin-top:var(--sp-3);font-size:.9rem!important}
+.era-divider{background:var(--cream-2);border-top:1.5px solid var(--line);padding:var(--sp-5) 0}
+.era-divider .container{max-width:1100px}
+.era-divider .eyebrow{color:var(--pink-text);margin-bottom:.5rem}
+.era-title{font-size:clamp(1.6rem,3vw,2.4rem);max-width:24ch}
+.case-hero > .container > .img-caption{margin-top:.8rem}
 </style>
 </head>
 <body>
@@ -299,11 +307,12 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
     <a class="back-link" href="index.html#work">← <span data-i18n="back">Volver a proyectos</span></a>
     <div class="case-eyebrow-row">
       <span class="case-num">02</span>
-      <p class="eyebrow" data-i18n="case_eyebrow">Viz Flowics (Vizrt) · Product Design · 2024</p>
+      <p class="eyebrow" data-i18n="case_eyebrow">Viz Flowics (Vizrt) · Product Design · 2024 — 2026</p>
     </div>
     <h1 class="display case-title" data-i18n="case_title">Data Augmentation</h1>
-    <p class="case-summary" data-i18n="case_summary">Diseño de un sistema de <strong>edición masiva de datos</strong> para una plataforma SaaS B2B de gráficos en vivo: edición en Google Sheets, simulación de cada cambio antes de aplicarlo y trazabilidad completa de las importaciones.</p>
+    <p class="case-summary" data-i18n="case_summary">Sistema de <strong>edición masiva de datos</strong> para una plataforma SaaS B2B de gráficos en vivo. Diseñé la versión original en 2024 y, en 2026, desarrollé una propuesta de rediseño que hace visible el estado del proceso, anticipa los conflictos entre ediciones y simplifica la lectura del reporte de simulación.</p>
     <div class="case-meta-row">
+      <span class="tag tag-new" data-i18n="tag_new">Propuesta 2026</span>
       <span class="tag" data-i18n="tag_nda">Bajo NDA</span>
       <span class="tag tag-neutral" data-i18n="tag_role">Research · UX · UI · Testing</span>
       <span class="tag tag-neutral" data-i18n="tag_year">SaaS B2B</span>
@@ -313,7 +322,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 
     <div class="role-band">
       <p class="academic-badge" data-i18n="role_badge">Única diseñadora<br>del proyecto</p>
-      <p data-i18n="role_p">Lideré el diseño de punta a punta, desde la investigación hasta el handoff a desarrollo, en coordinación con producto e ingeniería. <strong>Diez meses de trabajo durante 2024</strong>, con entrevistas y pruebas de usabilidad con usuarios de la plataforma.</p>
+      <p data-i18n="role_p">Lideré el diseño del sistema original de punta a punta, desde la investigación hasta el handoff a desarrollo, durante <strong>diez meses de 2024</strong>. En 2026 revisé la experiencia a partir de su uso real y desarrollé una propuesta de rediseño del panel y del reporte.</p>
     </div>
 
     <div class="stats">
@@ -323,16 +332,49 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <div class="stat"><p class="stat-num">10</p><p class="stat-label" data-i18n="stat_4">meses de proyecto, de la investigación al lanzamiento</p></div>
     </div>
 
-    <div class="case-cover" role="img" aria-label="Captura desenfocada del panel de Data Augmentation, bajo NDA">
-      <img src="images/da-cover.jpg" data-nda="images/da-cover.enc" alt="" loading="lazy">
+    <div class="case-cover" role="img" aria-label="Captura desenfocada del rediseño 2026 del panel de Data Augmentation, bajo NDA">
+      <img src="images/da26-cover.jpg" data-nda="images/da26-cover.enc" alt="" loading="lazy">
+      <span class="cover-badge" data-i18n="tag_new">Propuesta 2026</span>
       <span class="case-cover-lock">🔒 <span data-i18n="under_nda">Bajo NDA</span></span>
     </div>
+    <p class="img-caption" data-i18n="cap_cover">Propuesta 2026 · Panel con el estado del proceso, la planilla vinculada y una única acción principal.</p>
   </div>
 </header>
 
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="step">01</p><p class="eyebrow" data-i18n="label_context">Contexto</p></div>
+    <div class="case-section-label"><p class="step">01</p><p class="eyebrow" data-i18n="label_proposal">Propuesta 2026</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="prop_h">Rediseño del panel y del reporte</h2>
+      <p data-i18n="prop_p1">La versión 2024 resolvió el problema central: permitió editar conjuntos completos de datos sin riesgo para producción. Al revisarla con distancia, identifiqué oportunidades para reducir la carga cognitiva en los momentos de mayor exigencia: saber en qué punto del proceso se encuentra la edición, entender por qué una fila no puede aplicarse y evitar que una importación sobrescriba el trabajo de otra persona.</p>
+      <p data-i18n="prop_p2">La propuesta conserva el modelo de exportar, editar y simular, y redefine la jerarquía de la interfaz en torno a cuatro decisiones:</p>
+      <div class="mvp">
+        <div class="mvp-item"><strong data-i18n="d1_t">Estado del proceso visible</strong><span data-i18n="d1_d">El panel indica en qué paso se encuentra la edición —exportada, en edición o lista para revisar— y concentra la acción siguiente en un único botón principal.</span></div>
+        <div class="mvp-item"><strong data-i18n="d2_t">Conflictos anticipados</strong><span data-i18n="d2_d">Si otra persona aplica cambios después de la exportación, el panel lo advierte antes de que se pierdan datos y propone comparar ambas versiones.</span></div>
+        <div class="mvp-item"><strong data-i18n="d3_t">Errores accionables</strong><span data-i18n="d3_d">Cada error indica la fila de la planilla, el campo afectado y cómo corregirlo, en lenguaje claro y con acceso directo a la fila.</span></div>
+        <div class="mvp-item"><strong data-i18n="d4_t">Decisiones informadas</strong><span data-i18n="d4_d">El reporte resume el impacto, muestra el valor anterior y el nuevo con referencias visuales y actualiza en tiempo real la cantidad de cambios a aplicar.</span></div>
+      </div>
+      <h3 data-i18n="conf_h">Conflicto entre ediciones</h3>
+      <p data-i18n="conf_p">En cuentas con varios operadores, una planilla exportada puede quedar desactualizada. El panel detecta la diferencia con la versión vigente, explica sus consecuencias y retiene la aplicación hasta que se resuelva, con el historial de importaciones como referencia.</p>
+      <div class="case-img" style="aspect-ratio:1600/990" role="img" aria-label="Captura desenfocada del estado de conflicto del rediseño, bajo NDA"><img src="images/da26-conflict.jpg" data-nda="images/da26-conflict.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+      <p class="img-caption" data-i18n="cap_conflict">Estado de conflicto: la planilla quedó desactualizada respecto de una importación posterior.</p>
+      <h3 data-i18n="rep_h">Reporte de simulación</h3>
+      <p data-i18n="rep_p">El reporte presenta primero el resumen del impacto y las filas que no pueden aplicarse, con la explicación del problema y un acceso directo a la planilla. Los cambios se agrupan por tipo y cada grupo puede excluirse de la importación; la barra de acción refleja en todo momento cuántos cambios se aplicarán.</p>
+      <div class="case-scroll"><div class="case-img" tabindex="0" role="region" aria-label="Captura desenfocada del reporte de simulación rediseñado, bajo NDA. Se puede desplazar."><img src="images/da26-report.jpg" data-nda="images/da26-report.enc" alt="" loading="lazy"></div><span class="case-img-lock">🔒 NDA</span><span class="case-scroll-hint" data-i18n="report_hint">↕ Desplazá para ver el reporte completo</span></div>
+      <p class="img-caption" data-i18n="cap_report26">Reporte completo: resumen del impacto, filas omitidas con su causa y cambios agrupados por tipo.</p>
+      <p class="prop-note" data-i18n="prop_note"><strong>Nota:</strong> se trata de una propuesta de autoría propia, posterior al proyecto y no implementada en el producto. Los datos que se muestran son ficticios.</p>
+    </div>
+  </div>
+</section>
+<div class="era-divider">
+  <div class="container">
+    <p class="eyebrow" data-i18n="era_eyebrow">Proyecto original · 2024</p>
+    <p class="display era-title" data-i18n="era_h">Investigación, diseño y lanzamiento del sistema</p>
+  </div>
+</div>
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">02</p><p class="eyebrow" data-i18n="label_context">Contexto</p></div>
     <div class="case-section-body">
       <h2 data-i18n="context_h">Datos críticos para la emisión, editados registro por registro</h2>
       <p data-i18n="context_p1">Las Data Augmentations permiten enriquecer o modificar la información que llega desde los conectores de datos antes de utilizarla en los gráficos: valores propios de cada producción, como colores, imágenes o abreviaturas de equipos, que se integran con las fuentes existentes para alimentar estadísticas, marcadores y datos contextuales en tiempo real. A medida que las cuentas crecían, también lo hacían estos conjuntos de datos.</p>
@@ -343,7 +385,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 </section>
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="step">02</p><p class="eyebrow" data-i18n="label_research">Investigación</p></div>
+    <div class="case-section-label"><p class="step">03</p><p class="eyebrow" data-i18n="label_research">Investigación</p></div>
     <div class="case-section-body">
       <h2 data-i18n="research_h">Entender cómo trabajaban los equipos antes de diseñar</h2>
       <p data-i18n="research_p1">Realicé entrevistas y pruebas de usabilidad con 15 usuarios de la plataforma para comprender cómo gestionaban estos datos y dónde se originaban las fricciones. El análisis permitió identificar cuatro necesidades principales:</p>
@@ -358,7 +400,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 </section>
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="step">03</p><p class="eyebrow" data-i18n="label_solution">Solución</p></div>
+    <div class="case-section-label"><p class="step">04</p><p class="eyebrow" data-i18n="label_solution">Solución</p></div>
     <div class="case-section-body">
       <h2 data-i18n="solution_h">Editar fuera del producto, validar dentro de él</h2>
       <p data-i18n="solution_p1">Diseñé un flujo en tres pasos que aprovecha una herramienta que los equipos ya dominaban y concentra la validación dentro de la plataforma:</p>
@@ -367,39 +409,18 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
         <div class="flow-step"><strong data-i18n="f2_t">Editar</strong><span data-i18n="f2_d">Los cambios se realizan con todas las funciones de una planilla: fórmulas, copiado masivo y colaboración.</span></div>
         <div class="flow-step"><strong data-i18n="f3_t">Simular e importar</strong><span data-i18n="f3_d">Antes de aplicar los cambios, la plataforma genera un reporte con el impacto exacto de la importación.</span></div>
       </div>
-
-    </div>
-  </div>
-</section>
-<section class="case-section">
-  <div class="container case-section-inner">
-    <div class="case-section-label"><p class="step">04</p><p class="eyebrow" data-i18n="label_report">Reporte de simulación</p></div>
-    <div class="case-section-body">
-      <h2 data-i18n="report_h">Cada cambio, visible y controlable antes de confirmar</h2>
-      <p data-i18n="report_p1">El reporte de simulación es la pieza central del sistema. Presenta primero los errores que impiden la importación, con su causa y código, para que puedan corregirse en la planilla y actualizar el reporte sin reiniciar el proceso.</p>
-      <p data-i18n="report_p2">Luego detalla cada actualización, inserción y eliminación, con el valor anterior y el nuevo. Cada grupo de cambios puede incluirse o excluirse de forma independiente, lo que permite aplicar una edición de manera parcial y controlada.</p>
-      <div class="case-scroll"><div class="case-img" tabindex="0" role="region" aria-label="Captura desenfocada del reporte de simulación completo, bajo NDA. Se puede desplazar."><img src="images/da-report.jpg" data-nda="images/da-report.enc" alt="" loading="lazy"></div><span class="case-img-lock">🔒 NDA</span><span class="case-scroll-hint" data-i18n="report_hint">↕ Desplazá para ver el reporte completo</span></div>
-      <p class="img-caption" data-i18n="cap_report">Reporte completo: errores con su causa, cambios agrupados por tipo y selección de los grupos a importar.</p>
-    </div>
-  </div>
-</section>
-<section class="case-section">
-  <div class="container case-section-inner">
-    <div class="case-section-label"><p class="step">05</p><p class="eyebrow" data-i18n="label_trace">Confirmación y trazabilidad</p></div>
-    <div class="case-section-body">
-      <h2 data-i18n="trace_h">Un cierre claro y un historial auditable</h2>
-      <p data-i18n="trace_p1">Al confirmar, el sistema resume los cambios aplicados y actualiza el panel con el nuevo total de registros. Cada importación queda registrada con su autor y su fecha, de modo que cualquier edición masiva resulta trazable.</p>
+      <p style="margin-top:var(--sp-3)" data-i18n="solution_p2">El reporte de simulación detallaba los errores que impedían la importación y cada actualización, inserción y eliminación, con la posibilidad de incluir o excluir cada grupo de cambios. Al confirmar, cada importación quedaba registrada con su autor y su fecha.</p>
       <div class="img-pair">
-        <div class="case-img" role="img" aria-label="Captura desenfocada de la confirmación de importación, bajo NDA"><img src="images/da-approach-2.jpg" data-nda="images/da-approach-2.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
-        <div class="case-img" role="img" aria-label="Captura desenfocada del panel actualizado tras la importación, bajo NDA"><img src="images/da-impact.jpg" data-nda="images/da-impact.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+        <div class="case-img" role="img" aria-label="Captura desenfocada del panel en su versión 2024, bajo NDA"><img src="images/da-cover.jpg" data-nda="images/da-cover.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
+        <div class="case-img" role="img" aria-label="Captura desenfocada de la confirmación de importación en su versión 2024, bajo NDA"><img src="images/da-approach-2.jpg" data-nda="images/da-approach-2.enc" alt="" loading="lazy"><span class="case-img-lock">🔒 NDA</span></div>
       </div>
-      <p class="img-caption" data-i18n="cap_trace">Confirmación con el resumen de cambios aplicados y panel actualizado con el registro de la última importación.</p>
+      <p class="img-caption" data-i18n="cap_v24">Versión 2024: panel de la aumentación y confirmación de importación.</p>
     </div>
   </div>
 </section>
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="step">06</p><p class="eyebrow" data-i18n="label_impact">Validación e impacto</p></div>
+    <div class="case-section-label"><p class="step">05</p><p class="eyebrow" data-i18n="label_impact">Validación e impacto</p></div>
     <div class="case-section-body">
       <h2 data-i18n="impact_h">Ediciones masivas sin riesgo para producción</h2>
       <p data-i18n="impact_p1">El flujo se validó con los mismos 15 usuarios que participaron de la investigación, iterando sobre la claridad del reporte y la recuperación ante errores antes del lanzamiento.</p>
@@ -413,7 +434,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 </section>
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="step">07</p><p class="eyebrow" data-i18n="label_learn">Rol y criterios</p></div>
+    <div class="case-section-label"><p class="step">06</p><p class="eyebrow" data-i18n="label_learn">Rol y criterios</p></div>
     <div class="case-section-body">
       <h2 data-i18n="learn_h">Rol y criterios de diseño</h2>
       <p data-i18n="learn_p1">Como única diseñadora del proyecto, fui responsable de la investigación, la definición del flujo, el diseño de interfaz y el handoff a desarrollo.</p>
@@ -423,7 +444,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
         <li data-i18n="l3"><strong>Control granular.</strong> Cada grupo de cambios se confirma de forma independiente, sin forzar decisiones de todo o nada.</li>
         <li data-i18n="l4"><strong>Trazabilidad por defecto.</strong> Cada importación queda registrada sin pasos adicionales para el usuario.</li>
       </ul>
-      <p style="margin-top:var(--sp-3)" data-i18n="learn_p2"><strong>En retrospectiva:</strong> definiría desde el inicio una línea de base del tiempo que demandaba cada edición, para cuantificar el ahorro además de la reducción de tickets. También evaluaría incorporar la edición directa en el producto para cambios puntuales, reservando el flujo con planilla para las ediciones masivas.</p>
+      <p style="margin-top:var(--sp-3)" data-i18n="learn_p2"><strong>En retrospectiva:</strong> definiría desde el inicio una línea de base del tiempo que demandaba cada edición, para cuantificar el ahorro además de la reducción de tickets. La propuesta 2026 retoma esa revisión y se enfoca en la claridad del estado del proceso y en la prevención de conflictos entre operadores.</p>
     </div>
   </div>
 </section>
@@ -456,15 +477,15 @@ const translations = {
   "next_cta": "Ver caso",
   "footer_note": "Buenos Aires, Argentina",
   "under_nda": "Bajo NDA",
-  "case_eyebrow": "Viz Flowics (Vizrt) · Product Design · 2024",
+  "case_eyebrow": "Viz Flowics (Vizrt) · Product Design · 2024 — 2026",
   "case_title": "Data Augmentation",
-  "case_summary": "Diseño de un sistema de <strong>edición masiva de datos</strong> para una plataforma SaaS B2B de gráficos en vivo: edición en Google Sheets, simulación de cada cambio antes de aplicarlo y trazabilidad completa de las importaciones.",
+  "case_summary": "Sistema de <strong>edición masiva de datos</strong> para una plataforma SaaS B2B de gráficos en vivo. Diseñé la versión original en 2024 y, en 2026, desarrollé una propuesta de rediseño que hace visible el estado del proceso, anticipa los conflictos entre ediciones y simplifica la lectura del reporte de simulación.",
   "tag_nda": "Bajo NDA",
   "tag_role": "Research · UX · UI · Testing",
   "tag_year": "SaaS B2B",
   "nda_notice": "Imágenes desenfocadas por confidencialidad — incluyen datos internos de la empresa.",
   "role_badge": "Única diseñadora<br>del proyecto",
-  "role_p": "Lideré el diseño de punta a punta, desde la investigación hasta el handoff a desarrollo, en coordinación con producto e ingeniería. <strong>Diez meses de trabajo durante 2024</strong>, con entrevistas y pruebas de usabilidad con usuarios de la plataforma.",
+  "role_p": "Lideré el diseño del sistema original de punta a punta, desde la investigación hasta el handoff a desarrollo, durante <strong>diez meses de 2024</strong>. En 2026 revisé la experiencia a partir de su uso real y desarrollé una propuesta de rediseño del panel y del reporte.",
   "stat_1": "tickets de soporte vinculados a la edición de datos",
   "stat_2": "usuarios en entrevistas y pruebas de usabilidad",
   "stat_3": "pasos: exportar, editar y simular antes de importar",
@@ -495,15 +516,6 @@ const translations = {
   "f3_t": "Simular e importar",
   "f3_d": "Antes de aplicar los cambios, la plataforma genera un reporte con el impacto exacto de la importación.",
   "report_hint": "↕ Desplazá para ver el reporte completo",
-  "report_h": "Cada cambio, visible y controlable antes de confirmar",
-  "report_p1": "El reporte de simulación es la pieza central del sistema. Presenta primero los errores que impiden la importación, con su causa y código, para que puedan corregirse en la planilla y actualizar el reporte sin reiniciar el proceso.",
-  "report_p2": "Luego detalla cada actualización, inserción y eliminación, con el valor anterior y el nuevo. Cada grupo de cambios puede incluirse o excluirse de forma independiente, lo que permite aplicar una edición de manera parcial y controlada.",
-  "cap_report": "Reporte completo: errores con su causa, cambios agrupados por tipo y selección de los grupos a importar.",
-  "label_report": "Reporte de simulación",
-  "trace_h": "Un cierre claro y un historial auditable",
-  "trace_p1": "Al confirmar, el sistema resume los cambios aplicados y actualiza el panel con el nuevo total de registros. Cada importación queda registrada con su autor y su fecha, de modo que cualquier edición masiva resulta trazable.",
-  "cap_trace": "Confirmación con el resumen de cambios aplicados y panel actualizado con el registro de la última importación.",
-  "label_trace": "Confirmación y trazabilidad",
   "impact_h": "Ediciones masivas sin riesgo para producción",
   "impact_p1": "El flujo se validó con los mismos 15 usuarios que participaron de la investigación, iterando sobre la claridad del reporte y la recuperación ante errores antes del lanzamiento.",
   "imp1_l": "Soporte",
@@ -518,8 +530,33 @@ const translations = {
   "l2": "<strong>Prevenir antes que corregir.</strong> La simulación traslada la detección de errores a un momento sin consecuencias.",
   "l3": "<strong>Control granular.</strong> Cada grupo de cambios se confirma de forma independiente, sin forzar decisiones de todo o nada.",
   "l4": "<strong>Trazabilidad por defecto.</strong> Cada importación queda registrada sin pasos adicionales para el usuario.",
-  "learn_p2": "<strong>En retrospectiva:</strong> definiría desde el inicio una línea de base del tiempo que demandaba cada edición, para cuantificar el ahorro además de la reducción de tickets. También evaluaría incorporar la edición directa en el producto para cambios puntuales, reservando el flujo con planilla para las ediciones masivas.",
-  "label_learn": "Rol y criterios"
+  "learn_p2": "<strong>En retrospectiva:</strong> definiría desde el inicio una línea de base del tiempo que demandaba cada edición, para cuantificar el ahorro además de la reducción de tickets. La propuesta 2026 retoma esa revisión y se enfoca en la claridad del estado del proceso y en la prevención de conflictos entre operadores.",
+  "label_learn": "Rol y criterios",
+  "tag_new": "Propuesta 2026",
+  "cap_cover": "Propuesta 2026 · Panel con el estado del proceso, la planilla vinculada y una única acción principal.",
+  "label_proposal": "Propuesta 2026",
+  "prop_h": "Rediseño del panel y del reporte",
+  "prop_p1": "La versión 2024 resolvió el problema central: permitió editar conjuntos completos de datos sin riesgo para producción. Al revisarla con distancia, identifiqué oportunidades para reducir la carga cognitiva en los momentos de mayor exigencia: saber en qué punto del proceso se encuentra la edición, entender por qué una fila no puede aplicarse y evitar que una importación sobrescriba el trabajo de otra persona.",
+  "prop_p2": "La propuesta conserva el modelo de exportar, editar y simular, y redefine la jerarquía de la interfaz en torno a cuatro decisiones:",
+  "d1_t": "Estado del proceso visible",
+  "d1_d": "El panel indica en qué paso se encuentra la edición —exportada, en edición o lista para revisar— y concentra la acción siguiente en un único botón principal.",
+  "d2_t": "Conflictos anticipados",
+  "d2_d": "Si otra persona aplica cambios después de la exportación, el panel lo advierte antes de que se pierdan datos y propone comparar ambas versiones.",
+  "d3_t": "Errores accionables",
+  "d3_d": "Cada error indica la fila de la planilla, el campo afectado y cómo corregirlo, en lenguaje claro y con acceso directo a la fila.",
+  "d4_t": "Decisiones informadas",
+  "d4_d": "El reporte resume el impacto, muestra el valor anterior y el nuevo con referencias visuales y actualiza en tiempo real la cantidad de cambios a aplicar.",
+  "conf_h": "Conflicto entre ediciones",
+  "conf_p": "En cuentas con varios operadores, una planilla exportada puede quedar desactualizada. El panel detecta la diferencia con la versión vigente, explica sus consecuencias y retiene la aplicación hasta que se resuelva, con el historial de importaciones como referencia.",
+  "cap_conflict": "Estado de conflicto: la planilla quedó desactualizada respecto de una importación posterior.",
+  "rep_h": "Reporte de simulación",
+  "rep_p": "El reporte presenta primero el resumen del impacto y las filas que no pueden aplicarse, con la explicación del problema y un acceso directo a la planilla. Los cambios se agrupan por tipo y cada grupo puede excluirse de la importación; la barra de acción refleja en todo momento cuántos cambios se aplicarán.",
+  "cap_report26": "Reporte completo: resumen del impacto, filas omitidas con su causa y cambios agrupados por tipo.",
+  "prop_note": "<strong>Nota:</strong> se trata de una propuesta de autoría propia, posterior al proyecto y no implementada en el producto. Los datos que se muestran son ficticios.",
+  "era_eyebrow": "Proyecto original · 2024",
+  "era_h": "Investigación, diseño y lanzamiento del sistema",
+  "solution_p2": "El reporte de simulación detallaba los errores que impedían la importación y cada actualización, inserción y eliminación, con la posibilidad de incluir o excluir cada grupo de cambios. Al confirmar, cada importación quedaba registrada con su autor y su fecha.",
+  "cap_v24": "Versión 2024: panel de la aumentación y confirmación de importación."
  },
  "en": {
   "nav_work": "Work",
@@ -530,15 +567,15 @@ const translations = {
   "next_cta": "View case",
   "footer_note": "Buenos Aires, Argentina",
   "under_nda": "Under NDA",
-  "case_eyebrow": "Viz Flowics (Vizrt) · Product Design · 2024",
+  "case_eyebrow": "Viz Flowics (Vizrt) · Product Design · 2024 — 2026",
   "case_title": "Data Augmentation",
-  "case_summary": "Design of a <strong>bulk data editing</strong> system for a B2B SaaS live graphics platform: editing in Google Sheets, a simulation of every change before it is applied, and full traceability of imports.",
+  "case_summary": "A <strong>bulk data editing</strong> system for a B2B SaaS live graphics platform. I designed the original version in 2024 and, in 2026, developed a redesign proposal that makes the state of the process visible, anticipates conflicts between edits and simplifies how the simulation report reads.",
   "tag_nda": "Under NDA",
   "tag_role": "Research · UX · UI · Testing",
   "tag_year": "B2B SaaS",
   "nda_notice": "Images blurred for confidentiality — they include internal company data.",
   "role_badge": "Sole designer<br>on the project",
-  "role_p": "I led design end to end, from research through hand-off to engineering, in coordination with product and engineering. <strong>Ten months of work during 2024</strong>, with interviews and usability testing with platform users.",
+  "role_p": "I led design of the original system end to end, from research through hand-off to engineering, over <strong>ten months in 2024</strong>. In 2026 I revisited the experience in light of real-world use and developed a redesign proposal for the dashboard and the report.",
   "stat_1": "support tickets related to data editing",
   "stat_2": "users in interviews and usability testing",
   "stat_3": "steps: export, edit and simulate before importing",
@@ -569,15 +606,6 @@ const translations = {
   "f3_t": "Simulate and import",
   "f3_d": "Before changes are applied, the platform generates a report showing the exact impact of the import.",
   "report_hint": "↕ Scroll to see the full report",
-  "report_h": "Every change, visible and controllable before confirming",
-  "report_p1": "The simulation report is the core of the system. It first presents the errors that block the import, with their cause and code, so they can be fixed in the spreadsheet and the report refreshed without restarting the process.",
-  "report_p2": "It then details every update, insertion and deletion, with the previous and new value. Each group of changes can be included or excluded independently, allowing a partial, controlled edit.",
-  "cap_report": "Full report: errors with their cause, changes grouped by type and selection of the groups to import.",
-  "label_report": "Simulation report",
-  "trace_h": "A clear close and an auditable history",
-  "trace_p1": "On confirmation, the system summarizes the applied changes and updates the dashboard with the new record total. Every import is logged with its author and date, so any bulk edit is traceable.",
-  "cap_trace": "Confirmation with a summary of applied changes, and the updated dashboard showing the latest import record.",
-  "label_trace": "Confirmation and traceability",
   "impact_h": "Bulk edits without risk to production",
   "impact_p1": "The flow was validated with the same 15 users who took part in the research, iterating on report clarity and error recovery before launch.",
   "imp1_l": "Support",
@@ -592,8 +620,33 @@ const translations = {
   "l2": "<strong>Prevent rather than correct.</strong> The simulation moves error detection to a moment without consequences.",
   "l3": "<strong>Granular control.</strong> Each group of changes is confirmed independently, without forcing all-or-nothing decisions.",
   "l4": "<strong>Traceability by default.</strong> Every import is logged with no extra steps for the user.",
-  "learn_p2": "<strong>In retrospect:</strong> I would set a baseline for the time each edit took from the start, to quantify time savings in addition to the drop in tickets. I would also consider adding direct in-product editing for one-off changes, keeping the spreadsheet flow for bulk edits.",
-  "label_learn": "Role and principles"
+  "learn_p2": "<strong>In retrospect:</strong> I would set a baseline for the time each edit took from the start, to quantify time savings in addition to the drop in tickets. The 2026 proposal builds on that review, focusing on clarity about the state of the process and on preventing conflicts between operators.",
+  "label_learn": "Role and principles",
+  "tag_new": "2026 proposal",
+  "cap_cover": "2026 proposal · Dashboard showing the state of the process, the linked spreadsheet and a single primary action.",
+  "label_proposal": "2026 proposal",
+  "prop_h": "Redesigning the dashboard and the report",
+  "prop_p1": "The 2024 version solved the core problem: it made it possible to edit complete datasets without risk to production. Revisiting it with some distance, I identified opportunities to reduce cognitive load at the most demanding moments: knowing where the edit stands in the process, understanding why a row cannot be applied, and preventing an import from overwriting someone else's work.",
+  "prop_p2": "The proposal keeps the export, edit and simulate model, and redefines the interface hierarchy around four decisions:",
+  "d1_t": "A visible process state",
+  "d1_d": "The dashboard shows which step the edit is at (exported, being edited or ready for review) and focuses the next action on a single primary button.",
+  "d2_t": "Conflicts anticipated",
+  "d2_d": "If someone else applies changes after the export, the dashboard flags it before any data is lost and offers to compare both versions.",
+  "d3_t": "Actionable errors",
+  "d3_d": "Each error states the spreadsheet row, the affected field and how to fix it, in plain language and with a direct link to the row.",
+  "d4_t": "Informed decisions",
+  "d4_d": "The report summarizes the impact, shows previous and new values with visual references, and updates the number of changes to apply in real time.",
+  "conf_h": "Conflicting edits",
+  "conf_p": "In accounts with several operators, an exported spreadsheet can fall out of date. The dashboard detects the difference from the current version, explains the consequences and holds the import until it is resolved, with the import history as a reference.",
+  "cap_conflict": "Conflict state: the spreadsheet is behind a later import.",
+  "rep_h": "Simulation report",
+  "rep_p": "The report first presents an impact summary and the rows that cannot be applied, with an explanation of the problem and a direct link to the spreadsheet. Changes are grouped by type and each group can be excluded from the import; the action bar always reflects how many changes will be applied.",
+  "cap_report26": "Full report: impact summary, skipped rows with their cause, and changes grouped by type.",
+  "prop_note": "<strong>Note:</strong> this is a self-initiated proposal, developed after the project and not implemented in the product. All data shown is fictitious.",
+  "era_eyebrow": "Original project · 2024",
+  "era_h": "Research, design and launch of the system",
+  "solution_p2": "The simulation report detailed the errors blocking the import and every update, insertion and deletion, with the option to include or exclude each group of changes. On confirmation, every import was logged with its author and date.",
+  "cap_v24": "2024 version: augmentation dashboard and import confirmation."
  }
 };
 
