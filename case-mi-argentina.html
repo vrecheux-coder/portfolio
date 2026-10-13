@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Argentina — Vanesa Reche</title>
-<meta name="description" content="Caso de estudio académico: rediseño de la app Mi Argentina. Diplomatura UX/UI, UTN.">
+<meta name="description" content="Caso de estudio: rediseño end-to-end de Mi Argentina, la app del Estado con +20M de usuarios. Trabajo final de la Diplomatura UX/UI (UTN, 2026): research, arquitectura, IA conversacional y validación con usuarios.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -56,27 +56,8 @@ a{color:inherit;text-decoration:none}
 .lang-btn{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.04em;background:none;border:0;padding:.4rem .8rem;cursor:pointer;color:#B8B4A6;border-radius:var(--r-pill)}
 .lang-btn[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
 
-/* nav hamburger — hidden on desktop */
-.nav-toggle{
-  display:none;
-  flex-direction:column;
-  justify-content:center;
-  gap:5px;
-  width:38px;
-  height:38px;
-  background:none;
-  border:0;
-  cursor:pointer;
-  padding:0;
-  flex-shrink:0;
-}
-.nav-toggle span{
-  display:block;
-  width:100%;
-  height:2px;
-  background:var(--ink);
-  transition:transform .25s ease, opacity .25s ease;
-}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:0;cursor:pointer;padding:0;flex-shrink:0}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--ink);transition:transform .25s ease, opacity .25s ease}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
@@ -88,35 +69,133 @@ a{color:inherit;text-decoration:none}
 .case-eyebrow-row{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3);flex-wrap:wrap}
 .case-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;color:var(--pink-text)}
 .case-title{font-size:clamp(2.6rem,6.5vw,5.2rem);max-width:16ch}
-.case-meta-row{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-4)}
+.case-meta-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:var(--sp-4)}
 .tag{font-size:.78rem;font-weight:500;border:1.5px solid var(--pink-text);color:var(--pink-text);padding:.4rem .85rem;border-radius:var(--r-pill)}
 .tag-neutral{border-color:var(--ink);color:var(--ink)}
 .tag-ok{border-color:#2F6E44;color:#2F6E44}
-.case-summary{max-width:56ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.case-summary{max-width:60ch;font-size:1.15rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.case-summary strong{color:var(--ink);font-weight:600}
 
-.team-notice{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:.5rem 1rem;font-size:.8rem;color:var(--ink-soft);margin-top:var(--sp-4)}
+.hero-ctas{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-4)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.92rem;padding:.9rem 1.5rem;border-radius:var(--r-pill);border:1.5px solid var(--ink)}
+.btn-primary{background:var(--ink);color:var(--cream)}
+.btn-primary:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+.btn-ghost:hover{background:var(--ink);color:var(--cream)}
 
-.case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--cream-2);border:1.5px solid var(--line);margin-top:var(--sp-5);padding:var(--sp-5) var(--sp-4);display:flex;justify-content:center;gap:var(--sp-3)}
-.phone-mock{width:150px;aspect-ratio:9/18.5;border-radius:20px;flex-shrink:0;overflow:hidden;border:1.5px solid var(--line);background:var(--cream-2)}
-.phone-mock img{width:100%;height:100%;object-fit:contain;display:block}
-.phone-mock:nth-child(2){transform:translateY(-10px)}
+/* academic band */
+.academic{margin-top:var(--sp-5);display:grid;grid-template-columns:auto 1fr;gap:var(--sp-3);align-items:center;background:var(--pink-pale);border:1.5px solid var(--pink-soft);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4)}
+.academic-badge{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;line-height:1.1;color:var(--pink-text);border-right:1.5px solid var(--pink-soft);padding-right:var(--sp-3)}
+.academic p{font-size:.95rem;color:var(--ink-soft);max-width:80ch}
+.academic p strong{color:var(--ink);font-weight:600}
 
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2);margin-top:var(--sp-4)}
+.stat{background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3)}
+.stat-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1;letter-spacing:-.02em}
+.stat-num .accent{color:var(--pink-text)}
+.stat-label{font-size:.85rem;color:var(--ink-soft);margin-top:.5rem;line-height:1.4}
+
+.case-cover{position:relative;border-radius:var(--r-lg);overflow:hidden;background:#fff;border:1.5px solid var(--line);margin-top:var(--sp-5);padding:var(--sp-4)}
+.case-cover img{margin:0 auto;max-height:640px;width:auto}
+.cover-labels{display:flex;justify-content:center;gap:var(--sp-6);margin-top:var(--sp-2)}
+.cover-labels span{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.cover-labels span:last-child{color:var(--pink-text)}
+
+/* sections */
 .case-section{padding:var(--sp-6) 0;border-top:1.5px solid var(--line)}
 .case-section-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:var(--sp-6)}
 .case-section-label{position:sticky;top:110px;align-self:start}
+.case-section-label .step{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.4rem;line-height:1;color:var(--pink-soft);margin-bottom:.4rem}
+.case-section-body{min-width:0}
 .case-section-body h2{font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:var(--sp-3)}
+.case-section-body h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.2rem;margin:var(--sp-4) 0 .6rem;letter-spacing:-.01em}
 .case-section-body p{max-width:64ch;color:var(--ink-soft);margin-bottom:1rem;font-size:1.02rem}
 .case-section-body p strong{color:var(--ink);font-weight:600}
 
-.phone-row{display:flex;gap:var(--sp-3);margin-top:var(--sp-4);flex-wrap:wrap;background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-4);justify-content:center}
-.phone-row .phone-mock{transform:none}
+/* process */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.phase{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:var(--cream-2)}
+.phase-name{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink-text);margin-bottom:.6rem}
+.phase ul{list-style:none;font-size:.88rem;color:var(--ink)}
+.phase li{padding:.3rem 0;border-top:1px solid var(--line)}
+.phase li:first-child{border-top:0}
+
+/* findings */
+.findings{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.finding{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:#fff}
+.case-section-body .finding-num{margin:0;max-width:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.2rem;line-height:1;color:var(--pink-text)}
+.finding p{margin:.5rem 0 0;font-size:.92rem;color:var(--ink-soft)}
+.insight{margin-top:var(--sp-3);border-left:4px solid var(--pink);background:var(--cream-2);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:var(--sp-3)}
+.insight p{margin:0;color:var(--ink);font-size:1.05rem;max-width:none}
+.insight .eyebrow{display:block;margin-bottom:.4rem;color:var(--pink-text)}
+
+/* bars */
+.bars{margin-top:var(--sp-3);display:grid;gap:.9rem}
+.bar-row{display:grid;grid-template-columns:minmax(150px,220px) 1fr 76px;gap:var(--sp-2);align-items:center;font-size:.9rem}
+.bar-track{height:12px;background:var(--cream-2);border-radius:var(--r-pill);overflow:hidden;border:1px solid var(--line)}
+.bar-fill{height:100%;background:var(--ink);border-radius:var(--r-pill)}
+.bar-fill.pink{background:var(--pink)}
+.bar-val{font-family:'Space Mono',monospace;font-size:.82rem;text-align:right;white-space:nowrap}
+.bar-caption{font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
+
+/* tables */
+.table-wrap{margin-top:var(--sp-3);overflow-x:auto;border:1.5px solid var(--line);border-radius:var(--r-md);background:#fff}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+th,td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:'Space Mono',monospace;font-weight:400;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:var(--cream-2)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:'Space Mono',monospace;white-space:nowrap}
+.pill-low{display:inline-block;background:var(--pink-pale);color:var(--pink-text);border-radius:var(--r-pill);padding:.1rem .6rem;font-weight:600}
+.pill-ok{display:inline-block;background:#E3EFE6;color:#2F6E44;border-radius:var(--r-pill);padding:.1rem .6rem;font-weight:600}
+
+/* MVP list */
+.mvp{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.mvp-item{border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3)}
+.mvp-item strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.3rem}
+.mvp-item span{font-size:.9rem;color:var(--ink-soft)}
+
+/* images */
+.case-img{position:relative;margin-top:var(--sp-3);border-radius:var(--r-md);overflow:hidden;border:1.5px solid var(--line);background:#fff}
+.case-img img{width:100%;height:auto}
+.img-caption{font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
+.phone-row{display:flex;gap:var(--sp-3);margin-top:var(--sp-3);flex-wrap:wrap;background:var(--cream-2);border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-4);justify-content:center}
+.phone-mock{position:relative;width:170px;aspect-ratio:9/18.5;border-radius:20px;flex-shrink:0;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+.phone-mock img{width:100%;height:100%;object-fit:contain;display:block}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.case-section-body .quote{margin:0;max-width:none;color:var(--ink);font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.1rem;line-height:1.3;background:var(--cream-2);border-radius:var(--r-md);padding:var(--sp-3)}
+.quote::before{content:"“";color:var(--pink);font-size:1.6rem;line-height:0;margin-right:.15rem;vertical-align:-.35rem}
+
+/* A/B */
+.ab{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.ab-card{border:1.5px solid var(--line);border-radius:var(--r-md);padding:var(--sp-3);background:#fff}
+.ab-card.win{border-color:var(--pink-text)}
+.ab-card .eyebrow{display:block;margin-bottom:.5rem}
+.case-section-body .ab-card .stat-num{font-size:2.6rem;color:var(--ink);margin:0}
+.case-section-body .ab-card.win .stat-num{color:var(--pink-text)}
+.ab-card p{font-size:.88rem;margin:.4rem 0 0}
+
+/* learnings */
+.learn{list-style:none;margin-top:var(--sp-3);display:grid;gap:.8rem;max-width:64ch}
+.learn li{position:relative;padding-left:1.8rem;color:var(--ink-soft)}
+.learn li::before{content:"→";position:absolute;left:0;color:var(--pink-text);font-weight:700}
+.learn li strong{color:var(--ink);font-weight:600}
+
+/* resources */
+.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.resource{display:flex;flex-direction:column;justify-content:space-between;gap:var(--sp-2);border:1.5px solid var(--ink);border-radius:var(--r-md);padding:var(--sp-3);min-height:170px;transition:background .2s,color .2s}
+.resource:hover{background:var(--ink);color:var(--cream)}
+.resource:hover .resource-desc{color:#C9C5B8}
+.resource.featured{background:var(--pink);border-color:var(--pink);color:#fff}
+.resource.featured .resource-desc{color:#FFE6F1}
+.resource.featured:hover{background:var(--ink);border-color:var(--ink)}
+.resource-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;line-height:1.1}
+.resource-desc{font-size:.85rem;color:var(--ink-soft)}
+.resource-arrow{font-weight:600;font-size:.9rem}
 
 .figma-embed-wrap{margin-top:var(--sp-4);border-radius:var(--r-md);overflow:hidden;border:1.5px solid var(--line)}
-.figma-embed-wrap iframe{width:100%;height:520px;border:0;display:block}
-.figma-caption{font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
-.figma-links{display:flex;gap:var(--sp-3);margin-top:var(--sp-3);flex-wrap:wrap}
-.figma-links a{font-size:.85rem;font-weight:600;border:1.5px solid var(--ink);padding:.6rem 1.1rem;border-radius:var(--r-pill)}
-.figma-links a:hover{background:var(--ink);color:var(--cream)}
+.figma-embed-wrap iframe{width:100%;height:560px;border:0;display:block}
 
 .team-list{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
 .team-pill{font-size:.85rem;border:1.5px solid var(--line);padding:.5rem 1rem;border-radius:var(--r-pill);color:var(--ink)}
@@ -131,36 +210,34 @@ a{color:inherit;text-decoration:none}
 
 footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;display:flex;justify-content:space-between}
 
+@media (max-width:1000px){
+  .process{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .resources{grid-template-columns:1fr}
+}
 @media (max-width:900px){
   .nav-toggle{display:flex}
-  .nav-links{
-    position:absolute;
-    top:86px;
-    left:0;
-    right:0;
-    background:var(--cream);
-    flex-direction:column;
-    align-items:flex-start;
-    gap:var(--sp-3);
-    padding:var(--sp-4);
-    border-bottom:1.5px solid var(--ink);
-    transform:translateY(-8px);
-    opacity:0;
-    pointer-events:none;
-    transition:transform .2s ease, opacity .2s ease;
-  }
-  .nav-links.open{
-    transform:translateY(0);
-    opacity:1;
-    pointer-events:auto;
-  }
+  .nav-links{position:absolute;top:86px;left:0;right:0;background:var(--cream);flex-direction:column;align-items:flex-start;gap:var(--sp-3);padding:var(--sp-4);border-bottom:1.5px solid var(--ink);transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .2s ease, opacity .2s ease}
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
   .lang-toggle{margin-top:.5rem}
   .case-hero{padding:var(--sp-4) 0 var(--sp-5)}
   .case-section{padding:var(--sp-5) 0}
   .next-case .container{padding:var(--sp-5) var(--sp-4)}
   .case-section-inner{grid-template-columns:1fr;gap:var(--sp-3)}
-  .case-section-label{position:static}
-  .case-cover{flex-wrap:wrap}
+  .case-section-label{position:static;display:flex;align-items:baseline;gap:.8rem}
+  .case-section-label .step{font-size:1.6rem;margin:0}
+  .academic{grid-template-columns:1fr}
+  .academic-badge{border-right:0;border-bottom:1.5px solid var(--pink-soft);padding:0 0 .8rem}
+}
+@media (max-width:620px){
+  .container{padding:0 var(--sp-2)}
+  .findings,.mvp,.quotes,.ab,.process{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:1fr 70px}
+  .bar-row .bar-label{grid-column:1 / -1}
+  .case-cover{padding:var(--sp-2)}
+  .cover-labels{gap:var(--sp-4)}
+  .figma-embed-wrap iframe{height:460px}
+  .phone-mock{width:140px}
 }
 </style>
 </head>
@@ -192,64 +269,273 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
     <a class="back-link" href="index.html#work">← <span data-i18n="back">Volver a proyectos</span></a>
     <div class="case-eyebrow-row">
       <span class="case-num">04</span>
-      <p class="eyebrow" data-i18n="case_eyebrow">UTN · Proyecto académico · Equipo de 3</p>
+      <p class="eyebrow" data-i18n="case_eyebrow">Diplomatura UX/UI · UTN · 2026 · Equipo de 3</p>
     </div>
     <h1 class="display case-title" data-i18n="case_title">Mi Argentina</h1>
-    <p class="case-summary" data-i18n="case_summary">Rediseño de una app de gobierno digital. Lideré el flujo de Tina, la asistente conversacional, de punta a punta.</p>
+    <p class="case-summary" data-i18n="case_summary">Rediseño integral de la aplicación oficial del Estado argentino, con <strong>más de 20 millones de usuarios registrados</strong>: transformamos una navegación estructurada según la lógica institucional en una experiencia orientada a tareas, con búsqueda asistida por IA y validada con usuarios.</p>
     <div class="case-meta-row">
       <span class="tag tag-ok" data-i18n="tag_no_nda">✅ Sin NDA</span>
-      <span class="tag tag-neutral" data-i18n="tag_role">UX Research · UI · Prototipado</span>
-      <span class="tag tag-neutral" data-i18n="tag_year">Diplomatura UTN</span>
+      <span class="tag tag-neutral" data-i18n="tag_role">Research · Arquitectura · IA conversacional · UI · Testing</span>
+      <span class="tag tag-neutral" data-i18n="tag_year">Proyecto final de Diplomatura</span>
     </div>
-    <p class="team-notice">👥 <span data-i18n="team_notice">Proyecto grupal — Equipo 22: Tamara Iglesias, Karen Lafuente y Vanesa Reche.</span></p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://www.figma.com/proto/itqfzNKb9cyVAnF6kysbdz/Presentaci%C3%B3n---Redise%C3%B1o-Mi-Argentina?node-id=511-1160&p=f&t=I5AAPbGsARQVIfzE-1&scaling=contain&content-scaling=fixed&page-id=512%3A1160&starting-point-node-id=511%3A1160" target="_blank" rel="noopener noreferrer"><span data-i18n="cta_full">Ver caso de estudio completo</span> ↗</a>
+      <a class="btn btn-ghost" href="#prototipo"><span data-i18n="cta_proto">Ver el prototipo</span> ↓</a>
+    </div>
 
-    <div class="case-cover" role="img" aria-label="Mockups de pantallas de la app Mi Argentina en formato mobile">
-      <div class="phone-mock"><img src="images/ma-cover.jpg" alt="" loading="lazy"></div>
-      <div class="phone-mock"><img src="images/ma-turno-1.jpg" alt="" loading="lazy"></div>
-      <div class="phone-mock"><img src="images/ma-turno-2.jpg" alt="" loading="lazy"></div>
+    <div class="academic">
+      <p class="academic-badge" data-i18n="academic_badge">Trabajo final<br>Diplomatura UX/UI · UTN</p>
+      <p data-i18n="academic_p">Proyecto de cierre de la Diplomatura en Diseño UX/UI de la UTN (feb–jul 2026). El objetivo fue ejecutar <strong>el ciclo completo de diseño de producto con estándares profesionales</strong>: investigación cualitativa y cuantitativa, definición del MVP, arquitectura de información, diseño de interfaz, design system y validación con usuarios, documentado en su totalidad en la presentación final.</p>
     </div>
+
+    <div class="stats">
+      <div class="stat"><p class="stat-num">+20<span class="accent">M</span></p><p class="stat-label" data-i18n="stat_1">usuarios registrados en la app original</p></div>
+      <div class="stat"><p class="stat-num">88</p><p class="stat-label" data-i18n="stat_2">participantes en 4 instancias de research y testing</p></div>
+      <div class="stat"><p class="stat-num">100<span class="accent">%</span></p><p class="stat-label" data-i18n="stat_3">de las tareas completadas en el test de usabilidad</p></div>
+      <div class="stat"><p class="stat-num">4,2<span class="accent">/5</span></p><p class="stat-label" data-i18n="stat_4">facilidad de uso percibida del prototipo</p></div>
+    </div>
+
+    <figure class="case-cover">
+      <img src="images/ma-before-after.jpg" alt="Comparación entre la Home original de Mi Argentina y la propuesta final: buscador con Tina, accesos por tarea, alerta de vencimiento y gestiones en curso" loading="eager">
+      <figcaption class="cover-labels"><span data-i18n="label_before">Original</span><span data-i18n="label_after">Propuesta final</span></figcaption>
+    </figure>
   </div>
 </header>
 
+<!-- 01 contexto -->
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_problem">El problema</p></div>
+    <div class="case-section-label"><p class="step">01</p><p class="eyebrow" data-i18n="label_context">Contexto</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="problem_h">Sacar un turno en una app de gobierno era confuso</h2>
-      <p data-i18n="problem_p1">Como trabajo final de la Diplomatura en UX/UI de la UTN, en equipo de tres analizamos y rediseñamos flujos clave de una app de gobierno digital, con foco en la gestión de turnos y en cómo la información se presenta a personas con distintos niveles de familiaridad con lo digital.</p>
-      <p data-i18n="problem_p2"><strong>Mi rol:</strong> UX research, arquitectura de información y diseño visual, con foco particular en liderar el flujo de Tina, la asistente conversacional del producto.</p>
+      <h2 data-i18n="context_h">Alto alcance, baja satisfacción</h2>
+      <p data-i18n="context_p1">Mi Argentina centraliza la identidad digital del ciudadano: DNI, licencia de conducir, turnos, salud, vehículos y cobros. Su alcance masivo contrasta con la percepción de los usuarios: <strong>2,5★ en Android y 1,8★ en iOS</strong>, con reseñas que señalan de forma recurrente fallas en el inicio de sesión, la validación de identidad, la gestión de turnos y la recuperación de cuenta.</p>
+      <p data-i18n="context_p2">El desafío no consistía en sumar funcionalidades, sino en reorganizar las existentes para que cualquier persona, independientemente de su nivel de alfabetización digital, pudiera completar sus gestiones de forma autónoma.</p>
     </div>
   </div>
 </section>
 
+<!-- 02 proceso -->
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_approach">El enfoque</p></div>
+    <div class="case-section-label"><p class="step">02</p><p class="eyebrow" data-i18n="label_process">Proceso</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="approach_h">Un flujo de turnos claro, y una asistente que ayuda de verdad</h2>
-      <p data-i18n="approach_p1">Rediseñamos el flujo de reserva de turnos para reducir pasos y ambigüedad, y diseñé de punta a punta la conversación con Tina: qué pregunta, en qué orden, y cómo deriva a un humano cuando el caso lo requiere.</p>
+      <h2 data-i18n="process_h">Un proceso de punta a punta, de la evidencia a la validación</h2>
+      <p data-i18n="process_p1">Cada decisión de diseño se sustenta en datos u observaciones. Estas fueron las etapas del proceso:</p>
+      <div class="process">
+        <div class="phase">
+          <p class="phase-name" data-i18n="ph1">Descubrir</p>
+          <ul>
+            <li data-i18n="ph1_1">Desktop research y reseñas</li>
+            <li data-i18n="ph1_2">Benchmark de 3 apps del Estado</li>
+            <li data-i18n="ph1_3">Encuesta a 57 personas</li>
+            <li data-i18n="ph1_4">User personas y journey map</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <p class="phase-name" data-i18n="ph2">Definir</p>
+          <ul>
+            <li data-i18n="ph2_1">Matriz de tendencias y necesidades</li>
+            <li data-i18n="ph2_2">Evaluación heurística</li>
+            <li data-i18n="ph2_3">Tree testing con 10 usuarios</li>
+            <li data-i18n="ph2_4">Matriz de factibilidad y MVP</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <p class="phase-name" data-i18n="ph3">Diseñar</p>
+          <ul>
+            <li data-i18n="ph3_1">Arquitectura iterada</li>
+            <li data-i18n="ph3_2">Task flows y wireflows</li>
+            <li data-i18n="ph3_3">Wireframes → UI → Design System</li>
+            <li data-i18n="ph3_4">Revisión con Leyes UX</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <p class="phase-name" data-i18n="ph4">Validar</p>
+          <ul>
+            <li data-i18n="ph4_1">Test de usabilidad moderado (5)</li>
+            <li data-i18n="ph4_2">A/B test de la Home (16)</li>
+            <li data-i18n="ph4_3">Síntesis e iteración</li>
+            <li data-i18n="ph4_4">Próximos pasos priorizados</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 research -->
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">03</p><p class="eyebrow" data-i18n="label_research">Investigación</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="research_h">La app está organizada en función de los sectores del Estado. Las personas piensan en tareas.</h2>
+      <p data-i18n="research_p1">El desktop research evidenció una arquitectura organizada por áreas administrativas (Salud, Cobros, Hijos) y una Home con múltiples accesos de igual jerarquía visual. La encuesta a 57 personas permitió dimensionar el impacto:</p>
+      <div class="findings">
+        <div class="finding"><p class="finding-num">53%</p><p data-i18n="f1">percibe la organización de la aplicación como confusa.</p></div>
+        <div class="finding"><p class="finding-num">63%</p><p data-i18n="f2">ingresa con un objetivo específico; solo el 7% utiliza los accesos directos.</p></div>
+        <div class="finding"><p class="finding-num">47%</p><p data-i18n="f3">reportó dificultades para iniciar sesión, la fricción más mencionada.</p></div>
+        <div class="finding"><p class="finding-num">63%</p><p data-i18n="f4">de quienes intentaron solicitar un turno señaló como principal obstáculo la redirección a un sitio externo con nueva autenticación.</p></div>
+      </div>
+      <p class="bar-caption" data-i18n="f_caption">Encuesta online · 57 participantes · 77% usuarios de la app.</p>
+
+      <h3 data-i18n="bench_h">Benchmark: la eficiencia no depende de la cantidad de funcionalidades</h3>
+      <p data-i18n="bench_p">Analizamos Mi Argentina junto a Mi ANSES y AFIP/ARCA móvil. Mi ANSES, con un alcance funcional más acotado, ofreció la experiencia más directa. Esta conclusión orientó todo el proyecto: <strong>la eficiencia depende de cómo se organizan y comunican las funcionalidades, no de su cantidad.</strong></p>
+      <div class="bars" role="list" aria-label="Pasos para acceder al contenido">
+        <div class="bar-row" role="listitem"><span class="bar-label">Mi ANSES</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-val" data-i18n="steps_2">2 pasos</span></div>
+        <div class="bar-row" role="listitem"><span class="bar-label">Mi Argentina</span><div class="bar-track"><div class="bar-fill pink" style="width:60%"></div></div><span class="bar-val" data-i18n="steps_3">3 pasos</span></div>
+        <div class="bar-row" role="listitem"><span class="bar-label">AFIP/ARCA móvil</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val" data-i18n="steps_5">5 pasos</span></div>
+      </div>
+      <p class="bar-caption" data-i18n="bench_caption">Cantidad de pasos para acceder al contenido principal.</p>
+
+      <div class="insight">
+        <span class="eyebrow" data-i18n="insight_label">Insight clave</span>
+        <p data-i18n="insight_p">Los usuarios no requieren más funcionalidades: requieren menos pasos, menos interrupciones y una estructura alineada con sus objetivos, no con la lógica del sistema.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 arquitectura -->
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">04</p><p class="eyebrow" data-i18n="label_ia">Arquitectura</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="ia_h">El tree testing nos mostró los puntos de fricción con el usuario</h2>
+      <p data-i18n="ia_p1">Relevamos la arquitectura actual y la evaluamos con 10 participantes en 5 escenarios reales. Las tareas de acceso directo, como encontrar el DNI o solicitar un turno, presentaron altas tasas de éxito; la fricción se concentró en las tareas que exigían comprender la lógica interna de la aplicación.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th data-i18n="th_task">Tarea</th><th data-i18n="th_success">Éxito</th><th data-i18n="th_time">Tiempo</th><th data-i18n="th_obs">Observación</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="t1">Encontrar el DNI digital</td><td><span class="pill-ok">90%</span></td><td class="num">25s</td><td data-i18n="t1o">Recorridos divididos entre el menú lateral y Perfil.</td></tr>
+            <tr><td data-i18n="t2">Solicitar turno para renovar el DNI</td><td><span class="pill-ok">90%</span></td><td class="num">27s</td><td data-i18n="t2o">Dos rutas posibles para una misma acción.</td></tr>
+            <tr><td data-i18n="t3">Agregar certificado COVID-19</td><td><span class="pill-low">40%</span></td><td class="num">51s</td><td data-i18n="t3o">La etiqueta “Suscribir servicios” no comunica la intención.</td></tr>
+            <tr><td data-i18n="t4">Consultar aportes laborales</td><td><span class="pill-ok">90%</span></td><td class="num">16s</td><td data-i18n="t4o">Ubicación poco clara de la información laboral.</td></tr>
+            <tr><td data-i18n="t5">Solicitar asistencia a Tina</td><td><span class="pill-low">70%</span></td><td class="num">26s</td><td data-i18n="t5o">Solo el 18% accedió de forma directa: predomina la navegación tradicional.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p data-i18n="ia_p2" style="margin-top:var(--sp-3)">A partir de estos resultados, <strong>reestructuramos la arquitectura en función de los objetivos del usuario</strong>: la incorporación de servicios se resuelve dentro de cada categoría, sin pasar por “Suscribir servicios”; el DNI se integra a la barra de navegación, y la búsqueda asistida por Tina se ubica como punto de entrada principal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 definición -->
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">05</p><p class="eyebrow" data-i18n="label_mvp">Definición</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="mvp_h">Priorización y alcance del MVP</h2>
+      <p data-i18n="mvp_p1">Mediante una matriz de factibilidad, viabilidad y deseabilidad evaluamos más de 15 iniciativas, desde widgets e integración con wallet hasta una vista simplificada para adultos mayores, y definimos un MVP centrado en las fricciones de mayor impacto:</p>
+      <div class="mvp">
+        <div class="mvp-item"><strong data-i18n="mvp1_t">Home orientada a tareas</strong><span data-i18n="mvp1_d">Accesos por acción, alertas de vencimiento y visibilidad de las gestiones en curso.</span></div>
+        <div class="mvp-item"><strong data-i18n="mvp2_t">Gestión de turnos dentro de la aplicación</strong><span data-i18n="mvp2_d">Trámite, sede, fecha y confirmación en un único flujo, con indicador de progreso y sin nueva autenticación.</span></div>
+        <div class="mvp-item"><strong data-i18n="mvp3_t">Agregar documentos en contexto</strong><span data-i18n="mvp3_d">Un flujo directo que reemplaza la opción “Suscribir servicios”.</span></div>
+        <div class="mvp-item"><strong data-i18n="mvp4_t">Tina, integrada y potenciada con IA</strong><span data-i18n="mvp4_d">El asistente se integra a la aplicación y deja de depender de WhatsApp: interpreta la intención del usuario por texto o voz y lo conduce al trámite correspondiente.</span></div>
+      </div>
+      <p data-i18n="mvp_p2" style="margin-top:var(--sp-3)">La optimización del inicio de sesión, los recordatorios contextuales y los widgets quedaron planificados para una próxima versión.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 diseño -->
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">06</p><p class="eyebrow" data-i18n="label_design">Diseño</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="design_h">Del wireflow a la interfaz: un proceso iterativo</h2>
+      <p data-i18n="design_p1">Desarrollamos los tres flujos del MVP como wireflows completos, incluyendo estados de carga, error y confirmación, antes de avanzar a alta fidelidad.</p>
+      <div class="case-img"><img src="images/ma-wireflow.jpg" alt="Wireflows de los tres recorridos principales: agregar documento, sacar turno y consulta con Tina" loading="lazy"></div>
+      <p class="img-caption" data-i18n="cap_wireflow">Wireflows: documentos (arriba), turnos (centro) y Tina (abajo).</p>
+
+      <h3 data-i18n="evo_h">Evolución de la Home</h3>
+      <p data-i18n="evo_p">A partir de los hallazgos de testeo, reemplazamos los botones de texto por accesos con iconografía, trasladamos el DNI a la barra de navegación para optimizar el espacio y jerarquizamos los vencimientos mediante una tarjeta de alerta.</p>
+      <div class="case-img"><img src="images/ma-evo-home.jpg" alt="Tres versiones de la Home: wireframe, primera UI y versión iterada" loading="lazy"></div>
+      <p class="img-caption" data-i18n="cap_evo_home">Wireframe → primera UI → versión iterada post-testing.</p>
+
+      <h3 data-i18n="evo2_h">Búsqueda de trámites</h3>
+      <div class="case-img"><img src="images/ma-evo-tramite.jpg" alt="Tres versiones de la pantalla Encontrar trámite, con búsqueda asistida, trámites frecuentes y categorías" loading="lazy"></div>
+      <p class="img-caption" data-i18n="cap_evo_tramite">Búsqueda asistida por Tina, trámites frecuentes con íconos y exploración por categoría.</p>
+
+      <h3 data-i18n="tina_h">Tina: trasladar la complejidad al sistema</h3>
+      <p data-i18n="tina_p">Lideré el diseño del flujo conversacional de Tina de punta a punta: estructura de preguntas, secuencia, confirmaciones y criterios de derivación. Aplicamos la Ley de Tesler, según la cual la complejidad inherente debe ser absorbida por el sistema y no por el usuario, de modo que una solicitud como “necesito renovar la licencia” concluya en un turno confirmado.</p>
       <div class="phone-row">
-        <div class="phone-mock"><img src="images/ma-turno-2.jpg" alt="Selección de fecha y horario para el turno" loading="lazy"></div>
+        <div class="phone-mock"><img src="images/ma-turno-1.jpg" alt="Flujo de turnos: selección de sede" loading="lazy"></div>
+        <div class="phone-mock"><img src="images/ma-turno-2.jpg" alt="Flujo de turnos: selección de fecha y horario" loading="lazy"></div>
         <div class="phone-mock"><img src="images/ma-tina.jpg" alt="Conversación con Tina confirmando un turno reservado" loading="lazy"></div>
       </div>
-      <p class="figma-caption" data-i18n="img_caption">Flujo de turnos y flujo de Tina, la asistente conversacional.</p>
+      <p class="img-caption" data-i18n="cap_tina">Flujo de turnos y conversación con Tina. La solución se documentó en un Design System propio.</p>
     </div>
   </div>
 </section>
 
+<!-- 07 validación -->
 <section class="case-section">
   <div class="container case-section-inner">
-    <div class="case-section-label"><p class="eyebrow" data-i18n="label_prototype">Prototipo</p></div>
+    <div class="case-section-label"><p class="step">07</p><p class="eyebrow" data-i18n="label_validation">Validación</p></div>
     <div class="case-section-body">
-      <h2 data-i18n="prototype_h">Navégalo en Figma</h2>
-      <p data-i18n="prototype_p1">El prototipo completo es navegable: prueba el flujo de turnos y la conversación con Tina aquí abajo.</p>
-      <div class="figma-embed-wrap">
-        <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FDnhpLmAPnVlKczch8G2XZD%2FMi-Argentina-prototipo%3Fnode-id%3D40000460-4291%26t%3DQ1y0mIfcdawqMByW-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D40000300%253A2520%26starting-point-node-id%3D40000460%253A4291" allowfullscreen title="Prototipo navegable de Mi Argentina en Figma"></iframe>
+      <h2 data-i18n="val_h">Validación con usuarios</h2>
+      <p data-i18n="val_p1"><strong>Test de usabilidad moderado</strong> con 5 participantes y 3 tareas: solicitar un turno para el DNI, incorporar el CUD a los documentos digitales y renovar la licencia mediante una consulta por voz a Tina. El 100% de los participantes completó todas las tareas sin asistencia; la carga de documentos resultó el flujo más intuitivo.</p>
+      <div class="quotes">
+        <p class="quote" data-i18n="q1">Fue bastante fácil encontrarlo.</p>
+        <p class="quote" data-i18n="q2">No sabía que Tina estaba acá.</p>
       </div>
-      <div class="figma-links">
-        <a href="https://www.figma.com/proto/DnhpLmAPnVlKczch8G2XZD/Mi-Argentina-prototipo?node-id=40000460-4291&t=Q1y0mIfcdawqMByW-1&scaling=scale-down&content-scaling=fixed&page-id=40000300%3A2520&starting-point-node-id=40000460%3A4291" target="_blank" rel="noopener noreferrer"><span data-i18n="link_prototype">Abrir prototipo en Figma</span> ↗</a>
-        <a href="https://www.figma.com/file/DnhpLmAPnVlKczch8G2XZD" target="_blank" rel="noopener noreferrer"><span data-i18n="link_presentation">Ver presentación completa</span> ↗</a>
-        <a href="https://www.figma.com/file/DnhpLmAPnVlKczch8G2XZD" target="_blank" rel="noopener noreferrer"><span data-i18n="link_design_system">Ver Design System</span> ↗</a>
+
+      <h3 data-i18n="ab_h">A/B test de la Home</h3>
+      <p data-i18n="ab_p">Test no moderado entre sujetos con 16 participantes, asignados aleatoriamente mediante Allocate Monster a la Home actual (A) o a la propuesta (B).</p>
+      <div class="ab">
+        <div class="ab-card"><span class="eyebrow" data-i18n="ab_a">A · Home actual</span><p class="stat-num">70%</p><p data-i18n="ab_a_d">identificó con facilidad dónde consultar una gestión pendiente.</p></div>
+        <div class="ab-card win"><span class="eyebrow" data-i18n="ab_b">B · Propuesta</span><p class="stat-num">100%</p><p data-i18n="ab_b_d">identificó con facilidad dónde consultar una gestión pendiente.</p></div>
+      </div>
+      <p data-i18n="ab_p2" style="margin-top:var(--sp-3)">Los resultados no fueron favorables en todos los indicadores: la Home actual obtuvo una mejor valoración en <strong>jerarquía visual</strong>, ya que el mayor volumen de información incrementó el esfuerzo de escaneo. Este hallazgo, junto con la baja visibilidad de Tina en el test moderado, definió la iteración final: accesos con iconografía, alertas diferenciadas y Tina como buscador principal.</p>
+      <p class="bar-caption" data-i18n="ab_caption">Muestra exploratoria: los resultados indican tendencias y no tienen significancia estadística.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 rol y aprendizajes -->
+<section class="case-section">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">08</p><p class="eyebrow" data-i18n="label_learn">Rol y criterios</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="learn_h">Rol y criterios de diseño</h2>
+      <p data-i18n="learn_p1">Participé en investigación, arquitectura de información y diseño de interfaz junto al equipo, y lideré el diseño del flujo conversacional de Tina. El proyecto consolidó criterios que aplico en el diseño de producto:</p>
+      <ul class="learn">
+        <li data-i18n="l1"><strong>Decisiones basadas en evidencia.</strong> Cuatro métodos de investigación y dos instancias de validación antes de cerrar cada definición.</li>
+        <li data-i18n="l2"><strong>Priorización con criterio explícito.</strong> Un alcance de MVP definido mediante una matriz de evaluación, no por intuición.</li>
+        <li data-i18n="l3"><strong>Apertura a resultados adversos.</strong> El A/B test evidenció una debilidad en jerarquía visual, que se tradujo en la siguiente iteración.</li>
+        <li data-i18n="l4"><strong>IA al servicio de la tarea.</strong> Tina reduce pasos y traslada la complejidad al sistema, en lugar de sumar una capa de interacción.</li>
+      </ul>
+      <p data-i18n="learn_p2" style="margin-top:var(--sp-3)"><strong>Próximos pasos:</strong> una segunda ronda de validación para evaluar la jerarquía visual iterada y la unificación de la experiencia entre la navegación tradicional y la conversacional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 recursos + prototipo -->
+<section class="case-section" id="prototipo">
+  <div class="container case-section-inner">
+    <div class="case-section-label"><p class="step">09</p><p class="eyebrow" data-i18n="label_prototype">Prototipo y caso completo</p></div>
+    <div class="case-section-body">
+      <h2 data-i18n="prototype_h">Explorá el prototipo</h2>
+      <p data-i18n="prototype_p1">El prototipo permite recorrer el flujo de turnos, la carga de documentos y la consulta asistida por Tina. La documentación completa del proceso, incluyendo encuesta, user personas, journey map, evaluación heurística, tree testing, guion de testeo y resultados, se encuentra en la presentación final.</p>
+      <div class="resources">
+        <a class="resource featured" href="https://www.figma.com/proto/itqfzNKb9cyVAnF6kysbdz/Presentaci%C3%B3n---Redise%C3%B1o-Mi-Argentina?node-id=511-1160&p=f&t=I5AAPbGsARQVIfzE-1&scaling=contain&content-scaling=fixed&page-id=512%3A1160&starting-point-node-id=511%3A1160" target="_blank" rel="noopener noreferrer">
+          <span class="resource-title" data-i18n="res1_t">Caso de estudio completo</span>
+          <span class="resource-desc" data-i18n="res1_d">Presentación final de la Diplomatura, con la documentación completa del proceso.</span>
+          <span class="resource-arrow" data-i18n="res_open">Abrir en Figma ↗</span>
+        </a>
+        <a class="resource" href="https://www.figma.com/proto/DnhpLmAPnVlKczch8G2XZD/Mi-Argentina-prototipo?node-id=40000460-4291&t=Q1y0mIfcdawqMByW-1&scaling=scale-down&content-scaling=fixed&page-id=40000300%3A2520&starting-point-node-id=40000460%3A4291" target="_blank" rel="noopener noreferrer">
+          <span class="resource-title" data-i18n="res2_t">Prototipo funcional</span>
+          <span class="resource-desc" data-i18n="res2_d">Los tres flujos del MVP, navegables en pantalla completa.</span>
+          <span class="resource-arrow" data-i18n="res_open">Abrir en Figma ↗</span>
+        </a>
+        <a class="resource" href="https://www.figma.com/file/DnhpLmAPnVlKczch8G2XZD" target="_blank" rel="noopener noreferrer">
+          <span class="resource-title" data-i18n="res3_t">Archivo de diseño</span>
+          <span class="resource-desc" data-i18n="res3_d">Pantallas, estados de error y Design System.</span>
+          <span class="resource-arrow" data-i18n="res_open">Abrir en Figma ↗</span>
+        </a>
+      </div>
+      <div class="figma-embed-wrap">
+        <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FDnhpLmAPnVlKczch8G2XZD%2FMi-Argentina-prototipo%3Fnode-id%3D40000460-4291%26t%3DQ1y0mIfcdawqMByW-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D40000300%253A2520%26starting-point-node-id%3D40000460%253A4291" allowfullscreen loading="lazy" title="Prototipo navegable de Mi Argentina en Figma"></iframe>
       </div>
     </div>
   </div>
@@ -260,11 +546,11 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
     <div class="case-section-label"><p class="eyebrow" data-i18n="label_team">Equipo</p></div>
     <div class="case-section-body">
       <h2 data-i18n="team_h">Equipo 22</h2>
-      <p data-i18n="team_p1">Este proyecto fue un trabajo grupal de principio a fin. El crédito por la investigación, el diseño y el prototipado es compartido entre las tres.</p>
+      <p data-i18n="team_p1">Proyecto desarrollado en equipo de principio a fin; la investigación, el diseño y el prototipado son mérito compartido de las tres integrantes.</p>
       <div class="team-list">
-        <span class="team-pill"><strong data-i18n="team_1_name">Vanesa Reche</strong></span>
-        <span class="team-pill"><strong data-i18n="team_2_name">Tamara Iglesias</strong></span>
-        <span class="team-pill"><strong data-i18n="team_3_name">Karen Lafuente</strong></span>
+        <span class="team-pill"><strong>Vanesa Reche</strong></span>
+        <span class="team-pill"><strong>Tamara Iglesias</strong></span>
+        <span class="team-pill"><strong>Karen Lafuente</strong></span>
       </div>
     </div>
   </div>
@@ -275,7 +561,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 <section class="next-case">
   <div class="container">
     <p class="eyebrow" data-i18n="next_eyebrow">Siguiente caso</p>
-    <h2 class="display next-case-title" data-i18n="next_title">Heroless</h2>
+    <h2 class="display next-case-title">Heroless</h2>
     <a class="next-case-link" href="case-heroless.html"><span data-i18n="next_cta">Ver caso</span> →</a>
   </div>
 </section>
@@ -292,53 +578,195 @@ const translations = {
   es: {
     nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
     back:"Volver a proyectos",
-    case_eyebrow:"UTN · Proyecto académico · Equipo de 3",
+    case_eyebrow:"Diplomatura UX/UI · UTN · 2026 · Equipo de 3",
     case_title:"Mi Argentina",
-    case_summary:"Rediseño de una app de gobierno digital. Lideré el flujo de Tina, la asistente conversacional, de punta a punta.",
-    tag_no_nda:"✅ Sin NDA", tag_role:"UX Research · UI · Prototipado", tag_year:"Diplomatura UTN",
-    team_notice:"Proyecto grupal — Equipo 22: Tamara Iglesias, Karen Lafuente y Vanesa Reche.",
-    label_problem:"El problema",
-    problem_h:"Sacar un turno en una app de gobierno era confuso",
-    problem_p1:"Como trabajo final de la Diplomatura en UX/UI de la UTN, en equipo de tres analizamos y rediseñamos flujos clave de una app de gobierno digital, con foco en la gestión de turnos y en cómo la información se presenta a personas con distintos niveles de familiaridad con lo digital.",
-    problem_p2:"<strong>Mi rol:</strong> UX research, arquitectura de información y diseño visual, con foco particular en liderar el flujo de Tina, la asistente conversacional del producto.",
-    label_approach:"El enfoque",
-    approach_h:"Un flujo de turnos claro, y una asistente que ayuda de verdad",
-    approach_p1:"Rediseñamos el flujo de reserva de turnos para reducir pasos y ambigüedad, y diseñé de punta a punta la conversación con Tina: qué pregunta, en qué orden, y cómo deriva a un humano cuando el caso lo requiere.",
-    img_caption:"Flujo de turnos y flujo de Tina, la asistente conversacional.",
-    label_prototype:"Prototipo",
-    prototype_h:"Navégalo en Figma",
-    prototype_p1:"El prototipo completo es navegable: prueba el flujo de turnos y la conversación con Tina aquí abajo.",
-    link_prototype:"Abrir prototipo en Figma", link_presentation:"Ver presentación completa", link_design_system:"Ver Design System",
+    case_summary:"Rediseño integral de la aplicación oficial del Estado argentino, con <strong>más de 20 millones de usuarios registrados</strong>: transformamos una navegación estructurada según la lógica institucional en una experiencia orientada a tareas, con búsqueda asistida por IA y validada con usuarios.",
+    tag_no_nda:"✅ Sin NDA", tag_role:"Research · Arquitectura · IA conversacional · UI · Testing", tag_year:"Proyecto final de Diplomatura",
+    cta_full:"Ver caso de estudio completo", cta_proto:"Ver el prototipo",
+    academic_badge:"Trabajo final<br>Diplomatura UX/UI · UTN",
+    academic_p:"Proyecto de cierre de la Diplomatura en Diseño UX/UI de la UTN (feb–jul 2026). El objetivo fue ejecutar <strong>el ciclo completo de diseño de producto con estándares profesionales</strong>: investigación cualitativa y cuantitativa, definición del MVP, arquitectura de información, diseño de interfaz, design system y validación con usuarios, documentado en su totalidad en la presentación final.",
+    stat_1:"usuarios registrados en la app original", stat_2:"participantes en 4 instancias de research y testing", stat_3:"de las tareas completadas en el test de usabilidad", stat_4:"facilidad de uso percibida del prototipo",
+    label_before:"Original", label_after:"Propuesta final",
+    label_context:"Contexto",
+    context_h:"Alto alcance, baja satisfacción",
+    context_p1:"Mi Argentina centraliza la identidad digital del ciudadano: DNI, licencia de conducir, turnos, salud, vehículos y cobros. Su alcance masivo contrasta con la percepción de los usuarios: <strong>2,5★ en Android y 1,8★ en iOS</strong>, con reseñas que señalan de forma recurrente fallas en el inicio de sesión, la validación de identidad, la gestión de turnos y la recuperación de cuenta.",
+    context_p2:"El desafío no consistía en sumar funcionalidades, sino en reorganizar las existentes para que cualquier persona, independientemente de su nivel de alfabetización digital, pudiera completar sus gestiones de forma autónoma.",
+    label_process:"Proceso",
+    process_h:"Un proceso de punta a punta, de la evidencia a la validación",
+    process_p1:"Cada decisión de diseño se sustenta en datos u observaciones. Estas fueron las etapas del proceso:",
+    ph1:"Descubrir", ph1_1:"Desktop research y reseñas", ph1_2:"Benchmark de 3 apps del Estado", ph1_3:"Encuesta a 57 personas", ph1_4:"User personas y journey map",
+    ph2:"Definir", ph2_1:"Matriz de tendencias y necesidades", ph2_2:"Evaluación heurística", ph2_3:"Tree testing con 10 usuarios", ph2_4:"Matriz de factibilidad y MVP",
+    ph3:"Diseñar", ph3_1:"Arquitectura iterada", ph3_2:"Task flows y wireflows", ph3_3:"Wireframes → UI → Design System", ph3_4:"Revisión con Leyes UX",
+    ph4:"Validar", ph4_1:"Test de usabilidad moderado (5)", ph4_2:"A/B test de la Home (16)", ph4_3:"Síntesis e iteración", ph4_4:"Próximos pasos priorizados",
+    label_research:"Investigación",
+    research_h:"La app está organizada en función de los sectores del Estado. Las personas piensan en tareas.",
+    research_p1:"El desktop research evidenció una arquitectura organizada por áreas administrativas (Salud, Cobros, Hijos) y una Home con múltiples accesos de igual jerarquía visual. La encuesta a 57 personas permitió dimensionar el impacto:",
+    f1:"percibe la organización de la aplicación como confusa.",
+    f2:"ingresa con un objetivo específico; solo el 7% utiliza los accesos directos.",
+    f3:"reportó dificultades para iniciar sesión, la fricción más mencionada.",
+    f4:"de quienes intentaron solicitar un turno señaló como principal obstáculo la redirección a un sitio externo con nueva autenticación.",
+    f_caption:"Encuesta online · 57 participantes · 77% usuarios de la app.",
+    bench_h:"Benchmark: la eficiencia no depende de la cantidad de funcionalidades",
+    bench_p:"Analizamos Mi Argentina junto a Mi ANSES y AFIP/ARCA móvil. Mi ANSES, con un alcance funcional más acotado, ofreció la experiencia más directa. Esta conclusión orientó todo el proyecto: <strong>la eficiencia depende de cómo se organizan y comunican las funcionalidades, no de su cantidad.</strong>",
+    steps_2:"2 pasos", steps_3:"3 pasos", steps_5:"5 pasos",
+    bench_caption:"Cantidad de pasos para acceder al contenido principal.",
+    insight_label:"Insight clave",
+    insight_p:"Los usuarios no requieren más funcionalidades: requieren menos pasos, menos interrupciones y una estructura alineada con sus objetivos, no con la lógica del sistema.",
+    label_ia:"Arquitectura",
+    ia_h:"El tree testing nos mostró los puntos de fricción con el usuario",
+    ia_p1:"Relevamos la arquitectura actual y la evaluamos con 10 participantes en 5 escenarios reales. Las tareas de acceso directo, como encontrar el DNI o solicitar un turno, presentaron altas tasas de éxito; la fricción se concentró en las tareas que exigían comprender la lógica interna de la aplicación.",
+    th_task:"Tarea", th_success:"Éxito", th_time:"Tiempo", th_obs:"Observación",
+    t1:"Encontrar el DNI digital", t1o:"Recorridos divididos entre el menú lateral y Perfil.",
+    t2:"Solicitar turno para renovar el DNI", t2o:"Dos rutas posibles para una misma acción.",
+    t3:"Agregar certificado COVID-19", t3o:"La etiqueta “Suscribir servicios” no comunica la intención.",
+    t4:"Consultar aportes laborales", t4o:"Ubicación poco clara de la información laboral.",
+    t5:"Solicitar asistencia a Tina", t5o:"Solo el 18% accedió de forma directa: predomina la navegación tradicional.",
+    ia_p2:"A partir de estos resultados, <strong>reestructuramos la arquitectura en función de los objetivos del usuario</strong>: la incorporación de servicios se resuelve dentro de cada categoría, sin pasar por “Suscribir servicios”; el DNI se integra a la barra de navegación, y la búsqueda asistida por Tina se ubica como punto de entrada principal.",
+    label_mvp:"Definición",
+    mvp_h:"Priorización y alcance del MVP",
+    mvp_p1:"Mediante una matriz de factibilidad, viabilidad y deseabilidad evaluamos más de 15 iniciativas, desde widgets e integración con wallet hasta una vista simplificada para adultos mayores, y definimos un MVP centrado en las fricciones de mayor impacto:",
+    mvp1_t:"Home orientada a tareas", mvp1_d:"Accesos por acción, alertas de vencimiento y visibilidad de las gestiones en curso.",
+    mvp2_t:"Gestión de turnos dentro de la aplicación", mvp2_d:"Trámite, sede, fecha y confirmación en un único flujo, con indicador de progreso y sin nueva autenticación.",
+    mvp3_t:"Agregar documentos en contexto", mvp3_d:"Un flujo directo que reemplaza la opción “Suscribir servicios”.",
+    mvp4_t:"Tina, integrada y potenciada con IA", mvp4_d:"El asistente se integra a la aplicación y deja de depender de WhatsApp: interpreta la intención del usuario por texto o voz y lo conduce al trámite correspondiente.",
+    mvp_p2:"La optimización del inicio de sesión, los recordatorios contextuales y los widgets quedaron planificados para una próxima versión.",
+    label_design:"Diseño",
+    design_h:"Del wireflow a la interfaz: un proceso iterativo",
+    design_p1:"Desarrollamos los tres flujos del MVP como wireflows completos, incluyendo estados de carga, error y confirmación, antes de avanzar a alta fidelidad.",
+    cap_wireflow:"Wireflows: documentos (arriba), turnos (centro) y Tina (abajo).",
+    evo_h:"Evolución de la Home",
+    evo_p:"A partir de los hallazgos de testeo, reemplazamos los botones de texto por accesos con iconografía, trasladamos el DNI a la barra de navegación para optimizar el espacio y jerarquizamos los vencimientos mediante una tarjeta de alerta.",
+    cap_evo_home:"Wireframe → primera UI → versión iterada post-testing.",
+    evo2_h:"Búsqueda de trámites",
+    cap_evo_tramite:"Búsqueda asistida por Tina, trámites frecuentes con íconos y exploración por categoría.",
+    tina_h:"Tina: trasladar la complejidad al sistema",
+    tina_p:"Lideré el diseño del flujo conversacional de Tina de punta a punta: estructura de preguntas, secuencia, confirmaciones y criterios de derivación. Aplicamos la Ley de Tesler, según la cual la complejidad inherente debe ser absorbida por el sistema y no por el usuario, de modo que una solicitud como “necesito renovar la licencia” concluya en un turno confirmado.",
+    cap_tina:"Flujo de turnos y conversación con Tina. La solución se documentó en un Design System propio.",
+    label_validation:"Validación",
+    val_h:"Validación con usuarios",
+    val_p1:"<strong>Test de usabilidad moderado</strong> con 5 participantes y 3 tareas: solicitar un turno para el DNI, incorporar el CUD a los documentos digitales y renovar la licencia mediante una consulta por voz a Tina. El 100% de los participantes completó todas las tareas sin asistencia; la carga de documentos resultó el flujo más intuitivo.",
+    q1:"Fue bastante fácil encontrarlo.", q2:"No sabía que Tina estaba acá.",
+    ab_h:"A/B test de la Home",
+    ab_p:"Test no moderado entre sujetos con 16 participantes, asignados aleatoriamente mediante Allocate Monster a la Home actual (A) o a la propuesta (B).",
+    ab_a:"A · Home actual", ab_a_d:"identificó con facilidad dónde consultar una gestión pendiente.",
+    ab_b:"B · Propuesta", ab_b_d:"identificó con facilidad dónde consultar una gestión pendiente.",
+    ab_p2:"Los resultados no fueron favorables en todos los indicadores: la Home actual obtuvo una mejor valoración en <strong>jerarquía visual</strong>, ya que el mayor volumen de información incrementó el esfuerzo de escaneo. Este hallazgo, junto con la baja visibilidad de Tina en el test moderado, definió la iteración final: accesos con iconografía, alertas diferenciadas y Tina como buscador principal.",
+    ab_caption:"Muestra exploratoria: los resultados indican tendencias y no tienen significancia estadística.",
+    label_learn:"Rol y criterios",
+    learn_h:"Rol y criterios de diseño",
+    learn_p1:"Participé en investigación, arquitectura de información y diseño de interfaz junto al equipo, y lideré el diseño del flujo conversacional de Tina. El proyecto consolidó criterios que aplico en el diseño de producto:",
+    l1:"<strong>Decisiones basadas en evidencia.</strong> Cuatro métodos de investigación y dos instancias de validación antes de cerrar cada definición.",
+    l2:"<strong>Priorización con criterio explícito.</strong> Un alcance de MVP definido mediante una matriz de evaluación, no por intuición.",
+    l3:"<strong>Apertura a resultados adversos.</strong> El A/B test evidenció una debilidad en jerarquía visual, que se tradujo en la siguiente iteración.",
+    l4:"<strong>IA al servicio de la tarea.</strong> Tina reduce pasos y traslada la complejidad al sistema, en lugar de sumar una capa de interacción.",
+    learn_p2:"<strong>Próximos pasos:</strong> una segunda ronda de validación para evaluar la jerarquía visual iterada y la unificación de la experiencia entre la navegación tradicional y la conversacional.",
+    label_prototype:"Prototipo y caso completo",
+    prototype_h:"Explorá el prototipo",
+    prototype_p1:"El prototipo permite recorrer el flujo de turnos, la carga de documentos y la consulta asistida por Tina. La documentación completa del proceso, incluyendo encuesta, user personas, journey map, evaluación heurística, tree testing, guion de testeo y resultados, se encuentra en la presentación final.",
+    res1_t:"Caso de estudio completo", res1_d:"Presentación final de la Diplomatura, con la documentación completa del proceso.",
+    res2_t:"Prototipo funcional", res2_d:"Los tres flujos del MVP, navegables en pantalla completa.",
+    res3_t:"Archivo de diseño", res3_d:"Pantallas, estados de error y Design System.",
+    res_open:"Abrir en Figma ↗",
     label_team:"Equipo", team_h:"Equipo 22",
-    team_p1:"Este proyecto fue un trabajo grupal de principio a fin. El crédito por la investigación, el diseño y el prototipado es compartido entre las tres.",
-    team_1_name:"Vanesa Reche", team_2_name:"Tamara Iglesias", team_3_name:"Karen Lafuente",
-    next_eyebrow:"Siguiente caso", next_title:"Heroless", next_cta:"Ver caso",
+    team_p1:"Proyecto desarrollado en equipo de principio a fin; la investigación, el diseño y el prototipado son mérito compartido de las tres integrantes.",
+    next_eyebrow:"Siguiente caso", next_cta:"Ver caso",
     footer_note:"Buenos Aires, Argentina"
   },
   en: {
     nav_work:"Work", nav_about:"About", nav_contact:"Contact",
     back:"Back to work",
-    case_eyebrow:"UTN · Academic project · Team of 3",
+    case_eyebrow:"UX/UI Diploma · UTN · 2026 · Team of 3",
     case_title:"Mi Argentina",
-    case_summary:"A redesign of a government digital app. I led the flow for Tina, the conversational assistant, end to end.",
-    tag_no_nda:"✅ Not under NDA", tag_role:"UX Research · UI · Prototyping", tag_year:"UTN Diploma",
-    team_notice:"Group project — Team 22: Tamara Iglesias, Karen Lafuente and Vanesa Reche.",
-    label_problem:"The problem",
-    problem_h:"Booking an appointment in a government app was confusing",
-    problem_p1:"As our final project for UTN's UX/UI Diploma, a team of three of us analyzed and redesigned key flows in a government digital app, focused on appointment management and how information is presented to people with different levels of digital familiarity.",
-    problem_p2:"<strong>My role:</strong> UX research, information architecture and visual design, with a particular focus on leading the flow for Tina, the product's conversational assistant.",
-    label_approach:"The approach",
-    approach_h:"A clear appointment flow, and an assistant that actually helps",
-    approach_p1:"We redesigned the appointment booking flow to cut down on steps and ambiguity, and I designed the conversation with Tina end to end: what it asks, in what order, and how it hands off to a human when needed.",
-    img_caption:"Appointment flow and Tina's conversational flow.",
-    label_prototype:"Prototype",
-    prototype_h:"Try it in Figma",
-    prototype_p1:"The full prototype is navigable — try the appointment flow and the conversation with Tina right below.",
-    link_prototype:"Open prototype in Figma", link_presentation:"View full presentation", link_design_system:"View design system",
+    case_summary:"A comprehensive redesign of Argentina's official government app, with <strong>more than 20 million registered users</strong>: we turned navigation structured around institutional logic into a task-oriented experience with AI-assisted search, validated with users.",
+    tag_no_nda:"✅ Not under NDA", tag_role:"Research · IA · Conversational AI · UI · Testing", tag_year:"Diploma final project",
+    cta_full:"View full case study", cta_proto:"View the prototype",
+    academic_badge:"Final project<br>UX/UI Diploma · UTN",
+    academic_p:"Capstone project for UTN's UX/UI Design Diploma (Feb–Jul 2026). The goal was to execute <strong>the full product design cycle to professional standards</strong>: qualitative and quantitative research, MVP definition, information architecture, interface design, a design system and user validation, fully documented in the final presentation.",
+    stat_1:"registered users on the original app", stat_2:"participants across 4 research and testing rounds", stat_3:"of tasks completed in usability testing", stat_4:"perceived ease of use of the prototype",
+    label_before:"Original", label_after:"Final proposal",
+    label_context:"Context",
+    context_h:"High reach, low satisfaction",
+    context_p1:"Mi Argentina centralizes each citizen's digital identity: national ID, driver's license, appointments, health, vehicles and benefits. Its massive reach contrasts with user perception: <strong>2.5★ on Android and 1.8★ on iOS</strong>, with reviews consistently citing failures in login, identity verification, appointment booking and account recovery.",
+    context_p2:"The challenge was not to add features, but to reorganize the existing ones so that anyone, regardless of their level of digital literacy, could complete their procedures independently.",
+    label_process:"Process",
+    process_h:"An end-to-end process, from evidence to validation",
+    process_p1:"Every design decision is grounded in data or observation. These were the stages of the process:",
+    ph1:"Discover", ph1_1:"Desktop research and reviews", ph1_2:"Benchmark of 3 government apps", ph1_3:"Survey of 57 people", ph1_4:"User personas and journey map",
+    ph2:"Define", ph2_1:"Trends and needs matrices", ph2_2:"Heuristic evaluation", ph2_3:"Tree testing with 10 users", ph2_4:"Feasibility matrix and MVP",
+    ph3:"Design", ph3_1:"Iterated information architecture", ph3_2:"Task flows and wireflows", ph3_3:"Wireframes → UI → Design System", ph3_4:"Review against UX Laws",
+    ph4:"Validate", ph4_1:"Moderated usability test (5)", ph4_2:"Home A/B test (16)", ph4_3:"Synthesis and iteration", ph4_4:"Prioritized next steps",
+    label_research:"Research",
+    research_h:"The app is organized around government departments. People think in tasks.",
+    research_p1:"Desktop research revealed an architecture organized by administrative areas (Health, Benefits, Children) and a Home with multiple entry points of equal visual weight. A survey of 57 people quantified the impact:",
+    f1:"perceive the app's organization as confusing.",
+    f2:"arrive with a specific goal; only 7% use the shortcuts.",
+    f3:"reported difficulties logging in, the most cited friction.",
+    f4:"of those who tried to book an appointment cited redirection to an external site with re-authentication as the main obstacle.",
+    f_caption:"Online survey · 57 participants · 77% app users.",
+    bench_h:"Benchmark: efficiency does not depend on the number of features",
+    bench_p:"We analyzed Mi Argentina alongside Mi ANSES and AFIP/ARCA mobile. Mi ANSES, with a narrower functional scope, offered the most direct experience. This conclusion guided the entire project: <strong>efficiency depends on how features are organized and communicated, not on how many there are.</strong>",
+    steps_2:"2 steps", steps_3:"3 steps", steps_5:"5 steps",
+    bench_caption:"Number of steps to reach the main content.",
+    insight_label:"Key insight",
+    insight_p:"Users do not need more features: they need fewer steps, fewer interruptions and a structure aligned with their goals rather than with the system's logic.",
+    label_ia:"Architecture",
+    ia_h:"Tree testing revealed the points of friction for users",
+    ia_p1:"We mapped the current architecture and evaluated it with 10 participants across 5 real scenarios. Direct-access tasks, such as finding the ID or booking an appointment, showed high success rates; friction concentrated in tasks that required understanding the app's internal logic.",
+    th_task:"Task", th_success:"Success", th_time:"Time", th_obs:"Observation",
+    t1:"Find the digital ID", t1o:"Paths split between the side menu and Profile.",
+    t2:"Book an appointment to renew the ID", t2o:"Two possible routes for the same action.",
+    t3:"Add COVID-19 certificate", t3o:"The “Subscribe to services” label does not communicate intent.",
+    t4:"Check employment contributions", t4o:"Unclear location of employment information.",
+    t5:"Request assistance from Tina", t5o:"Only 18% went there directly: traditional navigation prevails.",
+    ia_p2:"Based on these results, <strong>we restructured the architecture around user goals</strong>: adding services is handled within each category, without going through “Subscribe to services”; the ID moves into the navigation bar, and Tina-assisted search becomes the primary entry point.",
+    label_mvp:"Definition",
+    mvp_h:"Prioritization and MVP scope",
+    mvp_p1:"Using a feasibility, viability and desirability matrix, we evaluated more than 15 initiatives, from widgets and wallet integration to a simplified view for older adults, and defined an MVP focused on the highest-impact frictions:",
+    mvp1_t:"Task-oriented Home", mvp1_d:"Action-based shortcuts, expiration alerts and visibility of ongoing procedures.",
+    mvp2_t:"In-app appointment management", mvp2_d:"Procedure, location, date and confirmation in a single flow, with a progress indicator and no re-authentication.",
+    mvp3_t:"Add documents in context", mvp3_d:"A direct flow that replaces the “Subscribe to services” option.",
+    mvp4_t:"Tina, integrated and AI-powered", mvp4_d:"The assistant is integrated into the app and no longer depends on WhatsApp: it interprets user intent by text or voice and guides users to the right procedure.",
+    mvp_p2:"Login optimization, contextual reminders and widgets were planned for a future release.",
+    label_design:"Design",
+    design_h:"From wireflow to interface: an iterative process",
+    design_p1:"We developed the three MVP flows as complete wireflows, including loading, error and confirmation states, before moving to high fidelity.",
+    cap_wireflow:"Wireflows: documents (top), appointments (middle) and Tina (bottom).",
+    evo_h:"Home evolution",
+    evo_p:"Based on testing findings, we replaced text buttons with icon-based shortcuts, moved the ID to the navigation bar to optimize space, and prioritized expirations through an alert card.",
+    cap_evo_home:"Wireframe → first UI → post-testing iteration.",
+    evo2_h:"Procedure search",
+    cap_evo_tramite:"Tina-assisted search, frequent procedures with icons and browsing by category.",
+    tina_h:"Tina: shifting complexity to the system",
+    tina_p:"I led the design of Tina's conversational flow end to end: question structure, sequencing, confirmations and hand-off criteria. We applied Tesler's Law, which holds that inherent complexity should be absorbed by the system rather than the user, so that a request such as “I need to renew my license” concludes in a confirmed appointment.",
+    cap_tina:"Appointment flow and conversation with Tina. The solution was documented in a dedicated Design System.",
+    label_validation:"Validation",
+    val_h:"User validation",
+    val_p1:"<strong>Moderated usability test</strong> with 5 participants and 3 tasks: booking an ID appointment, adding a disability certificate to digital documents, and renewing a driver's license through a voice query to Tina. 100% of participants completed every task without assistance; document upload proved the most intuitive flow.",
+    q1:"It was pretty easy to find.", q2:"I didn't know Tina was here.",
+    ab_h:"Home A/B test",
+    ab_p:"Unmoderated between-subjects test with 16 participants, randomly assigned via Allocate Monster to the current Home (A) or the proposal (B).",
+    ab_a:"A · Current Home", ab_a_d:"easily identified where to check a pending procedure.",
+    ab_b:"B · Proposal", ab_b_d:"easily identified where to check a pending procedure.",
+    ab_p2:"Results were not favorable across all indicators: the current Home scored higher on <strong>visual hierarchy</strong>, as the greater volume of information increased scanning effort. This finding, together with Tina's low visibility in the moderated test, defined the final iteration: icon-based shortcuts, differentiated alerts and Tina as the primary search bar.",
+    ab_caption:"Exploratory sample: results indicate trends and are not statistically significant.",
+    label_learn:"Role and principles",
+    learn_h:"Role and design principles",
+    learn_p1:"I contributed to research, information architecture and interface design with the team, and led the design of Tina's conversational flow. The project consolidated principles I apply to product design:",
+    l1:"<strong>Evidence-based decisions.</strong> Four research methods and two validation rounds before closing each definition.",
+    l2:"<strong>Prioritization with explicit criteria.</strong> An MVP scope defined through an evaluation matrix, not intuition.",
+    l3:"<strong>Openness to adverse results.</strong> The A/B test exposed a weakness in visual hierarchy, which translated into the next iteration.",
+    l4:"<strong>AI in service of the task.</strong> Tina reduces steps and shifts complexity to the system rather than adding an interaction layer.",
+    learn_p2:"<strong>Next steps:</strong> a second validation round to assess the iterated visual hierarchy and the unification of the experience across traditional and conversational navigation.",
+    label_prototype:"Prototype and full case",
+    prototype_h:"Explore the prototype",
+    prototype_p1:"The prototype covers the appointment flow, document upload and Tina-assisted queries. Full process documentation, including survey, user personas, journey map, heuristic evaluation, tree testing, test script and results, is available in the final presentation.",
+    res1_t:"Full case study", res1_d:"Final Diploma presentation, with complete process documentation.",
+    res2_t:"Working prototype", res2_d:"The three MVP flows, navigable in full screen.",
+    res3_t:"Design file", res3_d:"Screens, error states and Design System.",
+    res_open:"Open in Figma ↗",
     label_team:"Team", team_h:"Team 22",
-    team_p1:"This project was a group effort from start to finish. Credit for the research, design and prototyping is shared between the three of us.",
-    team_1_name:"Vanesa Reche", team_2_name:"Tamara Iglesias", team_3_name:"Karen Lafuente",
-    next_eyebrow:"Next case", next_title:"Heroless", next_cta:"View case",
+    team_p1:"A team project from start to finish; the research, design and prototyping are shared credit among its three members.",
+    next_eyebrow:"Next case", next_cta:"View case",
     footer_note:"Buenos Aires, Argentina"
   }
 };
@@ -352,12 +780,14 @@ function setLang(lang){
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
   });
   document.documentElement.lang = lang;
-  localStorage.setItem('preferredLang', lang);
+  try{ localStorage.setItem('preferredLang', lang); }catch(e){}
 }
 document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
 });
-setLang(localStorage.getItem('preferredLang') || 'es');
+let saved = 'es';
+try{ saved = localStorage.getItem('preferredLang') || 'es'; }catch(e){}
+setLang(saved);
 
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
