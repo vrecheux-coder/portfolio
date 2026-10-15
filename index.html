@@ -141,7 +141,7 @@ section{padding:var(--sp-7) 0}
 .about-grid{margin-top:var(--sp-4);max-width:1100px;margin-left:auto;margin-right:auto;display:grid;grid-template-columns:1.35fr 1fr;gap:var(--sp-6);align-items:start}
 .about-side{display:flex;flex-direction:column;gap:var(--sp-4);padding-top:.4rem}
 .about-side-block .eyebrow{margin-bottom:.8rem}
-.about-headline{font-size:clamp(1.9rem,3.4vw,2.8rem);margin-bottom:var(--sp-3);max-width:14ch}
+.about-headline{font-size:clamp(1.9rem,3.4vw,2.8rem);margin-bottom:var(--sp-3);max-width:20ch}
 .about-body p{color:#C9C6BA;max-width:58ch;margin-bottom:1rem}
 .about-side .eyebrow{color:#8C8878}
 .lang-block{display:flex;flex-direction:column;gap:var(--sp-2);margin-top:0;border-top:1px solid #2E2B23;padding-top:var(--sp-4)}
@@ -159,6 +159,7 @@ section{padding:var(--sp-7) 0}
 .contact-blob{position:absolute;left:-8%;bottom:-3rem;width:420px;height:420px;background:radial-gradient(circle,var(--pink-soft) 0%, transparent 70%);border-radius:50%;z-index:0}
 .contact .container{position:relative;z-index:1}
 .contact-headline{font-size:clamp(2.6rem,7vw,6rem);text-transform:lowercase;margin:var(--sp-2) 0 var(--sp-4)}
+.contact-sub{font-size:1.15rem;color:var(--ink-soft);max-width:46ch;margin:calc(-1 * var(--sp-2)) 0 var(--sp-4)}
 .contact-links{display:flex;gap:var(--sp-3);flex-wrap:wrap}
 .contact-links a{font-size:.9rem;font-weight:600;border:1.5px solid var(--ink);padding:.9rem 1.5rem;border-radius:var(--r-pill)}
 .contact-links a:hover{background:var(--ink);color:var(--cream)}
@@ -337,11 +338,11 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <p class="eyebrow" data-i18n="about_eyebrow" style="max-width:1100px;margin:0 auto">Sobre mí</p>
       <div class="about-grid">
         <div class="about-main">
-          <h2 class="display about-headline" data-i18n="about_headline">Diseño con cabeza y con sistema.</h2>
+          <h2 class="display about-headline" data-i18n="about_headline">Una mirada visual, una mentalidad sistémica.</h2>
           <div class="about-body">
-            <p data-i18n="about_p1">Empecé en diseño gráfico. Diez años armando piezas visuales antes de mudarme al UX/UI, hace cinco. Esa mezcla es mi ventaja: pienso en jerarquía y composición tanto como en flujos y fricción.</p>
-            <p data-i18n="about_p2">En Vizrt (Viz Flowics) trabajé hasta 2026 en productos SaaS B2B complejos: modelo self-serve, pricing, feature gating y sistemas de datos a escala.</p>
-            <p data-i18n="about_p3">Completé la Diplomatura en UX/UI Design en la UTN, y actualmente curso una especialización en IA aplicada a la experiencia de usuario.</p>
+            <p data-i18n="about_p1">Empecé mi carrera en diseño gráfico, donde pasé diez años creando piezas visuales, antes de dar el salto al UX/UI, hace cinco años. Esa combinación es uno de mis diferenciales: pienso tanto en la jerarquía visual y la composición como en los flujos, la usabilidad y los puntos de fricción en la experiencia.</p>
+            <p data-i18n="about_p2">En Vizrt (Viz Flowics) trabajé hasta 2026 en productos SaaS B2B complejos, participando en iniciativas vinculadas al modelo self-service, pricing, gestión de funcionalidades y sistemas de datos a gran escala.</p>
+            <p data-i18n="about_p3">Me gradué de la Diplomatura en UX/UI Design de la UTN y actualmente me estoy especializando en inteligencia artificial aplicada a la experiencia de usuario.</p>
           </div>
         </div>
         <div class="about-side">
@@ -379,7 +380,8 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
   <div class="contact-blob" aria-hidden="true"></div>
   <div class="container">
     <p class="eyebrow" data-i18n="contact_eyebrow">¿Hablamos?</p>
-    <h2 class="display contact-headline" data-i18n="contact_headline">armemos algo.</h2>
+    <h2 class="display contact-headline" data-i18n="contact_headline">Hagamos algo juntos.</h2>
+    <p class="contact-sub" data-i18n="contact_p">¿Tenés un proyecto en mente? Me encantaría conocerlo.</p>
     <div class="contact-links">
       <a href="mailto:vreche.ux@gmail.com">vreche.ux@gmail.com</a>
       <a href="https://www.linkedin.com/in/vanesa-reche/" target="_blank" rel="noopener noreferrer"><span data-i18n="linkedin_label">LinkedIn</span> <span class="sr-only" data-i18n="new_tab">(se abre en una pestaña nueva)</span></a>
@@ -416,14 +418,14 @@ const translations = {
     w5_title:"Heroless", w5_meta:"GMTK Game Jam 2026 · UI Design · Godot",
     w5_desc:"Diseño de la interfaz de un platformer desarrollado en 96 horas para la GMTK Game Jam 2026. Top 30% en Creatividad entre 10.591 juegos.", w5_tag:"Game Jam",
     expand:"Ampliar ↗",
-    about_eyebrow:"Sobre mí", about_headline:"Diseño con cabeza y con sistema.",
-    about_p1:"Empecé en diseño gráfico. Diez años armando piezas visuales antes de mudarme al UX/UI, hace cinco. Esa mezcla es mi ventaja: pienso en jerarquía y composición tanto como en flujos y fricción.",
-    about_p2:"En Vizrt (Viz Flowics) trabajé hasta 2026 en productos SaaS B2B complejos: modelo self-serve, pricing, feature gating y sistemas de datos a escala.",
-    about_p3:"Completé la Diplomatura en UX/UI Design en la UTN, y actualmente curso una especialización en IA aplicada a la experiencia de usuario.",
+    about_eyebrow:"Sobre mí", about_headline:"Una mirada visual, una mentalidad sistémica.",
+    about_p1:"Empecé mi carrera en diseño gráfico, donde pasé diez años creando piezas visuales, antes de dar el salto al UX/UI, hace cinco años. Esa combinación es uno de mis diferenciales: pienso tanto en la jerarquía visual y la composición como en los flujos, la usabilidad y los puntos de fricción en la experiencia.",
+    about_p2:"En Vizrt (Viz Flowics) trabajé hasta 2026 en productos SaaS B2B complejos, participando en iniciativas vinculadas al modelo self-service, pricing, gestión de funcionalidades y sistemas de datos a gran escala.",
+    about_p3:"Me gradué de la Diplomatura en UX/UI Design de la UTN y actualmente me estoy especializando en inteligencia artificial aplicada a la experiencia de usuario.",
     how_title:"Cómo trabajo", how_1:"UX Research", how_2:"Product Thinking", how_3:"System Design", how_4:"Accesibilidad",
     what_title:"Herramientas", what_1:"Figma & Figma Make", what_2:"Design Systems", what_3:"AI Copywriting — ChatGPT", what_4:"AI Prototyping — Claude",
     lang_es:"Español — Nativo", lang_en:"Inglés — B2+",
-    contact_eyebrow:"¿Hablamos?", contact_headline:"armemos algo.",
+    contact_eyebrow:"¿Hablamos?", contact_headline:"Hagamos algo juntos.", contact_p:"¿Tenés un proyecto en mente? Me encantaría conocerlo.",
     linkedin_label:"LinkedIn", behance_label:"Behance", new_tab:"(se abre en una pestaña nueva)",
     side_title:"Otros proyectos", side_cta:"Ver proyecto",
     footer_note:"Buenos Aires, Argentina"
@@ -447,14 +449,14 @@ const translations = {
     w5_title:"Heroless", w5_meta:"GMTK Game Jam 2026 · UI Design · Godot",
     w5_desc:"Interface design for a platformer built in 96 hours for the GMTK Game Jam 2026. Top 30% in Creativity among 10,591 games.", w5_tag:"Game Jam",
     expand:"Expand ↗",
-    about_eyebrow:"About", about_headline:"Design with head and system.",
-    about_p1:"I started in graphic design. Ten years building visual pieces before moving into UX/UI, five years ago. That mix is my edge — I think in hierarchy and composition as much as in flows and friction.",
-    about_p2:"At Vizrt (Viz Flowics) I worked until 2026 on complex B2B SaaS products: self-serve, pricing, feature gating and data systems at scale.",
-    about_p3:"I completed the UX/UI Design Diploma at UTN, and I'm currently pursuing a specialization in AI applied to user experience.",
+    about_eyebrow:"About", about_headline:"A visual eye, a systems mindset.",
+    about_p1:"I began my career in graphic design, where I spent ten years creating visual work, before moving into UX/UI five years ago. That combination is one of my differentiators: I think as much about visual hierarchy and composition as about flows, usability and points of friction in the experience.",
+    about_p2:"At Vizrt (Viz Flowics) I worked until 2026 on complex B2B SaaS products, contributing to initiatives around the self-service model, pricing, feature management and large-scale data systems.",
+    about_p3:"I graduated from the UX/UI Design Diploma at UTN and am currently specializing in artificial intelligence applied to user experience.",
     how_title:"How I work", how_1:"UX Research", how_2:"Product Thinking", how_3:"System Design", how_4:"Accessibility",
     what_title:"Tools", what_1:"Figma & Figma Make", what_2:"Design Systems", what_3:"AI Copywriting — ChatGPT", what_4:"AI Prototyping — Claude",
     lang_es:"Spanish — Native", lang_en:"English — B2+",
-    contact_eyebrow:"Let's talk", contact_headline:"let's build.",
+    contact_eyebrow:"Let's talk", contact_headline:"let's build.", contact_p:"Have a project in mind? I'd love to hear about it.",
     linkedin_label:"LinkedIn", behance_label:"Behance", new_tab:"(opens in a new tab)",
     side_title:"Other projects", side_cta:"View project",
     footer_note:"Buenos Aires, Argentina"
