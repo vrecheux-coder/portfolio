@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta property="og:title" content="Vanesa Reche — UX/UI Designer" />
-<meta property="og:description" content="Product Designer con 5+ años de experiencia en SaaS B2B. Portfolio de proyectos con impacto real." />
+<meta property="og:title" content="Vanesa Reche — Product Designer · UX/UI" />
+<meta property="og:description" content="Product Designer · UX/UI con 5 años de experiencia en productos SaaS B2B. Portfolio de casos de estudio." />
 <meta property="og:image" content="https://vrecheux-coder.github.io/portfolio/images/og-cover.jpg" />
 <meta property="og:url" content="https://vrecheux-coder.github.io/portfolio/" />
 <meta property="og:type" content="website" />
@@ -10,8 +10,8 @@
 <meta name="twitter:image" content="https://vrecheux-coder.github.io/portfolio/images/og-cover.jpg" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vanesa Reche — UX/UI Designer</title>
-<meta name="description" content="Vanesa Reche — Product Designer Senior especializada en productos SaaS B2B: crecimiento self-serve, herramientas de datos y sistemas que escalan.">
+<title>Vanesa Reche — Product Designer · UX/UI</title>
+<meta name="description" content="Vanesa Reche — Product Designer · UX/UI especializada en productos SaaS B2B: crecimiento self-serve, herramientas de datos y sistemas que escalan.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Space+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -213,6 +213,21 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 .side-cta{font-weight:600;font-size:.9rem;white-space:nowrap}
 @media (max-width:900px){.side-item{grid-template-columns:1fr;gap:var(--sp-2)}.side-visual{max-width:320px}}
 </style>
+<style>
+/* Etiquetas informativas: forma rectangular y sin estados interactivos,
+   para diferenciarlas de los botones y enlaces (que siguen siendo redondeados). */
+.tag,.work-badge,.cover-badge,.team-pill,.pill-dark,.pill-low,.pill-ok,.case-cover-lock,.case-img-lock{border-radius:4px;cursor:default;user-select:none}
+.nda-notice{border-radius:8px;cursor:default}
+.tag{display:inline-flex;align-items:center;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:400;letter-spacing:.04em;line-height:1.3;padding:.32rem .6rem;border:0;background:var(--pink-pale);color:var(--pink-text)}
+.tag-new{background:var(--pink-text);color:#fff}
+.tag-neutral{background:var(--cream-2);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.tag-ok{background:#E3EFE6;color:#2F6E44}
+.tag-academic{background:var(--ink);color:var(--cream)}
+.work-badge,.cover-badge{font-family:'Space Mono',monospace;font-weight:400;letter-spacing:.04em}
+.work-tags{position:relative;z-index:1;cursor:default}
+.work-expand{transition:background .2s,color .2s}
+.work-expand:hover,.work-expand:focus-visible{background:var(--pink);color:#fff}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -240,7 +255,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 <header class="hero">
   <div class="hero-blob" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <p class="eyebrow hero-eyebrow" data-i18n="hero_eyebrow">UX/UI Designer · Product Designer · SaaS & Digital Products</p>
+    <p class="eyebrow hero-eyebrow" data-i18n="hero_eyebrow">Product Designer · UX/UI · SaaS & Digital Products</p>
     <div class="hero-headline-wrap">
       <h1 class="display hero-headline">vanesa<span class="accent-blob" aria-hidden="true"></span></h1>
       <span class="hero-asterisk" aria-hidden="true">✳</span>
@@ -268,31 +283,31 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
     </div>
 
     <div class="work-item">
-      <a class="work-link" href="case-plg.html" aria-label="Ver caso Product-Led Growth"></a>
+      <a class="work-link" href="case-plg.html"><span class="sr-only" data-i18n="w1_link">Ver caso de estudio: Product-Led Growth</span></a>
       <div class="work-num">01</div>
       <div>
         <h3 class="work-title" data-i18n="w1_title">Product-Led Growth</h3>
         <p class="work-meta" data-i18n="w1_meta">Viz Flowics · Product Design · Growth</p>
-        <p class="work-desc" data-i18n="w1_desc">Transformación de un modelo basado en ventas a uno self-serve: pricing público, free trial, feature gating y ciclo de vida de la suscripción. Altas de trial x3.</p>
+        <p class="work-desc" data-i18n="w1_desc">Transformación de un modelo basado en ventas a uno self-serve: pricing público, free trial, feature gating y ciclo de vida de la suscripción. +30% en leads.</p>
         <div class="work-tags"><span class="tag" data-i18n="w1_tag">Bajo NDA</span></div>
       </div>
-      <div class="work-visual"><img src="images/plg-cover.jpg" data-nda="images/plg-cover.enc" alt="" loading="lazy"><a class="work-expand" href="case-plg.html" data-i18n="expand">Ampliar ↗</a></div>
+      <div class="work-visual"><img src="images/plg-cover.jpg" data-nda="images/plg-cover.enc" alt="Captura de la página de pricing de Viz Flowics (bajo NDA)" data-i18n-alt="w1_alt" loading="lazy"><a class="work-expand" href="case-plg.html"><span data-i18n="expand">Ampliar ↗</span><span class="sr-only">: Product-Led Growth</span></a></div>
     </div>
 
     <div class="work-item">
-      <a class="work-link" href="case-data-augmentation.html" aria-label="Ver caso Data Augmentation"></a>
+      <a class="work-link" href="case-data-augmentation.html"><span class="sr-only" data-i18n="w2_link">Ver caso de estudio: Data Augmentation</span></a>
       <div class="work-num">02</div>
       <div>
         <h3 class="work-title" data-i18n="w2_title">Data Augmentation</h3>
         <p class="work-meta" data-i18n="w2_meta">Viz Flowics · Product Design · Gestión de datos</p>
-        <p class="work-desc" data-i18n="w2_desc">Sistema de edición masiva de datos vía Google Sheets, con simulación previa y trazabilidad. Tickets de soporte -80% en 2024 y propuesta de rediseño en 2026.</p>
+        <p class="work-desc" data-i18n="w2_desc">Sistema de edición masiva de datos vía Google Sheets, con simulación previa y trazabilidad. −60% de pasos para completar la tarea y propuesta de rediseño en 2026.</p>
         <div class="work-tags"><span class="tag tag-new" data-i18n="w2_tag_new">Propuesta 2026</span><span class="tag" data-i18n="w2_tag">Bajo NDA</span></div>
       </div>
-      <div class="work-visual"><img src="images/da26-cover.jpg" data-nda="images/da26-cover.enc" alt="" loading="lazy"><span class="work-badge" data-i18n="w2_tag_new">Propuesta 2026</span><a class="work-expand" href="case-data-augmentation.html" data-i18n="expand">Ampliar ↗</a></div>
+      <div class="work-visual"><img src="images/da26-cover.jpg" data-nda="images/da26-cover.enc" alt="Captura de la propuesta 2026 del panel de Data Augmentation (bajo NDA)" data-i18n-alt="w2_alt" loading="lazy"><span class="work-badge" data-i18n="w2_tag_new">Propuesta 2026</span><a class="work-expand" href="case-data-augmentation.html"><span data-i18n="expand">Ampliar ↗</span><span class="sr-only">: Data Augmentation</span></a></div>
     </div>
 
     <div class="work-item">
-      <a class="work-link" href="case-custom-fonts.html" aria-label="Ver caso Custom Fonts"></a>
+      <a class="work-link" href="case-custom-fonts.html"><span class="sr-only" data-i18n="w3_link">Ver caso de estudio: Custom Fonts</span></a>
       <div class="work-num">03</div>
       <div>
         <h3 class="work-title" data-i18n="w3_title">Custom Fonts</h3>
@@ -300,19 +315,19 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
         <p class="work-desc" data-i18n="w3_desc">Carga autónoma de tipografías propias, con gestión por familia y variantes y feature gating por plan. Menos tickets de soporte y más upgrades a Basic.</p>
         <div class="work-tags"><span class="tag" data-i18n="w3_tag">Self-serve</span></div>
       </div>
-      <div class="work-visual"><img src="images/cf-cover.jpg" alt="" loading="lazy"><a class="work-expand" href="case-custom-fonts.html" data-i18n="expand">Ampliar ↗</a></div>
+      <div class="work-visual"><img src="images/cf-cover.jpg" alt="Panel de fuentes instaladas en Viz Flowics" data-i18n-alt="w3_alt" loading="lazy"><a class="work-expand" href="case-custom-fonts.html"><span data-i18n="expand">Ampliar ↗</span><span class="sr-only">: Custom Fonts</span></a></div>
     </div>
 
     <div class="work-item">
-      <a class="work-link" href="case-mi-argentina.html" aria-label="Ver caso Mi Argentina"></a>
+      <a class="work-link" href="case-mi-argentina.html"><span class="sr-only" data-i18n="w4_link">Ver caso de estudio: Mi Argentina</span></a>
       <div class="work-num">04</div>
       <div>
         <h3 class="work-title" data-i18n="w4_title">Mi Argentina</h3>
-        <p class="work-meta" data-i18n="w4_meta">Diplomatura UX/UI · UTN · Equipo de 3</p>
+        <p class="work-meta" data-i18n="w4_meta">Proyecto académico · Diplomatura UX/UI · UTN · Equipo de 3</p>
         <p class="work-desc" data-i18n="w4_desc">Rediseño end-to-end de la app del Estado (+20M usuarios): research con 88 participantes, arquitectura orientada a tareas, IA conversacional y validación con usuarios.</p>
-        <div class="work-tags"><span class="tag" data-i18n="w4_tag">Caso completo</span></div>
+        <div class="work-tags"><span class="tag tag-academic" data-i18n="w4_tag">Proyecto académico</span></div>
       </div>
-      <div class="work-visual"><img src="images/ma-cover-thumb.jpg" alt="" loading="lazy"><a class="work-expand" href="case-mi-argentina.html" data-i18n="expand">Ampliar ↗</a></div>
+      <div class="work-visual"><img src="images/ma-cover-thumb.jpg" alt="Home rediseñada de la app Mi Argentina, con buscador asistido, accesos por tarea y gestiones en curso" data-i18n-alt="w4_alt" loading="lazy"><a class="work-expand" href="case-mi-argentina.html"><span data-i18n="expand">Ampliar ↗</span><span class="sr-only">: Mi Argentina</span></a></div>
     </div>
 
 
@@ -320,7 +335,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <h3 class="side-title" data-i18n="side_title">Otros proyectos</h3>
     </div>
     <a class="side-item" href="case-heroless.html">
-      <div class="side-visual"><img src="images/heroless-cover.png" alt="" loading="lazy"></div>
+      <div class="side-visual"><img src="images/heroless-cover.png" alt="Arte de portada de Heroless, en pixel art" data-i18n-alt="w5_alt" loading="lazy"></div>
       <div>
         <p class="side-name" data-i18n="w5_title">Heroless</p>
         <p class="work-meta" data-i18n="w5_meta">GMTK Game Jam 2026 · UI Design · Godot</p>
@@ -341,7 +356,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
           <h2 class="display about-headline" data-i18n="about_headline">Una mirada visual, una mentalidad sistémica.</h2>
           <div class="about-body">
             <p data-i18n="about_p1">Empecé mi carrera en diseño gráfico, donde pasé diez años creando piezas visuales, antes de dar el salto al UX/UI, hace cinco años. Esa combinación es uno de mis diferenciales: pienso tanto en la jerarquía visual y la composición como en los flujos, la usabilidad y los puntos de fricción en la experiencia.</p>
-            <p data-i18n="about_p2">En Vizrt (Viz Flowics) trabajé hasta 2026 en productos SaaS B2B complejos, participando en iniciativas vinculadas al modelo self-service, pricing, gestión de funcionalidades y sistemas de datos a gran escala.</p>
+            <p data-i18n="about_p2">Hasta julio de 2026 trabajé en Flowics, startup adquirida por Vizrt, en productos SaaS B2B complejos, participando en iniciativas vinculadas al modelo self-service, pricing, gestión de funcionalidades y sistemas de datos a gran escala.</p>
             <p data-i18n="about_p3">Me gradué de la Diplomatura en UX/UI Design de la UTN y actualmente me estoy especializando en inteligencia artificial aplicada a la experiencia de usuario.</p>
           </div>
         </div>
@@ -401,26 +416,31 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 const translations = {
   es: {
     nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
-    hero_eyebrow:"UX/UI Designer · Product Designer · SaaS & Digital Products",
+    hero_eyebrow:"Product Designer · UX/UI · SaaS & Digital Products",
     hero_sub:"Diseño productos SaaS B2B de punta a punta, desde la investigación hasta el lanzamiento: crecimiento self-serve, herramientas de datos y sistemas que escalan, con foco en resultados medibles.",
     hero_cta_1:"Ver proyectos", hero_cv:"Descargar CV", hero_cta_2:"Hablemos", hero_meta:"5 años en producto digital · Buenos Aires, Argentina",
     together_badge:"design<br>together",
     stat_years:"Años en diseño", stat_components:"Componentes en sistema de diseño", stat_leads:"Más leads calificados (PLG)",
     work_title:"Proyectos", work_index:"01 a 04",
     w1_title:"Product-Led Growth", w1_meta:"Viz Flowics · Product Design · Growth",
-    w1_desc:"Transformación de un modelo basado en ventas a uno self-serve: pricing público, free trial, feature gating y ciclo de vida de la suscripción. Altas de trial x3.", w1_tag:"Bajo NDA",
+    w1_desc:"Transformación de un modelo basado en ventas a uno self-serve: pricing público, free trial, feature gating y ciclo de vida de la suscripción. +30% en leads.", w1_tag:"Bajo NDA",
     w2_title:"Data Augmentation", w2_meta:"Viz Flowics · Product Design · Gestión de datos",
-    w2_desc:"Sistema de edición masiva de datos vía Google Sheets, con simulación previa y trazabilidad. Tickets de soporte -80% en 2024 y propuesta de rediseño en 2026.", w2_tag:"Bajo NDA", w2_tag_new:"Propuesta 2026",
+    w2_desc:"Sistema de edición masiva de datos vía Google Sheets, con simulación previa y trazabilidad. −60% de pasos para completar la tarea y propuesta de rediseño en 2026.", w2_tag:"Bajo NDA", w2_tag_new:"Propuesta 2026",
     w3_title:"Custom Fonts", w3_meta:"Viz Flowics · Product Design · Self-serve",
     w3_desc:"Carga autónoma de tipografías propias, con gestión por familia y variantes y feature gating por plan. Menos tickets de soporte y más upgrades a Basic.", w3_tag:"Self-serve",
-    w4_title:"Mi Argentina", w4_meta:"Diplomatura UX/UI · UTN · Equipo de 3",
-    w4_desc:"Rediseño end-to-end de la app del Estado (+20M usuarios): research con 88 participantes, arquitectura orientada a tareas, IA conversacional y validación con usuarios.", w4_tag:"Caso completo",
+    w4_title:"Mi Argentina", w4_meta:"Proyecto académico · Diplomatura UX/UI · UTN · Equipo de 3",
+    w4_desc:"Rediseño end-to-end de la app del Estado (+20M usuarios): research con 88 participantes, arquitectura orientada a tareas, IA conversacional y validación con usuarios.", w4_tag:"Proyecto académico",
     w5_title:"Heroless", w5_meta:"GMTK Game Jam 2026 · UI Design · Godot",
     w5_desc:"Diseño de la interfaz de un platformer desarrollado en 96 horas para la GMTK Game Jam 2026. Top 30% en Creatividad entre 10.591 juegos.", w5_tag:"Game Jam",
     expand:"Ampliar ↗",
+    w1_link:"Ver caso de estudio: Product-Led Growth", w1_alt:"Captura de la página de pricing de Viz Flowics (bajo NDA)",
+    w2_link:"Ver caso de estudio: Data Augmentation", w2_alt:"Captura de la propuesta 2026 del panel de Data Augmentation (bajo NDA)",
+    w3_link:"Ver caso de estudio: Custom Fonts", w3_alt:"Panel de fuentes instaladas en Viz Flowics",
+    w4_link:"Ver caso de estudio: Mi Argentina", w4_alt:"Home rediseñada de la app Mi Argentina, con buscador asistido, accesos por tarea y gestiones en curso",
+    w5_alt:"Arte de portada de Heroless, en pixel art",
     about_eyebrow:"Sobre mí", about_headline:"Una mirada visual, una mentalidad sistémica.",
     about_p1:"Empecé mi carrera en diseño gráfico, donde pasé diez años creando piezas visuales, antes de dar el salto al UX/UI, hace cinco años. Esa combinación es uno de mis diferenciales: pienso tanto en la jerarquía visual y la composición como en los flujos, la usabilidad y los puntos de fricción en la experiencia.",
-    about_p2:"En Vizrt (Viz Flowics) trabajé hasta 2026 en productos SaaS B2B complejos, participando en iniciativas vinculadas al modelo self-service, pricing, gestión de funcionalidades y sistemas de datos a gran escala.",
+    about_p2:"Hasta julio de 2026 trabajé en Flowics, startup adquirida por Vizrt, en productos SaaS B2B complejos, participando en iniciativas vinculadas al modelo self-service, pricing, gestión de funcionalidades y sistemas de datos a gran escala.",
     about_p3:"Me gradué de la Diplomatura en UX/UI Design de la UTN y actualmente me estoy especializando en inteligencia artificial aplicada a la experiencia de usuario.",
     how_title:"Cómo trabajo", how_1:"UX Research", how_2:"Product Thinking", how_3:"System Design", how_4:"Accesibilidad",
     what_title:"Herramientas", what_1:"Figma & Figma Make", what_2:"Design Systems", what_3:"AI Copywriting — ChatGPT", what_4:"AI Prototyping — Claude",
@@ -432,26 +452,31 @@ const translations = {
   },
   en: {
     nav_work:"Work", nav_about:"About", nav_contact:"Contact",
-    hero_eyebrow:"UX/UI Designer · Product Designer · SaaS & Digital Products",
+    hero_eyebrow:"Product Designer · UX/UI · SaaS & Digital Products",
     hero_sub:"I design B2B SaaS products end to end, from research to launch: self-serve growth, data tools and systems that scale, with a focus on measurable results.",
     hero_cta_1:"View work", hero_cv:"Download CV", hero_cta_2:"Let's talk", hero_meta:"5 years in digital product · Buenos Aires, Argentina",
     together_badge:"design<br>together",
     stat_years:"Years in design", stat_components:"Design system components", stat_leads:"More qualified leads (PLG)",
     work_title:"Work", work_index:"01 to 04",
     w1_title:"Product-Led Growth", w1_meta:"Viz Flowics · Product Design · Growth",
-    w1_desc:"From a sales-led model to self-serve: public pricing, free trial, feature gating and subscription lifecycle. Trial sign-ups x3.", w1_tag:"Under NDA",
+    w1_desc:"From a sales-led model to self-serve: public pricing, free trial, feature gating and subscription lifecycle. +30% leads.", w1_tag:"Under NDA",
     w2_title:"Data Augmentation", w2_meta:"Viz Flowics · Product Design · Data tooling",
-    w2_desc:"A bulk data editing system through Google Sheets, with pre-import simulation and traceability. Support tickets -80% in 2024 and a redesign proposal in 2026.", w2_tag:"Under NDA", w2_tag_new:"2026 proposal",
+    w2_desc:"A bulk data editing system through Google Sheets, with pre-import simulation and traceability. 60% fewer steps to complete the task and a redesign proposal in 2026.", w2_tag:"Under NDA", w2_tag_new:"2026 proposal",
     w3_title:"Custom Fonts", w3_meta:"Viz Flowics · Product Design · Self-serve",
     w3_desc:"Self-serve custom font upload, with family and variant management and plan-based feature gating. Fewer support tickets and more upgrades to Basic.", w3_tag:"Self-serve",
-    w4_title:"Mi Argentina", w4_meta:"UX/UI Diploma · UTN · Team of 3",
-    w4_desc:"End-to-end redesign of Argentina's government app (20M+ users): research with 88 participants, task-based architecture, conversational AI and user validation.", w4_tag:"Full case study",
+    w4_title:"Mi Argentina", w4_meta:"Academic project · UX/UI Diploma · UTN · Team of 3",
+    w4_desc:"End-to-end redesign of Argentina's government app (20M+ users): research with 88 participants, task-based architecture, conversational AI and user validation.", w4_tag:"Academic project",
     w5_title:"Heroless", w5_meta:"GMTK Game Jam 2026 · UI Design · Godot",
     w5_desc:"Interface design for a platformer built in 96 hours for the GMTK Game Jam 2026. Top 30% in Creativity among 10,591 games.", w5_tag:"Game Jam",
     expand:"Expand ↗",
+    w1_link:"View case study: Product-Led Growth", w1_alt:"Screenshot of the Viz Flowics pricing page (under NDA)",
+    w2_link:"View case study: Data Augmentation", w2_alt:"Screenshot of the 2026 Data Augmentation panel proposal (under NDA)",
+    w3_link:"View case study: Custom Fonts", w3_alt:"Installed fonts panel in Viz Flowics",
+    w4_link:"View case study: Mi Argentina", w4_alt:"Redesigned Mi Argentina app home, with assisted search, task shortcuts and ongoing procedures",
+    w5_alt:"Heroless cover art, in pixel art",
     about_eyebrow:"About", about_headline:"A visual eye, a systems mindset.",
     about_p1:"I began my career in graphic design, where I spent ten years creating visual work, before moving into UX/UI five years ago. That combination is one of my differentiators: I think as much about visual hierarchy and composition as about flows, usability and points of friction in the experience.",
-    about_p2:"At Vizrt (Viz Flowics) I worked until 2026 on complex B2B SaaS products, contributing to initiatives around the self-service model, pricing, feature management and large-scale data systems.",
+    about_p2:"Until July 2026 I worked at Flowics, a startup later acquired by Vizrt, on complex B2B SaaS products, contributing to initiatives around the self-service model, pricing, feature management and large-scale data systems.",
     about_p3:"I graduated from the UX/UI Design Diploma at UTN and am currently specializing in artificial intelligence applied to user experience.",
     how_title:"How I work", how_1:"UX Research", how_2:"Product Thinking", how_3:"System Design", how_4:"Accessibility",
     what_title:"Tools", what_1:"Figma & Figma Make", what_2:"Design Systems", what_3:"AI Copywriting — ChatGPT", what_4:"AI Prototyping — Claude",
@@ -467,6 +492,14 @@ function setLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     if(translations[lang][key]) el.innerHTML = translations[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el=>{
+    const v = translations[lang][el.getAttribute('data-i18n-alt')];
+    if(v) el.setAttribute('alt', v);
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>{
+    const v = translations[lang][el.getAttribute('data-i18n-aria')];
+    if(v) el.setAttribute('aria-label', v);
   });
   document.querySelectorAll('.lang-btn').forEach(btn=>{
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');

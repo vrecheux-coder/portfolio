@@ -240,6 +240,21 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
   .phone-mock{width:140px}
 }
 </style>
+<style>
+/* Etiquetas informativas: forma rectangular y sin estados interactivos,
+   para diferenciarlas de los botones y enlaces (que siguen siendo redondeados). */
+.tag,.work-badge,.cover-badge,.team-pill,.pill-dark,.pill-low,.pill-ok,.case-cover-lock,.case-img-lock{border-radius:4px;cursor:default;user-select:none}
+.nda-notice{border-radius:8px;cursor:default}
+.tag{display:inline-flex;align-items:center;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:400;letter-spacing:.04em;line-height:1.3;padding:.32rem .6rem;border:0;background:var(--pink-pale);color:var(--pink-text)}
+.tag-new{background:var(--pink-text);color:#fff}
+.tag-neutral{background:var(--cream-2);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.tag-ok{background:#E3EFE6;color:#2F6E44}
+.tag-academic{background:var(--ink);color:var(--cream)}
+.work-badge,.cover-badge{font-family:'Space Mono',monospace;font-weight:400;letter-spacing:.04em}
+.work-tags{position:relative;z-index:1;cursor:default}
+.work-expand{transition:background .2s,color .2s}
+.work-expand:hover,.work-expand:focus-visible{background:var(--pink);color:#fff}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -269,14 +284,14 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
     <a class="back-link" href="index.html#work">← <span data-i18n="back">Volver a proyectos</span></a>
     <div class="case-eyebrow-row">
       <span class="case-num">04</span>
-      <p class="eyebrow" data-i18n="case_eyebrow">Diplomatura UX/UI · UTN · 2026 · Equipo de 3</p>
+      <p class="eyebrow" data-i18n="case_eyebrow">Proyecto académico · Diplomatura UX/UI · UTN · 2026 · Equipo de 3</p>
     </div>
     <h1 class="display case-title" data-i18n="case_title">Mi Argentina</h1>
     <p class="case-summary" data-i18n="case_summary">Rediseño integral de la aplicación oficial del Estado argentino, con <strong>más de 20 millones de usuarios registrados</strong>: transformamos una navegación estructurada según la lógica institucional en una experiencia orientada a tareas, con búsqueda asistida por IA y validada con usuarios.</p>
     <div class="case-meta-row">
+      <span class="tag tag-academic" data-i18n="tag_year">Proyecto académico</span>
       <span class="tag tag-ok" data-i18n="tag_no_nda">✅ Sin NDA</span>
       <span class="tag tag-neutral" data-i18n="tag_role">Research · Arquitectura · IA conversacional · UI · Testing</span>
-      <span class="tag tag-neutral" data-i18n="tag_year">Proyecto final de Diplomatura</span>
     </div>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="https://www.figma.com/proto/itqfzNKb9cyVAnF6kysbdz/Presentaci%C3%B3n---Redise%C3%B1o-Mi-Argentina?node-id=511-1160&p=f&t=I5AAPbGsARQVIfzE-1&scaling=contain&content-scaling=fixed&page-id=512%3A1160&starting-point-node-id=511%3A1160" target="_blank" rel="noopener noreferrer"><span data-i18n="cta_full">Ver caso de estudio completo</span> ↗</a>
@@ -296,7 +311,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
     </div>
 
     <figure class="case-cover">
-      <img src="images/ma-before-after.jpg" alt="Comparación entre la Home original de Mi Argentina y la propuesta final: buscador con Tina, accesos por tarea, alerta de vencimiento y gestiones en curso" loading="eager">
+      <img src="images/ma-before-after.jpg" alt="Comparación entre la Home original de Mi Argentina y la propuesta final: buscador con Tina, accesos por tarea, alerta de vencimiento y gestiones en curso" data-i18n-alt="cover_alt" loading="eager">
       <figcaption class="cover-labels"><span data-i18n="label_before">Original</span><span data-i18n="label_after">Propuesta final</span></figcaption>
     </figure>
   </div>
@@ -578,10 +593,11 @@ const translations = {
   es: {
     nav_work:"Proyectos", nav_about:"Sobre mí", nav_contact:"Contacto",
     back:"Volver a proyectos",
-    case_eyebrow:"Diplomatura UX/UI · UTN · 2026 · Equipo de 3",
+    case_eyebrow:"Proyecto académico · Diplomatura UX/UI · UTN · 2026 · Equipo de 3",
+    cover_alt:"Comparación entre la Home original de Mi Argentina y la propuesta final: buscador con Tina, accesos por tarea, alerta de vencimiento y gestiones en curso",
     case_title:"Mi Argentina",
     case_summary:"Rediseño integral de la aplicación oficial del Estado argentino, con <strong>más de 20 millones de usuarios registrados</strong>: transformamos una navegación estructurada según la lógica institucional en una experiencia orientada a tareas, con búsqueda asistida por IA y validada con usuarios.",
-    tag_no_nda:"✅ Sin NDA", tag_role:"Research · Arquitectura · IA conversacional · UI · Testing", tag_year:"Proyecto final de Diplomatura",
+    tag_no_nda:"✅ Sin NDA", tag_role:"Research · Arquitectura · IA conversacional · UI · Testing", tag_year:"Proyecto académico",
     cta_full:"Ver caso de estudio completo", cta_proto:"Ver el prototipo",
     academic_badge:"Trabajo final<br>Diplomatura UX/UI · UTN",
     academic_p:"Proyecto de cierre de la Diplomatura en Diseño UX/UI de la UTN (feb–jul 2026). El objetivo fue ejecutar <strong>el ciclo completo de diseño de producto con estándares profesionales</strong>: investigación cualitativa y cuantitativa, definición del MVP, arquitectura de información, diseño de interfaz, design system y validación con usuarios, documentado en su totalidad en la presentación final.",
@@ -675,10 +691,11 @@ const translations = {
   en: {
     nav_work:"Work", nav_about:"About", nav_contact:"Contact",
     back:"Back to work",
-    case_eyebrow:"UX/UI Diploma · UTN · 2026 · Team of 3",
+    case_eyebrow:"Academic project · UX/UI Diploma · UTN · 2026 · Team of 3",
+    cover_alt:"Comparison between the original Mi Argentina home and the final proposal: search with Tina, task shortcuts, expiry alert and ongoing procedures",
     case_title:"Mi Argentina",
     case_summary:"A comprehensive redesign of Argentina's official government app, with <strong>more than 20 million registered users</strong>: we turned navigation structured around institutional logic into a task-oriented experience with AI-assisted search, validated with users.",
-    tag_no_nda:"✅ Not under NDA", tag_role:"Research · IA · Conversational AI · UI · Testing", tag_year:"Diploma final project",
+    tag_no_nda:"✅ Not under NDA", tag_role:"Research · IA · Conversational AI · UI · Testing", tag_year:"Academic project",
     cta_full:"View full case study", cta_proto:"View the prototype",
     academic_badge:"Final project<br>UX/UI Diploma · UTN",
     academic_p:"Capstone project for UTN's UX/UI Design Diploma (Feb–Jul 2026). The goal was to execute <strong>the full product design cycle to professional standards</strong>: qualitative and quantitative research, MVP definition, information architecture, interface design, a design system and user validation, fully documented in the final presentation.",
@@ -775,6 +792,14 @@ function setLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     if(translations[lang][key]) el.innerHTML = translations[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el=>{
+    const v = translations[lang][el.getAttribute('data-i18n-alt')];
+    if(v) el.setAttribute('alt', v);
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>{
+    const v = translations[lang][el.getAttribute('data-i18n-aria')];
+    if(v) el.setAttribute('aria-label', v);
   });
   document.querySelectorAll('.lang-btn').forEach(btn=>{
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
