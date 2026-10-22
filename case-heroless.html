@@ -273,6 +273,21 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 @media (max-width:900px){.role-band{grid-template-columns:1fr}.role-band .academic-badge{border-right:0;border-bottom:1.5px solid var(--line);padding:0 0 .8rem}}
 @media (max-width:620px){.img-pair{grid-template-columns:1fr}}
 </style>
+<style>
+/* Etiquetas informativas: forma rectangular y sin estados interactivos,
+   para diferenciarlas de los botones y enlaces (que siguen siendo redondeados). */
+.tag,.work-badge,.cover-badge,.team-pill,.pill-dark,.pill-low,.pill-ok,.case-cover-lock,.case-img-lock{border-radius:4px;cursor:default;user-select:none}
+.nda-notice{border-radius:8px;cursor:default}
+.tag{display:inline-flex;align-items:center;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:400;letter-spacing:.04em;line-height:1.3;padding:.32rem .6rem;border:0;background:var(--pink-pale);color:var(--pink-text)}
+.tag-new{background:var(--pink-text);color:#fff}
+.tag-neutral{background:var(--cream-2);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.tag-ok{background:#E3EFE6;color:#2F6E44}
+.tag-academic{background:var(--ink);color:var(--cream)}
+.work-badge,.cover-badge{font-family:'Space Mono',monospace;font-weight:400;letter-spacing:.04em}
+.work-tags{position:relative;z-index:1;cursor:default}
+.work-expand{transition:background .2s,color .2s}
+.work-expand:hover,.work-expand:focus-visible{background:var(--pink);color:#fff}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -328,7 +343,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <div class="stat"><p class="stat-num">Top 45<span class="accent">%</span></p><p class="stat-label" data-i18n="stat_4">en Arte (puesto #4.368)</p></div>
     </div>
 
-    <div class="case-cover"><img src="images/heroless-cover.png" alt="Arte de portada de Heroless, en pixel art con el nombre del juego" loading="lazy"></div>
+    <div class="case-cover"><img src="images/heroless-cover.png" alt="Arte de portada de Heroless, en pixel art con el nombre del juego" data-i18n-alt="cover_alt" loading="lazy"></div>
   </div>
 </header>
 
@@ -421,6 +436,7 @@ const translations = {
   "under_nda": "Bajo NDA",
   "next_title": "Todos los proyectos",
   "case_eyebrow": "GMTK Game Jam 2026 · UI Design · Godot",
+  "cover_alt": "Arte de portada de Heroless, en pixel art con el nombre del juego",
   "case_title": "Heroless",
   "case_summary": "Diseño de la interfaz de un videojuego de plataformas desarrollado en <strong>96 horas</strong> para la GMTK Game Jam 2026: menús, HUD y selección de habilidades, definidos e integrados al motor en paralelo con el desarrollo.",
   "tag_no_nda": "✅ Sin NDA",
@@ -474,6 +490,7 @@ const translations = {
   "under_nda": "Under NDA",
   "next_title": "All projects",
   "case_eyebrow": "GMTK Game Jam 2026 · UI Design · Godot",
+  "cover_alt": "Heroless cover art, in pixel art with the game title",
   "case_title": "Heroless",
   "case_summary": "Interface design for a platformer built in <strong>96 hours</strong> for the GMTK Game Jam 2026: menus, HUD and skill selection, defined and integrated into the engine in parallel with development.",
   "tag_no_nda": "✅ Not under NDA",
@@ -522,6 +539,14 @@ function setLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     if(translations[lang][key]) el.innerHTML = translations[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el=>{
+    const v = translations[lang][el.getAttribute('data-i18n-alt')];
+    if(v) el.setAttribute('alt', v);
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>{
+    const v = translations[lang][el.getAttribute('data-i18n-aria')];
+    if(v) el.setAttribute('aria-label', v);
   });
   document.querySelectorAll('.lang-btn').forEach(btn=>{
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');

@@ -278,6 +278,21 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
 .era-title{font-size:clamp(1.6rem,3vw,2.4rem);max-width:24ch}
 .case-hero > .container > .img-caption{margin-top:.8rem}
 </style>
+<style>
+/* Etiquetas informativas: forma rectangular y sin estados interactivos,
+   para diferenciarlas de los botones y enlaces (que siguen siendo redondeados). */
+.tag,.work-badge,.cover-badge,.team-pill,.pill-dark,.pill-low,.pill-ok,.case-cover-lock,.case-img-lock{border-radius:4px;cursor:default;user-select:none}
+.nda-notice{border-radius:8px;cursor:default}
+.tag{display:inline-flex;align-items:center;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:400;letter-spacing:.04em;line-height:1.3;padding:.32rem .6rem;border:0;background:var(--pink-pale);color:var(--pink-text)}
+.tag-new{background:var(--pink-text);color:#fff}
+.tag-neutral{background:var(--cream-2);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.tag-ok{background:#E3EFE6;color:#2F6E44}
+.tag-academic{background:var(--ink);color:var(--cream)}
+.work-badge,.cover-badge{font-family:'Space Mono',monospace;font-weight:400;letter-spacing:.04em}
+.work-tags{position:relative;z-index:1;cursor:default}
+.work-expand{transition:background .2s,color .2s}
+.work-expand:hover,.work-expand:focus-visible{background:var(--pink);color:#fff}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -326,13 +341,13 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
     </div>
 
     <div class="stats">
-      <div class="stat"><p class="stat-num">-80<span class="accent">%</span></p><p class="stat-label" data-i18n="stat_1">tickets de soporte vinculados a la edición de datos</p></div>
+      <div class="stat"><p class="stat-num" data-i18n="stat_1_num">−60<span class="accent">%</span></p><p class="stat-label" data-i18n="stat_1">de pasos para completar la tarea</p></div>
       <div class="stat"><p class="stat-num">15</p><p class="stat-label" data-i18n="stat_2">usuarios en entrevistas y pruebas de usabilidad</p></div>
       <div class="stat"><p class="stat-num">3</p><p class="stat-label" data-i18n="stat_3">pasos: exportar, editar y simular antes de importar</p></div>
       <div class="stat"><p class="stat-num">10</p><p class="stat-label" data-i18n="stat_4">meses de proyecto, de la investigación al lanzamiento</p></div>
     </div>
 
-    <div class="case-cover" role="img" aria-label="Captura desenfocada del rediseño 2026 del panel de Data Augmentation, bajo NDA">
+    <div class="case-cover" role="img" aria-label="Captura de la propuesta 2026 del panel de Data Augmentation (bajo NDA)" data-i18n-aria="cover_alt">
       <img src="images/da26-cover.jpg" data-nda="images/da26-cover.enc" alt="" loading="lazy">
       <span class="cover-badge" data-i18n="tag_new">Propuesta 2026</span>
       <span class="case-cover-lock">🔒 <span data-i18n="under_nda">Bajo NDA</span></span>
@@ -425,7 +440,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
       <h2 data-i18n="impact_h">Ediciones masivas sin riesgo para producción</h2>
       <p data-i18n="impact_p1">El flujo se validó con los mismos 15 usuarios que participaron de la investigación, iterando sobre la claridad del reporte y la recuperación ante errores antes del lanzamiento.</p>
       <div class="ab">
-        <div class="ab-card win"><span class="eyebrow" data-i18n="imp1_l">Soporte</span><p class="stat-num">-80%</p><p data-i18n="imp1_d">tickets de soporte vinculados a la edición de datos.</p></div>
+        <div class="ab-card win"><span class="eyebrow" data-i18n="imp1_l">Eficiencia</span><p class="stat-num" data-i18n="imp1_num">−60%</p><p data-i18n="imp1_d">de pasos para completar la tarea.</p></div>
         <div class="ab-card win"><span class="eyebrow" data-i18n="imp2_l">Autonomía</span><p class="stat-num">Self-serve</p><p data-i18n="imp2_d">Los equipos realizan las ediciones rutinarias sin depender de soporte, lo que redujo la fricción por demoras.</p></div>
       </div>
       <p style="margin-top:var(--sp-3)" data-i18n="impact_p2">Los equipos pasaron de editar registro por registro a gestionar conjuntos de datos completos con confianza: la simulación previa elimina las sorpresas y el historial de importaciones aporta trazabilidad sobre cada cambio.</p>
@@ -444,7 +459,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);color:var(--ink-soft);font-size:.8rem;d
         <li data-i18n="l3"><strong>Control granular.</strong> Cada grupo de cambios se confirma de forma independiente, sin forzar decisiones de todo o nada.</li>
         <li data-i18n="l4"><strong>Trazabilidad por defecto.</strong> Cada importación queda registrada sin pasos adicionales para el usuario.</li>
       </ul>
-      <p style="margin-top:var(--sp-3)" data-i18n="learn_p2"><strong>En retrospectiva:</strong> definiría desde el inicio una línea de base del tiempo que demandaba cada edición, para cuantificar el ahorro además de la reducción de tickets. La propuesta 2026 retoma esa revisión y se enfoca en la claridad del estado del proceso y en la prevención de conflictos entre operadores.</p>
+      <p style="margin-top:var(--sp-3)" data-i18n="learn_p2"><strong>En retrospectiva:</strong> definiría desde el inicio una línea de base del tiempo que demandaba cada edición, para cuantificar también el ahorro de tiempo, además de la reducción de pasos. La propuesta 2026 retoma esa revisión y se enfoca en la claridad del estado del proceso y en la prevención de conflictos entre operadores.</p>
     </div>
   </div>
 </section>
@@ -478,6 +493,7 @@ const translations = {
   "footer_note": "Buenos Aires, Argentina",
   "under_nda": "Bajo NDA",
   "case_eyebrow": "Viz Flowics (Vizrt) · Product Design · 2024 — 2026",
+  "cover_alt": "Captura de la propuesta 2026 del panel de Data Augmentation (bajo NDA)",
   "case_title": "Data Augmentation",
   "case_summary": "Sistema de <strong>edición masiva de datos</strong> para una plataforma SaaS B2B de gráficos en vivo. Diseñé la versión original en 2024 y, en 2026, desarrollé una propuesta de rediseño que hace visible el estado del proceso, anticipa los conflictos entre ediciones y simplifica la lectura del reporte de simulación.",
   "tag_nda": "Bajo NDA",
@@ -486,7 +502,8 @@ const translations = {
   "nda_notice": "Imágenes desenfocadas por confidencialidad — incluyen datos internos de la empresa.",
   "role_badge": "Única diseñadora<br>del proyecto",
   "role_p": "Lideré el diseño del sistema original de punta a punta, desde la investigación hasta el handoff a desarrollo, durante <strong>diez meses de 2024</strong>. En 2026 revisé la experiencia a partir de su uso real y desarrollé una propuesta de rediseño del panel y del reporte.",
-  "stat_1": "tickets de soporte vinculados a la edición de datos",
+  "stat_1_num": "−60<span class=\"accent\">%</span>",
+  "stat_1": "de pasos para completar la tarea",
   "stat_2": "usuarios en entrevistas y pruebas de usabilidad",
   "stat_3": "pasos: exportar, editar y simular antes de importar",
   "stat_4": "meses de proyecto, de la investigación al lanzamiento",
@@ -518,8 +535,9 @@ const translations = {
   "report_hint": "↕ Desplazá para ver el reporte completo",
   "impact_h": "Ediciones masivas sin riesgo para producción",
   "impact_p1": "El flujo se validó con los mismos 15 usuarios que participaron de la investigación, iterando sobre la claridad del reporte y la recuperación ante errores antes del lanzamiento.",
-  "imp1_l": "Soporte",
-  "imp1_d": "tickets de soporte vinculados a la edición de datos.",
+  "imp1_l": "Eficiencia",
+  "imp1_num": "−60%",
+  "imp1_d": "de pasos para completar la tarea.",
   "imp2_l": "Autonomía",
   "imp2_d": "Los equipos realizan las ediciones rutinarias sin depender de soporte, lo que redujo la fricción por demoras.",
   "impact_p2": "Los equipos pasaron de editar registro por registro a gestionar conjuntos de datos completos con confianza: la simulación previa elimina las sorpresas y el historial de importaciones aporta trazabilidad sobre cada cambio.",
@@ -530,7 +548,7 @@ const translations = {
   "l2": "<strong>Prevenir antes que corregir.</strong> La simulación traslada la detección de errores a un momento sin consecuencias.",
   "l3": "<strong>Control granular.</strong> Cada grupo de cambios se confirma de forma independiente, sin forzar decisiones de todo o nada.",
   "l4": "<strong>Trazabilidad por defecto.</strong> Cada importación queda registrada sin pasos adicionales para el usuario.",
-  "learn_p2": "<strong>En retrospectiva:</strong> definiría desde el inicio una línea de base del tiempo que demandaba cada edición, para cuantificar el ahorro además de la reducción de tickets. La propuesta 2026 retoma esa revisión y se enfoca en la claridad del estado del proceso y en la prevención de conflictos entre operadores.",
+  "learn_p2": "<strong>En retrospectiva:</strong> definiría desde el inicio una línea de base del tiempo que demandaba cada edición, para cuantificar también el ahorro de tiempo, además de la reducción de pasos. La propuesta 2026 retoma esa revisión y se enfoca en la claridad del estado del proceso y en la prevención de conflictos entre operadores.",
   "label_learn": "Rol y criterios",
   "tag_new": "Propuesta 2026",
   "cap_cover": "Propuesta 2026 · Panel con el estado del proceso, la planilla vinculada y una única acción principal.",
@@ -568,6 +586,7 @@ const translations = {
   "footer_note": "Buenos Aires, Argentina",
   "under_nda": "Under NDA",
   "case_eyebrow": "Viz Flowics (Vizrt) · Product Design · 2024 — 2026",
+  "cover_alt": "Screenshot of the 2026 Data Augmentation panel proposal (under NDA)",
   "case_title": "Data Augmentation",
   "case_summary": "A <strong>bulk data editing</strong> system for a B2B SaaS live graphics platform. I designed the original version in 2024 and, in 2026, developed a redesign proposal that makes the state of the process visible, anticipates conflicts between edits and simplifies how the simulation report reads.",
   "tag_nda": "Under NDA",
@@ -576,7 +595,8 @@ const translations = {
   "nda_notice": "Images blurred for confidentiality — they include internal company data.",
   "role_badge": "Sole designer<br>on the project",
   "role_p": "I led design of the original system end to end, from research through hand-off to engineering, over <strong>ten months in 2024</strong>. In 2026 I revisited the experience in light of real-world use and developed a redesign proposal for the dashboard and the report.",
-  "stat_1": "support tickets related to data editing",
+  "stat_1_num": "60<span class=\"accent\">%</span>",
+  "stat_1": "fewer steps to complete the task",
   "stat_2": "users in interviews and usability testing",
   "stat_3": "steps: export, edit and simulate before importing",
   "stat_4": "months of work, from research to launch",
@@ -608,8 +628,9 @@ const translations = {
   "report_hint": "↕ Scroll to see the full report",
   "impact_h": "Bulk edits without risk to production",
   "impact_p1": "The flow was validated with the same 15 users who took part in the research, iterating on report clarity and error recovery before launch.",
-  "imp1_l": "Support",
-  "imp1_d": "support tickets related to data editing.",
+  "imp1_l": "Efficiency",
+  "imp1_num": "60%",
+  "imp1_d": "fewer steps to complete the task.",
   "imp2_l": "Autonomy",
   "imp2_d": "Teams make routine edits without relying on support, which reduced friction from delays.",
   "impact_p2": "Teams went from editing record by record to managing complete datasets with confidence: the prior simulation removes surprises and the import history provides traceability for every change.",
@@ -620,7 +641,7 @@ const translations = {
   "l2": "<strong>Prevent rather than correct.</strong> The simulation moves error detection to a moment without consequences.",
   "l3": "<strong>Granular control.</strong> Each group of changes is confirmed independently, without forcing all-or-nothing decisions.",
   "l4": "<strong>Traceability by default.</strong> Every import is logged with no extra steps for the user.",
-  "learn_p2": "<strong>In retrospect:</strong> I would set a baseline for the time each edit took from the start, to quantify time savings in addition to the drop in tickets. The 2026 proposal builds on that review, focusing on clarity about the state of the process and on preventing conflicts between operators.",
+  "learn_p2": "<strong>In retrospect:</strong> I would set a baseline for the time each edit took from the start, to quantify time savings as well as the reduction in steps. The 2026 proposal builds on that review, focusing on clarity about the state of the process and on preventing conflicts between operators.",
   "label_learn": "Role and principles",
   "tag_new": "2026 proposal",
   "cap_cover": "2026 proposal · Dashboard showing the state of the process, the linked spreadsheet and a single primary action.",
@@ -654,6 +675,14 @@ function setLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     if(translations[lang][key]) el.innerHTML = translations[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el=>{
+    const v = translations[lang][el.getAttribute('data-i18n-alt')];
+    if(v) el.setAttribute('alt', v);
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>{
+    const v = translations[lang][el.getAttribute('data-i18n-aria')];
+    if(v) el.setAttribute('aria-label', v);
   });
   document.querySelectorAll('.lang-btn').forEach(btn=>{
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true':'false');
